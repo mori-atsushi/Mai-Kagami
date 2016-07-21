@@ -12,7 +12,7 @@ void MaiKagami::View() {
 		break;
 	case LOGIN:
 		login.Update();
-//		scene = songSelect.Load();
+		scene = songSelect.Load();
 		break;
 	}
 
@@ -25,6 +25,7 @@ void MaiKagami::View() {
 		login.View();
 		break;
 	case SONG_SELECT:
+		songSelect.View();
 		break;
 	}
 }
