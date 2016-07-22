@@ -9,7 +9,7 @@
 //トップロゴ関係
 class TopLogo {
 public:
-	TopLogo();
+	void Init();
 	void View(); //表示
 private:
 	int logo; //画像ID
@@ -18,7 +18,7 @@ private:
 //NFCタッチメッセージ関係
 class TopTouchMessage {
 public:
-	TopTouchMessage();
+	void Init();
 	void Update(); //計算
 	void View(); //表示
 private:
@@ -29,7 +29,7 @@ private:
 //NFCタッチボタン関係
 class TopTouchButton {
 public:
-	TopTouchButton();
+	void Init();
 	void View(); //表示
 private:
 	MyDrawCircle myDrawCircle;
@@ -39,6 +39,7 @@ private:
 //トップ画面関係
 class Top { 
 public:
+	void Load();
 	int Update(); //計算
 	void View(); //表示
 private:

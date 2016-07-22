@@ -1,7 +1,7 @@
 #include "Top.h"
 
-//トップロゴコンストラクタ
-TopLogo::TopLogo() {
+//トップロゴ初期化
+void TopLogo::Init() {
 	logo = LoadGraph("img/logo.png"); // 画像のロード
 }
 
@@ -11,7 +11,7 @@ void TopLogo::View() {
 }
 
 //NFCタッチメッセージコンストラクタ
-TopTouchMessage::TopTouchMessage() {
+void TopTouchMessage::Init() {
 	char *str = "-カードをタッチしてください-"; //表示文字列
 	myDrawText.Init(str, WIDTH / 2, HEIGHT / 2.35, 1, 50);
 }
@@ -39,7 +39,7 @@ void TopTouchMessage::View() {
 }
 
 //NFCタッチボタンコンストラクタ
-TopTouchButton::TopTouchButton() {
+void TopTouchButton::Init() {
 	char *str = "ここに\nタッチ！"; //表示文字列
 	myDrawCircle.Init(WIDTH, NFC_POS, WIDTH / 12);
 	myDrawText.Init(str, WIDTH * 0.9, NFC_POS - HEIGHT * 0.025, 2, 50);
@@ -49,6 +49,13 @@ TopTouchButton::TopTouchButton() {
 void TopTouchButton::View() {
 	myDrawCircle.Draw();
 	myDrawText.Draw(); //テキスト表示
+}
+
+//トップ画面初期化
+void Top::Load() {
+	topLogo.Init(); //ロゴ初期化
+	topTouchMessage.Init(); //NFCタッチメッセージ初期化
+	topTouchButton.Init(); //NFCタッチボタン初期化
 }
 
 //トップ画面計算

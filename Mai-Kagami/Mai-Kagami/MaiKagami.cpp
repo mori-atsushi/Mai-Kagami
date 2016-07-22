@@ -2,6 +2,7 @@
 
 MaiKagami::MaiKagami() {
 	scene = START; //ƒV[ƒ“‰Šú‰»
+	top.Load();
 }
 
 void MaiKagami::View() {
