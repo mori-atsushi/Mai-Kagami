@@ -1,16 +1,22 @@
 #ifndef __DRAW_H_INCLUDED__
 #define __DRAW_H_INCLUDED__
 
+#include <string.h>
 #include "DxLib.h"
 #include "Main.h"
 
+//色関係
 class Color {
 public:
+	void Set(char *color);
+	int Get();
 	int White(); //白色
 	int Blue(); //青色
 private:
+	int c;
 };
 
+//フォント関係
 class Font {
 public:
 	void Set(int p); //ポイント数セット
@@ -19,9 +25,9 @@ private:
 	int ID; //フォントID
 };
 
+//表示位置関係
 class ViewPos {
 public :
-	void Init(int a, int b);
 	void Init(int a, int b, int pos, int len);
 	int GetX();
 	int GetY();
@@ -29,6 +35,7 @@ private:
 	int x, y;
 };
 
+//テキスト関係
 class MyDrawText {
 public:
 	void Init(char *s, int a, int b, int pos, int point); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
@@ -41,6 +48,7 @@ private:
 	int strLen; //文字列の長さ
 };
 
+//線関係
 class MyDrawLine {
 public:
 	void Init(int a, int b, int pos, int length, int width); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
@@ -53,6 +61,7 @@ private:
 	int w;
 };
 
+//円関係
 class MyDrawCircle {
 public:
 	void Init(int a, int b, int radius);

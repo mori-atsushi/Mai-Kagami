@@ -1,5 +1,18 @@
 #include "Draw.h"
 
+//色指定
+void Color::Set(char *color) {
+	if(!strcmp(color, "White"))
+		c = GetColor(255, 255, 255); //白色
+	else if(!strcmp(color, "Blue"))
+		c = GetColor(127, 210, 234); //青色
+}
+
+//色取得
+int Color::Get() {
+	return c;
+}
+
 int Color::White() {
 	return GetColor(255, 255, 255); //白色
 }
@@ -8,19 +21,18 @@ int Color::Blue() {
 	return GetColor(127, 210, 234); //青色
 }
 
+//フォント指定
 void Font::Set(int p) {
 	ID = CreateFontToHandle("遊ゴシック", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
+//フォント取得
 int Font::Get() {
 	return ID;
 }
 
-void ViewPos::Init(int a, int b) {
-	x = a; y = b;
-}
-
-void ViewPos::Init(int a, int b, int pos, int len) {
+//ポジション指定(右寄せ/中央寄せ/左寄せ)
+void ViewPos::Init(int a, int b, int pos = 0, int len = 0) {
 	switch (pos) {
 	case 0:
 		x = a; y = b;
@@ -34,40 +46,51 @@ void ViewPos::Init(int a, int b, int pos, int len) {
 	}
 }
 
+//x座標取得
 int ViewPos::GetX() {
 	return x;
 }
 
+//y座標取得
 int ViewPos::GetY() {
 	return y;
 }
 
+//テキスト初期化
 void MyDrawText::Init(char *s, int a, int b, int pos, int point) {
 	str = s;
 	font.Set(point);
+	color.Set("White");
 	strLen = GetDrawStringWidthToHandle(str, (int)strlen(str), font.Get());
 	viewPos.Init(a, b, pos, strLen);
 }
 
+//テキスト表示
 void MyDrawText::Draw() {
-	DrawStringToHandle(viewPos.GetX(), viewPos.GetY(), str, color.White(), font.Get()); //文字表示
+	DrawStringToHandle(viewPos.GetX(), viewPos.GetY(), str, color.Get(), font.Get()); //文字表示
 }
 
+//線初期化
 void MyDrawLine::Init(int a, int b, int pos, int length, int width) {
+	color.Set("White");
 	viewPos.Init(a, b, pos, length);
 	w = width / SIZE_RATE;
 }
 
+//線表示
 void MyDrawLine::Draw() {
-	DrawLine(viewPos.GetX(), viewPos.GetY(), viewPos.GetX() + len, viewPos.GetY(), color.White(), 4 / SIZE_RATE);
+	DrawLine(viewPos.GetX(), viewPos.GetY(), viewPos.GetX() + len, viewPos.GetY(), color.Get(), 4 / SIZE_RATE);
 
 }
 
+//円初期化
 void MyDrawCircle::Init(int a, int b, int radius) {
 	viewPos.Init(a, b);
+	color.Set("Blue");
 	r = radius;
 }
 
+//円表示
 void  MyDrawCircle::Draw() {
-	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Blue(), TRUE);
+	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Get(), TRUE);
 }
