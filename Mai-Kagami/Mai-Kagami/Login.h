@@ -8,21 +8,20 @@
 //ログインメッセージ
 class LoginMessage {
 public:
-	LoginMessage();
+	void Init();
 	void View(); //表示
 private:
-	Font font;
-	char *str; //表示文字列
-	int x, y; //表示位置
+	MyDrawText myDrawText;
 };
 
 //ログインアニメーション
 class LoginAnimation {
 public:
-	LoginAnimation();
+	void Init();
 	void Update();
 	void View(); //表示
 private:
+	MyDrawCircle myDrawCircle[3];
 	int alpha[3]; //透明度
 	int x, y, r; //表示位置、半径
 };
@@ -30,6 +29,7 @@ private:
 //ログイン画面関係
 class Login {
 public:
+	void Load(); //ロード
 	void Update(); //計算
 	void View(); //表示
 private:

@@ -3,8 +3,10 @@
 MaiKagami::MaiKagami() {
 	scene = START; //シーン初期化
 	top.Load();
+	login.Load();
 }
 
+//全体の計算と描画
 void MaiKagami::View() {
 	//計算
 	switch (scene) {

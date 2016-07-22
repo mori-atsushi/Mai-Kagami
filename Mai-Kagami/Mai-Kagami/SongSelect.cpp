@@ -37,6 +37,6 @@ void SongSelect::View() {
 //曲選択画面画像ロード
 void SongSelect::LoadThread() {
 	songSelectTitle.Init(); //曲選択画面タイトル初期化
-	Sleep(500);
+	Sleep(5000);
 	loadFlag = 2;
 }

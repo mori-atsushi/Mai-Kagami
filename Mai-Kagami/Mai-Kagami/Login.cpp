@@ -1,27 +1,20 @@
 #include "Login.h"
 
 //ログインメッセージコンストラクタ
-LoginMessage::LoginMessage() {
-	int strLen; //文字の長さ
-	str = "ログインしています"; //表示文字列
-	font.Set(50); //フォントサイズセット
-	strLen = GetDrawStringWidthToHandle(str, (int)strlen(str), font.Get());
-	x = WIDTH / 2 - strLen / 2;
-	y = HEIGHT * 0.46;
+void LoginMessage::Init() {
+	char *str = "ログインしています"; //表示文字列
+	myDrawText.Init(str, WIDTH / 2, HEIGHT * 0.46, 1, 50);
 }
 
 //ログインメッセージ表示
 void LoginMessage::View() {
-	Color color;
-	DrawStringToHandle(x, y, str, color.White(), font.Get()); //文字表示
+	myDrawText.Draw();
 }
 
 //ログインアニメーションコンストラクタ
-LoginAnimation::LoginAnimation() {
-	int strLen; //文字の長さ
-	x = WIDTH * 0.5;
-	y = HEIGHT * 0.4;
-	r = WIDTH / 36;
+void LoginAnimation::Init() {
+	for(int i = 0; i < 3; i++)
+		myDrawCircle[i].Init(WIDTH * 0.5 + (i - 1) * WIDTH * 0.12, HEIGHT * 0.4, WIDTH / 36);
 }
 
 //ログインアニメーション計算
@@ -65,15 +58,17 @@ void LoginAnimation::Update() {
 
 //ログインアニメーション表示
 void LoginAnimation::View() {
-	Color color;
-
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha[0]); //透明度設定
-	DrawCircleAA(x - WIDTH * 0.12, y, r, 100, color.Blue(), TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha[1]); //透明度設定
-	DrawCircleAA(x, y, r, 100, color.Blue(), TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha[2]); //透明度設定
-	DrawCircleAA(x + WIDTH * 0.12, y, r, 100, color.Blue(), TRUE);
+	for (int i = 0; i < 3; i++) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha[i]); //透明度設定
+		myDrawCircle[i].Draw();
+	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
+}
+
+//ログイン画面ロード
+void Login::Load() {
+	loginMessage.Init();
+	loginAnimation.Init();
 }
 
 //ログイン画面計算
