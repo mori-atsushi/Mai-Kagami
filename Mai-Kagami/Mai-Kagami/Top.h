@@ -22,9 +22,7 @@ public:
 	void Update(); //計算
 	void View(); //表示
 private:
-	Font font;
-	char *str; //表示文字列
-	int x, y; //表示位置
+	MyDrawText myDrawText;
 	int alpha; //透明度
 };
 
@@ -34,8 +32,8 @@ public:
 	TopTouchButton();
 	void View(); //表示
 private:
-	Font font;
-	int x, y; //表示位置
+	MyDrawCircle myDrawCircle;
+	MyDrawText myDrawText;
 };
 
 //トップ画面関係

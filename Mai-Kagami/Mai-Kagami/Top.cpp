@@ -12,13 +12,8 @@ void TopLogo::View() {
 
 //NFCタッチメッセージコンストラクタ
 TopTouchMessage::TopTouchMessage() {
-	int strLen; //文字列の長さ
-
-	str = "-カードをタッチしてください-"; //表示文字列
-	font.Set(50); //フォントサイズセット
-	strLen = GetDrawStringWidthToHandle(str, (int)strlen(str), font.Get());
-	x = WIDTH / 2 - strLen / 2;
-	y = HEIGHT / 2.35;
+	char *str = "-カードをタッチしてください-"; //表示文字列
+	myDrawText.Init(str, WIDTH / 2, HEIGHT / 2.35, 1, 50);
 }
 
 //NFCタッチメッセージ計算
@@ -38,26 +33,22 @@ void TopTouchMessage::Update() {
 
 //NFCタッチメッセージ表示
 void TopTouchMessage::View() {
-	Color color;
-
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha); //透明度設定
-	DrawStringToHandle(x, y, str, color.White(), font.Get()); //文字表示
+	myDrawText.Draw(); //文字表示
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
 }
 
 //NFCタッチボタンコンストラクタ
 TopTouchButton::TopTouchButton() {
-	font.Set(50); //フォントサイズセット
-	x = WIDTH;
-	y = NFC_POS;
+	char *str = "ここに\nタッチ！"; //表示文字列
+	myDrawCircle.Init(WIDTH, NFC_POS, WIDTH / 12);
+	myDrawText.Init(str, WIDTH * 0.9, NFC_POS - HEIGHT * 0.025, 2, 50);
 }
 
 //NFCタッチボタン表示
 void TopTouchButton::View() {
-	Color color;
-
-	DrawCircleAA(x, y, WIDTH / 12, 100, color.Blue(), TRUE);
-	DrawStringToHandle(x - WIDTH * 0.3, y - HEIGHT * 0.025 , "ここに\nタッチ！", color.White(), font.Get());
+	myDrawCircle.Draw();
+	myDrawText.Draw(); //テキスト表示
 }
 
 //トップ画面計算
