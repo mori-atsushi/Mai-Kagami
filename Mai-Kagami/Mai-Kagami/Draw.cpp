@@ -62,15 +62,15 @@ void MyDrawText::Draw() {
 
 //テキストの幅取得
 int MyDrawText::GetWidth() {
-	return strLen;
+	return strLen * SIZE_RATE;
 }
 
 //線初期化
 void MyDrawLine::Init(int a, int b, int pos, int length, int width) {
 	color.Set("White");
-	viewPos.Init(a, b, pos, length);
+	len = length / SIZE_RATE;
+	viewPos.Init(a, b, pos, len);
 	w = width / SIZE_RATE;
-	len = length;
 }
 
 //線表示
@@ -113,23 +113,18 @@ void MyDrawTriangle::Init(int a, int b, int width, int direction) {
 
 //リング表示
 void  MyDrawTriangle::Draw() {
-	float x1 = viewPos.GetX();
-	float y1 = viewPos.GetY();
-	float x2 = viewPos.GetX() - w / 2;
-	float y2 = viewPos.GetY();
-	float x3 = viewPos.GetX() + w / 2;
-	float y3 = viewPos.GetY();
+	float x1 = viewPos.GetX();			float y1 = viewPos.GetY();
+	float x2 = viewPos.GetX() - w / 2;	float y2 = viewPos.GetY();
+	float x3 = viewPos.GetX() + w / 2;	float y3 = viewPos.GetY();
 	float a = w * sqrt(3) / 4;
+
 	if (d == 0) {
-		y1 -= a;
-		y2 += a;
-		y3 += a;
+		y1 -= a; y2 += a; y3 += a;
 	}
 	else {
-		y1 += a;
-		y2 -= a;
-		y3 -= a;
+		y1 += a; y2 -= a; y3 -= a;
 	}
+
 	DrawTriangleAA(x1, y1, x2, y2, x3, y3, color.Get(), TRUE);
 }
 

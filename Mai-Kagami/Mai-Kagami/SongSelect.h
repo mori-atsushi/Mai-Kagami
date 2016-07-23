@@ -23,6 +23,10 @@ public:
 	void Init(); //初期化
 	void View(); //表示
 private:
+	MyDrawText songTitle;
+	MyDrawText songArtist;
+	MyDrawText songLast[2];
+	MyDrawLine myDrawLine;
 	MyDrawGraph myDrawGraph; //カバー画像
 };
 

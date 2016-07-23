@@ -4,7 +4,7 @@
 void SongSelectTitle::Init() {
 	char *str = "Song Select"; //表示文字列
 	myDrawText.Init(str, WIDTH * 0.65, HEIGHT * 0.2, 1, 50); //テキスト初期化
-	myDrawLine.Init(WIDTH * 0.65, HEIGHT * 0.24, 1, myDrawText.GetWidth() + 10, 20); //線初期化
+	myDrawLine.Init(WIDTH * 0.65, HEIGHT * 0.236, 1, myDrawText.GetWidth() + 10, 20); //線初期化
 }
 
 //曲選択画面タイトル表示
@@ -16,12 +16,26 @@ void SongSelectTitle::View() {
 //曲選択画面カバー画像初期化
 void SongSelectCover::Init() {
 	myDrawGraph.Init(WIDTH * 0.52, HEIGHT * 0.35, "song/Ghost_Rule/cover.jpg");
+
+	char *title = "ゴーストルール"; //表示文字列
+	char *artist = "初音ミク / DECO*27";
+	songTitle.Init(title, WIDTH * 0.76, HEIGHT * 0.29, 1, 36); //テキスト初期化
+	songArtist.Init(artist, WIDTH * 0.76 + songTitle.GetWidth() / 2, HEIGHT * 0.32, 2, 20); //テキスト初期化
+	songLast[0].Init("前回　： --点", WIDTH * 0.55 + songTitle.GetWidth() / 2, HEIGHT * 0.355, 0, 24); //テキスト初期化
+	songLast[1].Init("前々回： --点", WIDTH * 0.55 + songTitle.GetWidth() / 2, HEIGHT * 0.38, 0, 24); //テキスト初期化
+	myDrawLine.Init(WIDTH * 0.76, HEIGHT * 0.315, 1, songTitle.GetWidth() + 5, 6); //線初期化
+
 	PlayMusic("song/Ghost_Rule/music.mp3", DX_PLAYTYPE_LOOP);
 }
 
 //曲選択画面カバー画像表示
 void SongSelectCover::View() {
 	myDrawGraph.Draw();
+	songTitle.Draw();
+	songArtist.Draw();
+	songLast[0].Draw();
+	songLast[1].Draw();
+	myDrawLine.Draw();
 }
 
 //曲選択画面ボタン初期化
