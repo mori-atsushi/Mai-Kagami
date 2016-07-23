@@ -39,7 +39,8 @@ private:
 class MyDrawText {
 public:
 	void Init(char *s, int a, int b, int pos, int point); // pos=¶Šñ‚¹:0 / ’†‰›Šñ‚¹:1 / ‰EŠñ‚¹:2
-	void Draw();
+	void Draw(); //•`‰æ
+	int GetWidth(); //•æ“¾
 private:
 	ViewPos viewPos;
 	Font font;

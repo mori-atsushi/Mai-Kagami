@@ -23,7 +23,7 @@ int Color::Blue() {
 
 //フォント指定
 void Font::Set(int p) {
-	ID = CreateFontToHandle("遊ゴシック", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	ID = CreateFontToHandle("M+ 1c", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
 //フォント取得
@@ -68,17 +68,22 @@ void MyDrawText::Draw() {
 	DrawStringToHandle(viewPos.GetX(), viewPos.GetY(), str, color.Get(), font.Get()); //文字表示
 }
 
+//テキストの幅取得
+int MyDrawText::GetWidth() {
+	return strLen;
+}
+
 //線初期化
 void MyDrawLine::Init(int a, int b, int pos, int length, int width) {
 	color.Set("White");
 	viewPos.Init(a, b, pos, length);
 	w = width / SIZE_RATE;
+	len = length;
 }
 
 //線表示
 void MyDrawLine::Draw() {
-	DrawLine(viewPos.GetX(), viewPos.GetY(), viewPos.GetX() + len, viewPos.GetY(), color.Get(), 4 / SIZE_RATE);
-
+	DrawLine(viewPos.GetX(), viewPos.GetY(), viewPos.GetX() + len, viewPos.GetY(), color.Get(), 2);
 }
 
 //円初期化

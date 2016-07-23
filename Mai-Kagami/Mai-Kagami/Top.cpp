@@ -13,7 +13,7 @@ void TopLogo::View() {
 //NFCタッチメッセージコンストラクタ
 void TopTouchMessage::Init() {
 	char *str = "-カードをタッチしてください-"; //表示文字列
-	myDrawText.Init(str, WIDTH / 2, HEIGHT / 2.35, 1, 50);
+	myDrawText.Init(str, WIDTH * 0.5, HEIGHT * 0.41, 1, 46);
 }
 
 //NFCタッチメッセージ計算
@@ -42,7 +42,7 @@ void TopTouchMessage::View() {
 void TopTouchButton::Init() {
 	char *str = "ここに\nタッチ！"; //表示文字列
 	myDrawCircle.Init(WIDTH, NFC_POS, WIDTH / 12);
-	myDrawText.Init(str, WIDTH * 0.9, NFC_POS - HEIGHT * 0.025, 2, 50);
+	myDrawText.Init(str, WIDTH * 0.92, NFC_POS - HEIGHT * 0.028, 2, 40);
 }
 
 //NFCタッチボタン表示
