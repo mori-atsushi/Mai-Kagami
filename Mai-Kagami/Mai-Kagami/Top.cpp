@@ -47,7 +47,7 @@ void TopTouchButton::Init() {
 
 //NFCタッチボタン表示
 void TopTouchButton::View() {
-	myDrawCircle.Draw();
+	myDrawCircle.Draw(); //円表示
 	myDrawText.Draw(); //テキスト表示
 }
 

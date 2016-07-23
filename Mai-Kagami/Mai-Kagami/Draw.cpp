@@ -13,17 +13,9 @@ int Color::Get() {
 	return c;
 }
 
-int Color::White() {
-	return GetColor(255, 255, 255); //白色
-}
-
-int Color::Blue() {
-	return GetColor(127, 210, 234); //青色
-}
-
 //フォント指定
 void Font::Set(int p) {
-	ID = CreateFontToHandle("M+ 1c", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	ID = CreateFontToHandle("M+ 1c", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING);
 }
 
 //フォント取得
@@ -96,6 +88,49 @@ void MyDrawCircle::Init(int a, int b, int radius) {
 //円表示
 void  MyDrawCircle::Draw() {
 	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Get(), TRUE);
+}
+
+//リング初期化
+void MyDrawRing::Init(int a, int b, int radius, float width) {
+	viewPos.Init(a, b);
+	color.Set("Blue");
+	r = radius / SIZE_RATE;
+	w = width / SIZE_RATE;
+}
+
+//リング表示
+void  MyDrawRing::Draw() {
+	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Get(), FALSE, w);
+}
+
+//リング初期化
+void MyDrawTriangle::Init(int a, int b, int width, int direction) {
+	viewPos.Init(a, b);
+	color.Set("Blue");
+	w = width / SIZE_RATE;
+	d = direction;
+}
+
+//リング表示
+void  MyDrawTriangle::Draw() {
+	float x1 = viewPos.GetX();
+	float y1 = viewPos.GetY();
+	float x2 = viewPos.GetX() - w / 2;
+	float y2 = viewPos.GetY();
+	float x3 = viewPos.GetX() + w / 2;
+	float y3 = viewPos.GetY();
+	float a = w * sqrt(3) / 4;
+	if (d == 0) {
+		y1 -= a;
+		y2 += a;
+		y3 += a;
+	}
+	else {
+		y1 += a;
+		y2 -= a;
+		y3 -= a;
+	}
+	DrawTriangleAA(x1, y1, x2, y2, x3, y3, color.Get(), TRUE);
 }
 
 //画像初期化

@@ -2,6 +2,7 @@
 #define __DRAW_H_INCLUDED__
 
 #include <string.h>
+#include <math.h>
 #include "DxLib.h"
 #include "Main.h"
 
@@ -10,8 +11,6 @@ class Color {
 public:
 	void Set(char *color);
 	int Get();
-	int White(); //白色
-	int Blue(); //青色
 private:
 	int c;
 };
@@ -71,6 +70,30 @@ private:
 	ViewPos viewPos;
 	Color color;
 	int r;
+};
+
+//リング（ドーナツ型）関係
+class MyDrawRing {
+public:
+	void Init(int a, int b, int radius, float width);
+	void Draw();
+private:
+	ViewPos viewPos;
+	Color color;
+	int r;
+	float w;
+};
+
+//正三角形関係
+class MyDrawTriangle {
+public:
+	void Init(int a, int b, int width, int direction);
+	void Draw();
+private:
+	ViewPos viewPos;
+	Color color;
+	int d;
+	float w;
 };
 
 //画像関係

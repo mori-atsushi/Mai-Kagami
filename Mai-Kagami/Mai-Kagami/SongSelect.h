@@ -17,6 +17,28 @@ private:
 	MyDrawLine myDrawLine;
 };
 
+//曲選択画面カバー関係
+class SongSelectCover {
+public:
+	void Init(); //初期化
+	void View(); //表示
+private:
+	MyDrawGraph myDrawGraph; //カバー画像
+};
+
+//曲選択画面ボタン関係
+class SongSelectButton {
+public:
+	void Init(); //初期化
+	void View(); //表示
+private:
+	MyDrawText myDrawText[3];
+	MyDrawTriangle myDrawTriangle[2];
+	MyDrawText finish;
+	MyDrawCircle finishCircle;
+	MyDrawRing myDrawRing;
+};
+
 //曲選択画面関係
 class SongSelect {
 public:
@@ -26,6 +48,8 @@ public:
 private:
 	void LoadThread(); //ロードスレッド
 	SongSelectTitle songSelectTitle; //曲選択画面タイトル
+	SongSelectCover songSelectCover; //選択中の曲
+	SongSelectButton songSelectButton; //ボタン関係
 	int loadFlag;
 };
 
