@@ -33,15 +33,13 @@ int Font::Get() {
 
 //ポジション指定(右寄せ/中央寄せ/左寄せ)
 void ViewPos::Init(int a, int b, int pos = 0, int len = 0) {
+	x = a / SIZE_RATE; y = b / SIZE_RATE;
 	switch (pos) {
-	case 0:
-		x = a; y = b;
-		break;
 	case 1:
-		x = a - len / 2; y = b;
+		x = x - len / 2;;
 		break;
 	case 2:
-		x = a - len; y = b;
+		x = x - len;
 		break;
 	}
 }
@@ -87,10 +85,21 @@ void MyDrawLine::Draw() {
 void MyDrawCircle::Init(int a, int b, int radius) {
 	viewPos.Init(a, b);
 	color.Set("Blue");
-	r = radius;
+	r = radius / SIZE_RATE;
 }
 
 //円表示
 void  MyDrawCircle::Draw() {
 	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Get(), TRUE);
+}
+
+//画像初期化
+void MyDrawGraph::Init(int a, int b, char *filename) {
+	viewPos.Init(a, b);
+	handle = LoadGraph(filename); // 画像のロード
+}
+
+//画像表示
+void MyDrawGraph::Draw() {
+	DrawRotaGraph(viewPos.GetX(), viewPos.GetY(), 1.0 / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
 }

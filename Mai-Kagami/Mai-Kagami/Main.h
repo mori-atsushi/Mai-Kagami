@@ -2,8 +2,8 @@
 #define __MAIN_H_INCLUDED__
 
 #define SIZE_RATE	2
-#define WIDTH		1080 / SIZE_RATE
-#define HEIGHT		1920 / SIZE_RATE
+#define WIDTH		1080
+#define HEIGHT		1920
 
 #define BUTTON1_POS	1
 #define BUTTON2_POS	2

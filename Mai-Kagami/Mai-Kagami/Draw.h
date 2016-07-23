@@ -72,4 +72,14 @@ private:
 	int r;
 };
 
+//‰æ‘œŠÖŒW
+class MyDrawGraph {
+public:
+	void Init(int a, int b, char *filename);
+	void Draw();
+private:
+	ViewPos viewPos;
+	int handle;
+};
+
 #endif

@@ -3,7 +3,7 @@
 #include "Draw.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-	SetGraphMode(WIDTH, HEIGHT, 32); //ウィンドウサイズ設定
+	SetGraphMode(WIDTH / SIZE_RATE, HEIGHT / SIZE_RATE, 32); //ウィンドウサイズ設定
 	SetBackgroundColor(0, 0, 0); //背景色設定
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 

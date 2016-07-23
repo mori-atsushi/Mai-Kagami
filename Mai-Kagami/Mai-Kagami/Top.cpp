@@ -2,12 +2,12 @@
 
 //トップロゴ初期化
 void TopLogo::Init() {
-	logo = LoadGraph("img/logo.png"); // 画像のロード
+	myDrawGraph.Init(WIDTH / 2, HEIGHT / 3, "img/logo.png");
 }
 
 //トップロゴ表示
 void TopLogo::View() {
-	DrawRotaGraph(WIDTH / 2, HEIGHT / 3, WIDTH / 1080.0, 0, logo, TRUE, FALSE); //ロゴの描画
+	myDrawGraph.Draw();
 }
 
 //NFCタッチメッセージコンストラクタ

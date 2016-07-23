@@ -12,6 +12,7 @@ public:
 	void Init();
 	void View(); //•\Ž¦
 private:
+	MyDrawGraph myDrawGraph;
 	int logo; //‰æ‘œID
 };
 
