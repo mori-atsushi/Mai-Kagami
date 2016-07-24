@@ -49,6 +49,23 @@ private:
 	Button *button[4];
 };
 
+//ポップアップ関係
+class SongSelectPop {
+public:
+	SongSelectPop();
+	void Update(int num);
+	void View();
+	boolean Flag();
+	~SongSelectPop();
+private:
+	MyDrawBox *myDrawBox;
+	MyDrawText *title;
+	MyDrawText *message;
+	MyDrawText *buttonMessage[2];
+	MyDrawRing *buttonRing[2];
+	boolean flag;
+};
+
 //曲選択画面関係
 class SongSelect {
 public:
@@ -59,6 +76,7 @@ private:
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
 	SongSelectCover *songSelectCover; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
+	SongSelectPop *songSelectPop; //終了用ポップアップ
 	Touch touch; //サイドタッチパネル
 	int loadFlag;
 	boolean Load();

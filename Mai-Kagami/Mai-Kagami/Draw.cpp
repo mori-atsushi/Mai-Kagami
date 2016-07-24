@@ -6,6 +6,8 @@ Color::Color(char *color) {
 		c = GetColor(255, 255, 255); //白色
 	else if(!strcmp(color, "Blue"))
 		c = GetColor(127, 210, 234); //青色
+	else if(!strcmp(color, "Black"))
+		c = GetColor(0, 0, 0); //青色
 }
 
 //色取得
@@ -52,10 +54,10 @@ float ViewPos::GetY() {
 }
 
 //テキスト初期化
-MyDrawText::MyDrawText(char *s, int a, int b, int pos, int point) {
+MyDrawText::MyDrawText(char *s, int a, int b, int pos, int point, char *colorName) {
 	str = s; x = a; y = b; p = pos;
 	font = new Font(point);
-	color = new Color("White");
+	color = new Color(colorName);
 }
 
 //テキスト表示
@@ -112,9 +114,9 @@ MyDrawCircle::~MyDrawCircle() {
 }
 
 //リング初期化
-MyDrawRing::MyDrawRing(int a, int b, int radius, float width) {
+MyDrawRing::MyDrawRing(int a, int b, int radius, float width, char *colorName) {
 	viewPos = new ViewPos(a, b);
-	color = new Color("Blue");
+	color = new Color(colorName);
 	r = radius / SIZE_RATE;
 	w = width / SIZE_RATE;
 }
@@ -160,9 +162,9 @@ MyDrawTriangle::~MyDrawTriangle() {
 }
 
 //四角形初期化
-MyDrawBox::MyDrawBox(int a, int b, int width, int height) {
+MyDrawBox::MyDrawBox(int a, int b, int width, int height, char *colorName) {
 	viewPos = new ViewPos(a, b);
-	color = new Color("White");
+	color = new Color(colorName);
 	w = width / SIZE_RATE;
 	h = height / SIZE_RATE;
 }

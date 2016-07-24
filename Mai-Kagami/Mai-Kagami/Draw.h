@@ -38,7 +38,7 @@ private:
 //テキスト関係
 class MyDrawText {
 public:
-	MyDrawText(char *s, int a, int b, int pos, int point); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	MyDrawText(char *s, int a, int b, int pos, int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void Draw(); //描画
 	int GetWidth(); //幅取得
 	~MyDrawText();
@@ -77,7 +77,7 @@ private:
 //リング（ドーナツ型）関係
 class MyDrawRing {
 public:
-	MyDrawRing(int a, int b, int radius, float width);
+	MyDrawRing(int a, int b, int radius, float width, char *colorName = "Blue");
 	void Draw();
 	~MyDrawRing();
 private:
@@ -103,7 +103,7 @@ private:
 //四角形関係
 class MyDrawBox {
 public:
-	MyDrawBox(int a, int b, int width, int height);
+	MyDrawBox(int a, int b, int width, int height, char *colorName = "White");
 	void Draw();
 	~MyDrawBox();
 private:

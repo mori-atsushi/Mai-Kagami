@@ -1,7 +1,7 @@
 #include "Common.h"
 
 //ƒ{ƒ^ƒ“‰Šú‰»
-Button::Button(char *str, int type, int num) {
+Button::Button(char *str, int type, int num, int position) {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
 	t = type;
 	switch (t)

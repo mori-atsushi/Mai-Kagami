@@ -10,7 +10,7 @@
 //ƒ{ƒ^ƒ“ŠÖŒW
 class Button {
 public:
-	Button(char *str, int type, int num);
+	Button(char *str, int type, int num, int position = 0);
 	void Draw();
 	~Button();
 private:

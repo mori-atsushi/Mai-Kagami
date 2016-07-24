@@ -95,12 +95,62 @@ SongSelectButton::~SongSelectButton() {
 		delete button[i];
 }
 
+SongSelectPop::SongSelectPop() {
+	myDrawBox = new MyDrawBox(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, "Black");
+	title = new MyDrawText("- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
+	message = new MyDrawText("本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
+	buttonMessage[0] = new MyDrawText("はい", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 1 - HEIGHT * 0.0085, 1, 30);
+	buttonMessage[1] = new MyDrawText("いいえ", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 2 - HEIGHT * 0.0085, 1, 30);
+	buttonRing[0] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 1, WIDTH * 0.015, 7, "White");
+	buttonRing[1] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 2, WIDTH * 0.015, 7, "White");
+	flag = false;
+}
+
+void SongSelectPop::Update(int num) {
+	if (num == 4 && !flag)
+		flag = true;
+	else if (num == 2 && flag)
+		flag = false;
+}
+
+void SongSelectPop::View() {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //透明度設定
+	myDrawBox->Draw();
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
+	title->Draw();
+	message->Draw();
+	for (int i = 0; i < 2; i++) {
+		buttonMessage[i]->Draw();
+		buttonRing[i]->Draw();
+	}
+}
+
+boolean SongSelectPop::Flag() {
+	return flag;
+}
+
+SongSelectPop::~SongSelectPop() {
+	delete myDrawBox;
+	delete title;
+	delete message;
+	for (int i = 0; i < 2; i++) {
+		delete buttonMessage[i];
+		delete buttonRing[i];
+	}
+}
+
+
+SongSelect::SongSelect() {
+	loadFlag = 0;
+}
+
 //曲選択画面ロード
 boolean SongSelect::Load() {
 	if (loadFlag == 0) {
 		songSelectTitle = new SongSelectTitle(); //曲選択画面タイトル初期化
 		songSelectCover = new SongSelectCover(); //選択中の曲初期化
 		songSelectButton = new SongSelectButton();
+		songSelectPop = new SongSelectPop();
 		loadFlag = 2;
 	}
 
@@ -112,18 +162,19 @@ boolean SongSelect::Load() {
 	return FALSE;
 }
 
-SongSelect::SongSelect() {
-	loadFlag = 0;
-}
-
-
 //曲選択画面計算
 int SongSelect::Update() {
 	if (Load()) {
 		touch.Check();
-		if (touch.Get(4) != 0) {
+		if (touch.Get(1) == 1&& songSelectPop->Flag()) {
 			Delete();
 			return TOP;
+		}
+		if (touch.Get(2) == 1) {
+			songSelectPop->Update(2);
+		}
+		if (touch.Get(4) == 1) {
+			songSelectPop->Update(4);
 		}
 	}
 	return SONG_SELECT;
@@ -133,8 +184,11 @@ int SongSelect::Update() {
 void SongSelect::View(Loading *loading) {
 	if (loadFlag == 2) {
 		songSelectCover->View(); //カバー表示
-		songSelectButton->View(); //ボタン表示
 		songSelectTitle->View(); //タイトル表示
+		if(songSelectPop->Flag())
+			songSelectPop->View();
+		else
+			songSelectButton->View(); //ボタン表示
 	}
 	else {
 		loading->View();
@@ -146,4 +200,5 @@ void SongSelect::Delete() {
 	delete songSelectCover;
 	delete songSelectButton;
 	delete songSelectTitle;
+	delete songSelectPop;
 }
