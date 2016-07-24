@@ -27,11 +27,11 @@ private:
 //•\Ž¦ˆÊ’uŠÖŒW
 class ViewPos {
 public :
-	void Init(int a, int b, int pos, int len);
-	int GetX();
-	int GetY();
+	void Init(float a, float b, int pos = 0, float len = 0);
+	float GetX();
+	float GetY();
 private:
-	int x, y;
+	float x, y;
 };
 
 //ƒeƒLƒXƒgŠÖŒW
@@ -96,14 +96,26 @@ private:
 	float w;
 };
 
+//ŽlŠpŒ`ŠÖŒW
+class MyDrawBox {
+public:
+	void Init(int a, int b, int width, int height);
+	void Draw();
+private:
+	ViewPos viewPos;
+	Color color;
+	int w, h;
+};
+
 //‰æ‘œŠÖŒW
 class MyDrawGraph {
 public:
-	void Init(int a, int b, char *filename);
+	void Init(float a, float b, char *filename, double ExRate = 1.0);
 	void Draw();
 private:
 	ViewPos viewPos;
 	int handle;
+	double ex;
 };
 
 #endif

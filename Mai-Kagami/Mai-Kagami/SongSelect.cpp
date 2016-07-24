@@ -15,27 +15,49 @@ void SongSelectTitle::View() {
 
 //曲選択画面カバー画像初期化
 void SongSelectCover::Init() {
-	myDrawGraph.Init(WIDTH * 0.52, HEIGHT * 0.35, "song/Ghost_Rule/cover.jpg");
-
 	char *title = "ゴーストルール"; //表示文字列
 	char *artist = "初音ミク / DECO*27";
-	songTitle.Init(title, WIDTH * 0.76, HEIGHT * 0.29, 1, 36); //テキスト初期化
-	songArtist.Init(artist, WIDTH * 0.76 + songTitle.GetWidth() / 2, HEIGHT * 0.32, 2, 20); //テキスト初期化
-	songLast[0].Init("前回　： --点", WIDTH * 0.55 + songTitle.GetWidth() / 2, HEIGHT * 0.355, 0, 24); //テキスト初期化
-	songLast[1].Init("前々回： --点", WIDTH * 0.55 + songTitle.GetWidth() / 2, HEIGHT * 0.38, 0, 24); //テキスト初期化
-	myDrawLine.Init(WIDTH * 0.76, HEIGHT * 0.315, 1, songTitle.GetWidth() + 5, 6); //線初期化
-
-	PlayMusic("song/Ghost_Rule/music.mp3", DX_PLAYTYPE_LOOP);
+	float x = HEIGHT * 0.35;
+	myDrawGraph.Init(WIDTH * 0.52, x, "song/Ghost_Rule/cover.jpg");
+	songTitle.Init(title, WIDTH * 0.8, HEIGHT * 0.29, 1, 36); //テキスト初期化
+	songArtist.Init(artist, WIDTH * 0.96, HEIGHT * 0.32, 2, 20); //テキスト初期化
+	songLast[0].Init("前回　： --点", WIDTH * 0.75, HEIGHT * 0.355, 0, 24); //テキスト初期化
+	songLast[1].Init("前々回： --点", WIDTH * 0.75, HEIGHT * 0.38, 0, 24); //テキスト初期化
+	myDrawLine.Init(WIDTH * 0.8, HEIGHT * 0.315, 1, WIDTH * 0.33, 6); //線初期化
+	myDrawBox.Init(WIDTH * 0.52, HEIGHT * 0.5, 170, 1000);
+	songCover[0].Init(WIDTH * 0.52, x - 180, "song/Ghost_Rule/cover.jpg", 0.7);
+	songCover[1].Init(WIDTH * 0.52, x + 180, "song/Happy_Synthesizer/cover.jpg", 0.7);
+	songCover[2].Init(WIDTH * 0.52, x + 330, "song/Ghost_Rule/cover.jpg", 0.7);
+	songCover[3].Init(WIDTH * 0.52, x + 480, "song/Ghost_Rule/cover.jpg", 0.7);
+	songCover[4].Init(WIDTH * 0.52, x + 630, "song/Ghost_Rule/cover.jpg", 0.7);
+	songCover[5].Init(WIDTH * 0.52, x + 780, "song/Ghost_Rule/cover.jpg", 0.7);
+	grad[0].Init(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
+	grad[1].Init(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
+	box.Init(WIDTH * 0.52, x, "img/box.png");
+	//	PlayMusic("song/Ghost_Rule/music.mp3", DX_PLAYTYPE_LOOP);
 }
 
 //曲選択画面カバー画像表示
 void SongSelectCover::View() {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
+	myDrawBox.Draw();
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
+	songCover[0].Draw();
+	songCover[1].Draw();
+	songCover[2].Draw();
+	songCover[3].Draw();
+	songCover[4].Draw();
+	songCover[5].Draw();
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	box.Draw();
 	myDrawGraph.Draw();
 	songTitle.Draw();
 	songArtist.Draw();
 	songLast[0].Draw();
 	songLast[1].Draw();
 	myDrawLine.Draw();
+	grad[0].Draw();
+	grad[1].Draw();
 }
 
 //曲選択画面ボタン初期化
@@ -81,9 +103,9 @@ void SongSelect::Update() {
 
 //曲選択画面表示
 void SongSelect::View() {
-	songSelectTitle.View(); //タイトル表示
 	songSelectCover.View(); //カバー表示
 	songSelectButton.View(); //ボタン表示
+	songSelectTitle.View(); //タイトル表示
 }
 
 //曲選択画面画像ロード

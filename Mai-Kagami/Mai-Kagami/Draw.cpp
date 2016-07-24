@@ -24,7 +24,7 @@ int Font::Get() {
 }
 
 //ポジション指定(右寄せ/中央寄せ/左寄せ)
-void ViewPos::Init(int a, int b, int pos = 0, int len = 0) {
+void ViewPos::Init(float a, float b, int pos, float len) {
 	x = a / SIZE_RATE; y = b / SIZE_RATE;
 	switch (pos) {
 	case 1:
@@ -37,12 +37,12 @@ void ViewPos::Init(int a, int b, int pos = 0, int len = 0) {
 }
 
 //x座標取得
-int ViewPos::GetX() {
+float ViewPos::GetX() {
 	return x;
 }
 
 //y座標取得
-int ViewPos::GetY() {
+float ViewPos::GetY() {
 	return y;
 }
 
@@ -103,7 +103,7 @@ void  MyDrawRing::Draw() {
 	DrawCircleAA(viewPos.GetX(), viewPos.GetY(), r, 100, color.Get(), FALSE, w);
 }
 
-//リング初期化
+//三角形初期化
 void MyDrawTriangle::Init(int a, int b, int width, int direction) {
 	viewPos.Init(a, b);
 	color.Set("Blue");
@@ -111,7 +111,7 @@ void MyDrawTriangle::Init(int a, int b, int width, int direction) {
 	d = direction;
 }
 
-//リング表示
+//三角形表示
 void  MyDrawTriangle::Draw() {
 	float x1 = viewPos.GetX();			float y1 = viewPos.GetY();
 	float x2 = viewPos.GetX() - w / 2;	float y2 = viewPos.GetY();
@@ -128,13 +128,34 @@ void  MyDrawTriangle::Draw() {
 	DrawTriangleAA(x1, y1, x2, y2, x3, y3, color.Get(), TRUE);
 }
 
+//四角形初期化
+void MyDrawBox::Init(int a, int b, int width, int height) {
+	viewPos.Init(a, b);
+	color.Set("White");
+	w = width / SIZE_RATE;
+	h = height / SIZE_RATE;
+}
+
+//四角形表示
+void  MyDrawBox::Draw() {
+	float x1 = viewPos.GetX() - w / 2;
+	float y1 = viewPos.GetY() - h / 2;
+	float x2 = viewPos.GetX() + w / 2;
+	float y2 = viewPos.GetY() + h / 2;
+
+	DrawBoxAA(x1, y1, x2, y2, color.Get(), TRUE);
+}
+
 //画像初期化
-void MyDrawGraph::Init(int a, int b, char *filename) {
+void MyDrawGraph::Init(float a, float b, char *filename, double ExRate) {
 	viewPos.Init(a, b);
 	handle = LoadGraph(filename); // 画像のロード
+	ex = ExRate;
 }
 
 //画像表示
 void MyDrawGraph::Draw() {
-	DrawRotaGraph(viewPos.GetX(), viewPos.GetY(), 1.0 / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
+	SetDrawMode(DX_DRAWMODE_BILINEAR);
+	DrawRotaGraphF(viewPos.GetX(), viewPos.GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
+	SetDrawMode(DX_DRAWMODE_NEAREST);
 }

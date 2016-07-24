@@ -28,6 +28,10 @@ private:
 	MyDrawText songLast[2];
 	MyDrawLine myDrawLine;
 	MyDrawGraph myDrawGraph; //カバー画像
+	MyDrawGraph songCover[6]; //カバー画像
+	MyDrawGraph grad[2]; //カバー画像
+	MyDrawGraph box; //カバー画像
+	MyDrawBox myDrawBox;
 };
 
 //曲選択画面ボタン関係
