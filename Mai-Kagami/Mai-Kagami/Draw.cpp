@@ -28,7 +28,7 @@ void ViewPos::Init(float a, float b, int pos, float len) {
 	x = a / SIZE_RATE; y = b / SIZE_RATE;
 	switch (pos) {
 	case 1:
-		x = x - len / 2;;
+		x = x - len / 2;
 		break;
 	case 2:
 		x = x - len;

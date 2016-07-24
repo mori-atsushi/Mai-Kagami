@@ -8,7 +8,7 @@
 
 class Nfc {
 public:
-	Nfc();
+	void Init();
 	int GetId(); //ユーザーIDの取得
 private:
 	void CheckThread(); //NFCをチェックするためのスレッド

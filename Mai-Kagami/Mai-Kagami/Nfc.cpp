@@ -2,7 +2,7 @@
 
 
 //NFC管理用クラスコンストラクタ
-Nfc::Nfc() {
+void Nfc::Init() {
 	id = 0;
 	auto thd = std::thread(&Nfc::CheckThread, this);
 	thd.detach();

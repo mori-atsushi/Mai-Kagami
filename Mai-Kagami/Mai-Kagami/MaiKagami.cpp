@@ -2,7 +2,6 @@
 
 MaiKagami::MaiKagami() {
 	scene = START; //ƒV[ƒ“‰Šú‰»
-	top.Load();
 	login.Load();
 }
 
@@ -11,7 +10,8 @@ void MaiKagami::View() {
 	//ŒvZ
 	switch (scene) {
 	case TOP:
-		scene = top.Update();
+		if(top.Load())
+			scene = top.Update();
 		break;
 	case LOGIN:
 		login.Update();

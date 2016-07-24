@@ -42,17 +42,31 @@ void TopTouchButton::View() {
 }
 
 //トップ画面初期化
-void Top::Load() {
-	myDrawGraph.Init(WIDTH / 2, HEIGHT / 3, "img/logo.png"); //ロゴ初期化
-	topTouchMessage.Init(); //NFCタッチメッセージ初期化
-	topTouchButton.Init(); //NFCタッチボタン初期化
+boolean Top::Load() {
+	if (loadFlag == 0) {
+		SetUseASyncLoadFlag(TRUE); //非同期読み込みon
+		myDrawGraph.Init(WIDTH / 2, HEIGHT / 3, "img/logo.png"); //ロゴ初期化
+		SetUseASyncLoadFlag(FALSE); //非同期読み込みoff
+		nfc.Init();
+		topTouchMessage.Init(); //NFCタッチメッセージ初期化
+		topTouchButton.Init(); //NFCタッチボタン初期化
+		loadFlag = 1;
+	}
+	if (loadFlag == 1 && GetASyncLoadNum() == 0)
+		loadFlag = 2;
+	if (loadFlag == 2)
+		return TRUE;
+	else
+		FALSE;
 }
 
 //トップ画面計算
 int Top::Update() {
 	topTouchMessage.Update(); //NFCタッチメッセージ計算
-	if (nfc.GetId() != 0)
+	if (nfc.GetId() != 0) {
+		loadFlag = 0;
 		return LOGIN;
+	}
 	return TOP;
 }
 
@@ -60,5 +74,5 @@ int Top::Update() {
 void Top::View() {
 	myDrawGraph.Draw(); //ロゴ表示
 	topTouchMessage.View(); //NFCタッチメッセージ表示
-	topTouchButton.View(); //NFCタッチボタン表示
+	topTouchButton.View(); //NFCタッチボタン表示}
 }
