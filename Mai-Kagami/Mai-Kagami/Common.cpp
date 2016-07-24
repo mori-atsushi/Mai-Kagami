@@ -1,5 +1,5 @@
 #include "Common.h"
-
+/*
 //ƒ{ƒ^ƒ“‰Šú‰»
 void Button::Init(char *str, int type, int num) {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
@@ -39,4 +39,4 @@ void Button::Draw() {
 		break;
 	}
 	myDrawText.Draw();
-}
+}*/

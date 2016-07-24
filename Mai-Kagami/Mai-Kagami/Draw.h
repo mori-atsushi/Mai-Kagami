@@ -9,7 +9,7 @@
 //色関係
 class Color {
 public:
-	void Set(char *color);
+	Color(char *color);
 	int Get();
 private:
 	int c;
@@ -18,8 +18,9 @@ private:
 //フォント関係
 class Font {
 public:
-	void Set(int p); //ポイント数セット
+	Font(int p); //ポイント数セット
 	int Get(); //フォントID取り出し
+	~Font();
 private:
 	int ID; //フォントID
 };
@@ -27,7 +28,7 @@ private:
 //表示位置関係
 class ViewPos {
 public :
-	void Init(float a, float b, int pos = 0, float len = 0);
+	ViewPos(float a, float b, int pos = 0, float len = 0);
 	float GetX();
 	float GetY();
 private:
@@ -37,26 +38,26 @@ private:
 //テキスト関係
 class MyDrawText {
 public:
-	void Init(char *s, int a, int b, int pos, int point); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	MyDrawText(char *s, int a, int b, int pos, int point); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void Draw(); //描画
 	int GetWidth(); //幅取得
+	~MyDrawText();
 private:
-	ViewPos viewPos;
-	Font font;
-	Color color;
+	Font *font;
+	Color *color;
 	char *str; //文字
-	int strLen; //文字列の長さ
+	int x, y, p;
 };
 
 //線関係
 class MyDrawLine {
 public:
-	void Init(int a, int b, int pos, int length, int width); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	MyDrawLine(int a, int b, int pos, int length, int width); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void Draw();
+	~MyDrawLine();
 private:
-	ViewPos viewPos;
-	Font font;
-	Color color;
+	ViewPos *viewPos;
+	Color *color;
 	int len; //文字列の長さ
 	int w;
 };
@@ -64,22 +65,24 @@ private:
 //円関係
 class MyDrawCircle {
 public:
-	void Init(int a, int b, int radius);
+	MyDrawCircle(int a, int b, int radius);
 	void Draw();
+	~MyDrawCircle();
 private:
-	ViewPos viewPos;
-	Color color;
+	ViewPos *viewPos;
+	Color *color;
 	int r;
 };
 
 //リング（ドーナツ型）関係
 class MyDrawRing {
 public:
-	void Init(int a, int b, int radius, float width);
+	MyDrawRing(int a, int b, int radius, float width);
 	void Draw();
+	~MyDrawRing();
 private:
-	ViewPos viewPos;
-	Color color;
+	ViewPos *viewPos;
+	Color *color;
 	int r;
 	float w;
 };
@@ -87,11 +90,12 @@ private:
 //正三角形関係
 class MyDrawTriangle {
 public:
-	void Init(int a, int b, int width, int direction);
+	MyDrawTriangle(int a, int b, int width, int direction);
 	void Draw();
+	~MyDrawTriangle();
 private:
-	ViewPos viewPos;
-	Color color;
+	ViewPos *viewPos;
+	Color *color;
 	int d;
 	float w;
 };
@@ -99,21 +103,23 @@ private:
 //四角形関係
 class MyDrawBox {
 public:
-	void Init(int a, int b, int width, int height);
+	MyDrawBox(int a, int b, int width, int height);
 	void Draw();
+	~MyDrawBox();
 private:
-	ViewPos viewPos;
-	Color color;
+	ViewPos *viewPos;
+	Color *color;
 	int w, h;
 };
 
 //画像関係
 class MyDrawGraph {
 public:
-	void Init(float a, float b, char *filename, double ExRate = 1.0);
+	MyDrawGraph(float a, float b, char *filename, double ExRate = 1.0);
 	void Draw();
+	~MyDrawGraph();
 private:
-	ViewPos viewPos;
+	ViewPos *viewPos;
 	int handle;
 	double ex;
 };

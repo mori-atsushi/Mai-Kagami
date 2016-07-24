@@ -9,36 +9,38 @@
 //NFCタッチメッセージ関係
 class TopTouchMessage {
 public:
-	void Init();
+	TopTouchMessage();
 	void Update(); //計算
 	void View(); //表示
+	~TopTouchMessage();
 private:
-	MyDrawText myDrawText;
-	int alpha; //透明度
+	MyDrawText *myDrawText;
+	int alpha, t; //透明度, 時間
 };
 
 //NFCタッチボタン関係
 class TopTouchButton {
 public:
-	void Init();
+	TopTouchButton();
 	void View(); //表示
+	~TopTouchButton();
 private:
-	MyDrawCircle myDrawCircle;
-	MyDrawText myDrawText;
+	MyDrawCircle *myDrawCircle;
+	MyDrawText *myDrawText;
 };
 
 //トップ画面関係
 class Top { 
 public:
-	boolean Load();
 	int Update(); //計算
 	void View(); //表示
 private:
-	MyDrawGraph myDrawGraph; //トップロゴ
-	TopTouchMessage topTouchMessage; //NFCタッチメッセージ
-	TopTouchButton topTouchButton; //NFCタッチボタン
+	MyDrawGraph *myDrawGraph; //トップロゴ
+	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
+	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
 	int loadFlag = 0;
+	boolean Load();
 };
 
 #endif

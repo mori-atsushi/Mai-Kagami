@@ -1,5 +1,5 @@
 #include "SongSelect.h"
-
+/*
 //曲選択画面タイトルロード
 void SongSelectTitle::Init() {
 	char *str = "Song Select"; //表示文字列
@@ -108,4 +108,4 @@ void SongSelect::LoadThread() {
 	songSelectButton.Init();
 //	Sleep(5000);
 	loadFlag = 2;
-}
+}*/

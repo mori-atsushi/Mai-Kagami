@@ -2,35 +2,24 @@
 
 MaiKagami::MaiKagami() {
 	scene = START; //シーン初期化
-	login.Load();
+//	login.Load();
+	top = new Top();
 }
 
 //全体の計算と描画
 void MaiKagami::View() {
-	//計算
 	switch (scene) {
 	case TOP:
-		if(top.Load())
-			scene = top.Update();
+		scene = top->Update(); //トップ画面計算
+		top->View(); //トップ画面表示
 		break;
-	case LOGIN:
+/*	case LOGIN:
 		login.Update();
 		scene = songSelect.Load();
-		break;
-	case SONG_SELECT:
-		scene = songSelect.Update();
-	}
-
-	//描画
-	switch (scene) {
-	case TOP:
-		top.View();
-		break;
-	case LOGIN:
 		login.View();
 		break;
 	case SONG_SELECT:
-		songSelect.View();
-		break;
+		scene = songSelect.Update();
+		songSelect.View();*/
 	}
 }

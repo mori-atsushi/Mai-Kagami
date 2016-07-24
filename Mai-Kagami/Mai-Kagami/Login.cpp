@@ -1,5 +1,5 @@
 #include "Login.h"
-
+/*
 //ログインメッセージコンストラクタ
 void LoginMessage::Init() {
 	char *str = "ログインしています"; //表示文字列
@@ -80,4 +80,4 @@ void Login::Update() {
 void Login::View() {
 	loginMessage.View(); //ログインメッセージ表示
 	loginAnimation.View(); //ログインアニメーション表示
-}
+}*/

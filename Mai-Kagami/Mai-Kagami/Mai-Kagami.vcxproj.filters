@@ -19,6 +19,12 @@
     <Filter Include="ソース ファイル\システム関係">
       <UniqueIdentifier>{4d330bfc-241f-4b9b-905b-fc7ba89740ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\システム関係">
+      <UniqueIdentifier>{d23ad7bf-11c1-4112-b192-79468da373e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係">
+      <UniqueIdentifier>{d106b6d6-e995-4d2b-9773-a695b921a82e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -50,32 +56,32 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MaiKagami.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Top.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Draw.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Login.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Nfc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SongSelect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Main.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
     <ClInclude Include="Touch.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="MaiKagami.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SongSelect.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Top.h">
+      <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
