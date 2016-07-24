@@ -51,6 +51,10 @@ TopTouchButton::~TopTouchButton() {
 	delete myDrawText;
 }
 
+Top::Top() {
+	loadFlag = 0;
+}
+
 //トップ画面初期化
 boolean Top::Load() {
 	if (loadFlag == 0) {
@@ -66,8 +70,7 @@ boolean Top::Load() {
 
 	if (loadFlag == 2)
 		return TRUE;
-	else
-		FALSE;
+	return FALSE;
 }
 
 //トップ画面計算
@@ -75,9 +78,8 @@ int Top::Update() {
 	if (Load()) {
 		topTouchMessage->Update(); //NFCタッチメッセージ計算
 		if (nfc.GetId() != 0) {
-			loadFlag = 0;
-			delete topTouchMessage;
-			return LOGIN;
+			Delete();
+			return SONG_SELECT;
 		}
 		return TOP;
 	}
@@ -90,4 +92,11 @@ void Top::View() {
 		topTouchMessage->View(); //NFCタッチメッセージ表示
 		topTouchButton->View(); //NFCタッチボタン表示}
 	}
+}
+
+void Top::Delete() {
+	loadFlag = 0;
+	delete myDrawGraph;
+	delete topTouchButton;
+	delete topTouchMessage;
 }

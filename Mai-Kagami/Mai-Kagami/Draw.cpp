@@ -73,7 +73,6 @@ int MyDrawText::GetWidth() {
 MyDrawText::~MyDrawText() {
 	delete font;
 	delete color;
-	delete str;
 }
 
 //ü‰Šú‰»

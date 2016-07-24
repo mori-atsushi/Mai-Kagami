@@ -32,6 +32,7 @@ private:
 //トップ画面関係
 class Top { 
 public:
+	Top();
 	int Update(); //計算
 	void View(); //表示
 private:
@@ -39,8 +40,9 @@ private:
 	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
-	int loadFlag = 0;
+	int loadFlag;
 	boolean Load();
+	void Delete();
 };
 
 #endif

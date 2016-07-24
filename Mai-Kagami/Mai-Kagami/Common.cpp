@@ -1,24 +1,26 @@
 #include "Common.h"
-/*
+
 //ƒ{ƒ^ƒ“‰Šú‰»
-void Button::Init(char *str, int type, int num) {
+Button::Button(char *str, int type, int num) {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
-	myDrawText.Init(str, WIDTH * 0.94, pos - HEIGHT * 0.0085, 2, 30);
 	t = type;
 	switch (t)
 	{
 	case 0:
-		myDrawRing.Init(WIDTH * 0.97, pos, WIDTH * 0.015, 7);
+		myDrawText = new MyDrawText(str, WIDTH * 0.94, pos - HEIGHT * 0.0085, 2, 30);
+		myDrawRing = new MyDrawRing(WIDTH * 0.97, pos, WIDTH * 0.015, 7);
 		break;
 	case 1:
-		myDrawTriangle.Init(WIDTH * 0.97, pos, WIDTH * 0.03, 0);
+		myDrawText = new MyDrawText(str, WIDTH * 0.94, pos - HEIGHT * 0.0085, 2, 30);
+		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 0);
 		break;
 	case 2:
-		myDrawTriangle.Init(WIDTH * 0.97, pos, WIDTH * 0.03, 1);
+		myDrawText = new MyDrawText(str, WIDTH * 0.94, pos - HEIGHT * 0.0085, 2, 30);
+		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 1);
 		break;
 	case 3:
-		myDrawText.Init(str, WIDTH * 0.955, pos - HEIGHT * 0.0085, 1, 30);
-		myDrawCircle.Init(WIDTH * 0.955, pos, WIDTH * 0.042);
+		myDrawText = new MyDrawText(str, WIDTH * 0.955, pos - HEIGHT * 0.0085, 1, 30);
+		myDrawCircle = new MyDrawCircle(WIDTH * 0.955, pos, WIDTH * 0.042);
 		break;
 	}
 }
@@ -28,15 +30,22 @@ void Button::Draw() {
 	switch (t)
 	{
 	case 0:
-		myDrawRing.Draw();
+		myDrawRing->Draw();
 		break;
 	case 1:
 	case 2:
-		myDrawTriangle.Draw();
+		myDrawTriangle->Draw();
 		break;
 	case 3:
-		myDrawCircle.Draw();
+		myDrawCircle->Draw();
 		break;
 	}
-	myDrawText.Draw();
-}*/
+	myDrawText->Draw();
+}
+
+Button::~Button() {
+	delete myDrawText;
+	delete myDrawRing;
+	delete myDrawTriangle;
+	delete myDrawCircle;
+}

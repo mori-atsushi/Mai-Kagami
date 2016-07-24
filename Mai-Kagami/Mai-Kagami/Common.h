@@ -10,13 +10,14 @@
 //ƒ{ƒ^ƒ“ŠÖŒW
 class Button {
 public:
-	void Init(char *str, int type, int num);
+	Button(char *str, int type, int num);
 	void Draw();
+	~Button();
 private:
-	MyDrawText myDrawText;
-	MyDrawRing myDrawRing;
-	MyDrawTriangle myDrawTriangle;
-	MyDrawCircle myDrawCircle;
+	MyDrawText *myDrawText;
+	MyDrawRing *myDrawRing;
+	MyDrawTriangle *myDrawTriangle;
+	MyDrawCircle *myDrawCircle;
 	char *s;
 	int t, n;
 };

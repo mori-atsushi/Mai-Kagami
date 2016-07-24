@@ -8,8 +8,7 @@
 #define NFC_POS		HEIGHT * 0.85
 
 #define TOP			0
-#define LOGIN		1
-#define SONG_SELECT	2
+#define SONG_SELECT	1
 #define START TOP
 
 #endif

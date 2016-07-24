@@ -8,56 +8,61 @@
 #include "Draw.h"
 #include "Common.h"
 #include "Touch.h"
+#include "Loading.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {
 public:
-	void Init(); //初期化
+	SongSelectTitle(); //初期化
 	void View(); //表示
+	~SongSelectTitle();
 private:
-	MyDrawText myDrawText;
-	MyDrawLine myDrawLine;
+	MyDrawText *myDrawText;
+	MyDrawLine *myDrawLine;
 };
 
 //曲選択画面カバー関係
 class SongSelectCover {
 public:
-	void Init(); //初期化
+	SongSelectCover(); //初期化
 	void View(); //表示
+	~SongSelectCover();
 private:
-	MyDrawText songTitle;
-	MyDrawText songArtist;
-	MyDrawText songLast[2];
-	MyDrawLine myDrawLine;
-	MyDrawGraph myDrawGraph; //カバー画像
-	MyDrawGraph songCover[6]; //カバー画像
-	MyDrawGraph grad[2]; //カバー画像
-	MyDrawGraph box; //カバー画像
-	MyDrawBox myDrawBox;
+	MyDrawText *songTitle;
+	MyDrawText *songArtist;
+	MyDrawText *songLast[2];
+	MyDrawLine *myDrawLine;
+	MyDrawGraph *myDrawGraph; //カバー画像
+	MyDrawGraph *songCover[6]; //カバー画像
+	MyDrawGraph *grad[2]; //カバー画像
+	MyDrawGraph *box; //カバー画像
+	MyDrawBox *myDrawBox;
 };
 
 //曲選択画面ボタン関係
 class SongSelectButton {
 public:
-	void Init(); //初期化
+	SongSelectButton(); //初期化
 	void View(); //表示
+	~SongSelectButton();
 private:
-	Button button[4];
+	Button *button[4];
 };
 
 //曲選択画面関係
 class SongSelect {
 public:
-	int Load();
+	SongSelect();
 	int Update();
-	void View();
+	void View(Loading *loading);
 private:
-	void LoadThread(); //ロードスレッド
-	SongSelectTitle songSelectTitle; //曲選択画面タイトル
-	SongSelectCover songSelectCover; //選択中の曲
-	SongSelectButton songSelectButton; //ボタン関係
+	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
+	SongSelectCover *songSelectCover; //選択中の曲
+	SongSelectButton *songSelectButton; //ボタン関係
 	Touch touch; //サイドタッチパネル
 	int loadFlag;
+	boolean Load();
+	void Delete();
 };
 
 #endif
