@@ -62,27 +62,16 @@ void SongSelectCover::View() {
 
 //曲選択画面ボタン初期化
 void SongSelectButton::Init() {
-	char *str[4] = { "前の曲へ", "決定", "次の曲へ" }; //表示文字列
-	myDrawText[0].Init(str[0], WIDTH * 0.94, BUTTON1_POS - HEIGHT * 0.0085, 2, 30);
-	myDrawTriangle[0].Init(WIDTH * 0.97, BUTTON1_POS, WIDTH * 0.03, 0);
-	myDrawText[1].Init(str[1], WIDTH * 0.94, BUTTON2_POS - HEIGHT * 0.0085, 2, 30);
-	myDrawRing.Init(WIDTH * 0.97, BUTTON2_POS, WIDTH * 0.015, 7);
-	myDrawText[2].Init(str[2], WIDTH * 0.94, BUTTON3_POS - HEIGHT * 0.0085, 2, 30);
-	myDrawTriangle[1].Init(WIDTH * 0.97, BUTTON3_POS, WIDTH * 0.03, 1);
-	finish.Init("終了", WIDTH * 0.955, BUTTON5_POS - HEIGHT * 0.0085, 1, 30);
-	finishCircle.Init(WIDTH * 0.955, BUTTON5_POS, WIDTH * 0.042);
+	button[0].Init("前の曲へ", 1, 0);
+	button[1].Init("決定", 0, 1);
+	button[2].Init("次の曲へ", 2, 2);
+	button[3].Init("終了", 3, 4);
 }
 
 //曲選択画面ボタン表示
 void SongSelectButton::View() {
-	myDrawText[0].Draw();
-	myDrawText[1].Draw();
-	myDrawText[2].Draw();
-	myDrawTriangle[0].Draw();
-	myDrawTriangle[1].Draw();
-	finishCircle.Draw();
-	finish.Draw();
-	myDrawRing.Draw();
+	for (int i = 0; i < 4; i++)
+		button[i].Draw();
 }
 
 //曲選択画面ロード

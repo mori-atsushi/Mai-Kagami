@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Common.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Top.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="MaiKagami.h" />

@@ -6,16 +6,6 @@
 #include "Draw.h"
 #include "Nfc.h"
 
-//トップロゴ関係
-class TopLogo {
-public:
-	void Init();
-	void View(); //表示
-private:
-	MyDrawGraph myDrawGraph;
-	int logo; //画像ID
-};
-
 //NFCタッチメッセージ関係
 class TopTouchMessage {
 public:
@@ -44,7 +34,7 @@ public:
 	int Update(); //計算
 	void View(); //表示
 private:
-	TopLogo topLogo; //トップロゴクラス
+	MyDrawGraph myDrawGraph; //トップロゴ
 	TopTouchMessage topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視

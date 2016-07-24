@@ -6,6 +6,7 @@
 #include "DxLib.h"
 #include "Main.h"
 #include "Draw.h"
+#include "Common.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {
@@ -40,11 +41,7 @@ public:
 	void Init(); //初期化
 	void View(); //表示
 private:
-	MyDrawText myDrawText[3];
-	MyDrawTriangle myDrawTriangle[2];
-	MyDrawText finish;
-	MyDrawCircle finishCircle;
-	MyDrawRing myDrawRing;
+	Button button[4];
 };
 
 //曲選択画面関係

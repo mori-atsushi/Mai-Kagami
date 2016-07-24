@@ -138,8 +138,8 @@ void MyDrawBox::Init(int a, int b, int width, int height) {
 
 //éläpå`ï\é¶
 void  MyDrawBox::Draw() {
-	float x1 = viewPos.GetX() - w / 2;
-	float y1 = viewPos.GetY() - h / 2;
+	float x1 = viewPos.GetX() - w / 2 + 1;
+	float y1 = viewPos.GetY() - h / 2 + 1;
 	float x2 = viewPos.GetX() + w / 2;
 	float y2 = viewPos.GetY() + h / 2;
 
