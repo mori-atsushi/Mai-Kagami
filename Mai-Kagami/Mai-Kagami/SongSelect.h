@@ -7,6 +7,7 @@
 #include "Main.h"
 #include "Draw.h"
 #include "Common.h"
+#include "Touch.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {
@@ -48,13 +49,14 @@ private:
 class SongSelect {
 public:
 	int Load();
-	void Update();
+	int Update();
 	void View();
 private:
 	void LoadThread(); //ロードスレッド
 	SongSelectTitle songSelectTitle; //曲選択画面タイトル
 	SongSelectCover songSelectCover; //選択中の曲
 	SongSelectButton songSelectButton; //ボタン関係
+	Touch touch; //サイドタッチパネル
 	int loadFlag;
 };
 

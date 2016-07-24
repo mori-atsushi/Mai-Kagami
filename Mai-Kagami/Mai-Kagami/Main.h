@@ -10,6 +10,6 @@
 #define TOP			0
 #define LOGIN		1
 #define SONG_SELECT	2
-#define START LOGIN
+#define START TOP
 
 #endif

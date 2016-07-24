@@ -13,31 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係">
+      <UniqueIdentifier>{befa472c-dd34-4c31-868d-fdc175829d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\システム関係">
+      <UniqueIdentifier>{4d330bfc-241f-4b9b-905b-fc7ba89740ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MaiKagami.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Top.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Draw.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Login.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Nfc.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
-    <ClCompile Include="SongSelect.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Touch.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
     <ClCompile Include="Common.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="MaiKagami.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="SongSelect.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Top.cpp">
+      <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Touch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

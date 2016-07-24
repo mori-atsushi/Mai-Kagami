@@ -27,6 +27,7 @@
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="SongSelect.cpp" />
     <ClCompile Include="Top.cpp" />
+    <ClCompile Include="Touch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Nfc.h" />
     <ClInclude Include="SongSelect.h" />
     <ClInclude Include="Top.h" />
+    <ClInclude Include="Touch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2ED7E73D-E57A-4A66-AE24-94CE667A078D}</ProjectGuid>

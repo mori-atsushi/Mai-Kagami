@@ -17,6 +17,8 @@ void MaiKagami::View() {
 		login.Update();
 		scene = songSelect.Load();
 		break;
+	case SONG_SELECT:
+		scene = songSelect.Update();
 	}
 
 	//•`‰æ

@@ -87,7 +87,11 @@ int SongSelect::Load() {
 }
 
 //曲選択画面計算
-void SongSelect::Update() {
+int SongSelect::Update() {
+	touch.Check();
+	if (touch.Get(4) != 0)
+		return TOP;
+	return SONG_SELECT;
 }
 
 //曲選択画面表示

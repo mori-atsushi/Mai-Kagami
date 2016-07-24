@@ -10,7 +10,9 @@ Nfc::Nfc() {
 
 //ユーザーIDの取得
 int Nfc::GetId() {
-	return id;
+	int temp = id;
+	id = 0;
+	return temp;
 }
 
 //NFCをチェックするためのスレッド
