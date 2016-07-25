@@ -52,12 +52,13 @@ MyDrawText::MyDrawText(Font *font, char *s, int a, int b, int pos, int point, ch
 
 //テキスト表示
 void MyDrawText::Draw() {
-	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str, color->Get(), f); //文字表示
+//	DrawFormatStringToHandle(viewPos->GetX(), viewPos->GetY(), color->Get(), f, "%s", str);
+	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str.c_str(), color->Get(), f); //文字表示
 }
 
 //テキストの幅取得
 int MyDrawText::GetWidth() {
-	return 	GetDrawStringWidthToHandle(str, (int)strlen(str), f) * SIZE_RATE;
+	return 	GetDrawStringWidthToHandle(str.c_str(), (int)strlen(str.c_str()), f) * SIZE_RATE;
 }
 
 //テキストデストラクタ

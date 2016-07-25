@@ -31,6 +31,7 @@ public:
 	void Update(int num = -1);
 	~SongSelectCover();
 private:
+	int n;
 	Song *song[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像

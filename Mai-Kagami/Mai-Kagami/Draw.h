@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <math.h>
+#include <string>
 #include "DxLib.h"
 #include "Main.h"
 #include "Font.h"
@@ -38,7 +39,7 @@ private:
 	int f;
 	ViewPos *viewPos;
 	Color *color;
-	char *str; //•¶š
+	std::string str; //•¶š
 };
 
 //üŠÖŒW

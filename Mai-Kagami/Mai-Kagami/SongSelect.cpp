@@ -20,9 +20,18 @@ SongSelectTitle::~SongSelectTitle() {
 
 //曲選択画面カバー画像初期化
 SongSelectCover::SongSelectCover(Font *font) {
+	n = 0;
+	SetUseASyncLoadFlag(FALSE);
+	int file = FileRead_open("song/song.csv", FALSE);
+	SetUseASyncLoadFlag(TRUE);
+	char buf[3][256];
+	while (FileRead_scanf(file, "%[^,\n\r],%[^,\n\r],%[^\n\r]", buf[0], buf[1], buf[2]) != EOF) {
+		song[n] = new Song(font, buf[1], buf[2], buf[0], n);
+		n++;
+	}
+	FileRead_close(file);
+
 	float x = HEIGHT * 0.35;
-	for(int i = 0; i < 20; i++)
-		song[i] = new Song(font, "ゴーストルール", "初音ミク / DECO*27", "Ghost_Rule", i);
 	myDrawBox = new MyDrawBox(WIDTH * 0.52, HEIGHT * 0.5, 170, 1000);
 	grad[0] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
@@ -32,7 +41,7 @@ SongSelectCover::SongSelectCover(Font *font) {
 }
 
 void SongSelectCover::Update(int num) {
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < n; i++) {
 		switch (num)
 		{
 		case 0:
@@ -54,7 +63,7 @@ void SongSelectCover::View() {
 	myDrawBox->Draw();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	box->Draw();
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < n; i++)
 		song[i]->Draw();
 	for (int i = 0; i < 2; i++) {
 		grad[i]->Draw();
@@ -64,7 +73,8 @@ void SongSelectCover::View() {
 SongSelectCover::~SongSelectCover() {
 	delete box;
 	delete myDrawBox;
-	delete song;
+	for (int i = 0; i < n; i++)
+		delete song[i];
 	for (int i = 0; i < 2; i++) {
 		delete grad[i];
 	}
