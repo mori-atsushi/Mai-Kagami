@@ -1,9 +1,9 @@
 #include "SongSelect.h"
 
 //曲選択画面タイトルロード
-SongSelectTitle::SongSelectTitle() {
+SongSelectTitle::SongSelectTitle(Font *font) {
 	char *str = "Song Select"; //表示文字列
-	myDrawText = new MyDrawText(str, WIDTH * 0.65, HEIGHT * 0.2, 1, 50); //テキスト初期化
+	myDrawText = new MyDrawText(font, str, WIDTH * 0.65, HEIGHT * 0.2, 1, 50); //テキスト初期化
 	myDrawLine = new MyDrawLine(WIDTH * 0.65, HEIGHT * 0.236, 1, WIDTH * 0.4, 20); //線初期化
 }
 
@@ -19,10 +19,10 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongSelectCover::SongSelectCover() {
+SongSelectCover::SongSelectCover(Font *font) {
 	float x = HEIGHT * 0.35;
 	for(int i = 0; i < 20; i++)
-		song[i] = new Song("ゴーストルール", "初音ミク / DECO*27", "Ghost_Rule", i);
+		song[i] = new Song(font, "ゴーストルール", "初音ミク / DECO*27", "Ghost_Rule", i);
 	myDrawBox = new MyDrawBox(WIDTH * 0.52, HEIGHT * 0.5, 170, 1000);
 	grad[0] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
@@ -71,11 +71,11 @@ SongSelectCover::~SongSelectCover() {
 }
 
 //曲選択画面ボタン初期化
-SongSelectButton::SongSelectButton() {
-	button[0] = new Button("前の曲へ", 1, 0);
-	button[1] = new Button("決定", 0, 1);
-	button[2] = new Button("次の曲へ", 2, 2);
-	button[3] = new Button("終了", 3, 4);
+SongSelectButton::SongSelectButton(Font *font) {
+	button[0] = new Button(font, "前の曲へ", 1, 0);
+	button[1] = new Button(font, "決定", 0, 1);
+	button[2] = new Button(font, "次の曲へ", 2, 2);
+	button[3] = new Button(font, "終了", 3, 4);
 }
 
 //曲選択画面ボタン表示
@@ -89,12 +89,12 @@ SongSelectButton::~SongSelectButton() {
 		delete button[i];
 }
 
-SongSelectPop::SongSelectPop() {
+SongSelectPop::SongSelectPop(Font *font) {
 	myDrawBox = new MyDrawBox(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, "Black");
-	title = new MyDrawText("- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
-	message = new MyDrawText("本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
-	buttonMessage[0] = new MyDrawText("はい", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 1 - HEIGHT * 0.0085, 1, 30);
-	buttonMessage[1] = new MyDrawText("いいえ", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 2 - HEIGHT * 0.0085, 1, 30);
+	title = new MyDrawText(font, "- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
+	message = new MyDrawText(font, "本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
+	buttonMessage[0] = new MyDrawText(font, "はい", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 1 - HEIGHT * 0.0085, 1, 30);
+	buttonMessage[1] = new MyDrawText(font, "いいえ", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 2 - HEIGHT * 0.0085, 1, 30);
 	buttonRing[0] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 1, WIDTH * 0.015, 7, "White");
 	buttonRing[1] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 2, WIDTH * 0.015, 7, "White");
 	flag = false;
@@ -134,17 +134,18 @@ SongSelectPop::~SongSelectPop() {
 }
 
 
-SongSelect::SongSelect() {
+SongSelect::SongSelect(Font *font) {
+	f = font;
 	loadFlag = 0;
 }
 
 //曲選択画面ロード
 boolean SongSelect::Load() {
 	if (loadFlag == 0) {
-		songSelectTitle = new SongSelectTitle(); //曲選択画面タイトル初期化
-		songSelectButton = new SongSelectButton();
-		songSelectCover = new SongSelectCover(); //選択中の曲初期化
-		songSelectPop = new SongSelectPop();
+		songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
+		songSelectButton = new SongSelectButton(f);
+		songSelectCover = new SongSelectCover(f); //選択中の曲初期化
+		songSelectPop = new SongSelectPop(f);
 		loadFlag = 1;
 	}
 

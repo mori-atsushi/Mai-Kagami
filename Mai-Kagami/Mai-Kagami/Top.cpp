@@ -1,9 +1,9 @@
 #include "Top.h"
 
 //NFCタッチメッセージコンストラクタ
-TopTouchMessage::TopTouchMessage() {
+TopTouchMessage::TopTouchMessage(Font *font) {
 	char *str = "-カードをタッチしてください-"; //表示文字列
-	myDrawText = new MyDrawText(str, WIDTH * 0.5, HEIGHT * 0.41, 1, 46);
+	myDrawText = new MyDrawText(font, str, WIDTH * 0.5, HEIGHT * 0.41, 1, 46);
 	t = 0;
 }
 
@@ -34,10 +34,10 @@ TopTouchMessage::~TopTouchMessage() {
 }
 
 //NFCタッチボタンコンストラクタ
-TopTouchButton::TopTouchButton() {
+TopTouchButton::TopTouchButton(Font *font) {
 	char *str = "ここに\nタッチ！"; //表示文字列
 	myDrawCircle = new MyDrawCircle(WIDTH, NFC_POS, WIDTH / 12);
-	myDrawText = new MyDrawText(str, WIDTH * 0.92, NFC_POS - HEIGHT * 0.028, 2, 40);
+	myDrawText = new MyDrawText(font, str, WIDTH * 0.92, NFC_POS - HEIGHT * 0.028, 2, 40);
 }
 
 //NFCタッチボタン表示
@@ -51,7 +51,8 @@ TopTouchButton::~TopTouchButton() {
 	delete myDrawText;
 }
 
-Top::Top() {
+Top::Top(Font *font) {
+	f = font;
 	loadFlag = 0;
 }
 
@@ -60,8 +61,8 @@ boolean Top::Load() {
 	if (loadFlag == 0) {
 		myDrawGraph = new MyDrawGraph(WIDTH / 2, HEIGHT / 3, "img/logo.png"); //ロゴ初期化
 		nfc.Init();
-		topTouchMessage = new TopTouchMessage(); //NFCタッチメッセージ初期化
-		topTouchButton = new TopTouchButton(); //NFCタッチボタン初期化
+		topTouchMessage = new TopTouchMessage(f); //NFCタッチメッセージ初期化
+		topTouchButton = new TopTouchButton(f); //NFCタッチボタン初期化
 		loadFlag = 1;
 	}
 
@@ -81,8 +82,8 @@ int Top::Update() {
 			Delete();
 			return SONG_SELECT;
 		}
-		return TOP;
 	}
+	return TOP;
 }
 
 //トップ画面表示

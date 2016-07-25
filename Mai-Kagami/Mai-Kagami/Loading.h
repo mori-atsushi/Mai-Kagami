@@ -4,11 +4,12 @@
 #include "Main.h"
 #include "DxLib.h"
 #include "Draw.h"
+#include "Font.h"
 
 //ログイン画面関係
 class Loading {
 public:
-	Loading(); //ロード
+	Loading(Font *font); //ロード
 	void Update(); //計算
 	void View(); //表示
 	~Loading();

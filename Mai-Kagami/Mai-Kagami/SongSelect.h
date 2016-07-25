@@ -10,11 +10,12 @@
 #include "Touch.h"
 #include "Loading.h"
 #include "Song.h"
+#include "Font.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {
 public:
-	SongSelectTitle(); //初期化
+	SongSelectTitle(Font *font); //初期化
 	void View(); //表示
 	~SongSelectTitle();
 private:
@@ -25,7 +26,7 @@ private:
 //曲選択画面カバー関係
 class SongSelectCover {
 public:
-	SongSelectCover(); //初期化
+	SongSelectCover(Font *font); //初期化
 	void View(); //表示
 	void Update(int num = -1);
 	~SongSelectCover();
@@ -39,7 +40,7 @@ private:
 //曲選択画面ボタン関係
 class SongSelectButton {
 public:
-	SongSelectButton(); //初期化
+	SongSelectButton(Font *font); //初期化
 	void View(); //表示
 	~SongSelectButton();
 private:
@@ -49,7 +50,7 @@ private:
 //ポップアップ関係
 class SongSelectPop {
 public:
-	SongSelectPop();
+	SongSelectPop(Font *font);
 	void Update(int num);
 	void View();
 	boolean Flag();
@@ -66,10 +67,11 @@ private:
 //曲選択画面関係
 class SongSelect {
 public:
-	SongSelect();
+	SongSelect(Font *font);
 	int Update();
 	void View(Loading *loading);
 private:
+	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
 	SongSelectCover *songSelectCover; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係

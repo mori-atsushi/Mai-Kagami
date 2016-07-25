@@ -5,6 +5,7 @@
 #include <math.h>
 #include "DxLib.h"
 #include "Main.h"
+#include "Font.h"
 
 //色関係
 class Color {
@@ -13,16 +14,6 @@ public:
 	int Get();
 private:
 	int c;
-};
-
-//フォント関係
-class Font {
-public:
-	Font(int p); //ポイント数セット
-	int Get(); //フォントID取り出し
-	~Font();
-private:
-	int ID; //フォントID
 };
 
 //表示位置関係
@@ -39,15 +30,15 @@ private:
 //テキスト関係
 class MyDrawText {
 public:
-	MyDrawText(char *s, int a, int b, int pos, int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	MyDrawText(Font *font, char *s, int a, int b, int pos, int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void Draw(); //描画
 	int GetWidth(); //幅取得
 	~MyDrawText();
 private:
-	Font *font;
+	int f;
+	ViewPos *viewPos;
 	Color *color;
 	char *str; //文字
-	int x, y, p;
 };
 
 //線関係

@@ -15,21 +15,6 @@ int Color::Get() {
 	return c;
 }
 
-//フォント指定
-Font::Font(int p) {
-	ID = CreateFontToHandle("M+ 1c", p / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING);
-}
-
-//フォント取得
-int Font::Get() {
-	return ID;
-}
-
-//フォントデストラクタ
-Font::~Font() {
-	DeleteFontToHandle(ID); //フォントデータを削除
-}
-
 //ポジション指定(右寄せ/中央寄せ/左寄せ)
 ViewPos::ViewPos(float a, float b, int pos, float len) {
 	x = a / SIZE_RATE; y = b / SIZE_RATE;
@@ -58,26 +43,26 @@ float ViewPos::GetY() {
 }
 
 //テキスト初期化
-MyDrawText::MyDrawText(char *s, int a, int b, int pos, int point, char *colorName) {
-	str = s; x = a; y = b; p = pos;
-	font = new Font(point);
+MyDrawText::MyDrawText(Font *font, char *s, int a, int b, int pos, int point, char *colorName) {
+	str = s;
+	f = font->Get(point);
 	color = new Color(colorName);
+	viewPos = new ViewPos(a, b, pos, GetWidth() / SIZE_RATE);
 }
 
 //テキスト表示
 void MyDrawText::Draw() {
-	ViewPos viewPos(x, y, p, GetWidth() / SIZE_RATE);
-	DrawStringToHandle(viewPos.GetX(), viewPos.GetY(), str, color->Get(), font->Get()); //文字表示
+	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str, color->Get(), f); //文字表示
 }
 
 //テキストの幅取得
 int MyDrawText::GetWidth() {
-	return 	GetDrawStringWidthToHandle(str, (int)strlen(str), font->Get()) * SIZE_RATE;
+	return 	GetDrawStringWidthToHandle(str, (int)strlen(str), f) * SIZE_RATE;
 }
 
 //テキストデストラクタ
 MyDrawText::~MyDrawText() {
-	delete font;
+	delete viewPos;
 	delete color;
 }
 

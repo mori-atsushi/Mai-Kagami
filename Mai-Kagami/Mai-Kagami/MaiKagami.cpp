@@ -2,9 +2,10 @@
 
 MaiKagami::MaiKagami() {
 	scene = START; //シーン初期化
-	loading = new Loading();
-	top = new Top();
-	songSelect = new SongSelect();
+	font = new Font();
+	loading = new Loading(font);
+	top = new Top(font);
+	songSelect = new SongSelect(font);
 }
 
 //全体の算計
