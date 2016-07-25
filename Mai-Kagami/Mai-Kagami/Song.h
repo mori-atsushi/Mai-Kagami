@@ -15,6 +15,8 @@ public:
 	int GetNow();
 	~Song();
 private:
+	char music[256];
+	boolean playFlag = 0;
 	Font *font;
 	MyDrawText *songTitle;
 	MyDrawText *songArtist;

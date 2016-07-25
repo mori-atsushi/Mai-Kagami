@@ -1,9 +1,11 @@
 #include "Song.h"
 
 Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
+	playFlag = FALSE;
 	n = now;
 	char cover[256];
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
+	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
 	float x = HEIGHT * 0.35;
 	myDrawGraph = new MyDrawGraph(WIDTH * 0.52, x, cover);
 	songTitle = new MyDrawText(font, title, WIDTH * 0.8, HEIGHT * 0.29, 1, 36); //テキスト初期化
@@ -17,8 +19,12 @@ void Song::Update() {
 	if (n == 0) {
 		myDrawGraph->ChangeEx(1.0);
 		myDrawGraph->ChangePos(WIDTH * 0.52, HEIGHT * 0.35);
+		if (!playFlag)
+			PlayMusic(music, DX_PLAYTYPE_LOOP);
+		playFlag = TRUE;
 	}
 	else {
+		playFlag = FALSE;
 		myDrawGraph->ChangeEx(0.7);
 		if (n == -1) {
 			myDrawGraph->ChangePos(WIDTH * 0.52, HEIGHT * 0.35 - 180);
@@ -49,6 +55,7 @@ void Song::Draw() {
 
 void Song::Change(int num) {
 	n += num;
+
 }
 
 int Song::GetNow() {

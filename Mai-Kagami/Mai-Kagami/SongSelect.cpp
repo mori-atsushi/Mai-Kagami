@@ -36,18 +36,16 @@ SongSelectCover::SongSelectCover(Font *font) {
 	grad[0] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
 	box = new MyDrawGraph(WIDTH * 0.52, x, "img/box.png");
-
-	//	PlayMusic("song/Ghost_Rule/music.mp3", DX_PLAYTYPE_LOOP);
 }
 
 void SongSelectCover::Update(int num) {
-	if (num == 0 && song[n - 1]->GetNow() > 0) {
-		for (int i = 0; i < n; i++)
-			song[i]->Change(-1);
-	}
-	else if (num == 2 && song[0]->GetNow() < 0) {
+	if (num == 0 && song[0]->GetNow() < 0) {
 		for (int i = 0; i < n; i++)
 			song[i]->Change(1);
+	}
+	else if (num == 2 && song[n - 1]->GetNow() > 0) {
+		for (int i = 0; i < n; i++)
+			song[i]->Change(-1);
 	}
 	for (int i = 0; i < n; i++)
 		song[i]->Update();
