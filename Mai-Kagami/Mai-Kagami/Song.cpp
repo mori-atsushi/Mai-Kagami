@@ -51,6 +51,10 @@ void Song::Change(int num) {
 	n += num;
 }
 
+int Song::GetNow() {
+	return n;
+}
+
 Song::~Song() {
 	delete songTitle;
 	delete songArtist;

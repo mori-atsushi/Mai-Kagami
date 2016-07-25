@@ -12,6 +12,7 @@ public:
 	void Update();
 	void Draw();
 	void Change(int num);
+	int GetNow();
 	~Song();
 private:
 	Font *font;

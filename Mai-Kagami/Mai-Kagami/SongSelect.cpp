@@ -41,20 +41,16 @@ SongSelectCover::SongSelectCover(Font *font) {
 }
 
 void SongSelectCover::Update(int num) {
-	for (int i = 0; i < n; i++) {
-		switch (num)
-		{
-		case 0:
+	if (num == 0 && song[n - 1]->GetNow() > 0) {
+		for (int i = 0; i < n; i++)
 			song[i]->Change(-1);
-			break;
-		case 2:
-			song[i]->Change(1);
-			break;
-		default:
-			song[i]->Update();
-			break;
-		}
 	}
+	else if (num == 2 && song[0]->GetNow() < 0) {
+		for (int i = 0; i < n; i++)
+			song[i]->Change(1);
+	}
+	for (int i = 0; i < n; i++)
+		song[i]->Update();
 }
 
 //曲選択画面カバー画像表示
@@ -190,8 +186,10 @@ int SongSelect::Update() {
 			if (touch.Get(4) == 1) {
 				songSelectPop->Update(4);
 			}
+			else {
+				songSelectCover->Update(-1);
+			}
 		}
-		songSelectCover->Update();
 
 	}
 	return SONG_SELECT;
