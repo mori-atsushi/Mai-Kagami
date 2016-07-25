@@ -9,6 +9,7 @@
 #include "Common.h"
 #include "Touch.h"
 #include "Loading.h"
+#include "Song.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {
@@ -26,14 +27,10 @@ class SongSelectCover {
 public:
 	SongSelectCover(); //初期化
 	void View(); //表示
+	void Update(int num = -1);
 	~SongSelectCover();
 private:
-	MyDrawText *songTitle;
-	MyDrawText *songArtist;
-	MyDrawText *songLast[2];
-	MyDrawLine *myDrawLine;
-	MyDrawGraph *myDrawGraph; //カバー画像
-	MyDrawGraph *songCover[6]; //カバー画像
+	Song *song[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;

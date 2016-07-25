@@ -43,6 +43,10 @@ ViewPos::ViewPos(float a, float b, int pos, float len) {
 	}
 }
 
+void ViewPos::ChangePos(float a, float b) {
+	x = a / SIZE_RATE; y = b / SIZE_RATE;
+}
+
 //xÀ•WŽæ“¾
 float ViewPos::GetX() {
 	return x;
@@ -196,6 +200,14 @@ void MyDrawGraph::Draw() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
 	DrawRotaGraphF(viewPos->GetX(), viewPos->GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //•`‰æ
 	SetDrawMode(DX_DRAWMODE_NEAREST);
+}
+
+void MyDrawGraph::ChangePos(float a, float b) {
+	viewPos->ChangePos(a, b);
+}
+
+void MyDrawGraph::ChangeEx(double ExRate) {
+	ex = ExRate;
 }
 
 MyDrawGraph::~MyDrawGraph() {

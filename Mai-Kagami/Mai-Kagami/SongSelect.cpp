@@ -20,60 +20,54 @@ SongSelectTitle::~SongSelectTitle() {
 
 //曲選択画面カバー画像初期化
 SongSelectCover::SongSelectCover() {
-	char *title = "ゴーストルール"; //表示文字列
-	char *artist = "初音ミク / DECO*27";
 	float x = HEIGHT * 0.35;
-	myDrawGraph = new MyDrawGraph(WIDTH * 0.52, x, "song/Ghost_Rule/cover.jpg");
-	songTitle = new MyDrawText(title, WIDTH * 0.8, HEIGHT * 0.29, 1, 36); //テキスト初期化
-	songArtist = new MyDrawText(artist, WIDTH * 0.96, HEIGHT * 0.32, 2, 20); //テキスト初期化
-	songLast[0] = new MyDrawText("前回　： --点", WIDTH * 0.75, HEIGHT * 0.355, 0, 24); //テキスト初期化
-	songLast[1] = new MyDrawText("前々回： --点", WIDTH * 0.75, HEIGHT * 0.38, 0, 24); //テキスト初期化
-	myDrawLine = new MyDrawLine(WIDTH * 0.8, HEIGHT * 0.315, 1, WIDTH * 0.33, 6); //線初期化
+	for(int i = 0; i < 20; i++)
+		song[i] = new Song("ゴーストルール", "初音ミク / DECO*27", "Ghost_Rule", i);
 	myDrawBox = new MyDrawBox(WIDTH * 0.52, HEIGHT * 0.5, 170, 1000);
-	songCover[0] = new MyDrawGraph(WIDTH * 0.52, x - 180, "song/Ghost_Rule/cover.jpg", 0.7);
-	songCover[1] = new MyDrawGraph(WIDTH * 0.52, x + 180, "song/Happy_Synthesizer/cover.jpg", 0.7);
-	songCover[2] = new MyDrawGraph(WIDTH * 0.52, x + 330, "song/Ghost_Rule/cover.jpg", 0.7);
-	songCover[3] = new MyDrawGraph(WIDTH * 0.52, x + 480, "song/Ghost_Rule/cover.jpg", 0.7);
-	songCover[4] = new MyDrawGraph(WIDTH * 0.52, x + 630, "song/Ghost_Rule/cover.jpg", 0.7);
-	songCover[5] = new MyDrawGraph(WIDTH * 0.52, x + 780, "song/Ghost_Rule/cover.jpg", 0.7);
 	grad[0] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
 	box = new MyDrawGraph(WIDTH * 0.52, x, "img/box.png");
+
 	//	PlayMusic("song/Ghost_Rule/music.mp3", DX_PLAYTYPE_LOOP);
+}
+
+void SongSelectCover::Update(int num) {
+	for (int i = 0; i < 20; i++) {
+		switch (num)
+		{
+		case 0:
+			song[i]->Change(-1);
+			break;
+		case 2:
+			song[i]->Change(1);
+			break;
+		default:
+			song[i]->Update();
+			break;
+		}
+	}
 }
 
 //曲選択画面カバー画像表示
 void SongSelectCover::View() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
 	myDrawBox->Draw();
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-	for(int i = 0; i < 6; i++)
-		songCover[i]->Draw();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	box->Draw();
-	myDrawGraph->Draw();
-	songTitle->Draw();
-	songArtist->Draw();
+	for (int i = 0; i < 20; i++)
+		song[i]->Draw();
 	for (int i = 0; i < 2; i++) {
-		songLast[i]->Draw();
 		grad[i]->Draw();
 	}
-	myDrawLine->Draw();
 }
 
 SongSelectCover::~SongSelectCover() {
-	delete songTitle;
-	delete songArtist;
-	for (int i = 0; i < 2; i++) {
-		delete songLast[i];
-		delete grad[i];
-	}
-	delete myDrawLine;
-	delete myDrawGraph;
-	for (int i = 0; i < 6; i++)
-		delete songCover[i];
 	delete box;
 	delete myDrawBox;
+	delete song;
+	for (int i = 0; i < 2; i++) {
+		delete grad[i];
+	}
 }
 
 //曲選択画面ボタン初期化
@@ -148,10 +142,10 @@ SongSelect::SongSelect() {
 boolean SongSelect::Load() {
 	if (loadFlag == 0) {
 		songSelectTitle = new SongSelectTitle(); //曲選択画面タイトル初期化
-		songSelectCover = new SongSelectCover(); //選択中の曲初期化
 		songSelectButton = new SongSelectButton();
+		songSelectCover = new SongSelectCover(); //選択中の曲初期化
 		songSelectPop = new SongSelectPop();
-		loadFlag = 2;
+		loadFlag = 1;
 	}
 
 	if (loadFlag == 1 && GetASyncLoadNum() == 0)
@@ -166,16 +160,28 @@ boolean SongSelect::Load() {
 int SongSelect::Update() {
 	if (Load()) {
 		touch.Check();
-		if (touch.Get(1) == 1&& songSelectPop->Flag()) {
-			Delete();
-			return TOP;
+		if (songSelectPop->Flag()) {
+			if (touch.Get(1) == 1) {
+				Delete();
+				return TOP;
+			}
+			if (touch.Get(2) == 1) {
+				songSelectPop->Update(2);
+			}
 		}
-		if (touch.Get(2) == 1) {
-			songSelectPop->Update(2);
+		else {
+			if (touch.Get(0) == 1) {
+				songSelectCover->Update(0);
+			}
+			if (touch.Get(2) == 1) {
+				songSelectCover->Update(2);
+			}
+			if (touch.Get(4) == 1) {
+				songSelectPop->Update(4);
+			}
 		}
-		if (touch.Get(4) == 1) {
-			songSelectPop->Update(4);
-		}
+		songSelectCover->Update();
+
 	}
 	return SONG_SELECT;
 }
