@@ -12,6 +12,12 @@
 #include "Song.h"
 #include "Font.h"
 
+#define BACK_TOP -2
+#define BACK -1
+#define MAIN 0
+#define MODE 1
+#define OPTION 2
+
 //曲選択画面タイトル
 class SongSelectTitle {
 public:
@@ -28,7 +34,7 @@ class SongSelectCover {
 public:
 	SongSelectCover(Font *font); //初期化
 	void View(); //表示
-	void Update(int num = -1);
+	void Update(Touch *touch);
 	~SongSelectCover();
 private:
 	int n;
@@ -52,9 +58,8 @@ private:
 class SongSelectPop {
 public:
 	SongSelectPop(Font *font);
-	void Update(int num);
+	int Update(Touch *touch);
 	void View();
-	boolean Flag();
 	~SongSelectPop();
 private:
 	MyDrawBox *myDrawBox;
@@ -76,9 +81,10 @@ private:
 	SongSelectCover *songSelectCover; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
 	SongSelectPop *songSelectPop; //終了用ポップアップ
-	Touch touch; //サイドタッチパネル
+	Touch *touch; //サイドタッチパネル
+	int scene;
 	int loadFlag;
-	boolean Load();
+	void Load();
 	void Delete();
 };
 

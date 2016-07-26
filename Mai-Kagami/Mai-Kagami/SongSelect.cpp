@@ -38,12 +38,12 @@ SongSelectCover::SongSelectCover(Font *font) {
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 }
 
-void SongSelectCover::Update(int num) {
-	if (num == 0 && song[0]->GetNow() < 0) {
+void SongSelectCover::Update(Touch *touch) {
+	if (touch->Get(0) == 1 && song[0]->GetNow() < 0) {
 		for (int i = 0; i < n; i++)
 			song[i]->Change(1);
 	}
-	else if (num == 2 && song[n - 1]->GetNow() > 0) {
+	if (touch->Get(2) == 1 && song[n - 1]->GetNow() > 0) {
 		for (int i = 0; i < n; i++)
 			song[i]->Change(-1);
 	}
@@ -102,11 +102,26 @@ SongSelectPop::SongSelectPop(Font *font) {
 	flag = false;
 }
 
-void SongSelectPop::Update(int num) {
-	if (num == 4 && !flag)
-		flag = true;
-	else if (num == 2 && flag)
-		flag = false;
+int SongSelectPop::Update(Touch *touch) {
+	if (flag) {
+		if (touch->Get(1) == 1) {
+			flag = FALSE;
+			return TOP;
+		}
+		if (touch->Get(2) == 1) {
+			flag = FALSE;
+			return MAIN;
+		}
+		return BACK;
+	}
+	else {
+		if (touch->Get(4)) {
+			flag = TRUE;
+			return BACK;
+		}
+		return MAIN;
+	}
+	return MAIN;
 }
 
 void SongSelectPop::View() {
@@ -117,10 +132,6 @@ void SongSelectPop::View() {
 	message->Draw();
 	for (int i = 0; i < 2; i++)
 		button[i]->Draw();
-}
-
-boolean SongSelectPop::Flag() {
-	return flag;
 }
 
 SongSelectPop::~SongSelectPop() {
@@ -138,49 +149,35 @@ SongSelect::SongSelect(Font *font) {
 }
 
 //曲選択画面ロード
-boolean SongSelect::Load() {
+void SongSelect::Load() {
+	if (loadFlag == 2)
+		return;
+	
 	if (loadFlag == 0) {
 		songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
 		songSelectButton = new SongSelectButton(f);
 		songSelectCover = new SongSelectCover(f); //選択中の曲初期化
 		songSelectPop = new SongSelectPop(f);
+		touch = new Touch();
 		loadFlag = 1;
 	}
 
 	if (loadFlag == 1 && GetASyncLoadNum() == 0)
 		loadFlag = 2;
-
-	if (loadFlag == 2)
-		return TRUE;
-	return FALSE;
 }
 
 //曲選択画面計算
 int SongSelect::Update() {
-	if (Load()) {
-		touch.Check();
-		if (songSelectPop->Flag()) {
-			if (touch.Get(1) == 1) {
-				Delete();
-				return TOP;
-			}
-			if (touch.Get(2) == 1) {
-				songSelectPop->Update(2);
-			}
-		}
-		else {
-			if (touch.Get(0) == 1) {
-				songSelectCover->Update(0);
-			}
-			if (touch.Get(2) == 1) {
-				songSelectCover->Update(2);
-			}
-			if (touch.Get(4) == 1) {
-				songSelectPop->Update(4);
-			}
-			else {
-				songSelectCover->Update(-1);
-			}
+	Load();
+	if (loadFlag == 2) {
+		touch->Check();
+		if(scene == MAIN)
+			songSelectCover->Update(touch);
+		scene = songSelectPop->Update(touch);
+
+		if (scene == BACK_TOP) {
+			Delete();
+			return TOP;
 		}
 
 	}
@@ -192,7 +189,8 @@ void SongSelect::View(Loading *loading) {
 	if (loadFlag == 2) {
 		songSelectCover->View(); //カバー表示
 		songSelectTitle->View(); //タイトル表示
-		if(songSelectPop->Flag())
+
+		if(scene == BACK)
 			songSelectPop->View();
 		else
 			songSelectButton->View(); //ボタン表示
@@ -208,4 +206,5 @@ void SongSelect::Delete() {
 	delete songSelectButton;
 	delete songSelectTitle;
 	delete songSelectPop;
+	delete touch;
 }
