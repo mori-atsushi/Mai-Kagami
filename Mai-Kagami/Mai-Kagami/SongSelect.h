@@ -60,8 +60,7 @@ private:
 	MyDrawBox *myDrawBox;
 	MyDrawText *title;
 	MyDrawText *message;
-	MyDrawText *buttonMessage[2];
-	MyDrawRing *buttonRing[2];
+	Button *button[2];
 	boolean flag;
 };
 

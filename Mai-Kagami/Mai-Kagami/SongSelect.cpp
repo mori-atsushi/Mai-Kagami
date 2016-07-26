@@ -32,10 +32,10 @@ SongSelectCover::SongSelectCover(Font *font) {
 	FileRead_close(file);
 
 	float x = HEIGHT * 0.35;
-	myDrawBox = new MyDrawBox(WIDTH * 0.52, HEIGHT * 0.5, 170, 1000);
-	grad[0] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.22, "img/grad1.png");
-	grad[1] = new MyDrawGraph(WIDTH * 0.52, HEIGHT * 0.8, "img/grad2.png");
-	box = new MyDrawGraph(WIDTH * 0.52, x, "img/box.png");
+	myDrawBox = new MyDrawBox(WIDTH * 0.5, HEIGHT * 0.5, 170, 1000);
+	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22, "img/grad1.png");
+	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
+	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 }
 
 void SongSelectCover::Update(int num) {
@@ -97,10 +97,8 @@ SongSelectPop::SongSelectPop(Font *font) {
 	myDrawBox = new MyDrawBox(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, "Black");
 	title = new MyDrawText(font, "- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
 	message = new MyDrawText(font, "本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
-	buttonMessage[0] = new MyDrawText(font, "はい", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 1 - HEIGHT * 0.0085, 1, 30);
-	buttonMessage[1] = new MyDrawText(font, "いいえ", WIDTH * 0.75, BUTTON_POS + BUTTON_INTERVAL * 2 - HEIGHT * 0.0085, 1, 30);
-	buttonRing[0] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 1, WIDTH * 0.015, 7, "White");
-	buttonRing[1] = new MyDrawRing(WIDTH * 0.97, BUTTON_POS + BUTTON_INTERVAL * 2, WIDTH * 0.015, 7, "White");
+	button[0] = new Button(font, "はい", 4, 1);
+	button[1] = new Button(font, "いいえ", 4, 2);
 	flag = false;
 }
 
@@ -117,10 +115,8 @@ void SongSelectPop::View() {
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
 	title->Draw();
 	message->Draw();
-	for (int i = 0; i < 2; i++) {
-		buttonMessage[i]->Draw();
-		buttonRing[i]->Draw();
-	}
+	for (int i = 0; i < 2; i++)
+		button[i]->Draw();
 }
 
 boolean SongSelectPop::Flag() {
@@ -131,10 +127,8 @@ SongSelectPop::~SongSelectPop() {
 	delete myDrawBox;
 	delete title;
 	delete message;
-	for (int i = 0; i < 2; i++) {
-		delete buttonMessage[i];
-		delete buttonRing[i];
-	}
+	for (int i = 0; i < 2; i++)
+		delete button[i];
 }
 
 
