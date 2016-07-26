@@ -4,7 +4,7 @@
 #include "DxLib.h"
 #include "Top.h"
 #include "Loading.h"
-#include "SongSelect.h"
+#include "SongSelectMain.h"
 
 class MaiKagami
 {

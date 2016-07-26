@@ -25,9 +25,12 @@
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="Song.cpp" />
     <ClCompile Include="SongSelect.cpp" />
+    <ClCompile Include="SongSelectCommon.cpp" />
+    <ClCompile Include="SongSelectMain.cpp" />
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="Touch.cpp" />
   </ItemGroup>
@@ -38,9 +41,12 @@
     <ClInclude Include="Loading.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelect.h" />
+    <ClInclude Include="SongSelectCommon.h" />
+    <ClInclude Include="SongSelectMain.h" />
     <ClInclude Include="Top.h" />
     <ClInclude Include="Touch.h" />
   </ItemGroup>

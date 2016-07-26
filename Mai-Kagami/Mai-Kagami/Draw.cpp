@@ -52,8 +52,11 @@ MyDrawText::MyDrawText(Font *font, char *s, int a, int b, int pos, int point, ch
 
 //テキスト表示
 void MyDrawText::Draw() {
-//	DrawFormatStringToHandle(viewPos->GetX(), viewPos->GetY(), color->Get(), f, "%s", str);
 	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str.c_str(), color->Get(), f); //文字表示
+}
+
+void MyDrawText::ChangeText(char *s) {
+	str = s;
 }
 
 //テキストの幅取得

@@ -33,6 +33,7 @@ class MyDrawText {
 public:
 	MyDrawText(Font *font, char *s, int a, int b, int pos, int point, char *colorName = "White"); // pos=¶Šñ‚¹:0 / ’†‰›Šñ‚¹:1 / ‰EŠñ‚¹:2
 	void Draw(); //•`‰æ
+	void ChangeText(char *s);
 	int GetWidth(); //•æ“¾
 	~MyDrawText();
 private:

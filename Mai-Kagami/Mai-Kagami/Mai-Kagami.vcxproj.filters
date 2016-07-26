@@ -25,6 +25,12 @@
     <Filter Include="ヘッダー ファイル\画面関係">
       <UniqueIdentifier>{d106b6d6-e995-4d2b-9773-a695b921a82e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係\曲選択関係">
+      <UniqueIdentifier>{3212a294-06c9-48ec-adab-b785e7f04c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\曲選択関係">
+      <UniqueIdentifier>{c36adc03-aeab-402a-9caf-411c687e391d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -45,9 +51,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
-    <ClCompile Include="SongSelect.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
     <ClCompile Include="Top.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
@@ -59,6 +62,18 @@
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
+    </ClCompile>
+    <ClCompile Include="SongSelect.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+    </ClCompile>
+    <ClCompile Include="ModeSelect.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+    </ClCompile>
+    <ClCompile Include="SongSelectMain.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+    </ClCompile>
+    <ClCompile Include="SongSelectCommon.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +95,6 @@
     <ClInclude Include="Main.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
-    <ClInclude Include="SongSelect.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
     <ClInclude Include="Top.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
@@ -94,6 +106,18 @@
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SongSelect.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SongSelectCommon.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SongSelectMain.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+    </ClInclude>
+    <ClInclude Include="ModeSelect.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
