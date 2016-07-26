@@ -58,6 +58,7 @@ Top::Top(Font *font) {
 
 //ƒgƒbƒv‰æ–Ê‰Šú‰»
 boolean Top::Load() {
+	StopMusic();
 	if (loadFlag == 0) {
 		myDrawGraph = new MyDrawGraph(WIDTH / 2, HEIGHT / 3, "img/logo.png"); //ƒƒS‰Šú‰»
 		nfc.Init();
