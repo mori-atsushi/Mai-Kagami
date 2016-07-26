@@ -10,14 +10,16 @@
 //ƒ{ƒ^ƒ“ŠÖŒW
 class Button {
 public:
-	Button(Font *font, char *str, int type, int num, int position = 0);
+	Button(Font *font, char *str, int type, int num);
+	Button(Font *font, char *title, char *str, int num, char *colorName);
 	void Draw();
 	~Button();
 private:
 	MyDrawText *myDrawText;
-	MyDrawRing *myDrawRing;
+	MyDrawText *descriptionText;
 	MyDrawTriangle *myDrawTriangle;
 	MyDrawCircle *myDrawCircle;
+	MyDrawBox *myDrawBox;
 	char *s;
 	int t, n;
 };

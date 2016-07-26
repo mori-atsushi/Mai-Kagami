@@ -26,6 +26,7 @@ private:
 	SongSelectCover *songSelectCover; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
 	SongSelectPop *songSelectPop; //終了用ポップアップ
+	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	Touch *touch; //サイドタッチパネル
 	int scene;
 	int loadFlag;

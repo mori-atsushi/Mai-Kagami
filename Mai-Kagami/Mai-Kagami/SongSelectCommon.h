@@ -34,7 +34,8 @@ public:
 	void Update(Touch *touch);
 	~SongSelectCover();
 private:
-	int n;
+	int n, now;
+	boolean drawFlag;
 	Song *song[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像

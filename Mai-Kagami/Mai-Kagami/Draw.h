@@ -59,21 +59,10 @@ private:
 //â~ä÷åW
 class MyDrawCircle {
 public:
-	MyDrawCircle(int a, int b, int radius);
+	MyDrawCircle(int a, int b, int radius, char *colorName = "Blue");
+	MyDrawCircle(int a, int b, int radius, float width, char *colorName = "Blue");
 	void Draw();
 	~MyDrawCircle();
-private:
-	ViewPos *viewPos;
-	Color *color;
-	int r;
-};
-
-//ÉäÉìÉOÅiÉhÅ[ÉiÉcå^Åjä÷åW
-class MyDrawRing {
-public:
-	MyDrawRing(int a, int b, int radius, float width, char *colorName = "Blue");
-	void Draw();
-	~MyDrawRing();
 private:
 	ViewPos *viewPos;
 	Color *color;
@@ -84,7 +73,7 @@ private:
 //ê≥éOäpå`ä÷åW
 class MyDrawTriangle {
 public:
-	MyDrawTriangle(int a, int b, int width, int direction);
+	MyDrawTriangle(int a, int b, int width, int direction, char *colorName = "Blue");
 	void Draw();
 	~MyDrawTriangle();
 private:
@@ -98,12 +87,14 @@ private:
 class MyDrawBox {
 public:
 	MyDrawBox(int a, int b, int width, int height, char *colorName = "White");
+	MyDrawBox(int a, int b, int width, int height, float line, char *colorName = "Blue");
 	void Draw();
 	~MyDrawBox();
 private:
 	ViewPos *viewPos;
 	Color *color;
 	int w, h;
+	float l;
 };
 
 //âÊëúä÷åW

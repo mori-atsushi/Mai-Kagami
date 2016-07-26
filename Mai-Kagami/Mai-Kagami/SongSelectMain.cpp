@@ -15,6 +15,7 @@ void SongSelect::Load() {
 		songSelectButton = new SongSelectButton(f);
 		songSelectCover = new SongSelectCover(f); //選択中の曲初期化
 		songSelectPop = new SongSelectPop(f);
+		modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
 		touch = new Touch();
 		loadFlag = 1;
 		scene = MAIN;
@@ -72,8 +73,10 @@ void SongSelect::View(Loading *loading) {
 			songSelectPop->View();
 			break;
 		case MAIN:
-			songSelectButton->View(); //ボタン表示
+			songSelectButton->View(); //曲選択ボタン表示
 			break;
+		case MODE:
+			modeSelectButton->View(); //モード選択ボタン表示
 		}
 	}
 	else {

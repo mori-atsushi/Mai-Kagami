@@ -4,7 +4,7 @@
 SongSelectTitle::SongSelectTitle(Font *font) {
 	char *str = "Song Select"; //表示文字列
 	myDrawText = new MyDrawText(font, str, WIDTH * 0.65, HEIGHT * 0.2, 1, 50); //テキスト初期化
-	myDrawLine = new MyDrawLine(WIDTH * 0.65, HEIGHT * 0.236, 1, WIDTH * 0.4, 20); //線初期化
+	myDrawLine = new MyDrawLine(WIDTH * 0.65, HEIGHT * 0.236, 1, WIDTH * 0.4, 3); //線初期化
 }
 
 //曲選択画面タイトル計算
@@ -51,6 +51,21 @@ void SongSelectCover::Update(Touch *touch) {
 		for (int i = 0; i < n; i++)
 			song[i]->Change(1);
 	}
+
+	if (touch->Get(1) == 1) {
+		drawFlag = FALSE;
+
+	}
+	else {
+		drawFlag = TRUE;
+		for (int i = 0; i < n; i++) {
+			if (song[i]->GetNow() == 0) {
+				now = i;
+				break;
+			}
+		}
+	}
+
 	if (touch->Get(2) == 1 && song[n - 1]->GetNow() > 0) {
 		for (int i = 0; i < n; i++)
 			song[i]->Change(-1);
@@ -61,14 +76,19 @@ void SongSelectCover::Update(Touch *touch) {
 
 //曲選択画面カバー画像表示
 void SongSelectCover::View() {
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
-	myDrawBox->Draw();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	box->Draw();
-	for (int i = 0; i < n; i++)
-		song[i]->Draw();
-	for (int i = 0; i < 2; i++) {
-		grad[i]->Draw();
+	if (drawFlag) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
+		myDrawBox->Draw();
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		box->Draw();
+		for (int i = 0; i < n; i++)
+			song[i]->Draw();
+		for (int i = 0; i < 2; i++)
+			grad[i]->Draw();
+	}
+	else {
+//		box->Draw();
+		song[now]->Draw();
 	}
 }
 
