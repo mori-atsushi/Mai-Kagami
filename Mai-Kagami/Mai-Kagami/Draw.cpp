@@ -19,19 +19,33 @@ int Color::Get() {
 
 //ポジション指定(右寄せ/中央寄せ/左寄せ)
 ViewPos::ViewPos(float a, float b, int pos, float len) {
+	p = pos;
 	x = a / SIZE_RATE; y = b / SIZE_RATE;
-	switch (pos) {
+	xx = x; yy = y;
+	switch (p) {
 	case 1:
-		x = x - len / 2;
+		x -= len / 2;
 		break;
 	case 2:
-		x = x - len;
+		x -= len;
 		break;
 	}
 }
 
 void ViewPos::ChangePos(float a, float b) {
 	x = a / SIZE_RATE; y = b / SIZE_RATE;
+}
+
+void ViewPos::ChangeLenth(float len) {
+	x = xx; y = yy;
+	switch (p) {
+	case 1:
+		x -= len / 2;
+		break;
+	case 2:
+		x -= len;
+		break;
+	}
 }
 
 //x座標取得
@@ -57,8 +71,10 @@ void MyDrawText::Draw() {
 	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str.c_str(), color->Get(), f); //文字表示
 }
 
+//テキスト変更
 void MyDrawText::ChangeText(char *s) {
 	str = s;
+	viewPos->ChangeLenth(GetWidth() / SIZE_RATE);
 }
 
 //テキストの幅取得

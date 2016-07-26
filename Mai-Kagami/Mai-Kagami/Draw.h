@@ -22,10 +22,13 @@ class ViewPos {
 public :
 	ViewPos(float a, float b, int pos = 0, float len = 0);
 	void ChangePos(float a, float b);
+	void ChangeLenth( float len);
 	float GetX();
 	float GetY();
 private:
 	float x, y;
+	float xx, yy;
+	int p;
 };
 
 //テキスト関係

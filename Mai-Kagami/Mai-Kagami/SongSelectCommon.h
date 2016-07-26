@@ -12,7 +12,8 @@
 #define BACK -1
 #define MAIN 0
 #define MODE 1
-#define OPTION 2
+#define OPTION1 2
+#define OPTION2 3
 
 //曲選択画面タイトル
 class SongSelectTitle {
@@ -23,6 +24,7 @@ public:
 	~SongSelectTitle();
 private:
 	MyDrawText *myDrawText;
+	MyDrawText *subTitle;
 	MyDrawLine *myDrawLine;
 };
 

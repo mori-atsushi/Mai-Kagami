@@ -39,15 +39,21 @@ int SongSelect::Update() {
 				scene = MAIN;
 			break;
 		case MAIN:
-			if (touch->Get(4) == 1)
-				scene = BACK;
 			if (touch->Get(1) == 1)
 				scene = MODE;
+			if (touch->Get(4) == 1)
+				scene = BACK;
 			songSelectCover->Update(touch);
 			break;
 		case MODE:
+			if (touch->Get(0) == 1)
+				scene = OPTION1;
 			if (touch->Get(4) == 1)
 				scene = MAIN;
+			break;
+		case OPTION1:
+			if (touch->Get(4) == 1)
+				scene = MODE;
 		}
 
 		if (scene == BACK_TOP) {

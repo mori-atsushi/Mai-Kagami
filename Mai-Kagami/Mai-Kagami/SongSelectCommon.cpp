@@ -4,25 +4,37 @@
 SongSelectTitle::SongSelectTitle(Font *font) {
 	char *str = "Song Select"; //表示文字列
 	myDrawText = new MyDrawText(font, str, WIDTH * 0.65, HEIGHT * 0.2, 1, 50); //テキスト初期化
+	subTitle = new MyDrawText(font, "", WIDTH * 0.65, HEIGHT * 0.245, 1, 30, "Yellow"); //テキスト初期化
 	myDrawLine = new MyDrawLine(WIDTH * 0.65, HEIGHT * 0.236, 1, WIDTH * 0.4, 3); //線初期化
 }
 
 //曲選択画面タイトル計算
 void SongSelectTitle::Update(int scene) {
-	if (scene == MODE)
+	switch (scene)
+	{
+	case MODE:
 		myDrawText->ChangeText("Mode Select");
-	else
+		break;
+	case OPTION1:
+		myDrawText->ChangeText("Option");
+		subTitle->ChangeText("通し練習モード");
+		break;
+	default:
 		myDrawText->ChangeText("Song Select");
+		break;
+	}
 }
 
 //曲選択画面タイトル表示
 void SongSelectTitle::View() {
 	myDrawText->Draw(); //テキスト表示
+	subTitle->Draw(); //テキスト表示
 	myDrawLine->Draw(); //線表示
 }
 
 SongSelectTitle::~SongSelectTitle() {
 	delete myDrawText;
+	delete subTitle;
 	delete myDrawLine;
 }
 
