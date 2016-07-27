@@ -20,7 +20,7 @@ class SongSelectTitle {
 public:
 	SongSelectTitle(Font *font); //‰Šú‰»
 	void Update(int scene); //ŒvZ
-	void View(); //•\¦
+	void View(int scene); //•\¦
 	~SongSelectTitle();
 private:
 	MyDrawText *myDrawText;

@@ -13,6 +13,7 @@
 #include "Font.h"
 #include "SongSelectCommon.h"
 #include "SongSelect.h"
+#include "ThroughOption.h"
 
 //曲選択画面関係
 class SongSelect {
@@ -27,6 +28,7 @@ private:
 	SongSelectButton *songSelectButton; //ボタン関係
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
+	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
 	Touch *touch; //サイドタッチパネル
 	int scene;
 	int loadFlag;

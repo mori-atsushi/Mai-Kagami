@@ -26,10 +26,11 @@ void SongSelectTitle::Update(int scene) {
 }
 
 //曲選択画面タイトル表示
-void SongSelectTitle::View() {
+void SongSelectTitle::View(int scene) {
 	myDrawText->Draw(); //テキスト表示
-	subTitle->Draw(); //テキスト表示
 	myDrawLine->Draw(); //線表示
+	if(scene == OPTION1)
+		subTitle->Draw(); //テキスト表示
 }
 
 SongSelectTitle::~SongSelectTitle() {

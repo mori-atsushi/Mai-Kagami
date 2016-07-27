@@ -16,6 +16,7 @@ void SongSelect::Load() {
 		songSelectCover = new SongSelectCover(f); //選択中の曲初期化
 		songSelectPop = new SongSelectPop(f);
 		modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
+		throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
 		touch = new Touch();
 		loadFlag = 1;
 		scene = MAIN;
@@ -71,7 +72,7 @@ int SongSelect::Update() {
 void SongSelect::View(Loading *loading) {
 	if (loadFlag == 2) {
 		songSelectCover->View(); //カバー表示
-		songSelectTitle->View(); //タイトル表示
+		songSelectTitle->View(scene); //タイトル表示
 
 		switch (scene)
 		{
@@ -83,6 +84,10 @@ void SongSelect::View(Loading *loading) {
 			break;
 		case MODE:
 			modeSelectButton->View(); //モード選択ボタン表示
+			break;
+		case OPTION1:
+			throughOptionButton->View();
+			break;
 		}
 	}
 	else {
@@ -96,5 +101,6 @@ void SongSelect::Delete() {
 	delete songSelectButton;
 	delete songSelectTitle;
 	delete songSelectPop;
+	delete throughOptionButton;
 	delete touch;
 }
