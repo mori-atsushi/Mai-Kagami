@@ -121,11 +121,12 @@ public:
 	void Draw();
 	void ChangePos(float a, float b);
 	void ChangeEx(double ExRate);
+	void ChangeSpeed(double speed);
 	~MyDrawMovie();
 private:
 	ViewPos *viewPos;
-	int handle;
-	double ex;
+	int handle; //動画のハンドル
+	double ex; //動画のサイズ
 };
 
 #endif

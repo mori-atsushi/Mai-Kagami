@@ -250,6 +250,7 @@ void MyDrawMovie::Draw() {
 	if (!CheckHandleASyncLoad(handle)) {
 		if (GetMovieStateToGraph(handle) == 0) {
 			StopMusic();
+			SetPlaySpeedRateMovieToGraph(handle, 1.0);
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
 		}
@@ -265,6 +266,13 @@ void MyDrawMovie::ChangePos(float a, float b) {
 
 void MyDrawMovie::ChangeEx(double ExRate) {
 	ex = ExRate;
+}
+
+void MyDrawMovie::ChangeSpeed(double speed) {
+	PauseMovieToGraph(handle);
+	SetPlaySpeedRateMovieToGraph(handle, speed);
+	SeekMovieToGraph(handle, 0);
+	PlayMovieToGraph(handle);
 }
 
 MyDrawMovie::~MyDrawMovie() {

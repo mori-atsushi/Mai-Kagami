@@ -6,7 +6,7 @@ Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
 	char cover[256];
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
-	sprintf_s(movie, sizeof(movie), "song/%s/movie.wmv", folder);
+	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder);
 	float x = HEIGHT * 0.35;
 	myDrawGraph = new MyDrawGraph(WIDTH * 0.5, x, cover);
 	songTitle = new MyDrawText(font, title, WIDTH * 0.79, HEIGHT * 0.294, 1, 30); //テキスト初期化
@@ -59,6 +59,18 @@ void Song::Draw(int scene) {
 
 void Song::Change(int num) {
 	n += num;
+}
+
+void Song::ChangeSpeed(int num) {
+	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+	if (num == 1 && speed > 1) {
+		speed -= 1;
+		myDrawMovie->ChangeSpeed(s[speed]);
+	}
+	else if (num == -1 && speed < 5) {
+		speed += 1;
+		myDrawMovie->ChangeSpeed(s[speed]);
+	}
 }
 
 void Song::LoadMovie() {

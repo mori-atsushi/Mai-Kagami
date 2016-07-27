@@ -12,6 +12,7 @@ public:
 	void Update();
 	void Draw(int scene);
 	void Change(int num);
+	void ChangeSpeed(int num);
 	void LoadMovie();
 	void ReleaseMovie();
 	int GetNow();
@@ -19,7 +20,7 @@ public:
 private:
 	char music[256];
 	char movie[256];
-	int n;
+	int n, speed;
 	boolean playFlag = 0;
 	Font *font;
 	MyDrawText *songTitle;
