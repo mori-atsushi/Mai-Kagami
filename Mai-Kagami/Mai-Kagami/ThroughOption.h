@@ -16,5 +16,12 @@ private:
 	MyDrawText *speed[2];
 };
 
+class PreviewMovie {
+public:
+	void Load(char *folder);
+private:
+	int movieId;
+};
+
 
 #endif

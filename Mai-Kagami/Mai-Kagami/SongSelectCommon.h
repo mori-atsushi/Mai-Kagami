@@ -5,8 +5,8 @@
 #include "Draw.h"
 #include "Common.h"
 #include "Touch.h"
-#include "Song.h"
 #include "Font.h"
+#include "Song.h"
 
 #define BACK_TOP -2
 #define BACK -1
@@ -32,12 +32,11 @@ private:
 class SongSelectCover {
 public:
 	SongSelectCover(Font *font); //初期化
-	void View(); //表示
-	void Update(Touch *touch);
+	void View(int scene); //表示
+	void Update(Touch *touch, int scene);
 	~SongSelectCover();
 private:
 	int n, now;
-	boolean drawFlag;
 	Song *song[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像

@@ -17,6 +17,7 @@ void SongSelect::Load() {
 		songSelectPop = new SongSelectPop(f);
 		modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
 		throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
+		previewMovie = new PreviewMovie(); //プレビュー動画初期化
 		touch = new Touch();
 		loadFlag = 1;
 		scene = MAIN;
@@ -31,6 +32,7 @@ int SongSelect::Update() {
 	Load();
 	if (loadFlag == 2) {
 		touch->Check();
+		songSelectCover->Update(touch, scene);
 		switch (scene)
 		{
 		case BACK:
@@ -44,7 +46,6 @@ int SongSelect::Update() {
 				scene = MODE;
 			if (touch->Get(4) == 1)
 				scene = BACK;
-			songSelectCover->Update(touch);
 			break;
 		case MODE:
 			if (touch->Get(0) == 1)
@@ -63,7 +64,6 @@ int SongSelect::Update() {
 		}
 
 		songSelectTitle->Update(scene);
-
 	}
 	return SONG_SELECT;
 }
@@ -71,7 +71,7 @@ int SongSelect::Update() {
 //曲選択画面表示
 void SongSelect::View(Loading *loading) {
 	if (loadFlag == 2) {
-		songSelectCover->View(); //カバー表示
+		songSelectCover->View(scene); //カバー表示
 		songSelectTitle->View(scene); //タイトル表示
 
 		switch (scene)

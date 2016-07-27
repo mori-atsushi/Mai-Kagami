@@ -59,49 +59,59 @@ SongSelectCover::SongSelectCover(Font *font) {
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 }
 
-void SongSelectCover::Update(Touch *touch) {
-	if (touch->Get(0) == 1 && song[0]->GetNow() < 0) {
-		for (int i = 0; i < n; i++)
-			song[i]->Change(1);
-	}
+void SongSelectCover::Update(Touch *touch, int scene) {
+	switch (scene)
+	{
+	case MAIN:
+		if (touch->Get(0) == 1 && song[0]->GetNow() < 0) {
+			for (int i = 0; i < n; i++)
+				song[i]->Change(1);
+		}
 
-	if (touch->Get(1) == 1) {
-		drawFlag = FALSE;
-
-	}
-	else {
-		drawFlag = TRUE;
-		for (int i = 0; i < n; i++) {
-			if (song[i]->GetNow() == 0) {
-				now = i;
-				break;
+		if (touch->Get(1) == 1)
+			song[now]->LoadMovie();
+		else {
+			for (int i = 0; i < n; i++) {
+				if (song[i]->GetNow() == 0) {
+					now = i;
+					break;
+				}
 			}
 		}
-	}
 
-	if (touch->Get(2) == 1 && song[n - 1]->GetNow() > 0) {
+		if (touch->Get(2) == 1 && song[n - 1]->GetNow() > 0) {
+			for (int i = 0; i < n; i++)
+				song[i]->Change(-1);
+		}
 		for (int i = 0; i < n; i++)
-			song[i]->Change(-1);
+			song[i]->Update();
+		break;
+	case MODE:
+		if (touch->Get(4) == 1)
+			song[now]->ReleaseMovie();
+		break;
 	}
-	for (int i = 0; i < n; i++)
-		song[i]->Update();
 }
 
 //曲選択画面カバー画像表示
-void SongSelectCover::View() {
-	if (drawFlag) {
+void SongSelectCover::View(int scene) {
+	switch (scene)
+	{
+	case BACK:
+	case MAIN:
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
 		myDrawBox->Draw();
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		box->Draw();
 		for (int i = 0; i < n; i++)
-			song[i]->Draw();
+			song[i]->Draw(scene);
 		for (int i = 0; i < 2; i++)
 			grad[i]->Draw();
-	}
-	else {
-//		box->Draw();
-		song[now]->Draw();
+		break;
+	case MODE:
+	case OPTION1:
+		song[now]->Draw(scene);
+		break;
 	}
 }
 

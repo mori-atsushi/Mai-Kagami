@@ -10,12 +10,16 @@ class Song {
 public:
 	Song(Font *font, char *title, char *artist, char *folder, int now);
 	void Update();
-	void Draw();
+	void Draw(int scene);
 	void Change(int num);
+	void LoadMovie();
+	void ReleaseMovie();
 	int GetNow();
 	~Song();
 private:
 	char music[256];
+	char movie[256];
+	int n;
 	boolean playFlag = 0;
 	Font *font;
 	MyDrawText *songTitle;
@@ -23,8 +27,7 @@ private:
 	MyDrawText *songLast[2];
 	MyDrawLine *myDrawLine;
 	MyDrawGraph *myDrawGraph; //カバー画像
-	MyDrawGraph *songCover[6]; //カバー画像
-	int n;
+	MyDrawMovie *myDrawMovie;
 };
 
 #endif

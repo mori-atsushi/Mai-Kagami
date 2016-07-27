@@ -237,3 +237,37 @@ MyDrawGraph::~MyDrawGraph() {
 	delete viewPos;
 	DeleteGraph(handle);
 }
+
+//‰æ‘œ‰Šú‰»
+MyDrawMovie::MyDrawMovie(float a, float b, char *filename, double ExRate) {
+	viewPos = new ViewPos(a, b);
+	handle = LoadGraph(filename); // ‰æ‘œ‚Ìƒ[ƒh
+	ex = ExRate;
+}
+
+//‰æ‘œ•\Ž¦
+void MyDrawMovie::Draw() {
+	if (!CheckHandleASyncLoad(handle)) {
+		if (GetMovieStateToGraph(handle) == 0) {
+			StopMusic();
+			SeekMovieToGraph(handle, 0);
+			PlayMovieToGraph(handle);
+		}
+		SetDrawMode(DX_DRAWMODE_BILINEAR);
+		DrawRotaGraphF(viewPos->GetX(), viewPos->GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //•`‰æ
+		SetDrawMode(DX_DRAWMODE_NEAREST);
+	}
+}
+
+void MyDrawMovie::ChangePos(float a, float b) {
+	viewPos->ChangePos(a, b);
+}
+
+void MyDrawMovie::ChangeEx(double ExRate) {
+	ex = ExRate;
+}
+
+MyDrawMovie::~MyDrawMovie() {
+	delete viewPos;
+	DeleteGraph(handle);
+}

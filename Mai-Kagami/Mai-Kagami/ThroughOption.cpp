@@ -25,3 +25,7 @@ ThroughOptionButton::~ThroughOptionButton() {
 	for (int i = 0; i < 2; i++)
 		delete speed[i];
 }
+
+void PreviewMovie::Load(char *folder) {
+	movieId = LoadGraph(folder);
+}

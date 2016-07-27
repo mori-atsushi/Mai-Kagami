@@ -6,6 +6,7 @@ Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
 	char cover[256];
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
+	sprintf_s(movie, sizeof(movie), "song/%s/movie.wmv", folder);
 	float x = HEIGHT * 0.35;
 	myDrawGraph = new MyDrawGraph(WIDTH * 0.5, x, cover);
 	songTitle = new MyDrawText(font, title, WIDTH * 0.79, HEIGHT * 0.294, 1, 30); //テキスト初期化
@@ -35,7 +36,7 @@ void Song::Update() {
 	}
 }
 
-void Song::Draw() {
+void Song::Draw(int scene) {
 	if (n == 0) {
 		songTitle->Draw();
 		songArtist->Draw();
@@ -51,10 +52,21 @@ void Song::Draw() {
 		myDrawGraph->Draw();
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	if (scene == 2) {
+		myDrawMovie->Draw();
+	}
 }
 
 void Song::Change(int num) {
 	n += num;
+}
+
+void Song::LoadMovie() {
+	myDrawMovie = new MyDrawMovie(WIDTH * 0.44, HEIGHT * 0.57, movie, 0.9);
+}
+
+void Song::ReleaseMovie() {
+	delete myDrawMovie;
 }
 
 int Song::GetNow() {
@@ -69,6 +81,4 @@ Song::~Song() {
 	}
 	delete myDrawLine;
 	delete myDrawGraph;
-	for (int i = 0; i < 6; i++)
-		delete songCover[i];
 }
