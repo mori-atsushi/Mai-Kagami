@@ -29,7 +29,6 @@ private:
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
-	PreviewMovie *previewMovie; //プレビュー動画
 	Touch *touch; //サイドタッチパネル
 	int scene;
 	int loadFlag;

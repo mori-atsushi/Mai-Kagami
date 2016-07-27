@@ -17,7 +17,6 @@ void SongSelect::Load() {
 		songSelectPop = new SongSelectPop(f);
 		modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
 		throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
-		previewMovie = new PreviewMovie(); //プレビュー動画初期化
 		touch = new Touch();
 		loadFlag = 1;
 		scene = MAIN;
@@ -56,6 +55,7 @@ int SongSelect::Update() {
 		case OPTION1:
 			if (touch->Get(4) == 1)
 				scene = MODE;
+			throughOptionButton->Update(touch);
 		}
 
 		if (scene == BACK_TOP) {

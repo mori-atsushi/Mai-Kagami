@@ -5,22 +5,18 @@
 #include "Common.h"
 #include "Font.h"
 #include "Draw.h"
+#include "Touch.h"
 
 class ThroughOptionButton {
 public:
 	ThroughOptionButton(Font *font);
 	void View();
+	void Update(Touch *touch);
 	~ThroughOptionButton();
 private:
 	Button *button[4];
 	MyDrawText *speed[2];
-};
-
-class PreviewMovie {
-public:
-	void Load(char *folder);
-private:
-	int movieId;
+	int sp;
 };
 
 

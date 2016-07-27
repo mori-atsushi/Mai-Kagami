@@ -7,6 +7,7 @@ ThroughOptionButton::ThroughOptionButton(Font *font) {
 	button[3] = new Button(font, "戻る", 3, 4);
 	speed[0] = new MyDrawText(font, "スピード", WIDTH * 0.72, HEIGHT * 0.5165, 0, 30);
 	speed[1] = new MyDrawText(font, "×1.0", WIDTH * 0.86, HEIGHT * 0.5165, 0, 30, "Yellow");
+	sp = 0;
 }
 
 
@@ -18,14 +19,22 @@ void ThroughOptionButton::View() {
 		speed[i]->Draw();
 }
 
+void ThroughOptionButton::Update(Touch *touch) {
+	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+	if (touch->Get(0) == 1 && sp > 0)
+		sp -= 1;
+	if (touch->Get(1) == 1 && sp < 5)
+		sp += 1;
+
+	char str[256];
+	sprintf_s(str, sizeof(str), "×%1.1lf", s[sp]);
+	speed[1]->ChangeText(str);
+}
+
 //モード選択削除
 ThroughOptionButton::~ThroughOptionButton() {
 	for (int i = 0; i < 4; i++)
 		delete button[i];
 	for (int i = 0; i < 2; i++)
 		delete speed[i];
-}
-
-void PreviewMovie::Load(char *folder) {
-	movieId = LoadGraph(folder);
 }

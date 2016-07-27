@@ -63,11 +63,11 @@ void Song::Change(int num) {
 
 void Song::ChangeSpeed(int num) {
 	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
-	if (num == 1 && speed > 1) {
+	if (num == 1 && speed > 0) {
 		speed -= 1;
 		myDrawMovie->ChangeSpeed(s[speed]);
 	}
-	else if (num == -1 && speed < 5) {
+	if (num == -1 && speed < 5) {
 		speed += 1;
 		myDrawMovie->ChangeSpeed(s[speed]);
 	}
