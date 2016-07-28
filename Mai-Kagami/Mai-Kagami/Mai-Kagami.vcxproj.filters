@@ -31,6 +31,12 @@
     <Filter Include="ヘッダー ファイル\画面関係\曲選択関係">
       <UniqueIdentifier>{c36adc03-aeab-402a-9caf-411c687e391d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係\共通">
+      <UniqueIdentifier>{1613b5ae-1df6-46f0-b65a-9f26dd160a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\共通">
+      <UniqueIdentifier>{e1f76b96-7779-4f2e-8547-bf16d60cd8f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -40,9 +46,6 @@
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
     <ClCompile Include="Common.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Draw.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
     <ClCompile Include="MaiKagami.cpp">
@@ -78,6 +81,18 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Draw.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawGraph.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawText.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawObject.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -87,9 +102,6 @@
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Draw.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="MaiKagami.h">
@@ -127,6 +139,18 @@
     </ClInclude>
     <ClInclude Include="SongSelectDefine.h">
       <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawGraph.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawText.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawObject.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

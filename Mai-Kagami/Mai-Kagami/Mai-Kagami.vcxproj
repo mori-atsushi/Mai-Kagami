@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="DrawGraph.cpp" />
+    <ClCompile Include="DrawObject.cpp" />
+    <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
@@ -38,6 +41,9 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="DrawGraph.h" />
+    <ClInclude Include="DrawObject.h" />
+    <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Loading.h" />
     <ClInclude Include="MaiKagami.h" />

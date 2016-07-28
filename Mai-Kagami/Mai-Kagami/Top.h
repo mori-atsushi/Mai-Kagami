@@ -4,6 +4,9 @@
 #include "DxLib.h"
 #include "Main.h"
 #include "Draw.h"
+#include "DrawText.h"
+#include "DrawGraph.h"
+#include "DrawObject.h"
 #include "Nfc.h"
 #include "Font.h"
 

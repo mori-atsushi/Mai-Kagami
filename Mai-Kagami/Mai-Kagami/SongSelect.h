@@ -7,6 +7,8 @@
 #include "Main.h"
 #include "ModeSelect.h"
 #include "Draw.h"
+#include "DrawObject.h"
+#include "Drawtext.h"
 #include "Common.h"
 #include "Touch.h"
 #include "Loading.h"

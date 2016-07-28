@@ -3,6 +3,8 @@
 
 #include "DxLib.h"
 #include "Draw.h"
+#include "DrawText.h"
+#include "DrawObject.h"
 
 #define BUTTON_POS		HEIGHT * 0.5
 #define BUTTON_INTERVAL	HEIGHT * 0.05

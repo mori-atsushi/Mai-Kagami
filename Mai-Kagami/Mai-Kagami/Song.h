@@ -4,6 +4,9 @@
 #include <string>
 #include "DxLib.h"
 #include "Draw.h"
+#include "DrawText.h"
+#include "DrawGraph.h"
+#include "DrawObject.h"
 #include "Font.h"
 #include "SongSelectDefine.h"
 

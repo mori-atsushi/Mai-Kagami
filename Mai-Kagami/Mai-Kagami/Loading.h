@@ -4,6 +4,7 @@
 #include "Main.h"
 #include "DxLib.h"
 #include "Draw.h"
+#include "DrawText.h"
 #include "Font.h"
 
 //ƒƒOƒCƒ“‰æ–ÊŠÖŒW
