@@ -17,47 +17,6 @@ int Color::Get() {
 	return c;
 }
 
-//ポジション指定(右寄せ/中央寄せ/左寄せ)
-ViewPos::ViewPos(float a, float b, int pos, float len) {
-	p = pos;
-	x = a / SIZE_RATE; y = b / SIZE_RATE;
-	xx = x; yy = y;
-	switch (p) {
-	case 1:
-		x -= len / 2;
-		break;
-	case 2:
-		x -= len;
-		break;
-	}
-}
-
-void ViewPos::ChangePos(float a, float b) {
-	x = a / SIZE_RATE; y = b / SIZE_RATE;
-}
-
-void ViewPos::ChangeLenth(float len) {
-	x = xx; y = yy;
-	switch (p) {
-	case 1:
-		x -= len / 2;
-		break;
-	case 2:
-		x -= len;
-		break;
-	}
-}
-
-//x座標取得
-float ViewPos::GetX() {
-	return x;
-}
-
-//y座標取得
-float ViewPos::GetY() {
-	return y;
-}
-
 //表示位置用クラスコンストラクタ
 Pos::Pos(const float x, const float y) {
 	a = x / SIZE_RATE; b = y / SIZE_RATE;

@@ -23,9 +23,20 @@ void MyDrawText::ChangeText(char *str) {
 	CalcPos();
 }
 
+//テキストの縦取得
+float MyDrawText::GetHeight() {
+	int line = 1; //行数
+	for (int i = 0; i < strlen(s.c_str()); i++) {
+		if (s.c_str()[i] == '\n')
+			line++;
+	}
+
+	return (float)point * (1 + 1 / 3) * line;
+}
+
 //テキストの幅取得
-int MyDrawText::GetWidth() {
-	return 	GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
+float MyDrawText::GetWidth() {
+	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
 }
 
 //テキストの座標計算
@@ -41,11 +52,18 @@ void MyDrawText::CalcPos() {
 		break;
 	}
 
-	int line = 1; //行数
-	for (int i = 0; i < strlen(s.c_str()); i++) {
-		if (s.c_str()[i] == '\n')
-			line++;
-	}
+	ChangePos(a, b - GetHeight() / 2);
+}
 
-	ChangePos(a, b - point * (1 + 1 / 3) * line / 2);
+MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
+	: MyDrawText(font, str, x, y, pos, point, colorName)  {
+	w = lineWidth / SIZE_RATE;
+	x1 = (x - lineLength / 2) / SIZE_RATE;
+	x2 = (x + lineLength / 2) / SIZE_RATE;
+	y1 = y2 = (y + MyDrawText::GetHeight() * 0.9) / SIZE_RATE;
+}
+
+void MyDrawTextLine::View() {
+	MyDrawText::View();
+	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
 }

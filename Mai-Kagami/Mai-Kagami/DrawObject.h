@@ -5,19 +5,6 @@
 #include "Main.h"
 #include "Draw.h"
 
-//üŠÖŒW
-class MyDrawLine {
-public:
-	MyDrawLine(int a, int b, int pos, int length, int width); // pos=¶Šñ‚¹:0 / ’†‰›Šñ‚¹:1 / ‰EŠñ‚¹:2
-	void Draw();
-	~MyDrawLine();
-private:
-	ViewPos *viewPos;
-	Color *color;
-	int len; //•¶š—ñ‚Ì’·‚³
-	int w;
-};
-
 //‰~ŠÖŒW
 class MyDrawCircle : public Draw, public Color{
 public:

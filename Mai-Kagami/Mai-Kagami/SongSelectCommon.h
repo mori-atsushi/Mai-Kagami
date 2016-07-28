@@ -18,9 +18,8 @@ public:
 	void View(int scene); //表示
 	~SongSelectTitle();
 private:
-	MyDrawText *myDrawText;
+	MyDrawTextLine *title;
 	MyDrawText *subTitle;
-	MyDrawLine *myDrawLine;
 };
 
 //曲選択画面カバー関係

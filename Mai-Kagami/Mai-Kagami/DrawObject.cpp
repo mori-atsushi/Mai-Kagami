@@ -1,24 +1,5 @@
 #include "DrawObject.h"
 
-//線初期化
-MyDrawLine::MyDrawLine(int a, int b, int pos, int length, int width) {
-	color = new Color("White");
-	len = length / SIZE_RATE;
-	viewPos = new ViewPos(a, b, pos, len);
-	w = width / SIZE_RATE;
-}
-
-//線表示
-void MyDrawLine::Draw() {
-	DrawLine(viewPos->GetX(), viewPos->GetY(), viewPos->GetX() + len, viewPos->GetY(), color->Get(), w);
-}
-
-//線デストラクタ
-MyDrawLine::~MyDrawLine() {
-	delete color;
-	delete viewPos;
-}
-
 //円初期化（塗りつぶしあり）
 MyDrawCircle::MyDrawCircle(const float x, const float y, const float radius, const char *colorName)
 	:Draw(x, y), Color(colorName) {
