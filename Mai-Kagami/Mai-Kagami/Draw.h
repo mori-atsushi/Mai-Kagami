@@ -8,7 +8,7 @@
 //FŠÖŒW
 class Color {
 public:
-	Color(char *color);
+	Color(const char *color);
 	int Get();
 private:
 	int c;

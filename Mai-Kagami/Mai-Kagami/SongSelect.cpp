@@ -29,7 +29,7 @@ SongSelectPop::SongSelectPop(Font *font) {
 
 void SongSelectPop::View() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //“§–¾“xÝ’è
-	myDrawBox->Draw();
+	myDrawBox->View();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //“§–¾“x‰ðœ
 	title->View();
 	message->View();

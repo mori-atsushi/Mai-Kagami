@@ -1,7 +1,7 @@
 #include "Draw.h"
 
 //Fw’è
-Color::Color(char *color) {
+Color::Color(const char *color) {
 	if(!strcmp(color, "White"))
 		c = GetColor(255, 255, 255); //”’F
 	else if(!strcmp(color, "Blue"))

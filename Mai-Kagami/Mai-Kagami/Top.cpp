@@ -42,7 +42,7 @@ TopTouchButton::TopTouchButton(Font *font) {
 
 //NFCタッチボタン表示
 void TopTouchButton::View() {
-	myDrawCircle->Draw(); //円表示
+	myDrawCircle->View(); //円表示
 	myDrawText->View(); //テキスト表示
 }
 

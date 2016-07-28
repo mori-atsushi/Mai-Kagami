@@ -107,7 +107,7 @@ void SongSelectCover::View(int scene) {
 	case BACK:
 	case MAIN:
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
-		myDrawBox->Draw();
+		myDrawBox->View();
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		box->View();
 		for (int i = 0; i < n; i++)

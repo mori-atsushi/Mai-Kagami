@@ -47,14 +47,14 @@ void Button::Draw() {
 	case 0:
 	case 3:
 	case 4:
-		myDrawCircle->Draw();
+		myDrawCircle->View();
 		break;
 	case 5:
 		descriptionText->View();
-		myDrawBox->Draw();
+		myDrawBox->View();
 	case 1:
 	case 2:
-		myDrawTriangle->Draw();
+		myDrawTriangle->View();
 		break;
 	}
 	myDrawText->View();

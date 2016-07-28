@@ -19,44 +19,33 @@ private:
 };
 
 //‰~ŠÖŒW
-class MyDrawCircle {
+class MyDrawCircle : public Draw, public Color{
 public:
-	MyDrawCircle(int a, int b, int radius, char *colorName = "Blue");
-	MyDrawCircle(int a, int b, int radius, float width, char *colorName = "Blue");
-	void Draw();
-	~MyDrawCircle();
+	MyDrawCircle(const float x, const float y, const float radius, const char *colorName = "Blue"); //‰~‰Šú‰»i“h‚è‚Â‚Ô‚µ‚ ‚èj
+	MyDrawCircle(const float x, const float y, const float radius, const float width, const char *colorName = "Blue"); //‰~‰Šú‰»i“h‚è‚Â‚Ô‚µ‚È‚µj
+	void View();
 private:
-	ViewPos *viewPos;
-	Color *color;
-	int r;
-	float w;
+	float r, w; //”¼ŒaAü‚Ì‘¾‚³
 };
 
 //³OŠpŒ`ŠÖŒW
-class MyDrawTriangle {
+class MyDrawTriangle : public Draw, public Color {
 public:
-	MyDrawTriangle(int a, int b, int width, int direction, char *colorName = "Blue");
-	void Draw();
-	~MyDrawTriangle();
+	MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName = "Blue");
+	void View(); //•\¦
 private:
-	ViewPos *viewPos;
-	Color *color;
 	int d;
 	float w;
 };
 
 //lŠpŒ`ŠÖŒW
-class MyDrawBox {
+class MyDrawBox : public Draw, public Color {
 public:
-	MyDrawBox(int a, int b, int width, int height, char *colorName = "White");
-	MyDrawBox(int a, int b, int width, int height, float line, char *colorName = "Blue");
-	void Draw();
-	~MyDrawBox();
+	MyDrawBox(const float x, const float y, const float width, const float height, const char *colorName = "White"); //lŠpŒ`‰Šú‰»i“h‚è‚Â‚Ô‚µ‚ ‚èj
+	MyDrawBox(const float x, const float y, const float width, const float height, const float line, const char *colorName = "Blue"); //lŠpŒ`‰Šú‰»i“h‚è‚Â‚Ô‚µ‚È‚µj
+	void View();
 private:
-	ViewPos *viewPos;
-	Color *color;
-	int w, h;
-	float l;
+	float w, h, l; //•A‚‚³Aü‚Ì‘¾‚³
 };
 
 #endif

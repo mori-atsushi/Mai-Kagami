@@ -19,49 +19,42 @@ MyDrawLine::~MyDrawLine() {
 	delete viewPos;
 }
 
-//‰~‰Šú‰»
-MyDrawCircle::MyDrawCircle(int a, int b, int radius, char *colorName) {
-	viewPos = new ViewPos(a, b);
-	color = new Color(colorName);
+//‰~‰Šú‰»i“h‚è‚Â‚Ô‚µ‚ ‚èj
+MyDrawCircle::MyDrawCircle(const float x, const float y, const float radius, const char *colorName)
+	:Draw(x, y), Color(colorName) {
 	r = radius / SIZE_RATE;
 	w = 0;
 }
 
-//‰~‰Šú‰»2
-MyDrawCircle::MyDrawCircle(int a, int b, int radius, float width, char *colorName) {
-	viewPos = new ViewPos(a, b);
-	color = new Color(colorName);
+//‰~‰Šú‰»i“h‚è‚Â‚Ô‚µ‚È‚µj
+MyDrawCircle::MyDrawCircle(const float x, const float y, const float radius, const float width, const char *colorName)
+	:Draw(x, y), Color(colorName) {
 	r = radius / SIZE_RATE;
 	w = width / SIZE_RATE;
 }
 
 //‰~•\Ž¦
-void  MyDrawCircle::Draw() {
+void  MyDrawCircle::View() {
 	boolean flag = TRUE;
 	if (w != 0)
 		flag = FALSE;
-	DrawCircleAA(viewPos->GetX(), viewPos->GetY(), r, 100, color->Get(), flag, w);
-}
-
-MyDrawCircle::~MyDrawCircle() {
-	delete color;
-	delete viewPos;
+	DrawCircleAA(GetX(), GetY(), r, 100, Color::Get(), flag, w);
 }
 
 //ŽOŠpŒ`‰Šú‰»
-MyDrawTriangle::MyDrawTriangle(int a, int b, int width, int direction, char *colorName) {
-	viewPos = new ViewPos(a, b);
-	color = new Color(colorName);
+MyDrawTriangle::MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName)
+	:Draw(x, y), Color(colorName) {
 	w = width / SIZE_RATE;
 	d = direction;
 }
 
 //ŽOŠpŒ`•\Ž¦
-void  MyDrawTriangle::Draw() {
-	float x1 = viewPos->GetX();	float y1 = viewPos->GetY();
-	float x2 = viewPos->GetX();	float y2 = viewPos->GetY();
-	float x3 = viewPos->GetX();	float y3 = viewPos->GetY();
+void  MyDrawTriangle::View() {
+	float x1, x2, x3, y1, y2, y3;
 	float a = w * sqrt(3) / 4;
+
+	x1 = x2 = x3 = GetX();
+	y1 = y2 = y3 = GetY();
 
 	switch (d)
 	{
@@ -79,46 +72,34 @@ void  MyDrawTriangle::Draw() {
 		break;
 	}
 
-	DrawTriangleAA(x1, y1, x2, y2, x3, y3, color->Get(), TRUE);
+	DrawTriangleAA(x1, y1, x2, y2, x3, y3, Color::Get(), TRUE);
 }
 
-MyDrawTriangle::~MyDrawTriangle() {
-	delete color;
-	delete viewPos;
-}
-
-//ŽlŠpŒ`‰Šú‰»
-MyDrawBox::MyDrawBox(int a, int b, int width, int height, char *colorName) {
-	viewPos = new ViewPos(a, b);
-	color = new Color(colorName);
+//ŽlŠpŒ`‰Šú‰»(“h‚è‚Â‚Ô‚µ‚ ‚è)
+MyDrawBox::MyDrawBox(const float x, const float y, const float width, const float height, const char *colorName)
+	:Draw(x, y), Color(colorName) {
 	w = width / SIZE_RATE;
 	h = height / SIZE_RATE;
 	l = 0;
 }
 
-//ŽlŠpŒ`‰Šú‰»2
-MyDrawBox::MyDrawBox(int a, int b, int width, int height, float line, char *colorName) {
-	viewPos = new ViewPos(a, b);
-	color = new Color(colorName);
+//ŽlŠpŒ`‰Šú‰»i“h‚è‚Â‚Ô‚µ‚È‚µj
+MyDrawBox::MyDrawBox(const float x, const float y, const float width, const float height, const float line, const char *colorName)
+	:Draw(x, y), Color(colorName) {
 	w = width / SIZE_RATE;
 	h = height / SIZE_RATE;
 	l = line / SIZE_RATE;
 }
 
 //ŽlŠpŒ`•\Ž¦
-void  MyDrawBox::Draw() {
+void  MyDrawBox::View() {
 	boolean flag = TRUE;
 	if (l != 0)
 		flag = FALSE;
-	float x1 = viewPos->GetX() - w / 2 + 1;
-	float y1 = viewPos->GetY() - h / 2 + 1;
-	float x2 = viewPos->GetX() + w / 2;
-	float y2 = viewPos->GetY() + h / 2;
+	float x1 = GetX() - w / 2 + 1;
+	float y1 = GetY() - h / 2 + 1;
+	float x2 = GetX() + w / 2;
+	float y2 = GetY() + h / 2;
 
-	DrawBoxAA(x1, y1, x2, y2, color->Get(), flag, l);
-}
-
-MyDrawBox::~MyDrawBox() {
-	delete color;
-	delete viewPos;
+	DrawBoxAA(x1, y1, x2, y2, Color::Get(), flag, l);
 }

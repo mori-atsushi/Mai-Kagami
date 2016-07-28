@@ -10,7 +10,7 @@
 //テキスト関係
 class MyDrawText : public Color, public Draw{
 public:
-	MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void View(); //描画
 	void ChangeText(char *str); //テキスト変更
 private:

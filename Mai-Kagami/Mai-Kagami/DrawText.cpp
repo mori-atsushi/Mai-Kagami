@@ -1,7 +1,7 @@
 #include "DrawText.h"
 
 //テキスト初期化
-MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, char *colorName)
+MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
 	: Draw(x, y), Color(colorName) {
 	s = str; //文字列
 	p = pos; //位置情報
