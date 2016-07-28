@@ -8,12 +8,13 @@ MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y
 	f = font->Get(point); //フォント情報
 	MyDrawText::x = x;
 	MyDrawText::y = y;
+	MyDrawText::point = point;
 	CalcPos();
 }
 
 //テキスト表示
 void MyDrawText::View() {
-	DrawStringToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
+	DrawStringFToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
 }
 
 //テキスト変更
@@ -42,9 +43,9 @@ void MyDrawText::CalcPos() {
 
 	int line = 1; //行数
 	for (int i = 0; i < strlen(s.c_str()); i++) {
-		if (s[i] == '\n')
+		if (s.c_str()[i] == '\n')
 			line++;
 	}
 
-	ChangePos(a, b - p * (1 + 1 / 3) * line / 2);
+	ChangePos(a, b - point * (1 + 1 / 3) * line / 2);
 }

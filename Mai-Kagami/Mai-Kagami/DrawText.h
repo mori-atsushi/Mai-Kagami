@@ -15,7 +15,7 @@ public:
 	void ChangeText(char *str); //テキスト変更
 private:
 	int GetWidth(); //幅取得
-	int f, p; //フォント情報、ポジション情報
+	int f, p, point; //フォント情報、ポジション情報、フォントサイズ
 	float x, y; //座標
 	std::string s; //文字
 	void CalcPos(); //位置計算
