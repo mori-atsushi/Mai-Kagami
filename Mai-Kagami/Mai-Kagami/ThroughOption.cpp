@@ -19,16 +19,21 @@ void ThroughOptionButton::View() {
 		speed[i]->Draw();
 }
 
-void ThroughOptionButton::Update(Touch *touch) {
-	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
-	if (touch->Get(0) == 1 && sp > 0)
-		sp -= 1;
-	if (touch->Get(1) == 1 && sp < 5)
-		sp += 1;
+void ThroughOptionButton::Update(Touch *touch, int scene) {
+	if (scene == OPTION1) {
+		const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+		if (touch->Get(0) == 1 && sp > 0)
+			sp -= 1;
+		if (touch->Get(1) == 1 && sp < 5)
+			sp += 1;
 
-	char str[256];
-	sprintf_s(str, sizeof(str), "~%1.1lf", s[sp]);
-	speed[1]->ChangeText(str);
+		char str[256];
+		sprintf_s(str, sizeof(str), "~%1.1lf", s[sp]);
+		speed[1]->ChangeText(str);
+	}
+	else {
+		sp = 0;
+	}
 }
 
 //ƒ‚[ƒh‘I‘ğíœ

@@ -47,6 +47,7 @@
     <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelect.h" />
     <ClInclude Include="SongSelectCommon.h" />
+    <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
     <ClInclude Include="ThroughOption.h" />
     <ClInclude Include="Top.h" />

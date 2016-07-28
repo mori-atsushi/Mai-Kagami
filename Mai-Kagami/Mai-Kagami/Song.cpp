@@ -51,7 +51,7 @@ void Song::Draw(int scene) {
 
 
 	switch (scene) {
-	case 2:
+	case OPTION1:
 		if(playFlag)
 			StopMusic();
 		playFlag = FALSE;
@@ -65,6 +65,7 @@ void Song::Draw(int scene) {
 		else if (n != 0) {
 			playFlag = FALSE;
 		}
+		speed = 0;
 		break;
 	}
 }

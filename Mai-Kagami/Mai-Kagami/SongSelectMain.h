@@ -13,6 +13,7 @@
 #include "Font.h"
 #include "SongSelectCommon.h"
 #include "SongSelect.h"
+#include "SongSelectDefine.h"
 #include "ThroughOption.h"
 
 //‹È‘I‘ð‰æ–ÊŠÖŒW

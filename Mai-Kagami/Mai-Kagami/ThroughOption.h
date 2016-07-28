@@ -6,12 +6,13 @@
 #include "Font.h"
 #include "Draw.h"
 #include "Touch.h"
+#include "SongSelectDefine.h"
 
 class ThroughOptionButton {
 public:
 	ThroughOptionButton(Font *font);
 	void View();
-	void Update(Touch *touch);
+	void Update(Touch *touch, int scene);
 	~ThroughOptionButton();
 private:
 	Button *button[4];

@@ -5,6 +5,7 @@
 #include "DxLib.h"
 #include "Draw.h"
 #include "Font.h"
+#include "SongSelectDefine.h"
 
 class Song {
 public:

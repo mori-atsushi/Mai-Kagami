@@ -7,13 +7,7 @@
 #include "Touch.h"
 #include "Font.h"
 #include "Song.h"
-
-#define BACK_TOP -2
-#define BACK -1
-#define MAIN 0
-#define MODE 1
-#define OPTION1 2
-#define OPTION2 3
+#include "SongSelectDefine.h"
 
 //曲選択画面タイトル
 class SongSelectTitle {

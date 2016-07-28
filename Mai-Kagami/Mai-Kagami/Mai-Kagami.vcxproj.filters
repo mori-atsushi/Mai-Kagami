@@ -125,5 +125,8 @@
     <ClInclude Include="Main.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="SongSelectDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
