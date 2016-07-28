@@ -119,6 +119,7 @@ class MyDrawMovie {
 public:
 	MyDrawMovie(float a, float b, char *filename, double ExRate = 1.0);
 	void Draw();
+	void Stop();
 	void ChangePos(float a, float b);
 	void ChangeEx(double ExRate);
 	void ChangeSpeed(double speed);

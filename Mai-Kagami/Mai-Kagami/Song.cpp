@@ -20,12 +20,8 @@ void Song::Update() {
 	if (n == 0) {
 		myDrawGraph->ChangeEx(1.0);
 		myDrawGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
-		if (!playFlag)
-			PlayMusic(music, DX_PLAYTYPE_LOOP);
-		playFlag = TRUE;
 	}
 	else {
-		playFlag = FALSE;
 		myDrawGraph->ChangeEx(0.7);
 		if (n == -1) {
 			myDrawGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
@@ -52,8 +48,24 @@ void Song::Draw(int scene) {
 		myDrawGraph->Draw();
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	if (scene == 2) {
+
+
+	switch (scene) {
+	case 2:
+		if(playFlag)
+			StopMusic();
+		playFlag = FALSE;
 		myDrawMovie->Draw();
+		break;
+	default:
+		if (n == 0 && !playFlag) {
+				PlayMusic(music, DX_PLAYTYPE_LOOP);
+			playFlag = TRUE;
+		}
+		else if (n != 0) {
+			playFlag = FALSE;
+		}
+		break;
 	}
 }
 
@@ -75,6 +87,10 @@ void Song::ChangeSpeed(int num) {
 
 void Song::LoadMovie() {
 	myDrawMovie = new MyDrawMovie(WIDTH * 0.44, HEIGHT * 0.57, movie, 0.9);
+}
+
+void Song::StopMovie() {
+	myDrawMovie->Stop();
 }
 
 void Song::ReleaseMovie() {

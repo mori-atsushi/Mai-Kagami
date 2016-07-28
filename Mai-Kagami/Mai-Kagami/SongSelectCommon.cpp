@@ -95,6 +95,8 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 			song[now]->ChangeSpeed(1);
 		if (touch->Get(1) == 1)
 			song[now]->ChangeSpeed(-1);
+		if (touch->Get(4) == 1)
+			song[now]->StopMovie();
 	}
 }
 

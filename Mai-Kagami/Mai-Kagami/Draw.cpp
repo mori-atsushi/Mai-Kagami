@@ -249,7 +249,6 @@ MyDrawMovie::MyDrawMovie(float a, float b, char *filename, double ExRate) {
 void MyDrawMovie::Draw() {
 	if (!CheckHandleASyncLoad(handle)) {
 		if (GetMovieStateToGraph(handle) == 0) {
-			StopMusic();
 			SetPlaySpeedRateMovieToGraph(handle, 1.0);
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
@@ -258,6 +257,10 @@ void MyDrawMovie::Draw() {
 		DrawRotaGraphF(viewPos->GetX(), viewPos->GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //•`‰æ
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 	}
+}
+
+void MyDrawMovie::Stop() {
+	PauseMovieToGraph(handle);
 }
 
 void MyDrawMovie::ChangePos(float a, float b) {

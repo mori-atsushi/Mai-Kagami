@@ -14,6 +14,7 @@ public:
 	void Change(int num);
 	void ChangeSpeed(int num);
 	void LoadMovie();
+	void StopMovie();
 	void ReleaseMovie();
 	int GetNow();
 	~Song();
