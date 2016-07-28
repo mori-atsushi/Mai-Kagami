@@ -1,65 +1,50 @@
 #include "DrawGraph.h"
 
 //画像初期化
-MyDrawGraph::MyDrawGraph(float a, float b, char *filename, double ExRate) {
-	viewPos = new ViewPos(a, b);
+MyDrawGraph::MyDrawGraph(const float x, const float y, const char *filename, const double ExRate) : Draw(x, y) {
 	handle = LoadGraph(filename); // 画像のロード
 	ex = ExRate;
 }
 
 //画像表示
-void MyDrawGraph::Draw() {
+void MyDrawGraph::View() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaGraphF(viewPos->GetX(), viewPos->GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
+	DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
-void MyDrawGraph::ChangePos(float a, float b) {
-	viewPos->ChangePos(a, b);
-}
-
-void MyDrawGraph::ChangeEx(double ExRate) {
+//大きさ変更
+void MyDrawGraph::ChangeEx(const double ExRate) {
 	ex = ExRate;
 }
 
 MyDrawGraph::~MyDrawGraph() {
-	delete viewPos;
 	DeleteGraph(handle);
 }
 
-//画像初期化
-MyDrawMovie::MyDrawMovie(float a, float b, char *filename, double ExRate) {
-	viewPos = new ViewPos(a, b);
-	handle = LoadGraph(filename); // 画像のロード
-	ex = ExRate;
+//動画初期化
+MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, const double ExRate)
+	: MyDrawGraph(x, y, filename, ExRate) {
 }
 
-//画像表示
-void MyDrawMovie::Draw() {
+//動画表示
+void MyDrawMovie::View() {
 	if (!CheckHandleASyncLoad(handle)) {
 		if (GetMovieStateToGraph(handle) == 0) {
 			SetPlaySpeedRateMovieToGraph(handle, 1.0);
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
 		}
-		SetDrawMode(DX_DRAWMODE_BILINEAR);
-		DrawRotaGraphF(viewPos->GetX(), viewPos->GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
-		SetDrawMode(DX_DRAWMODE_NEAREST);
+		MyDrawGraph::View();
 	}
 }
 
+//再生停止
 void MyDrawMovie::Stop() {
 	PauseMovieToGraph(handle);
 }
 
-void MyDrawMovie::ChangePos(float a, float b) {
-	viewPos->ChangePos(a, b);
-}
-
-void MyDrawMovie::ChangeEx(double ExRate) {
-	ex = ExRate;
-}
-
+//スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
 	PauseMovieToGraph(handle);
 	SetPlaySpeedRateMovieToGraph(handle, speed);
@@ -68,6 +53,5 @@ void MyDrawMovie::ChangeSpeed(double speed) {
 }
 
 MyDrawMovie::~MyDrawMovie() {
-	delete viewPos;
 	DeleteGraph(handle);
 }

@@ -5,33 +5,26 @@
 #include "Draw.h"
 
 //画像関係
-class MyDrawGraph {
+class MyDrawGraph : public Draw{
 public:
-	MyDrawGraph(float a, float b, char *filename, double ExRate = 1.0);
-	void Draw();
-	void ChangePos(float a, float b);
-	void ChangeEx(double ExRate);
+	MyDrawGraph(const float x, const float y, const char *filename, const double ExRate = 1.0); //初期化
+	void View(); //表示
+	void ChangeEx(const double ExRate); //倍率変更
 	~MyDrawGraph();
-private:
-	ViewPos *viewPos;
-	int handle;
-	double ex;
+protected:
+	int handle; //画像用ハンドル
+	double ex; //表示倍率
 };
 
 //動画関係
-class MyDrawMovie {
+class MyDrawMovie : public MyDrawGraph {
 public:
-	MyDrawMovie(float a, float b, char *filename, double ExRate = 1.0);
-	void Draw();
-	void Stop();
-	void ChangePos(float a, float b);
-	void ChangeEx(double ExRate);
-	void ChangeSpeed(double speed);
+	MyDrawMovie(const float x, const float y, const char *filename, const double ExRate); //初期化
+	void View(); //表示
+	void Stop(); //停止
+	void ChangeSpeed(double speed); //スピード変更
 	~MyDrawMovie();
 private:
-	ViewPos *viewPos;
-	int handle; //動画のハンドル
-	double ex; //動画のサイズ
 };
 
 #endif

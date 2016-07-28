@@ -90,7 +90,7 @@ int Top::Update() {
 //トップ画面表示
 void Top::View() {
 	if (loadFlag == 2) {
-		myDrawGraph->Draw(); //ロゴ表示
+		myDrawGraph->View(); //ロゴ表示
 		topTouchMessage->View(); //NFCタッチメッセージ表示
 		topTouchButton->View(); //NFCタッチボタン表示}
 	}

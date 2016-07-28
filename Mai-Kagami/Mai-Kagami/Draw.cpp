@@ -57,3 +57,27 @@ float ViewPos::GetX() {
 float ViewPos::GetY() {
 	return y;
 }
+
+//表示位置用クラスコンストラクタ
+Pos::Pos(const float x, const float y) {
+	a = x / SIZE_RATE; b = y / SIZE_RATE;
+}
+
+//表示位置変更
+void Pos::ChangePos(const float x, const float y) {
+	a = x / SIZE_RATE; b = y / SIZE_RATE;
+}
+
+//x座標取得
+float Pos::GetX() {
+	return a;
+}
+
+//y座標取得
+float Pos::GetY() {
+	return b;
+}
+
+//描画用クラスコンストラクタ
+Draw::Draw(const float x, const float y) :Pos(x, y) {
+}

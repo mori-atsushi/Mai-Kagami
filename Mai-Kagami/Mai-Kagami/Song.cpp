@@ -45,7 +45,7 @@ void Song::Draw(int scene) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
 	}
 	if (n >= -1 && n <= 5) {
-		myDrawGraph->Draw();
+		myDrawGraph->View();
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
@@ -55,7 +55,7 @@ void Song::Draw(int scene) {
 		if(playFlag)
 			StopMusic();
 		playFlag = FALSE;
-		myDrawMovie->Draw();
+		myDrawMovie->View();
 		break;
 	default:
 		if (n == 0 && !playFlag) {
