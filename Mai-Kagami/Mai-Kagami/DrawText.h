@@ -8,18 +8,15 @@
 #include "Draw.h"
 
 //テキスト関係
-class MyDrawText {
+class MyDrawText : public Color, public Draw{
 public:
-	MyDrawText(Font *font, char *s, int a, int b, int pos, int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
-	void Draw(); //描画
-	void ChangeText(char *s);
-	int GetWidth(); //幅取得
-	~MyDrawText();
+	MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	void View(); //描画
+	void ChangeText(char *str); //テキスト変更
 private:
-	int f;
-	ViewPos *viewPos;
-	Color *color;
-	std::string str; //文字
+	int GetWidth(); //幅取得
+	int f, p; //フォント情報、ポジション情報
+	std::string s; //文字
 };
 
 #endif

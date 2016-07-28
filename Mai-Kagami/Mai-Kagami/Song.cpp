@@ -34,10 +34,10 @@ void Song::Update() {
 
 void Song::Draw(int scene) {
 	if (n == 0) {
-		songTitle->Draw();
-		songArtist->Draw();
+		songTitle->View();
+		songArtist->View();
 		for (int i = 0; i < 2; i++) {
-			songLast[i]->Draw();
+			songLast[i]->View();
 		}
 		myDrawLine->Draw();
 	}

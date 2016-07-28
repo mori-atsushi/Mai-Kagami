@@ -12,7 +12,7 @@ void Loading::Update() {
 
 //ƒƒOƒCƒ“‰æ–Ê•\Ž¦
 void Loading::View() {
-	myDrawText->Draw();
+	myDrawText->View();
 }
 
 Loading::~Loading() {

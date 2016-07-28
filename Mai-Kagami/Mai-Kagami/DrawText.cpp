@@ -1,31 +1,34 @@
 #include "DrawText.h"
 
 //テキスト初期化
-MyDrawText::MyDrawText(Font *font, char *s, int a, int b, int pos, int point, char *colorName) {
-	str = s;
-	f = font->Get(point);
-	color = new Color(colorName);
-	viewPos = new ViewPos(a, b, pos, GetWidth() / SIZE_RATE);
+MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, char *colorName)
+	: Draw(x, y), Color(colorName) {
+	s = str; //文字列
+	p = pos; //位置情報
+	f = font->Get(point); //フォント情報
 }
 
 //テキスト表示
-void MyDrawText::Draw() {
-	DrawStringToHandle(viewPos->GetX(), viewPos->GetY(), str.c_str(), color->Get(), f); //文字表示
+void MyDrawText::View() {
+	float x = GetX();
+	float y = GetY();
+	switch (p) {
+	case 1:
+		x -= GetWidth() / 2;
+		break;
+	case 2:
+		x -= GetWidth();
+		break;
+	}
+	DrawStringToHandle(x, y, s.c_str(), Color::Get(), f); //文字表示
 }
 
 //テキスト変更
-void MyDrawText::ChangeText(char *s) {
-	str = s;
-	viewPos->ChangeLenth(GetWidth() / SIZE_RATE);
+void MyDrawText::ChangeText(char *str) {
+	s = str;
 }
 
 //テキストの幅取得
 int MyDrawText::GetWidth() {
-	return 	GetDrawStringWidthToHandle(str.c_str(), (int)strlen(str.c_str()), f) * SIZE_RATE;
-}
-
-//テキストデストラクタ
-MyDrawText::~MyDrawText() {
-	delete viewPos;
-	delete color;
+	return 	GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f);
 }

@@ -24,7 +24,7 @@ void TopTouchMessage::Update() {
 //NFCタッチメッセージ表示
 void TopTouchMessage::View() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha); //透明度設定
-	myDrawText->Draw(); //文字表示
+	myDrawText->View(); //文字表示
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
 }
 
@@ -43,7 +43,7 @@ TopTouchButton::TopTouchButton(Font *font) {
 //NFCタッチボタン表示
 void TopTouchButton::View() {
 	myDrawCircle->Draw(); //円表示
-	myDrawText->Draw(); //テキスト表示
+	myDrawText->View(); //テキスト表示
 }
 
 //NFCタッチメッセージデストラクタ

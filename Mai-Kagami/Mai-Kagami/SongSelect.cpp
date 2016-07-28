@@ -31,8 +31,8 @@ void SongSelectPop::View() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //“§–¾“xÝ’è
 	myDrawBox->Draw();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //“§–¾“x‰ðœ
-	title->Draw();
-	message->Draw();
+	title->View();
+	message->View();
 	for (int i = 0; i < 2; i++)
 		button[i]->Draw();
 }

@@ -50,14 +50,14 @@ void Button::Draw() {
 		myDrawCircle->Draw();
 		break;
 	case 5:
-		descriptionText->Draw();
+		descriptionText->View();
 		myDrawBox->Draw();
 	case 1:
 	case 2:
 		myDrawTriangle->Draw();
 		break;
 	}
-	myDrawText->Draw();
+	myDrawText->View();
 }
 
 Button::~Button() {

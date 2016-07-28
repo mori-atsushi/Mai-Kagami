@@ -16,7 +16,7 @@ void ThroughOptionButton::View() {
 	for (int i = 0; i < 4; i++)
 		button[i]->Draw();
 	for (int i = 0; i < 2; i++)
-		speed[i]->Draw();
+		speed[i]->View();
 }
 
 void ThroughOptionButton::Update(Touch *touch, int scene) {
