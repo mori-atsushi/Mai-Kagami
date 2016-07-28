@@ -79,5 +79,9 @@ float Pos::GetY() {
 }
 
 //描画用クラスコンストラクタ
+Draw::Draw() :Pos(0, 0) {
+}
+
+//描画用クラスコンストラクタ
 Draw::Draw(const float x, const float y) :Pos(x, y) {
 }

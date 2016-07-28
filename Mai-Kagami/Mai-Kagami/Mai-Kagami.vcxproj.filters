@@ -60,9 +60,6 @@
     <ClCompile Include="Song.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
     <ClCompile Include="SongSelect.cpp">
       <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
     </ClCompile>
@@ -93,6 +90,9 @@
     <ClCompile Include="DrawObject.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -114,9 +114,6 @@
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="Song.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="SongSelect.h">
@@ -150,6 +147,9 @@
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
     <ClInclude Include="DrawObject.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
   </ItemGroup>

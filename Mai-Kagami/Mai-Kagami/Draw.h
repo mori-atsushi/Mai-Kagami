@@ -43,6 +43,7 @@ private:
 //描画用クラス
 class Draw : public Pos{
 public:
+	Draw();
 	Draw(const float x, const float y);
 	virtual void View() = 0; //表示メソッド
 };

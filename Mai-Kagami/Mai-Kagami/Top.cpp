@@ -3,7 +3,7 @@
 //NFCタッチメッセージコンストラクタ
 TopTouchMessage::TopTouchMessage(Font *font) {
 	char *str = "-カードをタッチしてください-"; //表示文字列
-	myDrawText = new MyDrawText(font, str, WIDTH * 0.5, HEIGHT * 0.41, 1, 46);
+	myDrawText = new MyDrawText(font, str, WIDTH * 0.5, HEIGHT * 0.42, 1, 46);
 	t = 0;
 }
 
@@ -37,7 +37,7 @@ TopTouchMessage::~TopTouchMessage() {
 TopTouchButton::TopTouchButton(Font *font) {
 	char *str = "ここに\nタッチ！"; //表示文字列
 	myDrawCircle = new MyDrawCircle(WIDTH, NFC_POS, WIDTH / 12);
-	myDrawText = new MyDrawText(font, str, WIDTH * 0.92, NFC_POS - HEIGHT * 0.028, 2, 40);
+	myDrawText = new MyDrawText(font, str, WIDTH * 0.92, NFC_POS, 2, 40);
 }
 
 //NFCタッチボタン表示
