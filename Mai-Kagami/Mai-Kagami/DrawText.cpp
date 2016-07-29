@@ -36,12 +36,12 @@ float MyDrawText::GetWidth() {
 	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
 }
 
+//複数行のテキスト
 MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
-	: Color(colorName) {
+	: Color(colorName) , Draw2(pos) {
 
 	p = pos; //位置情報
-	MyDrawTexts::x = x;
-	MyDrawTexts::y = y;
+	inter = lineInterval; //間隔
 
 	l = 0;
 	char a[256];
@@ -50,24 +50,25 @@ MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float
 		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
 			a[j] = '\0';
 			myDrawText[l] = new MyDrawText(font, a, 0, 0, 0, point, colorName);
-			l++;
-			i++;
-			j = 0;
+			l++; i++; j = 0;
 		}
 	}
-
-	CalcPos();
-	float height = myDrawText[0]->GetHeight();
-	float yy = GetY() * SIZE_RATE - (height + lineInterval) / 2 * (l - 1);
-	for (int i = 0; i < l; i++) {
-		myDrawText[i]->ChangePos(GetX() * SIZE_RATE, yy);
-		yy += (height + lineInterval);
-	}
+	ChangePos(x, y);
 }
 
 void MyDrawTexts::View() {
 	for (int i = 0; i < l; i++)
 		myDrawText[i]->View();
+}
+
+void MyDrawTexts::ChangePos(const float x, const float y) {
+	Draw2::ChangePos(x, y);
+	float height = myDrawText[0]->GetHeight();
+	float yy = y - (height + inter) / 2 * (l - 1);
+	for (int i = 0; i < l; i++) {
+		myDrawText[i]->ChangePos(GetX() * SIZE_RATE, yy);
+		yy += height + inter;
+	}
 }
 
 float MyDrawTexts::GetWidth() {
@@ -79,27 +80,16 @@ float MyDrawTexts::GetWidth() {
 	return max;
 }
 
+float MyDrawTexts::GetHeight() {
+	return 	myDrawText[0]->GetHeight() * l;
+}
+
 MyDrawTexts::~MyDrawTexts() {
 	for (int i = 0; i < l; i++)
 		delete myDrawText;
 }
 
-//テキストの座標計算
-void MyDrawTexts::CalcPos() {
-	float a = x;
-	float b = y;
-	switch (p) {
-	case 1:
-		a -= GetWidth() / 2;
-		break;
-	case 2:
-		a -= GetWidth();
-		break;
-	}
-
-	Draw::ChangePos(a, b);
-}
-
+//アンダーライン付きテキスト
 MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
 	: MyDrawText(font, str, x, y, pos, point, colorName)  {
 	w = lineWidth / SIZE_RATE;
@@ -108,6 +98,7 @@ MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const
 	y1 = y2 = (y + MyDrawText::GetHeight() * 0.9) / SIZE_RATE;
 }
 
+//アンダーライン付きテキスト描画
 void MyDrawTextLine::View() {
 	MyDrawText::View();
 	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
