@@ -1,10 +1,9 @@
 #include "SongSelectCommon.h"
 
 //曲選択画面タイトルロード
-SongSelectTitle::SongSelectTitle(Font *font) {
-	char *str = "Song Select"; //表示文字列
-	title = new MyDrawTextLine(font, str, WIDTH * 0.65, HEIGHT * 0.21, 1, 50, WIDTH * 0.4, 3); //テキスト初期化
-	subTitle = new MyDrawText(font, "", WIDTH * 0.65, HEIGHT * 0.25, 1, 30, "Yellow"); //テキスト初期化
+SongSelectTitle::SongSelectTitle(Font *font, const float x, const float y) 
+	: MyDrawTextLine(font, "", x, y - HEIGHT * 0.02, 1, 50, WIDTH * 0.4, 3)
+	, MyDrawText(font, "", x, y + HEIGHT * 0.02, 1, 30, "Yellow"){
 }
 
 //曲選択画面タイトル計算
@@ -12,28 +11,23 @@ void SongSelectTitle::Update(int scene) {
 	switch (scene)
 	{
 	case MODE:
-		title->ChangeText("Mode Select");
+		MyDrawTextLine::ChangeText("Mode Select");
 		break;
 	case OPTION1:
-		title->ChangeText("Option");
-		subTitle->ChangeText("通し練習モード");
+		MyDrawTextLine::ChangeText("Option");
+		MyDrawText::ChangeText("通し練習モード");
 		break;
 	default:
-		title->ChangeText("Song Select");
+		MyDrawTextLine::ChangeText("Song Select");
 		break;
 	}
 }
 
 //曲選択画面タイトル表示
 void SongSelectTitle::View(int scene) {
-	title->View(); //テキスト表示
+	MyDrawTextLine::View(); //テキスト表示
 	if(scene == OPTION1)
-		subTitle->View(); //テキスト表示
-}
-
-SongSelectTitle::~SongSelectTitle() {
-	delete title;
-	delete subTitle;
+		MyDrawText::View(); //テキスト表示
 }
 
 //曲選択画面カバー画像初期化

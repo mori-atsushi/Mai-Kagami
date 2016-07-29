@@ -11,15 +11,11 @@
 #include "SongSelectDefine.h"
 
 //曲選択画面タイトル
-class SongSelectTitle {
+class SongSelectTitle : public MyDrawTextLine, public MyDrawText {
 public:
-	SongSelectTitle(Font *font); //初期化
+	SongSelectTitle(Font *font, const float x, const float y); //初期化
 	void Update(int scene); //計算
 	void View(int scene); //表示
-	~SongSelectTitle();
-private:
-	MyDrawTextLine *title;
-	MyDrawText *subTitle;
 };
 
 //曲選択画面カバー関係
