@@ -12,14 +12,28 @@ class MyDrawText : public Color, public Draw{
 public:
 	MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void View(); //描画
+	void ChangePos(const float x, const float y);
 	void ChangeText(char *str); //テキスト変更
-protected:
 	float GetHeight(); //縦取得
-private:
 	float GetWidth(); //幅取得
+private:
 	int f, p, point; //フォント情報、ポジション情報、フォントサイズ
 	float x, y; //座標
 	std::string s; //文字
+	void CalcPos(); //位置計算
+};
+
+//複数行のテキスト
+class MyDrawTexts : public Color, public Draw {
+public:
+	MyDrawTexts(Font *font, char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
+	void View();
+	float GetWidth(); //幅取得
+	~MyDrawTexts();
+private:
+	MyDrawText *myDrawText[256];
+	float x, y; //座標
+	int l, p; //行数, ポジション情報
 	void CalcPos(); //位置計算
 };
 

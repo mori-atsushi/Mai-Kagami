@@ -31,7 +31,7 @@ public:
 	void View(); //•\Ž¦
 	~TopTouchButton();
 private:
-	MyDrawText *text;
+	MyDrawTexts *text;
 	MyDrawCircle *circle;
 };
 

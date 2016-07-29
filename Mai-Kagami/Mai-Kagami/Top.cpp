@@ -42,7 +42,7 @@ void TopTouchMessage::View() {
 TopTouchButton::TopTouchButton(Font *font)
 	: Draw(WIDTH, NFC_POS) {
 	float r = WIDTH / 12;
-	text = new MyDrawText(font, "ここに\nタッチ！", GetX() * SIZE_RATE - r, GetY() * SIZE_RATE, 2, 40);
+	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() * SIZE_RATE - r, GetY() * SIZE_RATE, 2, 40, 20);
 	circle = new MyDrawCircle(GetX() * SIZE_RATE, GetY() * SIZE_RATE, r);
 }
 
