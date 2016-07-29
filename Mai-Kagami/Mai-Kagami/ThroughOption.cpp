@@ -14,7 +14,7 @@ ThroughOptionButton::ThroughOptionButton(Font *font) {
 //モード選択ボタン表示
 void ThroughOptionButton::View() {
 	for (int i = 0; i < 4; i++)
-		button[i]->Draw();
+		button[i]->View();
 	for (int i = 0; i < 2; i++)
 		speed[i]->View();
 }

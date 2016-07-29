@@ -10,11 +10,11 @@
 #define BUTTON_INTERVAL	HEIGHT * 0.05
 
 //ƒ{ƒ^ƒ“ŠÖŒW
-class Button {
+class Button : public Draw {
 public:
 	Button(Font *font, char *str, int type, int num);
 	Button(Font *font, char *title, char *str, int num, char *colorName);
-	void Draw();
+	void View();
 	~Button();
 private:
 	MyDrawText *myDrawText;

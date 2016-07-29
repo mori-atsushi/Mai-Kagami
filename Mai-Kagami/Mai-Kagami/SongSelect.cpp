@@ -11,7 +11,7 @@ SongSelectButton::SongSelectButton(Font *font) {
 //曲選択画面ボタン表示
 void SongSelectButton::View() {
 	for (int i = 0; i < 4; i++)
-		button[i]->Draw();
+		button[i]->View();
 }
 
 SongSelectButton::~SongSelectButton() {
@@ -34,7 +34,7 @@ void SongSelectPop::View() {
 	title->View();
 	message->View();
 	for (int i = 0; i < 2; i++)
-		button[i]->Draw();
+		button[i]->View();
 }
 
 SongSelectPop::~SongSelectPop() {

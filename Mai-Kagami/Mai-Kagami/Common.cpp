@@ -1,22 +1,21 @@
 #include "Common.h"
 
 //ボタン初期化
-Button::Button(Font *font, char *str, int type, int num) {
+Button::Button(Font *font, char *str, int type, int num) : Draw() {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
 	const int fontSize = 30; //フォントサイズ
+	Draw::ChangePos(WIDTH, pos);
 	t = type;
+	myDrawText = new MyDrawText(font, str, GetX() * SIZE_RATE - WIDTH * 0.06, GetY() * SIZE_RATE, 2, fontSize);
 	switch (t)
 	{
 	case 0:
-		myDrawText = new MyDrawText(font, str, WIDTH * 0.94, pos, 2, fontSize);
 		myDrawCircle = new MyDrawCircle(WIDTH * 0.97, pos, WIDTH * 0.015, 7);
 		break;
 	case 1:
-		myDrawText = new MyDrawText(font, str, WIDTH * 0.94, pos, 2, fontSize);
 		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 0);
 		break;
 	case 2:
-		myDrawText = new MyDrawText(font, str, WIDTH * 0.94, pos, 2, fontSize);
 		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 1);
 		break;
 	case 3:
@@ -24,13 +23,13 @@ Button::Button(Font *font, char *str, int type, int num) {
 		myDrawCircle = new MyDrawCircle(WIDTH * 0.955, pos, WIDTH * 0.042);
 		break;
 	case 4:
-		myDrawText = new MyDrawText(font, str, WIDTH * 0.75, pos, 1, fontSize);
+		myDrawText->ChangePos(GetX() * SIZE_RATE - WIDTH * 0.25, GetY() * SIZE_RATE);
 		myDrawCircle = new MyDrawCircle(WIDTH * 0.97, pos, WIDTH * 0.015, 7, "White");
 		break;
 	}
 }
 
-Button::Button(Font *font, char *title, char *str, int num, char *colorName) {
+Button::Button(Font *font, char *title, char *str, int num, char *colorName) : Draw() {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
 	const int fontSize = 30; //フォントサイズ
 	t = 5;
@@ -41,7 +40,7 @@ Button::Button(Font *font, char *title, char *str, int num, char *colorName) {
 }
 
 //ボタン表示
-void Button::Draw() {
+void Button::View() {
 	switch (t)
 	{
 	case 0:
@@ -64,5 +63,5 @@ Button::~Button() {
 	delete myDrawText;
 	delete myDrawTriangle;
 	delete myDrawCircle;
-//	delete myDrawBox;
+	delete myDrawBox;
 }

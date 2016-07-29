@@ -73,7 +73,7 @@ int SongSelect::Update() {
 void SongSelect::View() {
 	if (loadFlag == 2) {
 		songSelectCover->View(scene); //カバー表示
-		songSelectTitle->View(scene); //タイトル表示
+		songSelectTitle->View(); //タイトル表示
 
 		switch (scene)
 		{

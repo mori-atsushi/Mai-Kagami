@@ -12,7 +12,7 @@ ModeSelectButton::ModeSelectButton(Font *font) {
 //モード選択ボタン表示
 void ModeSelectButton::View() {
 	for (int i = 0; i < 3; i++)
-		button[i]->Draw();
+		button[i]->View();
 }
 
 //モード選択削除

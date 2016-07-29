@@ -2,32 +2,42 @@
 
 //曲選択画面タイトルロード
 SongSelectTitle::SongSelectTitle(Font *font, const float x, const float y) 
-	: MyDrawTextLine(font, "", x, y - HEIGHT * 0.02, 1, 50, WIDTH * 0.4, 3)
-	, MyDrawText(font, "", x, y + HEIGHT * 0.02, 1, 30, "Yellow"){
+	: Draw(x, y) {
+	title = new MyDrawTextLine(font, "", GetX() * SIZE_RATE, GetY() * SIZE_RATE - HEIGHT * 0.02, 1, 50, WIDTH * 0.4, 3);
+	subTitle = new MyDrawText(font, "", GetX() * SIZE_RATE, GetY() * SIZE_RATE + HEIGHT * 0.02, 1, 30, "Yellow");
+	scene = -100;
 }
 
 //曲選択画面タイトル計算
 void SongSelectTitle::Update(int scene) {
-	switch (scene)
-	{
-	case MODE:
-		MyDrawTextLine::ChangeText("Mode Select");
-		break;
-	case OPTION1:
-		MyDrawTextLine::ChangeText("Option");
-		MyDrawText::ChangeText("通し練習モード");
-		break;
-	default:
-		MyDrawTextLine::ChangeText("Song Select");
-		break;
+	if (SongSelectTitle::scene != scene) {
+		SongSelectTitle::scene = scene;
+		switch (scene)
+		{
+		case MODE:
+			title->ChangeText("Mode Select");
+			break;
+		case OPTION1:
+			title->ChangeText("Option");
+			subTitle->ChangeText("通し練習モード");
+			break;
+		default:
+			title->ChangeText("Song Select");
+			break;
+		}
 	}
 }
 
 //曲選択画面タイトル表示
-void SongSelectTitle::View(int scene) {
-	MyDrawTextLine::View(); //テキスト表示
+void SongSelectTitle::View() {
+	title->View(); //テキスト表示
 	if(scene == OPTION1)
-		MyDrawText::View(); //テキスト表示
+		subTitle->View(); //テキスト表示
+}
+
+SongSelectTitle::~SongSelectTitle() {
+	delete title;
+	delete subTitle;
 }
 
 //曲選択画面カバー画像初期化

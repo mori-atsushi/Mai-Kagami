@@ -2,7 +2,6 @@
 #define __SONGSELECTCOMMON_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Draw.h"
 #include "DrawGraph.h"
 #include "Common.h"
 #include "Touch.h"
@@ -11,11 +10,16 @@
 #include "SongSelectDefine.h"
 
 //曲選択画面タイトル
-class SongSelectTitle : public MyDrawTextLine, public MyDrawText {
+class SongSelectTitle : public Draw {
 public:
 	SongSelectTitle(Font *font, const float x, const float y); //初期化
 	void Update(int scene); //計算
-	void View(int scene); //表示
+	void View(); //表示
+	~SongSelectTitle();
+private:
+	MyDrawTextLine *title;
+	MyDrawText *subTitle;
+	int scene;
 };
 
 //曲選択画面カバー関係
