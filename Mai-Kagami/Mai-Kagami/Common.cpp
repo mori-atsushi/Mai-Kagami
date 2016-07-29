@@ -4,32 +4,32 @@
 Button::Button(Font *font, const char *str, const int type, const int num, char *colorName)
 	: Draw(WIDTH * 0.94, BUTTON_POS + num * BUTTON_INTERVAL) {
 	myDrawText = new MyDrawText(font, str, GetX() * SIZE_RATE, GetY() * SIZE_RATE, 2, 30);
-	Set(type, num, colorName);
+	SetType(type, num, colorName);
 }
 
 Button::Button(Font *font, const char *str, const int type, const int num, const float x, char *colorName)
 	: Draw(x, BUTTON_POS + num * BUTTON_INTERVAL) {
 	myDrawText = new MyDrawText(font, str, GetX() * SIZE_RATE, GetY() * SIZE_RATE, 1, 30);
-	Set(type, num, colorName);
+	SetType(type, num, colorName);
 }
 
-Button::Button(Font *font, const char *str, const int num, char *colorName) 
-	: Draw() {
+Button::Button(Font *font, const char *title, const char *str, const int type, const int num, const float x, const char *colorName)
+	: Draw(x, BUTTON_POS + num * BUTTON_INTERVAL) {
+	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
+	t = type;
+	myDrawText = new MyDrawText(font, title, GetX() * SIZE_RATE, pos - HEIGHT * 0.03, 0, 30, colorName);
+	descriptionText = new MyDrawText(font, str, GetX() * SIZE_RATE, pos, 0, 20);
+	float width = WIDTH * 0.35;
+	myDrawBox = new MyDrawBox(GetX() * SIZE_RATE + width / 2, GetY() * SIZE_RATE, width + WIDTH * 0.05, HEIGHT * 0.09, 2, colorName);
+	SetType(type, num, colorName);
+}
+
+Button::Button(Font *font, const char *str, const int num, char *colorName) : Draw() {
 	float r = WIDTH * 0.045;
 	Draw::ChangePos(WIDTH - r - 4, BUTTON_POS + num * BUTTON_INTERVAL);
-	t = 3;
+	t = 4;
 	myDrawText = new MyDrawText(font, str, GetX() * SIZE_RATE, GetY() * SIZE_RATE, 1, 30, "Black");
 	myDrawCircle = new MyDrawCircle(GetX() * SIZE_RATE, GetY() * SIZE_RATE, r, colorName);
-}
-
-Button::Button(Font *font, char *title, char *str, int num, char *colorName) : Draw() {
-	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
-	const int fontSize = 30; //フォントサイズ
-	t = 4;
-	myDrawText = new MyDrawText(font, title, WIDTH * 0.57, pos - HEIGHT * 0.03, 0, fontSize, colorName);
-	descriptionText = new MyDrawText(font, str, WIDTH * 0.57, pos, 0, 20);
-	myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 2, colorName);
-	myDrawBox = new MyDrawBox(WIDTH * 0.74, pos, WIDTH * 0.4, HEIGHT * 0.09, 2, colorName);
 }
 
 //ボタン表示
@@ -37,10 +37,10 @@ void Button::View() {
 	switch (t)
 	{
 	case 0:
-	case 3:
+	case 4:
 		myDrawCircle->View();
 		break;
-	case 4:
+	case 3:
 		descriptionText->View();
 		myDrawBox->View();
 	case 1:
@@ -58,18 +58,22 @@ Button::~Button() {
 	delete myDrawBox;
 }
 
-void Button::Set(const int type, const int num, char *colorName) {
+void Button::SetType(const int type, const int num, const char *colorName) {
 	t = type;
+	float x = WIDTH * 0.97;
 	switch (t)
 	{
 	case 0:
-		myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.015, 7, colorName);
+		myDrawCircle = new MyDrawCircle(x, GetY() * SIZE_RATE, WIDTH * 0.015, 7, colorName);
 		break;
 	case 1:
-		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, 0, colorName);
+		myDrawTriangle = new MyDrawTriangle(x, GetY() * SIZE_RATE, WIDTH * 0.03, 0, colorName);
 		break;
 	case 2:
-		myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, 1, colorName);
+		myDrawTriangle = new MyDrawTriangle(x, GetY() * SIZE_RATE, WIDTH * 0.03, 1, colorName);
+		break;
+	case 3:
+		myDrawTriangle = new MyDrawTriangle(x, GetY() * SIZE_RATE, WIDTH * 0.03, 2, colorName);
 		break;
 	}
 }
