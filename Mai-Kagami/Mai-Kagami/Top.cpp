@@ -1,9 +1,12 @@
 #include "Top.h"
 
+TopLogo::TopLogo(const float y)
+	: MyDrawGraph(WIDTH * 0.5, y, "img/logo.png") {
+}
+
 //NFCタッチメッセージコンストラクタ
-TopTouchMessage::TopTouchMessage(Font *font) {
-	char *str = "-カードをタッチしてください-"; //表示文字列
-	myDrawText = new MyDrawText(font, str, WIDTH * 0.5, HEIGHT * 0.42, 1, 46);
+TopTouchMessage::TopTouchMessage(Font *font, const float y)
+	: MyDrawText(font, "-カードをタッチしてください-", WIDTH * 0.5, y, 1, 46) {
 	t = 0;
 }
 
@@ -24,31 +27,20 @@ void TopTouchMessage::Update() {
 //NFCタッチメッセージ表示
 void TopTouchMessage::View() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha); //透明度設定
-	myDrawText->View(); //文字表示
+	MyDrawText::View(); //文字表示
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
 }
 
-//NFCタッチメッセージデストラクタ
-TopTouchMessage::~TopTouchMessage() {
-	delete myDrawText;
-}
-
 //NFCタッチボタンコンストラクタ
-TopTouchButton::TopTouchButton(Font *font) {
-	char *str = "ここに\nタッチ！"; //表示文字列
-	myDrawCircle = new MyDrawCircle(WIDTH, NFC_POS, WIDTH / 12);
-	myDrawText = new MyDrawText(font, str, WIDTH * 0.92, NFC_POS, 2, 40);
+TopTouchButton::TopTouchButton(Font *font, const float r)
+	: MyDrawText(font, "ここに\nタッチ！", WIDTH - r, NFC_POS, 2, 40)
+	, MyDrawCircle(WIDTH, NFC_POS, r){
 }
 
 //NFCタッチボタン表示
 void TopTouchButton::View() {
-	myDrawCircle->View(); //円表示
-	myDrawText->View(); //テキスト表示
-}
-
-//NFCタッチメッセージデストラクタ
-TopTouchButton::~TopTouchButton() {
-	delete myDrawText;
+	MyDrawCircle::View(); //円表示
+	MyDrawText::View(); //テキスト表示
 }
 
 Top::Top(Font *font) {
@@ -60,10 +52,10 @@ Top::Top(Font *font) {
 boolean Top::Load() {
 	StopMusic();
 	if (loadFlag == 0) {
-		myDrawGraph = new MyDrawGraph(WIDTH / 2, HEIGHT / 3, "img/logo.png"); //ロゴ初期化
+		topLogo = new TopLogo(HEIGHT / 3); //ロゴ初期化
 		nfc.Init();
-		topTouchMessage = new TopTouchMessage(f); //NFCタッチメッセージ初期化
-		topTouchButton = new TopTouchButton(f); //NFCタッチボタン初期化
+		topTouchMessage = new TopTouchMessage(f, HEIGHT * 0.42); //NFCタッチメッセージ初期化
+		topTouchButton = new TopTouchButton(f, WIDTH / 12); //NFCタッチボタン初期化
 		loadFlag = 1;
 	}
 
@@ -90,7 +82,7 @@ int Top::Update() {
 //トップ画面表示
 void Top::View() {
 	if (loadFlag == 2) {
-		myDrawGraph->View(); //ロゴ表示
+		topLogo->View(); //ロゴ表示
 		topTouchMessage->View(); //NFCタッチメッセージ表示
 		topTouchButton->View(); //NFCタッチボタン表示}
 	}
@@ -98,7 +90,7 @@ void Top::View() {
 
 void Top::Delete() {
 	loadFlag = 0;
-	delete myDrawGraph;
+	delete topLogo;
 	delete topTouchButton;
 	delete topTouchMessage;
 }

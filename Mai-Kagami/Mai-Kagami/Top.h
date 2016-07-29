@@ -10,27 +10,26 @@
 #include "Nfc.h"
 #include "Font.h"
 
-//NFCタッチメッセージ関係
-class TopTouchMessage {
+class TopLogo : public MyDrawGraph {
 public:
-	TopTouchMessage(Font *font);
+	TopLogo( const float y);
+};
+
+//NFCタッチメッセージ関係
+class TopTouchMessage : public MyDrawText {
+public:
+	TopTouchMessage(Font *font, const float y);
 	void Update(); //計算
 	void View(); //表示
-	~TopTouchMessage();
 private:
-	MyDrawText *myDrawText;
 	int alpha, t; //透明度, 時間
 };
 
 //NFCタッチボタン関係
-class TopTouchButton {
+class TopTouchButton : public MyDrawText, public MyDrawCircle {
 public:
-	TopTouchButton(Font *font);
+	TopTouchButton(Font *font, const float r);
 	void View(); //表示
-	~TopTouchButton();
-private:
-	MyDrawCircle *myDrawCircle;
-	MyDrawText *myDrawText;
 };
 
 //トップ画面関係
@@ -41,7 +40,7 @@ public:
 	void View(); //表示
 private:
 	Font *f;
-	MyDrawGraph *myDrawGraph; //トップロゴ
+	TopLogo *topLogo; //トップロゴ
 	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
