@@ -47,6 +47,8 @@ SongSelectCover::SongSelectCover(Font *font) {
 		song[n] = new Song(font, buf[1], buf[2], buf[0], n);
 		n++;
 	}
+	for (int i = 0; i < n; i++)
+		song[i]->Change(0, n);
 	FileRead_close(file);
 
 	float x = HEIGHT * 0.35;
@@ -68,9 +70,9 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 	switch (scene)
 	{
 	case MAIN:
-		if (touch->Get(0) == 1 && song[0]->GetNow() < 0) {
+		if (touch->Get(0) == 1) {
 			for (int i = 0; i < n; i++)
-				song[i]->Change(1);
+				song[i]->Change(1, n);
 		}
 
 		if (touch->Get(1) == 1)
@@ -84,9 +86,9 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 			}
 		}
 
-		if (touch->Get(2) == 1 && song[n - 1]->GetNow() > 0) {
+		if (touch->Get(2) == 1) {
 			for (int i = 0; i < n; i++)
-				song[i]->Change(-1);
+				song[i]->Change(-1, n);
 		}
 		for (int i = 0; i < n; i++)
 			song[i]->Update();

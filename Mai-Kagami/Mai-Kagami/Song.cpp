@@ -77,8 +77,12 @@ void Song::Draw(int scene) {
 	}
 }
 
-void Song::Change(int num) {
+void Song::Change(int num, int max) {
 	n += num;
+	if (n == -2)
+		n = max - 2;
+	if (n == max - 1)
+		n = -1;
 }
 
 void Song::ChangeSpeed(int num) {

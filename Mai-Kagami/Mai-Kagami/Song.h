@@ -17,7 +17,7 @@ public:
 	void Release();
 	void Update();
 	void Draw(int scene);
-	void Change(int num);
+	void Change(int num, int max);
 	void ChangeSpeed(int num);
 	void LoadMovie();
 	void StopMovie();
