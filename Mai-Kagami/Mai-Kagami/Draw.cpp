@@ -18,6 +18,11 @@ int Color::Get() {
 }
 
 //表示位置用クラスコンストラクタ
+Pos::Pos() {
+	a = 0; b = 0;
+}
+
+//表示位置用クラスコンストラクタ
 Pos::Pos(const float x, const float y) {
 	a = x / SIZE_RATE; b = y / SIZE_RATE;
 }
@@ -38,9 +43,32 @@ float Pos::GetY() {
 }
 
 //描画用クラスコンストラクタ
-Draw::Draw() :Pos(0, 0) {
-}
+Draw::Draw(){}
 
 //描画用クラスコンストラクタ
-Draw::Draw(const float x, const float y) :Pos(x, y) {
+Draw::Draw(const float x, const float y) : Pos(x, y) {}
+
+Draw2::Draw2(const int pos) {
+	p = pos;
+}
+
+Draw2::Draw2(const float x, const float y, const int pos) {
+	p = pos;
+	ChangePos(x, y);
+}
+
+void Draw2::ChangePos(const float x, const float y) {
+	Draw2::x = x;
+	Draw2::y = y;
+	float a = 0;
+	switch (p) {
+	case 1:
+		a -= GetWidth() / 2;
+		break;
+	case 2:
+		a -= GetWidth();
+		break;
+	}
+
+	Draw::ChangePos(Draw2::x + a, Draw2::y - GetHeight() / 2);
 }
