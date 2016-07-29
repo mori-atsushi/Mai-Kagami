@@ -3,6 +3,13 @@
 SongSelect::SongSelect(Font *font) {
 	f = font;
 	loadFlag = 0;
+	songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
+	songSelectButton = new SongSelectButton(f);
+	songSelectCover = new SongSelectCover(f); //選択中の曲初期化
+	songSelectPop = new SongSelectPop(f);
+	modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
+	throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
+	touch = new Touch();
 }
 
 //曲選択画面ロード
@@ -11,13 +18,7 @@ void SongSelect::Load() {
 		return;
 
 	if (loadFlag == 0) {
-		songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
-		songSelectButton = new SongSelectButton(f);
-		songSelectCover = new SongSelectCover(f); //選択中の曲初期化
-		songSelectPop = new SongSelectPop(f);
-		modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
-		throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
-		touch = new Touch();
+		songSelectCover->Load(); //カバー表示
 		loadFlag = 1;
 		scene = MAIN;
 	}
@@ -69,7 +70,7 @@ int SongSelect::Update() {
 }
 
 //曲選択画面表示
-void SongSelect::View(Loading *loading) {
+void SongSelect::View() {
 	if (loadFlag == 2) {
 		songSelectCover->View(scene); //カバー表示
 		songSelectTitle->View(scene); //タイトル表示
@@ -90,13 +91,15 @@ void SongSelect::View(Loading *loading) {
 			break;
 		}
 	}
-	else {
-		loading->View();
-	}
 }
 
 void SongSelect::Delete() {
 	loadFlag = 0;
+	songSelectCover->Release();
+
+}
+
+SongSelect::~SongSelect() {
 	delete songSelectCover;
 	delete songSelectButton;
 	delete songSelectTitle;

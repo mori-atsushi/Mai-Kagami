@@ -11,7 +11,6 @@
 #include "Drawtext.h"
 #include "Common.h"
 #include "Touch.h"
-#include "Loading.h"
 #include "Song.h"
 #include "Font.h"
 

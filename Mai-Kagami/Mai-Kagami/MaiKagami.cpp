@@ -3,7 +3,6 @@
 MaiKagami::MaiKagami() {
 	scene = START; //シーン初期化
 	font = new Font();
-	loading = new Loading(font);
 	top = new Top(font);
 	songSelect = new SongSelect(font);
 }
@@ -32,7 +31,7 @@ void MaiKagami::View() {
 		top->View(); //トップ画面表示
 		break;
 	case SONG_SELECT:
-		songSelect->View(loading);
+		songSelect->View();
 		break;
 	}
 }

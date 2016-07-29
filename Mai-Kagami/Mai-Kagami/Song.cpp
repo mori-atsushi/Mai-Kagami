@@ -1,7 +1,6 @@
 #include "Song.h"
 
 Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
-	playFlag = FALSE;
 	n = now;
 	char cover[256];
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
@@ -13,6 +12,16 @@ Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
 	songArtist = new MyDrawText(font, artist, WIDTH * 0.96, HEIGHT * 0.325, 2, 20); //テキスト初期化
 	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
 	songLast[1] = new MyDrawText(font, "前々回： --点", WIDTH * 0.75, HEIGHT * 0.385, 0, 24); //テキスト初期化
+	myDrawMovie = new MyDrawMovie(WIDTH * 0.44, HEIGHT * 0.57, movie, 0.9);
+}
+
+void Song::Load() {
+	myDrawGraph->Load();
+	playFlag = FALSE;
+}
+
+void Song::Release() {
+	myDrawGraph->Release();
 }
 
 void Song::Update() {
@@ -85,7 +94,7 @@ void Song::ChangeSpeed(int num) {
 }
 
 void Song::LoadMovie() {
-	myDrawMovie = new MyDrawMovie(WIDTH * 0.44, HEIGHT * 0.57, movie, 0.9);
+	myDrawMovie->Load();
 }
 
 void Song::StopMovie() {
@@ -93,7 +102,7 @@ void Song::StopMovie() {
 }
 
 void Song::ReleaseMovie() {
-	delete myDrawMovie;
+	myDrawMovie->Release();
 }
 
 int Song::GetNow() {

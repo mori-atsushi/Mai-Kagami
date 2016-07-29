@@ -13,6 +13,8 @@
 class Song {
 public:
 	Song(Font *font, char *title, char *artist, char *folder, int now);
+	void Load();
+	void Release();
 	void Update();
 	void Draw(int scene);
 	void Change(int num);

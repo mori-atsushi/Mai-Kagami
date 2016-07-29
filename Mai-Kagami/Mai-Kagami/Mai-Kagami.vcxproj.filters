@@ -57,9 +57,6 @@
     <ClCompile Include="MaiKagami.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
-    <ClCompile Include="Loading.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
     <ClCompile Include="Song.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
@@ -93,14 +90,14 @@
     <ClCompile Include="DrawObject.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
-    </ClCompile>
     <ClCompile Include="Top.cpp">
       <Filter>ソース ファイル\画面関係\トップ画面</Filter>
     </ClCompile>
     <ClCompile Include="TopMain.cpp">
       <Filter>ソース ファイル\画面関係\トップ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +111,6 @@
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="MaiKagami.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Loading.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="Song.h">

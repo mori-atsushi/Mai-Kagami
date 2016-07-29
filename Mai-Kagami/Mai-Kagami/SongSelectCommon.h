@@ -26,8 +26,10 @@ private:
 class SongSelectCover {
 public:
 	SongSelectCover(Font *font); //èâä˙âª
+	void Load();
 	void View(int scene); //ï\é¶
 	void Update(Touch *touch, int scene);
+	void Release();
 	~SongSelectCover();
 private:
 	int n, now;

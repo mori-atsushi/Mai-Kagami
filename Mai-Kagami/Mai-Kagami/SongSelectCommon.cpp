@@ -56,6 +56,14 @@ SongSelectCover::SongSelectCover(Font *font) {
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 }
 
+
+void SongSelectCover::Load() {
+	for (int i = 0; i < 2; i++)
+		grad[i]->Load();
+	for (int i = 0; i < n; i++)
+		song[i]->Load();
+}
+
 void SongSelectCover::Update(Touch *touch, int scene) {
 	switch (scene)
 	{
@@ -117,6 +125,13 @@ void SongSelectCover::View(int scene) {
 		song[now]->Draw(scene);
 		break;
 	}
+}
+
+void SongSelectCover::Release() {
+	for (int i = 0; i < 2; i++)
+		grad[i]->Release();
+	for (int i = 0; i < n; i++)
+		song[i]->Release();
 }
 
 SongSelectCover::~SongSelectCover() {

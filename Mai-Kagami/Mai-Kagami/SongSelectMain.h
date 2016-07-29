@@ -8,7 +8,6 @@
 #include "ModeSelect.h"
 #include "Draw.h"
 #include "Touch.h"
-#include "Loading.h"
 #include "Song.h"
 #include "Font.h"
 #include "SongSelectCommon.h"
@@ -21,7 +20,7 @@ class SongSelect {
 public:
 	SongSelect(Font *font);
 	int Update();
-	void View(Loading *loading);
+	void View();
 private:
 	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
@@ -35,6 +34,7 @@ private:
 	int loadFlag;
 	void Load();
 	void Delete();
+	~SongSelect();
 };
 
 #endif

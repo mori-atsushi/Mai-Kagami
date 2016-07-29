@@ -3,7 +3,6 @@
 
 #include "DxLib.h"
 #include "TopMain.h"
-#include "Loading.h"
 #include "SongSelectMain.h"
 
 class MaiKagami
@@ -16,7 +15,6 @@ private:
 	int scene; //シーン
 	Font *font; //フォント
 	Top *top; //トップ画面
-	Loading *loading; //ローディング画面
 	SongSelect *songSelect; //曲選択画面
 };
 

@@ -34,8 +34,8 @@ Button::Button(Font *font, char *title, char *str, int num, char *colorName) {
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
 	const int fontSize = 30; //フォントサイズ
 	t = 5;
-	myDrawText = new MyDrawText(font, title, WIDTH * 0.57, pos - HEIGHT * 0.037, 0, fontSize, colorName);
-	descriptionText = new MyDrawText(font, str, WIDTH * 0.57, pos - HEIGHT * 0.012, 0, 20);
+	myDrawText = new MyDrawText(font, title, WIDTH * 0.57, pos - HEIGHT * 0.03, 0, fontSize, colorName);
+	descriptionText = new MyDrawText(font, str, WIDTH * 0.57, pos, 0, 20);
 	myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, pos, WIDTH * 0.03, 2, colorName);
 	myDrawBox = new MyDrawBox(WIDTH * 0.74, pos, WIDTH * 0.4, HEIGHT * 0.09, 2, colorName);
 }
