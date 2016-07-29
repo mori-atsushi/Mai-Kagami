@@ -10,9 +10,9 @@
 #include "Font.h"
 #include "SongSelectDefine.h"
 
-class Song {
+class Song2 {
 public:
-	Song(Font *font, char *title, char *artist, char *folder, int now);
+	Song2(Font *font, char *title, char *artist, char *folder, int now);
 	void Load();
 	void Release();
 	void Update();
@@ -23,7 +23,7 @@ public:
 	void StopMovie();
 	void ReleaseMovie();
 	int GetNow();
-	~Song();
+	~Song2();
 private:
 	char music[256];
 	char movie[256];

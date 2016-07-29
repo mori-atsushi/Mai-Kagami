@@ -1,6 +1,6 @@
 #include "Song.h"
 
-Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
+Song2::Song2(Font *font, char *title, char *artist, char *folder, int now) {
 	n = now;
 	char cover[256];
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
@@ -15,16 +15,16 @@ Song::Song(Font *font, char *title, char *artist, char *folder, int now) {
 	myDrawMovie = new MyDrawMovie(WIDTH * 0.44, HEIGHT * 0.57, movie, 0.9);
 }
 
-void Song::Load() {
+void Song2::Load() {
 	myDrawGraph->Load();
 	playFlag = FALSE;
 }
 
-void Song::Release() {
+void Song2::Release() {
 	myDrawGraph->Release();
 }
 
-void Song::Update() {
+void Song2::Update() {
 	if (n == 0) {
 		myDrawGraph->ChangeEx(1.0);
 		myDrawGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
@@ -40,7 +40,7 @@ void Song::Update() {
 	}
 }
 
-void Song::Draw(int scene) {
+void Song2::Draw(int scene) {
 	if (n == 0) {
 		songTitle->View();
 		songArtist->View();
@@ -77,7 +77,7 @@ void Song::Draw(int scene) {
 	}
 }
 
-void Song::Change(int num, int max) {
+void Song2::Change(int num, int max) {
 	n += num;
 	if (n == -2)
 		n = max - 2;
@@ -85,7 +85,7 @@ void Song::Change(int num, int max) {
 		n = -1;
 }
 
-void Song::ChangeSpeed(int num) {
+void Song2::ChangeSpeed(int num) {
 	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
 	if (num == 1 && speed > 0) {
 		speed -= 1;
@@ -97,23 +97,23 @@ void Song::ChangeSpeed(int num) {
 	}
 }
 
-void Song::LoadMovie() {
+void Song2::LoadMovie() {
 	myDrawMovie->Load();
 }
 
-void Song::StopMovie() {
+void Song2::StopMovie() {
 	myDrawMovie->Stop();
 }
 
-void Song::ReleaseMovie() {
+void Song2::ReleaseMovie() {
 	myDrawMovie->Release();
 }
 
-int Song::GetNow() {
+int Song2::GetNow() {
 	return n;
 }
 
-Song::~Song() {
+Song2::~Song2() {
 	delete songTitle;
 	delete songArtist;
 	for (int i = 0; i < 2; i++) {

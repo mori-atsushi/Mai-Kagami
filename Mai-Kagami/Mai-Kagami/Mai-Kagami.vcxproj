@@ -30,6 +30,7 @@
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="Song.cpp" />
+    <ClCompile Include="Songs.cpp" />
     <ClCompile Include="SongSelect.cpp" />
     <ClCompile Include="SongSelectCommon.cpp" />
     <ClCompile Include="SongSelectMain.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
     <ClInclude Include="Song.h" />
+    <ClInclude Include="Songs.h" />
     <ClInclude Include="SongSelect.h" />
     <ClInclude Include="SongSelectCommon.h" />
     <ClInclude Include="SongSelectDefine.h" />

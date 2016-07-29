@@ -33,7 +33,7 @@ public:
 	~SongSelectCover();
 private:
 	int n, now;
-	Song *song[256];
+	Song2 *song[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;

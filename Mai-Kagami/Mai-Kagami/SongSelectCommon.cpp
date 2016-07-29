@@ -47,8 +47,9 @@ SongSelectCover::SongSelectCover(Font *font) {
 	int file = FileRead_open("song/song.csv", FALSE);
 	SetUseASyncLoadFlag(TRUE);
 	char buf[3][256];
-	while (FileRead_scanf(file, "%[^,\n\r],%[^,\n\r],%[^\n\r]", buf[0], buf[1], buf[2]) != EOF) {
-		song[n] = new Song(font, buf[1], buf[2], buf[0], n);
+	int id = 0;
+	while (FileRead_scanf(file, "%d,%[^,\n\r],%[^,\n\r],%[^\n\r]", &id, buf[0], buf[1], buf[2]) != EOF) {
+		song[n] = new Song2(font, buf[1], buf[2], buf[0], n);
 		n++;
 	}
 	for (int i = 0; i < n; i++)

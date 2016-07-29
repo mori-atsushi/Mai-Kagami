@@ -99,6 +99,9 @@
     <ClCompile Include="Font.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
+    <ClCompile Include="Songs.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="TopMain.h">
       <Filter>ヘッダー ファイル\画面関係\トップ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="Songs.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

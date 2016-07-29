@@ -5,6 +5,7 @@ MaiKagami::MaiKagami() {
 	font = new Font();
 	top = new Top(font);
 	songSelect = new SongSelect(font);
+	songs = new Songs(); //‹Èˆê——ì¬
 }
 
 //‘S‘Ì‚ÌZŒv

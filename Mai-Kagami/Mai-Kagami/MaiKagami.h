@@ -4,6 +4,7 @@
 #include "DxLib.h"
 #include "TopMain.h"
 #include "SongSelectMain.h"
+#include "Songs.h"
 
 class MaiKagami
 {
@@ -16,6 +17,7 @@ private:
 	Font *font; //フォント
 	Top *top; //トップ画面
 	SongSelect *songSelect; //曲選択画面
+	Songs *songs; //曲一覧
 };
 
 #endif
