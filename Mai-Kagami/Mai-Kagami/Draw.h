@@ -44,8 +44,9 @@ public:
 	virtual void View() = 0;
 	virtual float GetWidth() = 0;
 	virtual float GetHeight() = 0;
-private :
+protected:
 	float x, y; //座標
+private :
 	int p; //ポジション情報
 };
 

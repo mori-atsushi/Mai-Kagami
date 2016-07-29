@@ -2,14 +2,11 @@
 
 //テキスト初期化
 MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
-	: Color(colorName) {
+	: Color(colorName) , Draw2(pos) {
 	s = str; //文字列
-	p = pos; //位置情報
 	f = font->Get(point); //フォント情報
-	MyDrawText::x = x;
-	MyDrawText::y = y;
 	MyDrawText::point = point;
-	CalcPos();
+	ChangePos(x, y);
 }
 
 //テキスト表示
@@ -17,16 +14,10 @@ void MyDrawText::View() {
 	DrawStringFToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
 }
 
-void MyDrawText::ChangePos(const float x, const float y) {
-	MyDrawText::x = x;
-	MyDrawText::y = y;
-	CalcPos();
-}
-
 //テキスト変更
 void MyDrawText::ChangeText(char *str) {
 	s = str;
-	CalcPos();
+	ChangePos(Draw2::x, Draw2::y);
 }
 
 //テキストの縦取得
@@ -43,22 +34,6 @@ float MyDrawText::GetHeight() {
 //テキストの幅取得
 float MyDrawText::GetWidth() {
 	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
-}
-
-//テキストの座標計算
-void MyDrawText::CalcPos() {
-	float a = x;
-	float b = y;
-	switch (p) {
-	case 1:
-		a -= GetWidth() / 2;
-		break;
-	case 2:
-		a -= GetWidth();
-		break;
-	}
-
-	Draw::ChangePos(a, b - GetHeight() / 2);
 }
 
 MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
