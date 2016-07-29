@@ -36,6 +36,7 @@
     <ClCompile Include="SongSelectMain.cpp" />
     <ClCompile Include="ThroughOption.cpp" />
     <ClCompile Include="Top.cpp" />
+    <ClCompile Include="TopMain.cpp" />
     <ClCompile Include="Touch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +58,7 @@
     <ClInclude Include="SongSelectMain.h" />
     <ClInclude Include="ThroughOption.h" />
     <ClInclude Include="Top.h" />
+    <ClInclude Include="TopMain.h" />
     <ClInclude Include="Touch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

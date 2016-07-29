@@ -25,17 +25,23 @@
     <Filter Include="ヘッダー ファイル\画面関係">
       <UniqueIdentifier>{d106b6d6-e995-4d2b-9773-a695b921a82e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\画面関係\曲選択関係">
-      <UniqueIdentifier>{3212a294-06c9-48ec-adab-b785e7f04c29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\画面関係\曲選択関係">
-      <UniqueIdentifier>{c36adc03-aeab-402a-9caf-411c687e391d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\画面関係\共通">
       <UniqueIdentifier>{1613b5ae-1df6-46f0-b65a-9f26dd160a31}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\画面関係\共通">
       <UniqueIdentifier>{e1f76b96-7779-4f2e-8547-bf16d60cd8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\トップ画面">
+      <UniqueIdentifier>{26fb623f-e278-4a81-9575-93bd5098cd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\曲選択画面">
+      <UniqueIdentifier>{3212a294-06c9-48ec-adab-b785e7f04c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\曲選択画面">
+      <UniqueIdentifier>{c36adc03-aeab-402a-9caf-411c687e391d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\トップ画面">
+      <UniqueIdentifier>{3e2bf08c-b163-469a-8307-7e54e5bd58b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,9 +57,6 @@
     <ClCompile Include="MaiKagami.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
-    <ClCompile Include="Top.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
     <ClCompile Include="Loading.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
@@ -61,19 +64,19 @@
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
     <ClCompile Include="SongSelect.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="ModeSelect.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="SongSelectMain.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="SongSelectCommon.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="ThroughOption.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
@@ -91,7 +94,13 @@
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>ソース ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
+    </ClCompile>
+    <ClCompile Include="Top.cpp">
+      <Filter>ソース ファイル\画面関係\トップ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="TopMain.cpp">
+      <Filter>ソース ファイル\画面関係\トップ画面</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +116,6 @@
     <ClInclude Include="MaiKagami.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
-    <ClInclude Include="Top.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
     <ClInclude Include="Loading.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
@@ -117,25 +123,25 @@
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="SongSelect.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="SongSelectCommon.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="SongSelectMain.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="ModeSelect.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="ThroughOption.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="Main.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SongSelectDefine.h">
-      <Filter>ヘッダー ファイル\画面関係\曲選択関係</Filter>
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="Draw.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
@@ -151,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="Top.h">
+      <Filter>ヘッダー ファイル\画面関係\トップ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="TopMain.h">
+      <Filter>ヘッダー ファイル\画面関係\トップ画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #define __MAIKAGAMI_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Top.h"
+#include "TopMain.h"
 #include "Loading.h"
 #include "SongSelectMain.h"
 
