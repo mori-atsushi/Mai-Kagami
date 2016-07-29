@@ -6,7 +6,7 @@ Top::Top(Font *font) {
 	loadFlag = 0;
 	topLogo = new TopLogo(HEIGHT / 3); //ロゴ初期化
 	topTouchMessage = new TopTouchMessage(f, HEIGHT * 0.42); //NFCタッチメッセージ初期化
-	topTouchButton = new TopTouchButton(f, WIDTH / 12); //NFCタッチボタン初期化
+	topTouchButton = new TopTouchButton(f); //NFCタッチボタン初期化
 }
 
 //トップ画面初期化

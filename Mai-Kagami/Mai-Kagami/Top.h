@@ -25,10 +25,14 @@ private:
 };
 
 //NFCタッチボタン関係
-class TopTouchButton : public MyDrawText, public MyDrawCircle {
+class TopTouchButton : public Draw{
 public:
-	TopTouchButton(Font *font, const float r);
+	TopTouchButton(Font *font);
 	void View(); //表示
+	~TopTouchButton();
+private:
+	MyDrawText *text;
+	MyDrawCircle *circle;
 };
 
 #endif

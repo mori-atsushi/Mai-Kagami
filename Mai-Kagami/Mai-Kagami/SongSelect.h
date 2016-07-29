@@ -1,17 +1,12 @@
 #ifndef __SONGSELECT_H_INCLUDED__
 #define __SONGSELECT_H_INCLUDED__
 
-#include <thread>
-#include <Windows.h>
 #include "DxLib.h"
 #include "Main.h"
-#include "ModeSelect.h"
-#include "Draw.h"
 #include "DrawObject.h"
 #include "Drawtext.h"
 #include "Common.h"
 #include "Touch.h"
-#include "Song.h"
 #include "Font.h"
 
 //‹È‘I‘ð‰æ–Êƒ{ƒ^ƒ“ŠÖŒW

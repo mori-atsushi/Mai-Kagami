@@ -39,13 +39,20 @@ void TopTouchMessage::View() {
 }
 
 //NFCタッチボタンコンストラクタ
-TopTouchButton::TopTouchButton(Font *font, const float r)
-	: MyDrawText(font, "ここに\nタッチ！", WIDTH - r, NFC_POS, 2, 40)
-	, MyDrawCircle(WIDTH, NFC_POS, r){
+TopTouchButton::TopTouchButton(Font *font)
+	: Draw(WIDTH, NFC_POS) {
+	float r = WIDTH / 12;
+	text = new MyDrawText(font, "ここに\nタッチ！", GetX() * SIZE_RATE - r, GetY() * SIZE_RATE, 2, 40);
+	circle = new MyDrawCircle(GetX() * SIZE_RATE, GetY() * SIZE_RATE, r);
 }
 
 //NFCタッチボタン表示
 void TopTouchButton::View() {
-	MyDrawCircle::View(); //円表示
-	MyDrawText::View(); //テキスト表示
+	text->View(); //円表示
+	circle->View(); //テキスト表示
+}
+
+TopTouchButton::~TopTouchButton() {
+	delete text;
+	delete circle;
 }
