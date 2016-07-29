@@ -7,6 +7,10 @@ TopLogo::TopLogo(const float y)
 //NFCタッチメッセージコンストラクタ
 TopTouchMessage::TopTouchMessage(Font *font, const float y)
 	: MyDrawText(font, "-カードをタッチしてください-", WIDTH * 0.5, y, 1, 46) {
+	Init();
+}
+
+void TopTouchMessage::Init() {
 	t = 0;
 }
 
@@ -46,30 +50,33 @@ void TopTouchButton::View() {
 Top::Top(Font *font) {
 	f = font;
 	loadFlag = 0;
+	topLogo = new TopLogo(HEIGHT / 3); //ロゴ初期化
+	topTouchMessage = new TopTouchMessage(f, HEIGHT * 0.42); //NFCタッチメッセージ初期化
+	topTouchButton = new TopTouchButton(f, WIDTH / 12); //NFCタッチボタン初期化
 }
 
 //トップ画面初期化
-boolean Top::Load() {
+void Top::Load() {
 	StopMusic();
+
+	if (loadFlag == 2)
+		return;
+
 	if (loadFlag == 0) {
-		topLogo = new TopLogo(HEIGHT / 3); //ロゴ初期化
+		topLogo->Load();
+		topTouchMessage->Init();
 		nfc.Init();
-		topTouchMessage = new TopTouchMessage(f, HEIGHT * 0.42); //NFCタッチメッセージ初期化
-		topTouchButton = new TopTouchButton(f, WIDTH / 12); //NFCタッチボタン初期化
 		loadFlag = 1;
 	}
 
 	if (loadFlag == 1 && GetASyncLoadNum() == 0)
 		loadFlag = 2;
-
-	if (loadFlag == 2)
-		return TRUE;
-	return FALSE;
 }
 
 //トップ画面計算
 int Top::Update() {
-	if (Load()) {
+	Load();
+	if (loadFlag == 2) {
 		topTouchMessage->Update(); //NFCタッチメッセージ計算
 		if (nfc.GetId() != 0) {
 			Delete();
@@ -90,6 +97,10 @@ void Top::View() {
 
 void Top::Delete() {
 	loadFlag = 0;
+	topLogo->Release();
+}
+
+Top::~Top() {
 	delete topLogo;
 	delete topTouchButton;
 	delete topTouchMessage;

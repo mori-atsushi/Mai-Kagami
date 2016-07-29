@@ -1,9 +1,13 @@
 #include "DrawGraph.h"
 
 //画像初期化
-MyDrawGraph::MyDrawGraph(const float x, const float y, const char *filename, const double ExRate) : Draw(x, y) {
-	handle = LoadGraph(filename); // 画像のロード
+MyDrawGraph::MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate) : Draw(x, y) {
 	ex = ExRate;
+	MyDrawGraph::fileName = fileName;
+}
+
+void MyDrawGraph::Load() {
+	handle = LoadGraph(fileName.c_str()); // 画像のロード
 }
 
 //画像表示
@@ -18,7 +22,8 @@ void MyDrawGraph::ChangeEx(const double ExRate) {
 	ex = ExRate;
 }
 
-MyDrawGraph::~MyDrawGraph() {
+//画像を解放
+void MyDrawGraph::Release() {
 	DeleteGraph(handle);
 }
 

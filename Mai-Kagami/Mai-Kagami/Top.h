@@ -19,6 +19,7 @@ public:
 class TopTouchMessage : public MyDrawText {
 public:
 	TopTouchMessage(Font *font, const float y);
+	void Init(); //初期化
 	void Update(); //計算
 	void View(); //表示
 private:
@@ -38,6 +39,7 @@ public:
 	Top(Font *font);
 	int Update(); //計算
 	void View(); //表示
+	~Top();
 private:
 	Font *f;
 	TopLogo *topLogo; //トップロゴ
@@ -45,7 +47,7 @@ private:
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
 	int loadFlag;
-	boolean Load();
+	void Load();
 	void Delete();
 };
 

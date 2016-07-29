@@ -3,15 +3,18 @@
 
 #include "DxLib.h"
 #include "Draw.h"
+#include <string>
 
 //画像関係
 class MyDrawGraph : public Draw{
 public:
-	MyDrawGraph(const float x, const float y, const char *filename, const double ExRate = 1.0); //初期化
+	MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate = 1.0); //初期化
 	void View(); //表示
+	void Load();
 	void ChangeEx(const double ExRate); //倍率変更
-	~MyDrawGraph();
+	void Release();
 protected:
+	std::string fileName; //ファイル名
 	int handle; //画像用ハンドル
 	double ex; //表示倍率
 };
