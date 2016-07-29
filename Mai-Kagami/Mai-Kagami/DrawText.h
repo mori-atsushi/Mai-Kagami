@@ -26,7 +26,7 @@ private:
 //複数行のテキスト
 class MyDrawTexts : public Color, public Draw {
 public:
-	MyDrawTexts(Font *font, char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
+	MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
 	void View();
 	float GetWidth(); //幅取得
 	~MyDrawTexts();

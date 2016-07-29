@@ -20,7 +20,7 @@ public:
 	~Button();
 private:
 	MyDrawText *myDrawText;
-	MyDrawText *descriptionText;
+	MyDrawTexts *descriptionText;
 	MyDrawTriangle *myDrawTriangle;
 	MyDrawCircle *myDrawCircle;
 	MyDrawBox *myDrawBox;

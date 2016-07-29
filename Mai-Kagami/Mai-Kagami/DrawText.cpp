@@ -61,7 +61,7 @@ void MyDrawText::CalcPos() {
 	Draw::ChangePos(a, b - GetHeight() / 2);
 }
 
-MyDrawTexts::MyDrawTexts(Font *font, char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
+MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
 	: Color(colorName) {
 
 	p = pos; //位置情報

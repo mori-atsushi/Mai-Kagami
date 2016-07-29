@@ -18,7 +18,7 @@ Button::Button(Font *font, const char *title, const char *str, const int type, c
 	int pos = BUTTON_POS + num * BUTTON_INTERVAL;
 	t = type;
 	myDrawText = new MyDrawText(font, title, GetX() * SIZE_RATE, pos - HEIGHT * 0.03, 0, 30, colorName);
-	descriptionText = new MyDrawText(font, str, GetX() * SIZE_RATE, pos, 0, 20);
+	descriptionText = new MyDrawTexts(font, str, GetX() * SIZE_RATE, pos + HEIGHT * 0.01, 0, 20, 15);
 	float width = WIDTH * 0.35;
 	myDrawBox = new MyDrawBox(GetX() * SIZE_RATE + width / 2, GetY() * SIZE_RATE, width + WIDTH * 0.05, HEIGHT * 0.09, 2, colorName);
 	SetType(type, num, colorName);
