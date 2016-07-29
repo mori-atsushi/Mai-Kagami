@@ -12,7 +12,9 @@
 //ƒ{ƒ^ƒ“ŠÖŒW
 class Button : public Draw {
 public:
-	Button(Font *font, char *str, int type, int num);
+	Button(Font *font, const char *str, const int type, const int num, char *colorName="Blue");
+	Button(Font *font, const char *str, const int type, const int num, const float x, char *colorName = "Blue");
+	Button(Font *font, const char *str, const int num, char *colorName = "Blue");
 	Button(Font *font, char *title, char *str, int num, char *colorName);
 	void View();
 	~Button();
@@ -24,6 +26,7 @@ private:
 	MyDrawBox *myDrawBox;
 	char *s;
 	int t, n;
+	void Set(const int type, const int num, char *colorName);
 };
 
 #endif

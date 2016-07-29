@@ -6,7 +6,7 @@ ModeSelectButton::ModeSelectButton(Font *font) {
 	char *part = "練習区間を設定して集中して練習でき\nます。練習途中であっても、スピード\nの変更や巻き戻しが自由にできます。";
 	button[0] = new Button(font, "通し練習モード", through, 0, "Blue");
 	button[1] = new Button(font, "部分練習モード", part, 2, "Yellow");
-	button[2] = new Button(font, "戻る", 3, 4);
+	button[2] = new Button(font, "戻る", 4);
 }
 
 //モード選択ボタン表示
