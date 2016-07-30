@@ -27,7 +27,6 @@ public:
 	~Song2();
 private:
 	char music[256];
-	char movie[256];
 	int n, speed;
 	boolean playFlag = 0;
 	Font *font;

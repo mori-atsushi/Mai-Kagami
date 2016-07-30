@@ -9,10 +9,12 @@ public:
 	Song(const int id, const char *title, const char *artist, const char *folder);
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
-	MyDrawGraph *GetSongCover();
+	MyDrawGraph *GetSongCover(); //カバー画像取得
+	MyDrawMovie *GetSongMovie(); //動画取得
 private:
 	MyDrawGraph *coverGraph; //カバー画像
-	char music[256], movie[256], title[256], artist[256];
+	MyDrawMovie *danceMovie; //動画
+	char music[256], title[256], artist[256];
 	int id;
 };
 

@@ -34,9 +34,11 @@ void MyDrawGraph::Release() {
 }
 
 //“®‰æ‰Šú‰»
+MyDrawMovie::MyDrawMovie(const char *filename) : MyDrawGraph(filename) {}
+
+//“®‰æ‰Šú‰»
 MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, const double ExRate)
-	: MyDrawGraph(x, y, filename, ExRate) {
-}
+	: MyDrawGraph(x, y, filename, ExRate) {}
 
 //“®‰æ•\¦
 void MyDrawMovie::View() {

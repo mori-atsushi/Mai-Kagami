@@ -24,7 +24,7 @@ Song *Songs::GetSong(int x) {
 	return song[x];
 }
 Song::Song(const int id, const char *title, const char *artist, const char *folder) {
-	char cover[256];
+	char cover[256], movie[256];
 	strcpy_s(Song::title, sizeof(Song::title), title);
 	strcpy_s(Song::artist, sizeof(Song::artist), artist);
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder);
@@ -33,6 +33,7 @@ Song::Song(const int id, const char *title, const char *artist, const char *fold
 	Song::id = id;
 
 	coverGraph = new MyDrawGraph(cover);
+	danceMovie = new MyDrawMovie(movie);
 }
 
 //‹È–¼æ“¾
@@ -48,4 +49,9 @@ char *Song::GetSongArtist() {
 //ƒJƒo[‰æ‘œæ“¾
 MyDrawGraph *Song::GetSongCover() {
 	return coverGraph;
+}
+
+//“®‰ææ“¾
+MyDrawMovie *Song::GetSongMovie() {
+	return danceMovie;
 }

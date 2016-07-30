@@ -23,6 +23,7 @@ protected:
 //“®‰æŠÖŒW
 class MyDrawMovie : public MyDrawGraph {
 public:
+	MyDrawMovie(const char *filename); //‰Šú‰»
 	MyDrawMovie(const float x, const float y, const char *filename, const double ExRate); //‰Šú‰»
 	void View(); //•\¦
 	void Stop(); //’â~
