@@ -9,6 +9,7 @@
 
 #define TOP			0
 #define SONG_SELECT	1
+#define THROUGH		2
 #define START TOP
 
 #endif

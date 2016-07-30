@@ -21,5 +21,4 @@ private:
 	MyDrawText *speed[2];
 };
 
-
 #endif

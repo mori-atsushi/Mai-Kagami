@@ -5,6 +5,7 @@
 #include "TopMain.h"
 #include "SongSelectMain.h"
 #include "Songs.h"
+#include "ThroughMain.h"
 
 class MaiKagami
 {
@@ -17,6 +18,7 @@ private:
 	Font *font; //フォント
 	Top *top; //トップ画面
 	SongSelect *songSelect; //曲選択画面
+	ThroughMain *throughMain; //通し練習
 	Songs *songs; //曲一覧
 };
 

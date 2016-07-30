@@ -1,12 +1,8 @@
 #ifndef __SONGSELECTMAIN_H_INCLUDED__
 #define __SONGSELECTMAIN_H_INCLUDED__
 
-#include <thread>
-#include <Windows.h>
 #include "DxLib.h"
-#include "Main.h"
 #include "ModeSelect.h"
-#include "Draw.h"
 #include "Touch.h"
 #include "SongSelectCover.h"
 #include "Songs.h"
@@ -22,6 +18,7 @@ public:
 	SongSelect(Font *font, Songs *songs);
 	int Update();
 	void View();
+	~SongSelect();
 private:
 	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
@@ -35,7 +32,6 @@ private:
 	int loadFlag;
 	void Load();
 	void Delete();
-	~SongSelect();
 };
 
 #endif

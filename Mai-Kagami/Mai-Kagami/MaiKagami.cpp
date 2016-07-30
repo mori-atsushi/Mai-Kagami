@@ -6,6 +6,7 @@ MaiKagami::MaiKagami() {
 	songs = new Songs(); //‹Èˆê——ì¬
 	top = new Top(font);
 	songSelect = new SongSelect(font, songs);
+	throughMain = new ThroughMain(font, songs);
 }
 
 //‘S‘Ì‚ÌŽZŒv
@@ -21,6 +22,9 @@ void MaiKagami::Update() {
 		case SONG_SELECT:
 			scene = songSelect->Update();
 			break;
+		case THROUGH:
+			scene = throughMain->Update();
+			break;
 		}
 	} while (now != scene);
 }
@@ -33,6 +37,9 @@ void MaiKagami::View() {
 		break;
 	case SONG_SELECT:
 		songSelect->View();
+		break;
+	case THROUGH:
+		throughMain->View();
 		break;
 	}
 }

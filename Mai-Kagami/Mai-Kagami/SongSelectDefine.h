@@ -7,5 +7,6 @@
 #define MODE 1
 #define OPTION1 2
 #define OPTION2 3
+#define NEXT 4
 
 #endif
