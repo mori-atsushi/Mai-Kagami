@@ -3,9 +3,9 @@
 MaiKagami::MaiKagami() {
 	scene = START; //シーン初期化
 	font = new Font();
-	top = new Top(font);
-	songSelect = new SongSelect(font);
 	songs = new Songs(); //曲一覧作成
+	top = new Top(font);
+	songSelect = new SongSelect(font, songs);
 }
 
 //全体の算計

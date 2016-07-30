@@ -9,10 +9,11 @@
 #include "DrawObject.h"
 #include "Font.h"
 #include "SongSelectDefine.h"
+#include "Songs.h"
 
 class Song2 {
 public:
-	Song2(Font *font, char *title, char *artist, char *folder, int now);
+	Song2(Font *font, Song *song, const int now);
 	void Load();
 	void Release();
 	void Update();

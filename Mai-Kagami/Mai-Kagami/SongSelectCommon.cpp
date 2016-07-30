@@ -41,20 +41,12 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongSelectCover::SongSelectCover(Font *font) {
-	n = 0;
-	SetUseASyncLoadFlag(FALSE);
-	int file = FileRead_open("song/song.csv", FALSE);
-	SetUseASyncLoadFlag(TRUE);
-	char buf[3][256];
-	int id = 0;
-	while (FileRead_scanf(file, "%d,%[^,\n\r],%[^,\n\r],%[^\n\r]", &id, buf[0], buf[1], buf[2]) != EOF) {
-		song[n] = new Song2(font, buf[1], buf[2], buf[0], n);
-		n++;
-	}
-	for (int i = 0; i < n; i++)
+SongSelectCover::SongSelectCover(Font *font, Songs *songs) {
+	n = songs->GetSongNum();
+	for (int i = 0; i < n; i++) {
+		song[i] = new Song2(font, songs->GetSong(i), i);
 		song[i]->Change(0, n);
-	FileRead_close(file);
+	}
 
 	float x = HEIGHT * 0.35;
 	myDrawBox = new MyDrawBox(WIDTH * 0.5, HEIGHT * 0.5, 170, 1000);

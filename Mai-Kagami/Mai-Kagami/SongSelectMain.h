@@ -9,6 +9,7 @@
 #include "Draw.h"
 #include "Touch.h"
 #include "Song.h"
+#include "Songs.h"
 #include "Font.h"
 #include "SongSelectCommon.h"
 #include "SongSelect.h"
@@ -18,7 +19,7 @@
 //‹È‘I‘ð‰æ–ÊŠÖŒW
 class SongSelect {
 public:
-	SongSelect(Font *font);
+	SongSelect(Font *font, Songs *songs);
 	int Update();
 	void View();
 private:
