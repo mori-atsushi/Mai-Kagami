@@ -10,12 +10,11 @@ public:
 	void PlaybackMusic(); //音楽再生
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
-	MyDrawGraph *GetSongCover(); //カバー画像取得
-	MyDrawMovie *GetSongMovie(); //動画取得
-private:
+protected:
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
 	char music[256], title[256], artist[256]; //音楽ファイル、タイトル、アーティスト名
+private:
 	int id;
 };
 

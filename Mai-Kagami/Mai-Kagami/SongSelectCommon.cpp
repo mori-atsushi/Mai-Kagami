@@ -53,6 +53,10 @@ SongSelectCover::SongSelectCover(Font *font, Songs *songs) {
 	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
+	songTitle = new MyDrawTextLine(font, "", WIDTH * 0.79, HEIGHT * 0.3, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
+	songArtist = new MyDrawText(font, "", WIDTH * 0.96, HEIGHT * 0.325, 2, 20); //テキスト初期化
+	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
+	songLast[1] = new MyDrawText(font, "前々回： --点", WIDTH * 0.75, HEIGHT * 0.385, 0, 24); //テキスト初期化
 }
 
 

@@ -11,7 +11,7 @@
 #include "SongSelectDefine.h"
 #include "Songs.h"
 
-class Song2 {
+class Song2 : public Song{
 public:
 	Song2(Font *font, Song *song, const int now);
 	void Load();
@@ -30,7 +30,6 @@ private:
 	int n, speed;
 	boolean playFlag = 0;
 	Font *font;
-	Song *song;
 	MyDrawTextLine *songTitle;
 	MyDrawText *songArtist;
 	MyDrawText *songLast[2];

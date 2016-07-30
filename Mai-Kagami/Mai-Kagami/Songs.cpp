@@ -49,13 +49,3 @@ char *Song::GetSongTitle() {
 char *Song::GetSongArtist() {
 	return artist;
 }
-
-//ƒJƒo[‰æ‘œæ“¾
-MyDrawGraph *Song::GetSongCover() {
-	return coverGraph;
-}
-
-//“®‰ææ“¾
-MyDrawMovie *Song::GetSongMovie() {
-	return danceMovie;
-}

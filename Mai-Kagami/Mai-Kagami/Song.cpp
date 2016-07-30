@@ -1,12 +1,12 @@
 #include "Song.h"
 
-Song2::Song2(Font *font, Song *song, const int now) {
+Song2::Song2(Font *font, Song *song, const int now) 
+	: Song(*song) {
 	char *folder = "";
 	n = now;
-	Song2::song = song;
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
-	song->GetSongMovie()->ChangePos(WIDTH * 0.44, HEIGHT * 0.57);
-	song->GetSongMovie()->ChangeEx(0.9);
+	danceMovie->ChangePos(WIDTH * 0.44, HEIGHT * 0.57);
+	danceMovie->ChangeEx(0.9);
 
 	float x = HEIGHT * 0.35;
 	songTitle = new MyDrawTextLine(font, song->GetSongTitle(), WIDTH * 0.79, HEIGHT * 0.3, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
@@ -16,26 +16,26 @@ Song2::Song2(Font *font, Song *song, const int now) {
 }
 
 void Song2::Load() {
-	song->GetSongCover()->Load();
+	coverGraph->Load();
 	playFlag = FALSE;
 }
 
 void Song2::Release() {
-	song->GetSongCover()->Release();
+	coverGraph->Release();
 }
 
 void Song2::Update() {
 	if (n == 0) {
-		song->GetSongCover()->ChangeEx(1.0);
-		song->GetSongCover()->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		coverGraph->ChangeEx(1.0);
+		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
 	}
 	else {
-		song->GetSongCover()->ChangeEx(0.7);
+		coverGraph->ChangeEx(0.7);
 		if (n == -1) {
-			song->GetSongCover()->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
+			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
 		}
 		else if (n <= 5) {
-			song->GetSongCover()->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
+			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
 		}
 	}
 }
@@ -52,7 +52,7 @@ void Song2::Draw(int scene) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
 	}
 	if (n >= -1 && n <= 5) {
-		song->GetSongCover()->View();
+		coverGraph->View();
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
@@ -62,11 +62,11 @@ void Song2::Draw(int scene) {
 		if(playFlag)
 			StopMusic();
 		playFlag = FALSE;
-		song->GetSongMovie()->View();
+		danceMovie->View();
 		break;
 	default:
 		if (n == 0 && !playFlag) {
-			song->PlaybackMusic();
+			PlaybackMusic();
 			playFlag = TRUE;
 		}
 		else if (n != 0) {
@@ -89,24 +89,24 @@ void Song2::ChangeSpeed(int num) {
 	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
 	if (num == 1 && speed > 0) {
 		speed -= 1;
-		song->GetSongMovie()->ChangeSpeed(s[speed]);
+		danceMovie->ChangeSpeed(s[speed]);
 	}
 	if (num == -1 && speed < 5) {
 		speed += 1;
-		song->GetSongMovie()->ChangeSpeed(s[speed]);
+		danceMovie->ChangeSpeed(s[speed]);
 	}
 }
 
 void Song2::LoadMovie() {
-	song->GetSongMovie()->Load();
+	danceMovie->Load();
 }
 
 void Song2::StopMovie() {
-	song->GetSongMovie()->Stop();
+	danceMovie->Stop();
 }
 
 void Song2::ReleaseMovie() {
-	song->GetSongMovie()->Release();
+	danceMovie->Release();
 }
 
 int Song2::GetNow() {
