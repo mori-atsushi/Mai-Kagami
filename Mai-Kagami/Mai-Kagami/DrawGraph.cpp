@@ -1,5 +1,11 @@
 #include "DrawGraph.h"
 
+
+//‰æ‘œ‰Šú‰»
+MyDrawGraph::MyDrawGraph(const char *fileName) {
+	ex = 1.0;
+	MyDrawGraph::fileName = fileName;
+}
 //‰æ‘œ‰Šú‰»
 MyDrawGraph::MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate) : Draw(x, y) {
 	ex = ExRate;

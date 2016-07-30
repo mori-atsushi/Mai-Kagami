@@ -8,7 +8,7 @@ Song2::Song2(Font *font, Song *song, const int now) {
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
 	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder);
 	float x = HEIGHT * 0.35;
-	myDrawGraph = new MyDrawGraph(WIDTH * 0.5, x, cover);
+	myDrawGraph = song->GetSongCover();
 	songTitle = new MyDrawTextLine(font, song->GetSongTitle(), WIDTH * 0.79, HEIGHT * 0.3, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
 	songArtist = new MyDrawText(font, song->GetSongArtist(), WIDTH * 0.96, HEIGHT * 0.325, 2, 20); //テキスト初期化
 	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
