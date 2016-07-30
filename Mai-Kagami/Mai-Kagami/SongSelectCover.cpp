@@ -1,6 +1,6 @@
-#include "Song.h"
+#include "SongSelectCover.h"
 
-Song2::Song2(Font *font, Song *song, const int now) 
+SongSelectCover::SongSelectCover(Font *font, Song *song, const int now) 
 	: Song(*song) {
 	char *folder = "";
 	n = now;
@@ -10,16 +10,16 @@ Song2::Song2(Font *font, Song *song, const int now)
 	float x = HEIGHT * 0.35;
 }
 
-void Song2::Load() {
+void SongSelectCover::Load() {
 	coverGraph->Load();
 	playFlag = FALSE;
 }
 
-void Song2::Release() {
+void SongSelectCover::Release() {
 	coverGraph->Release();
 }
 
-void Song2::Update() {
+void SongSelectCover::Update() {
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
 		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
@@ -35,7 +35,7 @@ void Song2::Update() {
 	}
 }
 
-void Song2::Draw(int scene) {
+void SongSelectCover::Draw(int scene) {
 	if (n != 0) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
 	}
@@ -65,7 +65,7 @@ void Song2::Draw(int scene) {
 	}
 }
 
-void Song2::Change(int num, int max) {
+void SongSelectCover::Change(int num, int max) {
 	n += num;
 	if (n == -2)
 		n = max - 2;
@@ -73,7 +73,7 @@ void Song2::Change(int num, int max) {
 		n = -1;
 }
 
-void Song2::ChangeSpeed(int num) {
+void SongSelectCover::ChangeSpeed(int num) {
 	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
 	if (num == 1 && speed > 0) {
 		speed -= 1;
@@ -85,18 +85,18 @@ void Song2::ChangeSpeed(int num) {
 	}
 }
 
-void Song2::LoadMovie() {
+void SongSelectCover::LoadMovie() {
 	danceMovie->Load();
 }
 
-void Song2::StopMovie() {
+void SongSelectCover::StopMovie() {
 	danceMovie->Stop();
 }
 
-void Song2::ReleaseMovie() {
+void SongSelectCover::ReleaseMovie() {
 	danceMovie->Release();
 }
 
-int Song2::GetNow() {
+int SongSelectCover::GetNow() {
 	return n;
 }

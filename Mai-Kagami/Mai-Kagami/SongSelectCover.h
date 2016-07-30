@@ -1,5 +1,5 @@
-#ifndef __SONG_H_INCLUDED__
-#define __SONG_H_INCLUDED__
+#ifndef __SONGSELECTCOVER_H_INCLUDED__
+#define __SONGSELECTCOVER_H_INCLUDED__
 
 #include <string>
 #include "DxLib.h"
@@ -11,9 +11,9 @@
 #include "SongSelectDefine.h"
 #include "Songs.h"
 
-class Song2 : public Song{
+class SongSelectCover : public Song{
 public:
-	Song2(Font *font, Song *song, const int now);
+	SongSelectCover(Font *font, Song *song, const int now);
 	void Load();
 	void Release();
 	void Update();

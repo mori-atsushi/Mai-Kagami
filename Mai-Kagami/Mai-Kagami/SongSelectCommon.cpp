@@ -41,11 +41,11 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongSelectCover::SongSelectCover(Font *font, Songs *songs) {
+SongInformation::SongInformation(Font *font, Songs *songs) {
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
-		song[i] = new Song2(font, songs->GetSong(i), i);
-		song[i]->Change(0, n);
+		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
+		songCover[i]->Change(0, n);
 	}
 
 	float x = HEIGHT * 0.35;
@@ -60,30 +60,30 @@ SongSelectCover::SongSelectCover(Font *font, Songs *songs) {
 }
 
 
-void SongSelectCover::Load() {
+void SongInformation::Load() {
 	for (int i = 0; i < 2; i++)
 		grad[i]->Load();
 	for (int i = 0; i < n; i++)
-		song[i]->Load();
+		songCover[i]->Load();
 }
 
-void SongSelectCover::Update(Touch *touch, int scene) {
+void SongInformation::Update(Touch *touch, int scene) {
 	switch (scene)
 	{
 	case MAIN:
 		if (touch->Get(0) == 1) {
 			for (int i = 0; i < n; i++)
-				song[i]->Change(1, n);
+				songCover[i]->Change(1, n);
 		}
 
 		if (touch->Get(1) == 1)
-			song[now]->LoadMovie();
+			songCover[now]->LoadMovie();
 		else {
 			for (int i = 0; i < n; i++) {
-				if (song[i]->GetNow() == 0) {
+				if (songCover[i]->GetNow() == 0) {
 					now = i;
-					songTitle->ChangeText(song[now]->GetSongTitle());
-					songArtist->ChangeText(song[now]->GetSongArtist());
+					songTitle->ChangeText(songCover[now]->GetSongTitle());
+					songArtist->ChangeText(songCover[now]->GetSongArtist());
 					break;
 				}
 			}
@@ -91,27 +91,27 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 
 		if (touch->Get(2) == 1) {
 			for (int i = 0; i < n; i++)
-				song[i]->Change(-1, n);
+				songCover[i]->Change(-1, n);
 		}
 		for (int i = 0; i < n; i++)
-			song[i]->Update();
+			songCover[i]->Update();
 		break;
 	case MODE:
 		if (touch->Get(4) == 1)
-			song[now]->ReleaseMovie();
+			songCover[now]->ReleaseMovie();
 		break;
 	case OPTION1:
 		if (touch->Get(0) == 1)
-			song[now]->ChangeSpeed(1);
+			songCover[now]->ChangeSpeed(1);
 		if (touch->Get(1) == 1)
-			song[now]->ChangeSpeed(-1);
+			songCover[now]->ChangeSpeed(-1);
 		if (touch->Get(4) == 1)
-			song[now]->StopMovie();
+			songCover[now]->StopMovie();
 	}
 }
 
 //曲選択画面カバー画像表示
-void SongSelectCover::View(int scene) {
+void SongInformation::View(int scene) {
 	songTitle->View();
 	songArtist->View();
 	for (int i = 0; i < 2; i++) {
@@ -126,29 +126,29 @@ void SongSelectCover::View(int scene) {
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		box->View();
 		for (int i = 0; i < n; i++)
-			song[i]->Draw(scene);
+			songCover[i]->Draw(scene);
 		for (int i = 0; i < 2; i++)
 			grad[i]->View();
 		break;
 	case MODE:
 	case OPTION1:
-		song[now]->Draw(scene);
+		songCover[now]->Draw(scene);
 		break;
 	}
 }
 
-void SongSelectCover::Release() {
+void SongInformation::Release() {
 	for (int i = 0; i < 2; i++)
 		grad[i]->Release();
 	for (int i = 0; i < n; i++)
-		song[i]->Release();
+		songCover[i]->Release();
 }
 
-SongSelectCover::~SongSelectCover() {
+SongInformation::~SongInformation() {
 	delete box;
 	delete myDrawBox;
 	for (int i = 0; i < n; i++)
-		delete song[i];
+		delete songCover[i];
 	for (int i = 0; i < 2; i++) {
 		delete grad[i];
 	}

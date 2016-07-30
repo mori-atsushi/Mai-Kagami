@@ -57,9 +57,6 @@
     <ClCompile Include="MaiKagami.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
-    <ClCompile Include="Song.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
-    </ClCompile>
     <ClCompile Include="SongSelect.cpp">
       <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     <ClCompile Include="Songs.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
+    <ClCompile Include="SongSelectCover.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -114,9 +114,6 @@
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="MaiKagami.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Song.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="SongSelect.h">
@@ -163,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Songs.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SongSelectCover.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

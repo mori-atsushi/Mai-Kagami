@@ -6,7 +6,7 @@
 #include "Common.h"
 #include "Touch.h"
 #include "Font.h"
-#include "Song.h"
+#include "SongSelectCover.h"
 #include "Songs.h"
 #include "SongSelectDefine.h"
 
@@ -24,17 +24,17 @@ private:
 };
 
 //曲選択画面カバー関係
-class SongSelectCover {
+class SongInformation {
 public:
-	SongSelectCover(Font *font, Songs *songs); //初期化
+	SongInformation(Font *font, Songs *songs); //初期化
 	void Load();
 	void View(int scene); //表示
 	void Update(Touch *touch, int scene);
 	void Release();
-	~SongSelectCover();
+	~SongInformation();
 private:
 	int n, now;
-	Song2 *song[256];
+	SongSelectCover *songCover[256];
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;

@@ -6,7 +6,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetGraphMode(WIDTH / SIZE_RATE, HEIGHT / SIZE_RATE, 32); //ウィンドウサイズ設定
 	SetBackgroundColor(0, 0, 0); //背景色設定
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
-
+	SetAlwaysRunFlag(TRUE); //バックグラウンドでも処理を実行
 	MaiKagami *maiKagami = new MaiKagami(); //舞鏡クラス作成
 
 	SetUseASyncLoadFlag(TRUE); //非同期読み込みon

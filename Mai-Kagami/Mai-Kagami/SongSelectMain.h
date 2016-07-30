@@ -8,7 +8,7 @@
 #include "ModeSelect.h"
 #include "Draw.h"
 #include "Touch.h"
-#include "Song.h"
+#include "SongSelectCover.h"
 #include "Songs.h"
 #include "Font.h"
 #include "SongSelectCommon.h"
@@ -25,7 +25,7 @@ public:
 private:
 	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
-	SongSelectCover *songSelectCover; //選択中の曲
+	SongInformation *songInformation; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
