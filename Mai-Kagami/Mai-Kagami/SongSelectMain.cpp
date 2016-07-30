@@ -8,7 +8,7 @@ SongSelect::SongSelect(Font *font, Songs *songs) {
 	songInformation = new SongInformation(f, songs); //選択中の曲初期化
 	songSelectPop = new SongSelectPop(f);
 	modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
-	throughOptionButton = new ThroughOptionButton(f); //通し練習オプションボタン初期化
+	throughOptionButton = new ThroughOptionButton(f, songs); //通し練習オプションボタン初期化
 	touch = new Touch();
 }
 

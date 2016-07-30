@@ -62,7 +62,6 @@ void SongSelectCover::Draw(int scene) {
 		else if (n != 0) {
 			playFlag = FALSE;
 		}
-		speed = 0;
 		break;
 	}
 }

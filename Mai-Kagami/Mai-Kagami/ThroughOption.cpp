@@ -1,6 +1,6 @@
 #include "ThroughOption.h"
 
-ThroughOptionButton::ThroughOptionButton(Font *font) {
+ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs) {
 	button[0] = new Button(font, "UP", 1, 0);
 	button[1] = new Button(font, "DOWN", 2, 1);
 	button[2] = new Button(font, "スタート!", 0, 2);
@@ -8,7 +8,7 @@ ThroughOptionButton::ThroughOptionButton(Font *font) {
 	float height = BUTTON_POS + BUTTON_INTERVAL / 2;
 	speed[0] = new MyDrawText(font, "スピード", WIDTH * 0.72, height, 0, 30);
 	speed[1] = new MyDrawText(font, "×1.0", WIDTH * 0.86, height, 0, 30, "Yellow");
-	sp = 0;
+	ThroughOptionButton::songs = songs;
 }
 
 
@@ -22,18 +22,11 @@ void ThroughOptionButton::View() {
 
 void ThroughOptionButton::Update(Touch *touch, int scene) {
 	if (scene == OPTION1) {
-		const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
-		if (touch->Get(0) == 1 && sp > 0)
-			sp -= 1;
-		if (touch->Get(1) == 1 && sp < 5)
-			sp += 1;
+		Song *song = songs->GetSong(songs->GetNowSong());
 
 		char str[256];
-		sprintf_s(str, sizeof(str), "×%1.1lf", s[sp]);
+		sprintf_s(str, sizeof(str), "×%1.1lf", song->GetSpeed());
 		speed[1]->ChangeText(str);
-	}
-	else {
-		sp = 0;
 	}
 }
 

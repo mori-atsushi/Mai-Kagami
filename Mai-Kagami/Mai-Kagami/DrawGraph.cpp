@@ -44,7 +44,6 @@ MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, con
 void MyDrawMovie::View() {
 	if (!CheckHandleASyncLoad(handle)) {
 		if (GetMovieStateToGraph(handle) == 0) {
-			SetPlaySpeedRateMovieToGraph(handle, 1.0);
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
 		}

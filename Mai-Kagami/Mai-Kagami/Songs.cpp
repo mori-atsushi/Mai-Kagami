@@ -42,6 +42,8 @@ Song::Song(const int id, const char *title, const char *artist, const char *fold
 	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder);
 	Song::id = id;
 	n = new int();
+	speed = new double();
+	*speed = 1.0;
 
 	coverGraph = new MyDrawGraph(cover);
 	danceMovie = new MyDrawMovie(movie);
@@ -61,24 +63,32 @@ int Song::GetNow() {
 	return *n;
 }
 
+double Song::GetSpeed() {
+	return *speed;
+}
+
 void Song::SetNow(const int n) {
 	*Song::n = n;
 }
 
 void Song::ChangeSpeed(int num) {
 	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
-	if (num == 1 && speed > 0) {
-		speed -= 1;
-		danceMovie->ChangeSpeed(s[speed]);
+	static int x = 0;
+	if (num == 1 && x > 0) {
+		x -= 1;
+		*speed = s[x];
+		danceMovie->ChangeSpeed(*speed);
 	}
-	if (num == -1 && speed < 5) {
-		speed += 1;
-		danceMovie->ChangeSpeed(s[speed]);
+	if (num == -1 && x < 5) {
+		x += 1;
+		*speed = s[x];
+		danceMovie->ChangeSpeed(*speed);
 	}
 }
 
 void Song::LoadMovie() {
 	danceMovie->Load();
+	danceMovie->ChangeSpeed(*speed);
 }
 
 void Song::StopMovie() {
