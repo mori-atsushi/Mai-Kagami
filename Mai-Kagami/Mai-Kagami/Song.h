@@ -30,11 +30,10 @@ private:
 	int n, speed;
 	boolean playFlag = 0;
 	Font *font;
+	Song *song;
 	MyDrawTextLine *songTitle;
 	MyDrawText *songArtist;
 	MyDrawText *songLast[2];
-	MyDrawGraph *myDrawGraph; //ÉJÉoÅ[âÊëú
-	MyDrawMovie *myDrawMovie;
 };
 
 #endif

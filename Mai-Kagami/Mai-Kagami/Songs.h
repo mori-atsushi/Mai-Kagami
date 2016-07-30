@@ -7,6 +7,7 @@
 class Song {
 public:
 	Song(const int id, const char *title, const char *artist, const char *folder);
+	void PlaybackMusic(); //音楽再生
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
 	MyDrawGraph *GetSongCover(); //カバー画像取得
@@ -14,7 +15,7 @@ public:
 private:
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
-	char music[256], title[256], artist[256];
+	char music[256], title[256], artist[256]; //音楽ファイル、タイトル、アーティスト名
 	int id;
 };
 
