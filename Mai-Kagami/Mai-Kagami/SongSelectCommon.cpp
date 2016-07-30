@@ -82,6 +82,8 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 			for (int i = 0; i < n; i++) {
 				if (song[i]->GetNow() == 0) {
 					now = i;
+					songTitle->ChangeText(song[now]->GetSongTitle());
+					songArtist->ChangeText(song[now]->GetSongArtist());
 					break;
 				}
 			}
@@ -110,6 +112,11 @@ void SongSelectCover::Update(Touch *touch, int scene) {
 
 //曲選択画面カバー画像表示
 void SongSelectCover::View(int scene) {
+	songTitle->View();
+	songArtist->View();
+	for (int i = 0; i < 2; i++) {
+		songLast[i]->View();
+	}
 	switch (scene)
 	{
 	case BACK:

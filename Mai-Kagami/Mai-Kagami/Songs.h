@@ -7,7 +7,6 @@
 class Song {
 public:
 	Song(const int id, const char *title, const char *artist, const char *folder);
-	void PlaybackMusic(); //音楽再生
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
 protected:

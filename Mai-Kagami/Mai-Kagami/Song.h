@@ -24,15 +24,10 @@ public:
 	void StopMovie();
 	void ReleaseMovie();
 	int GetNow();
-	~Song2();
 private:
-	char music[256];
 	int n, speed;
 	boolean playFlag = 0;
 	Font *font;
-	MyDrawTextLine *songTitle;
-	MyDrawText *songArtist;
-	MyDrawText *songLast[2];
 };
 
 #endif

@@ -36,10 +36,6 @@ Song::Song(const int id, const char *title, const char *artist, const char *fold
 	danceMovie = new MyDrawMovie(movie);
 }
 
-void Song::PlaybackMusic() {
-	PlayMusic(music, DX_PLAYTYPE_LOOP);
-}
-
 //‹È–¼Žæ“¾
 char *Song::GetSongTitle() {
 	return title;
