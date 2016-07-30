@@ -25,7 +25,7 @@ void ThroughOptionButton::Update(Touch *touch, int scene) {
 		Song *song = songs->GetSong(songs->GetNowSong());
 
 		char str[256];
-		sprintf_s(str, sizeof(str), "~%1.1lf", song->GetSpeed());
+		sprintf_s(str, sizeof(str), "~%1.1lf", song->danceMovie->GetSpeed());
 		speed[1]->ChangeText(str);
 	}
 }

@@ -28,8 +28,10 @@ public:
 	void View(); //表示
 	void Stop(); //停止
 	void ChangeSpeed(double speed); //スピード変更
+	double GetSpeed(); //スピード取得
 	~MyDrawMovie();
 private:
+	double speed;
 };
 
 #endif

@@ -34,16 +34,21 @@ void MyDrawGraph::Release() {
 }
 
 //動画初期化
-MyDrawMovie::MyDrawMovie(const char *filename) : MyDrawGraph(filename) {}
+MyDrawMovie::MyDrawMovie(const char *filename) : MyDrawGraph(filename) {
+	speed = 1.0;
+}
 
 //動画初期化
 MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, const double ExRate)
-	: MyDrawGraph(x, y, filename, ExRate) {}
+	: MyDrawGraph(x, y, filename, ExRate) {
+	speed = 1.0;
+}
 
 //動画表示
 void MyDrawMovie::View() {
 	if (!CheckHandleASyncLoad(handle)) {
 		if (GetMovieStateToGraph(handle) == 0) {
+			SetPlaySpeedRateMovieToGraph(handle, speed);
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
 		}
@@ -58,10 +63,13 @@ void MyDrawMovie::Stop() {
 
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
+	MyDrawMovie::speed = speed;
 	PauseMovieToGraph(handle);
-	SetPlaySpeedRateMovieToGraph(handle, speed);
-	SeekMovieToGraph(handle, 0);
-	PlayMovieToGraph(handle);
+}
+
+//スピード取得
+double MyDrawMovie::GetSpeed() {
+	return speed;
 }
 
 MyDrawMovie::~MyDrawMovie() {

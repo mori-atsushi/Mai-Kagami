@@ -77,8 +77,10 @@ void SongInformation::Update(Touch *touch, int scene) {
 				songCover[i]->Change(1, n);
 		}
 
-		if (touch->Get(1) == 1)
-			nowSong->LoadMovie();
+		if (touch->Get(1) == 1) {
+			nowSong->danceMovie->Load();
+			nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
+		}
 		else {
 			nowSong = songCover[songs->GetNowSong()];
 			for (int i = 0; i < n; i++) {
@@ -100,7 +102,7 @@ void SongInformation::Update(Touch *touch, int scene) {
 		break;
 	case MODE:
 		if (touch->Get(4) == 1)
-			nowSong->ReleaseMovie();
+			nowSong->danceMovie->Release();
 		break;
 	case OPTION1:
 		if (touch->Get(0) == 1)
@@ -108,7 +110,7 @@ void SongInformation::Update(Touch *touch, int scene) {
 		if (touch->Get(1) == 1)
 			nowSong->ChangeSpeed(-1);
 		if (touch->Get(4) == 1)
-			nowSong->StopMovie();
+			nowSong->danceMovie->Stop();
 	}
 }
 

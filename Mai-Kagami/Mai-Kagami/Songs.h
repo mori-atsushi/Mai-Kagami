@@ -10,19 +10,14 @@ public:
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
 	int GetNow();
-	double GetSpeed();
 	void SetNow(const int n);
-	void LoadMovie();
-	void StopMovie();
-	void ReleaseMovie();
 	void ChangeSpeed(int num);
-protected:
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
+protected:
 	char music[256], title[256], artist[256]; //音楽ファイル、タイトル、アーティスト名
 private:
 	int id, *n; //ID、現在の番号
-	double *speed;
 };
 
 class Songs {
