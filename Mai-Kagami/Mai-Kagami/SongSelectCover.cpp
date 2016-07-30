@@ -3,7 +3,7 @@
 SongSelectCover::SongSelectCover(Font *font, Song *song, const int now) 
 	: Song(*song) {
 	char *folder = "";
-	n = now;
+	SetNow(now);
 	danceMovie->ChangePos(WIDTH * 0.44, HEIGHT * 0.57);
 	danceMovie->ChangeEx(0.9);
 
@@ -20,6 +20,7 @@ void SongSelectCover::Release() {
 }
 
 void SongSelectCover::Update() {
+	int n = GetNow();
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
 		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
@@ -36,6 +37,7 @@ void SongSelectCover::Update() {
 }
 
 void SongSelectCover::Draw(int scene) {
+	int n = GetNow();
 	if (n != 0) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
 	}
@@ -66,37 +68,11 @@ void SongSelectCover::Draw(int scene) {
 }
 
 void SongSelectCover::Change(int num, int max) {
+	int n = GetNow();
 	n += num;
 	if (n == -2)
 		n = max - 2;
 	if (n == max - 1)
 		n = -1;
-}
-
-void SongSelectCover::ChangeSpeed(int num) {
-	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
-	if (num == 1 && speed > 0) {
-		speed -= 1;
-		danceMovie->ChangeSpeed(s[speed]);
-	}
-	if (num == -1 && speed < 5) {
-		speed += 1;
-		danceMovie->ChangeSpeed(s[speed]);
-	}
-}
-
-void SongSelectCover::LoadMovie() {
-	danceMovie->Load();
-}
-
-void SongSelectCover::StopMovie() {
-	danceMovie->Stop();
-}
-
-void SongSelectCover::ReleaseMovie() {
-	danceMovie->Release();
-}
-
-int SongSelectCover::GetNow() {
-	return n;
+	SetNow(n);
 }

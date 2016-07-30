@@ -23,6 +23,16 @@ int Songs::GetSongNum() {
 Song *Songs::GetSong(int x) {
 	return song[x];
 }
+
+//Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚é‹Èæ“¾
+int Songs::GetNowSong() {
+	for (int i = 0; i < n; i++) {
+		if (song[i]->GetNow() == 0) {
+			return i;
+		}
+	}
+}
+
 Song::Song(const int id, const char *title, const char *artist, const char *folder) {
 	char cover[256], movie[256];
 	strcpy_s(Song::title, sizeof(Song::title), title);
@@ -31,6 +41,7 @@ Song::Song(const int id, const char *title, const char *artist, const char *fold
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder);
 	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder);
 	Song::id = id;
+	n = new int();
 
 	coverGraph = new MyDrawGraph(cover);
 	danceMovie = new MyDrawMovie(movie);
@@ -44,4 +55,36 @@ char *Song::GetSongTitle() {
 //‹È–¼æ“¾
 char *Song::GetSongArtist() {
 	return artist;
+}
+
+int Song::GetNow() {
+	return *n;
+}
+
+void Song::SetNow(const int n) {
+	*Song::n = n;
+}
+
+void Song::ChangeSpeed(int num) {
+	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+	if (num == 1 && speed > 0) {
+		speed -= 1;
+		danceMovie->ChangeSpeed(s[speed]);
+	}
+	if (num == -1 && speed < 5) {
+		speed += 1;
+		danceMovie->ChangeSpeed(s[speed]);
+	}
+}
+
+void Song::LoadMovie() {
+	danceMovie->Load();
+}
+
+void Song::StopMovie() {
+	danceMovie->Stop();
+}
+
+void Song::ReleaseMovie() {
+	danceMovie->Release();
 }

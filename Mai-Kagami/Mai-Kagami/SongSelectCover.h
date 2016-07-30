@@ -19,13 +19,7 @@ public:
 	void Update();
 	void Draw(int scene);
 	void Change(int num, int max);
-	void ChangeSpeed(int num);
-	void LoadMovie();
-	void StopMovie();
-	void ReleaseMovie();
-	int GetNow();
 private:
-	int n, speed;
 	boolean playFlag = 0;
 	Font *font;
 };

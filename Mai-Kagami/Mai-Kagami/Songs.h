@@ -9,12 +9,19 @@ public:
 	Song(const int id, const char *title, const char *artist, const char *folder);
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
+	int GetNow();
+	void SetNow(const int n);
+	void LoadMovie();
+	void StopMovie();
+	void ReleaseMovie();
+	void ChangeSpeed(int num);
 protected:
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
 	char music[256], title[256], artist[256]; //音楽ファイル、タイトル、アーティスト名
+	int speed; //現在の番号
 private:
-	int id;
+	int id, *n; //ID、現在の番号
 };
 
 class Songs {
@@ -22,6 +29,7 @@ public:
 	Songs();
 	int GetSongNum(); //曲数取得
 	Song *GetSong(int x);
+	int GetNowSong();
 private:
 	Song *song[256];
 	int n; //曲数

@@ -42,6 +42,7 @@ SongSelectTitle::~SongSelectTitle() {
 
 //曲選択画面カバー画像初期化
 SongInformation::SongInformation(Font *font, Songs *songs) {
+	SongInformation::songs = songs;
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
 		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
@@ -77,13 +78,14 @@ void SongInformation::Update(Touch *touch, int scene) {
 		}
 
 		if (touch->Get(1) == 1)
-			songCover[now]->LoadMovie();
+			nowSong->LoadMovie();
 		else {
+			nowSong = songCover[songs->GetNowSong()];
 			for (int i = 0; i < n; i++) {
 				if (songCover[i]->GetNow() == 0) {
 					now = i;
-					songTitle->ChangeText(songCover[now]->GetSongTitle());
-					songArtist->ChangeText(songCover[now]->GetSongArtist());
+					songTitle->ChangeText(nowSong->GetSongTitle());
+					songArtist->ChangeText(nowSong->GetSongArtist());
 					break;
 				}
 			}
@@ -98,15 +100,15 @@ void SongInformation::Update(Touch *touch, int scene) {
 		break;
 	case MODE:
 		if (touch->Get(4) == 1)
-			songCover[now]->ReleaseMovie();
+			nowSong->ReleaseMovie();
 		break;
 	case OPTION1:
 		if (touch->Get(0) == 1)
-			songCover[now]->ChangeSpeed(1);
+			nowSong->ChangeSpeed(1);
 		if (touch->Get(1) == 1)
-			songCover[now]->ChangeSpeed(-1);
+			nowSong->ChangeSpeed(-1);
 		if (touch->Get(4) == 1)
-			songCover[now]->StopMovie();
+			nowSong->StopMovie();
 	}
 }
 
@@ -132,7 +134,7 @@ void SongInformation::View(int scene) {
 		break;
 	case MODE:
 	case OPTION1:
-		songCover[now]->Draw(scene);
+		nowSong->Draw(scene);
 		break;
 	}
 }
