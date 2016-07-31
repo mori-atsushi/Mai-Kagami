@@ -3,7 +3,7 @@
 ThroughMain::ThroughMain(Font *font, Songs *songs) {
 	f = font;
 	loadFlag = 0;
-	myDrawText = new MyDrawText(f, "’Ê‚µ—ûKƒ‚[ƒh", WIDTH / 2, HEIGHT / 2, 1, 40);
+	throughStart = new ThroughStart(f);
 }
 
 void ThroughMain::Load() {
@@ -27,7 +27,7 @@ int ThroughMain::Update() {
 
 void ThroughMain::View() {
 	if (loadFlag == 2) {
-		myDrawText->View();
+		throughStart->View();
 	}
 }
 

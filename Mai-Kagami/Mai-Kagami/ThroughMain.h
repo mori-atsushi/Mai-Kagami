@@ -6,6 +6,7 @@
 #include "Songs.h"
 #include "Main.h"
 #include "DrawText.h"
+#include "ThroughStart.h"
 
 class ThroughMain {
 public:
@@ -15,7 +16,7 @@ public:
 	~ThroughMain();
 private:
 	Font *f;
-	MyDrawText *myDrawText;
+	ThroughStart *throughStart;
 	int loadFlag;
 	void Load();
 	void Delete();
