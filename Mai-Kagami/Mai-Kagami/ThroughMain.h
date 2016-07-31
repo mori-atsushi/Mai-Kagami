@@ -8,6 +8,7 @@
 #include "DrawText.h"
 #include "ThroughStart.h"
 #include "ThroughDefine.h"
+#include "ThroughPlay.h"
 #include "Touch.h"
 
 class ThroughMain {
@@ -19,6 +20,7 @@ public:
 private:
 	Font *f;
 	ThroughStart *throughStart;
+	ThroughPlay *throughPlay;
 	int loadFlag;
 	void Load();
 	void Delete();

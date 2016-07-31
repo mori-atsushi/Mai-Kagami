@@ -114,6 +114,9 @@
     <ClCompile Include="ThroughStart.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
+    <ClCompile Include="ThroughPlay.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -183,6 +186,9 @@
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
     <ClInclude Include="ThroughDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughPlay.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
   </ItemGroup>
