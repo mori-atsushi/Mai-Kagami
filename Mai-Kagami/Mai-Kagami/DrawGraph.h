@@ -29,6 +29,7 @@ public:
 	void Stop(); //停止
 	void ChangeSpeed(double speed); //スピード変更
 	double GetSpeed(); //スピード取得
+	float GetNow();
 	~MyDrawMovie();
 private:
 	double speed;

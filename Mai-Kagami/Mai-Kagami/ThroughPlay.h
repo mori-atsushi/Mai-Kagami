@@ -5,16 +5,20 @@
 #include "Font.h"
 #include "Songs.h"
 #include "DrawText.h"
+#include "DrawObject.h"
 
 class ThroughPlay {
 public:
 	ThroughPlay(Font *font, Song *song);
 	void View();
+	void Update();
 	~ThroughPlay();
 private:
 	Song *song;
 	MyDrawTextLine *songTitle;
 	MyDrawText *songArtist;
+	MyDrawBar *barAll, *barNow;
+	MyDrawCircle *circle[2];
 };
 
 #endif

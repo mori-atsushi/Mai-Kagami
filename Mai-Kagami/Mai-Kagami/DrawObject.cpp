@@ -84,3 +84,20 @@ void  MyDrawBox::View() {
 
 	DrawBoxAA(x1, y1, x2, y2, Color::Get(), flag, l);
 }
+
+void MyDrawBox::ChangeSize(const float width, const float height) {
+	w = width / SIZE_RATE;
+	h = height / SIZE_RATE;
+}
+
+//éläpå`èâä˙âª(ìhÇËÇ¬Ç‘ÇµÇ†ÇË)
+MyDrawBar::MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName)
+	:MyDrawBox(x + width / 2, y, width, height, colorName) {
+	MyDrawBar::x = x;
+	MyDrawBar::y = y;
+}
+
+void MyDrawBar::ChangeSize(const float width, const float height) {
+	MyDrawBox::ChangeSize(width, height);
+	ChangePos(x + width / 2, y);
+}

@@ -72,6 +72,10 @@ double MyDrawMovie::GetSpeed() {
 	return speed;
 }
 
+float MyDrawMovie::GetNow() {
+	return (float)TellMovieToGraphToFrame(handle) / GetMovieTotalFrameToGraph(handle);
+}
+
 MyDrawMovie::~MyDrawMovie() {
 	DeleteGraph(handle);
 }

@@ -31,8 +31,17 @@ public:
 	MyDrawBox(const float x, const float y, const float width, const float height, const char *colorName = "White"); //四角形初期化（塗りつぶしあり）
 	MyDrawBox(const float x, const float y, const float width, const float height, const float line, const char *colorName = "Blue"); //四角形初期化（塗りつぶしなし）
 	void View();
+	void ChangeSize(const float width, const float height);
 private:
 	float w, h, l; //幅、高さ、線の太さ
+};
+
+class MyDrawBar : public MyDrawBox {
+public:
+	MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName = "White"); //四角形初期化（塗りつぶしあり）
+	void ChangeSize(const float width, const float height);
+private:
+	float x, y; //座標
 };
 
 #endif

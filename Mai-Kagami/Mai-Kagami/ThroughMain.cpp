@@ -30,6 +30,8 @@ int ThroughMain::Update() {
 			if (touch->Get(0) == 1)
 				scene = THROUGH_PLAY;
 			break;
+		case THROUGH_PLAY:
+			throughPlay->Update();
 		}
 	}
 	return THROUGH;
