@@ -58,6 +58,7 @@
     <ClInclude Include="SongSelectCommon.h" />
     <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
+    <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughMain.h" />
     <ClInclude Include="ThroughOption.h" />
     <ClInclude Include="ThroughStart.h" />

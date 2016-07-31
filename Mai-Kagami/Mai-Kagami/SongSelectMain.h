@@ -15,7 +15,7 @@
 //‹È‘I‘ð‰æ–ÊŠÖŒW
 class SongSelect {
 public:
-	SongSelect(Font *font, Songs *songs);
+	SongSelect(Font *font, Touch *touch, Songs *songs);
 	int Update();
 	void View();
 	~SongSelect();

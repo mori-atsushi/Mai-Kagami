@@ -6,6 +6,7 @@
 #include "SongSelectMain.h"
 #include "Songs.h"
 #include "ThroughMain.h"
+#include "Touch.h"
 
 class MaiKagami
 {
@@ -20,6 +21,7 @@ private:
 	SongSelect *songSelect; //‹È‘I‘ğ‰æ–Ê
 	ThroughMain *throughMain; //’Ê‚µ—ûK
 	Songs *songs; //‹Èˆê——
+	Touch *touch;
 };
 
 #endif

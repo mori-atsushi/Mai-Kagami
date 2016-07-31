@@ -1,0 +1,6 @@
+#ifndef __THROUGHDEFINE_H_INCLUDED__
+#define __THROUGHDEFINE_H_INCLUDED__
+
+#define THROUGH_START 0
+#define THROUGH_PLAY 1
+#endif

@@ -7,10 +7,12 @@
 #include "Main.h"
 #include "DrawText.h"
 #include "ThroughStart.h"
+#include "ThroughDefine.h"
+#include "Touch.h"
 
 class ThroughMain {
 public:
-	ThroughMain(Font *font, Songs *songs);
+	ThroughMain(Font *font, Touch *touch, Songs *songs);
 	int Update();
 	void View();
 	~ThroughMain();
@@ -20,6 +22,8 @@ private:
 	int loadFlag;
 	void Load();
 	void Delete();
+	int scene;
+	Touch *touch;
 };
 
 #endif

@@ -1,18 +1,19 @@
 #include "MaiKagami.h"
 
 MaiKagami::MaiKagami() {
+	touch = new Touch();
 	scene = START; //シーン初期化
 	font = new Font();
 	songs = new Songs(); //曲一覧作成
 	top = new Top(font);
-	songSelect = new SongSelect(font, songs);
-	throughMain = new ThroughMain(font, songs);
+	songSelect = new SongSelect(font, touch, songs);
+	throughMain = new ThroughMain(font, touch, songs);
 }
 
 //全体の算計
 void MaiKagami::Update() {
 	int now;
-
+	touch->Check();
 	do {
 		now = scene;
 		switch (scene) {

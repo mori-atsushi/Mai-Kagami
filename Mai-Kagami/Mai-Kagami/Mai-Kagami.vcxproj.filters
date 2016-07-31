@@ -182,5 +182,8 @@
     <ClInclude Include="ThroughStart.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
+    <ClInclude Include="ThroughDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

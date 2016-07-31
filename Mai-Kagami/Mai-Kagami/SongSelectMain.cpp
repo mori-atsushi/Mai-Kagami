@@ -1,6 +1,6 @@
 #include "SongSelectMain.h"
 
-SongSelect::SongSelect(Font *font, Songs *songs) {
+SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 	f = font;
 	loadFlag = 0;
 	songSelectTitle = new SongSelectTitle(f, WIDTH * 0.65, HEIGHT * 0.23); //曲選択画面タイトル初期化
@@ -9,7 +9,7 @@ SongSelect::SongSelect(Font *font, Songs *songs) {
 	songSelectPop = new SongSelectPop(f);
 	modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
 	throughOptionButton = new ThroughOptionButton(f, songs); //通し練習オプションボタン初期化
-	touch = new Touch();
+	SongSelect::touch = touch;
 }
 
 //曲選択画面ロード
@@ -31,7 +31,6 @@ void SongSelect::Load() {
 int SongSelect::Update() {
 	Load();
 	if (loadFlag == 2) {
-		touch->Check();
 		songInformation->Update(touch, scene);
 		switch (scene)
 		{
@@ -109,5 +108,4 @@ SongSelect::~SongSelect() {
 	delete songSelectTitle;
 	delete songSelectPop;
 	delete throughOptionButton;
-	delete touch;
 }
