@@ -19,6 +19,7 @@ private:
 	MyDrawText *songArtist;
 	MyDrawBar *barAll, *barNow;
 	MyDrawCircle *circle[2];
+	MyDrawTextV *part[10];
 };
 
 #endif

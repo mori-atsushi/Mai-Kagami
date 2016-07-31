@@ -15,9 +15,16 @@ public:
 	void ChangeText(char *str); //テキスト変更
 	float GetHeight(); //縦取得
 	float GetWidth(); //幅取得
-private:
+protected:
 	int f, point; //フォント情報、ポジション情報、フォントサイズ
 	std::string s; //文字
+};
+
+//縦書きテキスト
+class MyDrawTextV : public MyDrawText {
+public:
+	MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
+	void View();
 };
 
 //複数行のテキスト

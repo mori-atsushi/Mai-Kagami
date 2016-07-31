@@ -8,6 +8,12 @@ ThroughPlay::ThroughPlay(Font *font, Song *song) {
 	barNow = new MyDrawBar(WIDTH * 0.41, HEIGHT * 0.055, 0, 10, "Blue");
 	circle[0] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 12);
 	circle[1] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 5, "White");
+	part[0] = new MyDrawTextV(font, "イントロ", WIDTH * 0.41, HEIGHT * 0.054, 0, 20, "Blue");
+	part[1] = new MyDrawTextV(font, "Aパート", WIDTH * 0.45, HEIGHT * 0.054, 0, 16);
+	part[2] = new MyDrawTextV(font, "Bパート", WIDTH * 0.5, HEIGHT * 0.054, 0, 16);
+	part[3] = new MyDrawTextV(font, "サビ", WIDTH * 0.55, HEIGHT * 0.054, 0, 16);
+	part[4] = new MyDrawTextV(font, "間奏", WIDTH * 0.60, HEIGHT * 0.054, 0, 16);
+	part[5] = new MyDrawTextV(font, "Aパート", WIDTH * 0.65, HEIGHT * 0.054, 0, 16);
 }
 
 void ThroughPlay::Update() {
@@ -27,6 +33,8 @@ void ThroughPlay::View() {
 	barNow->View();
 	for(int i = 0; i < 2; i++)
 		circle[i]->View();
+	for(int i = 0; i < 6; i++)
+		part[i]->View();
 }
 
 ThroughPlay::~ThroughPlay() {

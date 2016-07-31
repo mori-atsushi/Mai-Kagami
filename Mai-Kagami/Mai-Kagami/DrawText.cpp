@@ -36,6 +36,16 @@ float MyDrawText::GetWidth() {
 	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
 }
 
+//テキスト初期化
+MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
+	: MyDrawText(font, str, x, y, pos, point, colorName) {}
+
+void MyDrawTextV::View() {
+	SetDrawMode(DX_DRAWMODE_BILINEAR);
+	DrawRotaStringToHandle(GetX(), GetY(), 1, 1, 0, GetHeight() / SIZE_RATE / 2, - 2.0 / 6.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
+	SetDrawMode(DX_DRAWMODE_NEAREST);
+}
+
 //複数行のテキスト
 MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
 	: Color(colorName) , Draw2(pos) {
