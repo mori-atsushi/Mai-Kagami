@@ -4,7 +4,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	f = font;
 	loadFlag = 0;
 	throughStart = new ThroughStart(f);
-	throughPlay = new ThroughPlay(songs->GetSong(songs->GetNowSong()));
+	throughPlay = new ThroughPlay(f, songs->GetSong(songs->GetNowSong()));
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }
