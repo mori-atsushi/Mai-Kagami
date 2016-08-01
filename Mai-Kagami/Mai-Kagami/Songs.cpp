@@ -27,10 +27,10 @@ Song *Songs::GetSong(int x) {
 //Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚é‹Èæ“¾
 int Songs::GetNowSong() {
 	for (int i = 0; i < n; i++) {
-		if (song[i]->GetNow() == 0) {
+		if (song[i]->GetNow() == 0)
 			return i;
-		}
 	}
+	return 0;
 }
 
 Song::Song(const int id, const char *title, const char *artist, const char *folder) {

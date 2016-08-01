@@ -1,6 +1,10 @@
 #include "ThroughPlay.h"
 
-ThroughPlay::ThroughPlay(Font *font, Song *song) {
+ThroughPlay::ThroughPlay(Font *font) {
+	ThroughPlay::font = font;
+}
+
+void ThroughPlay::Load(Song *song) {
 	ThroughPlay::song = song;
 	songTitle = new MyDrawTextLine(font, song->GetSongTitle(), WIDTH * 0.2, HEIGHT * 0.03, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
 	songArtist = new MyDrawText(font, song->GetSongArtist(), WIDTH * 0.37, HEIGHT * 0.055, 2, 20); //テキスト初期化

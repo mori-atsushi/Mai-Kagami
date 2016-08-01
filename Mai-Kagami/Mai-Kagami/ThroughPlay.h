@@ -9,11 +9,13 @@
 
 class ThroughPlay {
 public:
-	ThroughPlay(Font *font, Song *song);
+	ThroughPlay(Font *font);
+	void Load(Song *song);
 	void View();
 	void Update();
 	~ThroughPlay();
 private:
+	Font *font;
 	Song *song;
 	MyDrawTextLine *songTitle;
 	MyDrawText *songArtist;

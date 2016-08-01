@@ -19,6 +19,7 @@ public:
 	~ThroughMain();
 private:
 	Font *f;
+	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
 	int loadFlag;
