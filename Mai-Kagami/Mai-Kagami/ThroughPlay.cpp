@@ -24,7 +24,7 @@ void ThroughPlay::Update() {
 }
 
 void ThroughPlay::View() {
-	song->danceMovie->ChangeEx(2.4);
+	song->danceMovie->ChangeEx(1);
 	song->danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.5);
 	song->danceMovie->View();
 	songTitle->View();

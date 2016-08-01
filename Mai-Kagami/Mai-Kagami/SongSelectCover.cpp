@@ -4,8 +4,8 @@ SongSelectCover::SongSelectCover(Font *font, Song *song, const int now)
 	: Song(*song) {
 	char *folder = "";
 	SetNow(now);
-	danceMovie->ChangePos(WIDTH * 0.44, HEIGHT * 0.57);
-	danceMovie->ChangeEx(0.9);
+	danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.57);
+	danceMovie->ChangeEx(0.5);
 
 	float x = HEIGHT * 0.35;
 }
