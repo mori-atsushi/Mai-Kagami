@@ -19,6 +19,7 @@ void SongSelectCover::Release() {
 	coverGraph->Release();
 }
 
+//表示位置の計算
 void SongSelectCover::Update() {
 	int n = GetNow();
 	if (n == 0) {
@@ -66,6 +67,7 @@ void SongSelectCover::Draw(int scene) {
 	}
 }
 
+//曲の位置IDを変更
 void SongSelectCover::Change(int num, int max) {
 	int n = GetNow();
 	n += num;

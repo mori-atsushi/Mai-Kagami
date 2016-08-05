@@ -52,7 +52,9 @@ void MyDrawMovie::View() {
 			SeekMovieToGraph(handle, 0);
 			PlayMovieToGraph(handle);
 		}
-		MyDrawGraph::View();
+		SetDrawMode(DX_DRAWMODE_BILINEAR);
+		DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, TRUE); //•`‰æ
+		SetDrawMode(DX_DRAWMODE_NEAREST);
 	}
 }
 
