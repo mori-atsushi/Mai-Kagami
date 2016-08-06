@@ -12,6 +12,7 @@ void ThroughPlay::Load(Song *song) {
 	barNow = new MyDrawBar(WIDTH * 0.41, HEIGHT * 0.055, 0, 10, "Blue");
 	circle[0] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 12);
 	circle[1] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 5, "White");
+	song->LoadPart();
 	part[0] = new MyDrawTextV(font, "イントロ", WIDTH * 0.41, HEIGHT * 0.054, 0, 20, "Blue");
 	part[1] = new MyDrawTextV(font, "Aパート", WIDTH * 0.45, HEIGHT * 0.054, 0, 16);
 	part[2] = new MyDrawTextV(font, "Bパート", WIDTH * 0.5, HEIGHT * 0.054, 0, 16);

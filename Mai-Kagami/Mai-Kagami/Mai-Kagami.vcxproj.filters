@@ -118,7 +118,7 @@
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
     <ClCompile Include="Song.cpp">
-      <Filter>ソース ファイル\画面関係\トップ画面</Filter>
+      <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
