@@ -14,7 +14,7 @@ void ThroughMain::Load() {
 	if (loadFlag == 2)
 		return;
 
-	if (loadFlag == 0) {
+	if (loadFlag == 0 && GetASyncLoadNum() == 0) {
 		throughPlay->Load(songs->GetSong(songs->GetNowSong()));
 		loadFlag = 1;
 	}

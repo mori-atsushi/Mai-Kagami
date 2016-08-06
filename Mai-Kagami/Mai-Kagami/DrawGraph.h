@@ -29,7 +29,8 @@ public:
 	void Stop(); //停止
 	void ChangeSpeed(double speed); //スピード変更
 	double GetSpeed(); //スピード取得
-	float GetNow();
+	int GetAllFlame(); //全体のフレーム数取得
+	int GetNowFlame(); //現在のフレーム数取得
 	~MyDrawMovie();
 private:
 	double speed;

@@ -74,8 +74,12 @@ double MyDrawMovie::GetSpeed() {
 	return speed;
 }
 
-float MyDrawMovie::GetNow() {
-	return (float)TellMovieToGraphToFrame(handle) / GetMovieTotalFrameToGraph(handle);
+int MyDrawMovie::GetNowFlame() {
+	return TellMovieToGraphToFrame(handle);
+}
+
+int MyDrawMovie::GetAllFlame() {
+	return GetMovieTotalFrameToGraph(handle);
 }
 
 MyDrawMovie::~MyDrawMovie() {

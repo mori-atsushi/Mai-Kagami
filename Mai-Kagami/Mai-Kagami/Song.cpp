@@ -1,9 +1,20 @@
 #include "Song.h"
 
+//パート情報
 SongPart::SongPart(const int flame, const char *name) {
 	SongPart::flame = flame;
-	SongPart::name = name;
-	printfDx("%s\n", name);
+	strcpy_s(SongPart::name, sizeof(SongPart::name), name);
+
+}
+
+//フレーム数取得
+int SongPart::GetFlame() {
+	return flame;
+}
+
+//パート名取得
+char *SongPart::GetName() {
+	return name;
 }
 
 Song::Song(const int id, const char *title, const char *artist, const char *folder) {
@@ -63,9 +74,20 @@ void Song::LoadPart() {
 	int file = FileRead_open(part, FALSE);
 	SetUseASyncLoadFlag(TRUE);
 	char buf[256];
-	int n = 0, flame;
+	int flame;
+	songPartNum = 0;
 	while (FileRead_scanf(file, "%d,%[^\n\r]", &flame, buf) != EOF) {
-		songPart[n] = new SongPart(flame, buf);
-		n++;
+		songPart[songPartNum] = new SongPart(flame, buf);
+		songPartNum++;
 	}
+}
+
+//パート情報取得
+SongPart *Song::GetPart(int num) {
+	return songPart[num];
+}
+
+//パート数取得
+int Song::GetPartNum() {
+	return songPartNum;
 }
