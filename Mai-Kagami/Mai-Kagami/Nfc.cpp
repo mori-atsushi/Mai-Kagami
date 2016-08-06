@@ -1,5 +1,7 @@
 #include "Nfc.h"
 
+#define PORT 9999;	//ポート番号
+
 
 //NFC管理用クラスコンストラクタ
 void Nfc::Init() {
@@ -11,12 +13,11 @@ void Nfc::Init() {
 //ユーザーIDの取得
 int Nfc::GetId() {
 	int temp = id;
-	id = 0;
 	return temp;
 }
 
 //NFCをチェックするためのスレッド
 void Nfc::CheckThread() {
 	WaitKey();
-	id = 1;
+	id = 1;	//取得したidを返す
 }
