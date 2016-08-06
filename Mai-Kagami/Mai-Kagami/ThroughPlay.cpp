@@ -19,19 +19,27 @@ void ThroughPlay::Load(Song *song) {
 		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)songPart->GetFlame() / song->danceMovie->GetAllFlame();
 		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.054, 0, 16);
 	}
-	//	part[0] = new MyDrawTextV(font, "イントロ", WIDTH * 0.41, HEIGHT * 0.054, 0, 20, "Blue");
-//	part[1] = new MyDrawTextV(font, "Aパート", WIDTH * 0.45, HEIGHT * 0.054, 0, 16);
-//	part[2] = new MyDrawTextV(font, "Bパート", WIDTH * 0.5, HEIGHT * 0.054, 0, 16);
-//	part[3] = new MyDrawTextV(font, "サビ", WIDTH * 0.55, HEIGHT * 0.054, 0, 16);
-//	part[4] = new MyDrawTextV(font, "間奏", WIDTH * 0.60, HEIGHT * 0.054, 0, 16);
-//	part[5] = new MyDrawTextV(font, "Aパート", WIDTH * 0.65, HEIGHT * 0.054, 0, 16);
 }
 
 void ThroughPlay::Update() {
-	float now = WIDTH * 0.56 * song->danceMovie->GetNowFlame() / song->danceMovie->GetAllFlame();
+	int nowFlame = song->danceMovie->GetNowFlame();
+	int lastFlame = song->danceMovie->GetAllFlame();
+	float now = WIDTH * 0.56 * nowFlame / lastFlame;
 	barNow->ChangeSize(now, 10);
 	for (int i = 0; i < 2; i++)
 		circle[i]->ChangePos(WIDTH * 0.41 + now, HEIGHT * 0.055);
+	for (int i = song->GetPartNum() - 1; i >= 0; i--) {
+		SongPart *songPart = song->GetPart(i);
+		if (nowFlame < lastFlame && nowFlame >= songPart->GetFlame()) {
+			part[i]->ChangeColor("Blue");
+			part[i]->ChangeFont(font, 20);
+		}
+		else {
+			part[i]->ChangeColor("White");
+			part[i]->ChangeFont(font, 16);
+		}
+		lastFlame = songPart->GetFlame();
+	}
 }
 
 void ThroughPlay::View() {

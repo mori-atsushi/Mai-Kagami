@@ -4,7 +4,7 @@
 MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
 	: Color(colorName) , Draw2(pos) {
 	s = str; //文字列
-	f = font->Get(point); //フォント情報
+	ChangeFont(font, point);
 	MyDrawText::point = point;
 	ChangePos(x, y);
 }
@@ -18,6 +18,11 @@ void MyDrawText::View() {
 void MyDrawText::ChangeText(char *str) {
 	s = str;
 	ChangePos(Draw2::x, Draw2::y);
+}
+
+//フォントサイズ変更
+void MyDrawText::ChangeFont(Font *font, const int point) {
+	f = font->Get(point); //フォント情報
 }
 
 //テキストの縦取得
