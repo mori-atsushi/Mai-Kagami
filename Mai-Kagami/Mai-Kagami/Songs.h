@@ -4,10 +4,11 @@
 #include "Song.h"
 #include "DxLib.h"
 #include "DrawGraph.h"
+#include "Font.h"
 
 class Songs {
 public:
-	Songs();
+	Songs(Font *font);
 	int GetSongNum(); //‹È”æ“¾
 	Song *GetSong(int x);
 	int GetNowSong();

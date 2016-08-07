@@ -1,5 +1,27 @@
 #include "Song.h"
 
+//曲名、アーティスト情報
+DrawSongTitle::DrawSongTitle(Font *font, const char *title, const char *artist) {
+	songTitle = new MyDrawTextLine(font, title,0, 0, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
+	songArtist = new MyDrawText(font, artist, 0, 0, 2, 20); //テキスト初期化
+}
+
+void DrawSongTitle::ChangePos(const float x, const float y) {
+	Draw::ChangePos(x, y);
+	songTitle->ChangePos(x, y);
+	songArtist->ChangePos(x + WIDTH * 0.17, y + HEIGHT * 0.025);
+}
+
+void DrawSongTitle::View() {
+	songTitle->View();
+	songArtist->View();
+}
+
+DrawSongTitle::~DrawSongTitle() {
+	delete songTitle;
+	delete songArtist;
+}
+
 //パート情報
 SongPart::SongPart(const int flame, const char *name) {
 	SongPart::flame = flame;
@@ -17,7 +39,7 @@ char *SongPart::GetName() {
 	return name;
 }
 
-Song::Song(const int id, const char *title, const char *artist, const char *folder) {
+Song::Song(Font *font, const int id, const char *title, const char *artist, const char *folder) {
 	char cover[256], movie[256];
 	strcpy_s(Song::title, sizeof(Song::title), title); //タイトル
 	strcpy_s(Song::artist, sizeof(Song::artist), artist); //アーティスト
@@ -28,6 +50,7 @@ Song::Song(const int id, const char *title, const char *artist, const char *fold
 	Song::id = id;
 	n = new int();
 
+	drawSongTitle = new DrawSongTitle(font, title, artist);
 	coverGraph = new MyDrawGraph(cover);
 	danceMovie = new MyDrawMovie(movie);
 }

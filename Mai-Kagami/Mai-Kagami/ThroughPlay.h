@@ -8,6 +8,23 @@
 #include "DrawObject.h"
 #include "Button.h"
 
+//進捗バー
+class ThroughPlayBar {
+public:
+	ThroughPlayBar(Font *font);
+	void Load(Song *song);
+	void Update();
+	void View();
+	~ThroughPlayBar();
+private:
+	Font *font;
+	Song *song;
+	MyDrawBar *barAll, *barNow;
+	MyDrawCircle *circle[2];
+	MyDrawTextV *part[10];
+};
+
+//通し練習画面
 class ThroughPlay {
 public:
 	ThroughPlay(Font *font);
@@ -18,12 +35,8 @@ public:
 private:
 	Font *font;
 	Song *song;
-	MyDrawTextLine *songTitle;
-	MyDrawText *songArtist;
-	MyDrawBar *barAll, *barNow;
-	MyDrawCircle *circle[2];
-	MyDrawTextV *part[10];
 	CircleGraphButton *pauseButton; //一時停止用ボタン
+	ThroughPlayBar *throughPlayBar; //進捗バー
 };
 
 #endif

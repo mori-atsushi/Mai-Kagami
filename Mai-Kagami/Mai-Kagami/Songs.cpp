@@ -1,6 +1,6 @@
 #include "Songs.h"
 
-Songs::Songs() {
+Songs::Songs(Font *font) {
 	n = 0;
 	SetUseASyncLoadFlag(FALSE);
 	int file = FileRead_open("song/song.csv", FALSE);
@@ -8,7 +8,7 @@ Songs::Songs() {
 	char buf[3][256];
 	int id = 0;
 	while (FileRead_scanf(file, "%d,%[^,\n\r],%[^,\n\r],%[^\n\r]", &id, buf[0], buf[1], buf[2]) != EOF) {
-		song[n] = new Song(id, buf[1], buf[2], buf[0]);
+		song[n] = new Song(font, id, buf[1], buf[2], buf[0]);
 		n++;
 	}
 	FileRead_close(file);

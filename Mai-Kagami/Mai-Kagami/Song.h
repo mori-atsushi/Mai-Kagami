@@ -2,7 +2,22 @@
 #define __SONG_H_INCLUDED__
 
 #include "DxLib.h"
+#include "Draw.h"
 #include "DrawGraph.h"
+#include "DrawText.h"
+#include "Font.h"
+
+//曲名、アーティスト情報
+class DrawSongTitle : public Draw {
+public:
+	DrawSongTitle(Font *font, const char *title, const char *artist);
+	void ChangePos(const float x, const float y);
+	void View();
+	~DrawSongTitle();
+private:
+	MyDrawTextLine *songTitle; //曲名表示
+	MyDrawText *songArtist; //アーティスト表示
+};
 
 //パート情報
 class SongPart {
@@ -17,7 +32,7 @@ private:
 
 class Song {
 public:
-	Song(const int id, const char *title, const char *artist, const char *folder);
+	Song(Font *font, const int id, const char *title, const char *artist, const char *folder);
 	char *GetSongTitle(); //曲名取得
 	char *GetSongArtist(); //アーティスト取得
 	int GetNow(); //現在の位置IDを取得
@@ -26,6 +41,7 @@ public:
 	void LoadPart(); //パート情報ロード
 	SongPart *GetPart(int num); //パート情報取得
 	int GetPartNum(); //パート数取得
+	DrawSongTitle *drawSongTitle; //曲名、アーティスト表示
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
 protected:

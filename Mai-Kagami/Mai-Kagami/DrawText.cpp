@@ -107,14 +107,24 @@ MyDrawTexts::~MyDrawTexts() {
 //アンダーライン付きテキスト
 MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
 	: MyDrawText(font, str, x, y, pos, point, colorName)  {
+	l = lineLength / SIZE_RATE;
 	w = lineWidth / SIZE_RATE;
-	x1 = (x - lineLength / 2) / SIZE_RATE;
-	x2 = (x + lineLength / 2) / SIZE_RATE;
-	y1 = y2 = (y + MyDrawText::GetHeight() * 0.9) / SIZE_RATE;
+	Calc(x, y);
 }
 
 //アンダーライン付きテキスト描画
 void MyDrawTextLine::View() {
 	MyDrawText::View();
 	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
+}
+
+void MyDrawTextLine::ChangePos(const float x, const float y) {
+	MyDrawText::ChangePos(x, y);
+	Calc(x, y);
+}
+
+void MyDrawTextLine::Calc(const float x, const float y) {
+	x1 = x / SIZE_RATE - l / 2;
+	x2 = x / SIZE_RATE + l / 2;
+	y1 = y2 = (y + MyDrawText::GetHeight() * 0.9) / SIZE_RATE;
 }
