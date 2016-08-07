@@ -66,6 +66,7 @@ void SongInformation::Load() {
 		grad[i]->Load();
 	for (int i = 0; i < n; i++)
 		songCover[i]->Load();
+	box->Load();
 }
 
 void SongInformation::Update(Touch *touch, int scene) {
