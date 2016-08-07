@@ -6,6 +6,7 @@
 #include "Songs.h"
 #include "DrawText.h"
 #include "DrawObject.h"
+#include "Button.h"
 
 class ThroughPlay {
 public:
@@ -22,6 +23,7 @@ private:
 	MyDrawBar *barAll, *barNow;
 	MyDrawCircle *circle[2];
 	MyDrawTextV *part[10];
+	CircleGraphButton *pauseButton; //ˆêŽž’âŽ~—pƒ{ƒ^ƒ“
 };
 
 #endif

@@ -90,3 +90,25 @@ CircleButton2::~CircleButton2() {
 	delete text;
 	delete myDrawCircle;
 }
+
+//‰æ‘œ•t‚«‚Ìƒ{ƒ^ƒ“
+CircleGraphButton::CircleGraphButton(const int num, const char *fileName) 
+	: Button(num) {
+	float r = WIDTH * 0.075;
+	myDrawCircle = new MyDrawCircle(WIDTH, GetY() * SIZE_RATE, r);
+	myDrawGraph = new MyDrawGraph(WIDTH  - 35, GetY() * SIZE_RATE, fileName);
+}
+
+void CircleGraphButton::Load() {
+	myDrawGraph->Load();
+}
+
+void CircleGraphButton::View() {
+	myDrawCircle->View();
+	myDrawGraph->View();
+}
+
+CircleGraphButton::~CircleGraphButton() {
+	delete myDrawCircle;
+	delete myDrawGraph;
+}

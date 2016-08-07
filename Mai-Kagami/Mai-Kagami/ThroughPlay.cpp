@@ -19,6 +19,8 @@ void ThroughPlay::Load(Song *song) {
 		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)songPart->GetFlame() / song->danceMovie->GetAllFlame();
 		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.054, 0, 16);
 	}
+	pauseButton = new CircleGraphButton(0, "img/pause.png");
+	pauseButton->Load();
 }
 
 void ThroughPlay::Update() {
@@ -54,6 +56,7 @@ void ThroughPlay::View() {
 		circle[i]->View();
 	for(int i = 0; i < song->GetPartNum(); i++)
 		part[i]->View();
+	pauseButton->View();
 }
 
 ThroughPlay::~ThroughPlay() {

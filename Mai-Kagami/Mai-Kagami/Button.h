@@ -5,6 +5,7 @@
 #include "Draw.h"
 #include "DrawText.h"
 #include "DrawObject.h"
+#include "DrawGraph.h"
 
 #define BUTTON_POS HEIGHT * 0.5
 #define BUTTON_INTERVAL HEIGHT * 0.05
@@ -14,8 +15,6 @@ class Button : public Draw {
 public:
 	Button(const int num);
 	virtual void View() = 0; //表示用関数
-protected:
-	MyDrawText *text; //ボタンの文字
 };
 
 //三角形のボタン
@@ -26,6 +25,7 @@ public:
 	~TriangleButton();
 private:
 	MyDrawTriangle *myDrawTriangle;
+	MyDrawText *text; //ボタンの文字
 };
 
 //説明文付き三角形のボタン
@@ -35,6 +35,7 @@ public:
 	void View();
 	~TriangleButton2();
 private:
+	MyDrawText *text; //ボタンの文字
 	MyDrawTexts *descriptionText;
 	MyDrawTriangle *myDrawTriangle;
 	MyDrawBox *myDrawBox;
@@ -48,6 +49,7 @@ public:
 	void View();
 	~CircleButton();
 private:
+	MyDrawText *text; //ボタンの文字
 	MyDrawCircle *myDrawCircle;
 };
 
@@ -58,7 +60,20 @@ public:
 	void View();
 	~CircleButton2();
 private:
+	MyDrawText *text; //ボタンの文字
 	MyDrawCircle *myDrawCircle;
+};
+
+//画像付きのボタン
+class CircleGraphButton : public Button {
+public:
+	CircleGraphButton(const int num, const char *fileName);
+	void View();
+	void Load();
+	~CircleGraphButton();
+private:
+	MyDrawCircle *myDrawCircle;
+	MyDrawGraph *myDrawGraph;
 };
 
 #endif
