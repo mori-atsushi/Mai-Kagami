@@ -3,7 +3,6 @@
 
 #include "DxLib.h"
 #include "DrawGraph.h"
-#include "Common.h"
 #include "Touch.h"
 #include "Font.h"
 #include "SongSelectCover.h"

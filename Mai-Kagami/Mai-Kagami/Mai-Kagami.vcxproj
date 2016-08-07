@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawGraph.cpp" />
     <ClCompile Include="DrawObject.cpp" />
@@ -44,7 +44,7 @@
     <ClCompile Include="Touch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawGraph.h" />
     <ClInclude Include="DrawObject.h" />

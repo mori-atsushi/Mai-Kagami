@@ -5,7 +5,7 @@
 #include "Main.h"
 #include "DrawObject.h"
 #include "Drawtext.h"
-#include "Common.h"
+#include "Button.h"
 #include "Touch.h"
 #include "Font.h"
 
