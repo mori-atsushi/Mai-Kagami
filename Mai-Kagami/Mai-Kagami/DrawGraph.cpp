@@ -60,7 +60,8 @@ void MyDrawMovie::Seek(const int flame) {
 
 //再生
 void MyDrawMovie::Start() {
-	PlayMovieToGraph(handle);
+	if(!CheckHandleASyncLoad(handle) && GetMovieStateToGraph(handle) == 0)
+		PlayMovieToGraph(handle);
 }
 
 //再生停止
@@ -71,10 +72,8 @@ void MyDrawMovie::Stop() {
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
 	MyDrawMovie::speed = speed;
-	Stop();
 	Seek();
 	SetPlaySpeedRateMovieToGraph(handle, speed);
-	Start();
 }
 
 //スピード取得

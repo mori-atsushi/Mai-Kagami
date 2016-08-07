@@ -44,6 +44,7 @@ void ThroughMain::View() {
 		switch (scene)
 		{
 		case THROUGH_START:
+			throughPlay->View();
 			throughStart->View();
 			break;
 		case THROUGH_PLAY:

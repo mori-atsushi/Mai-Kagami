@@ -53,6 +53,7 @@ void SongSelectCover::Draw(int scene) {
 		if(playFlag)
 			StopMusic();
 		playFlag = FALSE;
+		danceMovie->Start();
 		danceMovie->View();
 		break;
 	default:
