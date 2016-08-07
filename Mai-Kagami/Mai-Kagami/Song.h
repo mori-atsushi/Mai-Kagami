@@ -33,8 +33,6 @@ private:
 class Song {
 public:
 	Song(Font *font, const int id, const char *title, const char *artist, const char *folder);
-	char *GetSongTitle(); //曲名取得
-	char *GetSongArtist(); //アーティスト取得
 	int GetNow(); //現在の位置IDを取得
 	void SetNow(const int n); //位置IDをセット
 	void ChangeSpeed(int num); //動画の再生速度変更
@@ -45,8 +43,7 @@ public:
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawMovie *danceMovie; //動画
 protected:
-	char music[256], title[256], artist[256]; //音楽ファイル、タイトル、アーティスト名
-	char folder[256];
+	char music[256], folder[256]; //音楽ファイル、フォルダ
 private:
 	int id, *n, songPartNum; //ID、現在の番号, 曲数
 	SongPart *songPart[256];

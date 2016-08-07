@@ -41,8 +41,6 @@ char *SongPart::GetName() {
 
 Song::Song(Font *font, const int id, const char *title, const char *artist, const char *folder) {
 	char cover[256], movie[256];
-	strcpy_s(Song::title, sizeof(Song::title), title); //タイトル
-	strcpy_s(Song::artist, sizeof(Song::artist), artist); //アーティスト
 	strcpy_s(Song::folder, sizeof(Song::folder), folder); //フォルダ
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder); //カバー画像
 	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder); //音楽
@@ -53,16 +51,6 @@ Song::Song(Font *font, const int id, const char *title, const char *artist, cons
 	drawSongTitle = new DrawSongTitle(font, title, artist);
 	coverGraph = new MyDrawGraph(cover);
 	danceMovie = new MyDrawMovie(movie);
-}
-
-//曲名取得
-char *Song::GetSongTitle() {
-	return title;
-}
-
-//曲名取得
-char *Song::GetSongArtist() {
-	return artist;
 }
 
 //現在の位置IDを取得
