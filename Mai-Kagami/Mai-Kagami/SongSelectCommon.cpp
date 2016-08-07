@@ -102,6 +102,8 @@ void SongInformation::Update(Touch *touch, int scene) {
 			songCover[i]->Update();
 		break;
 	case MODE:
+		if (touch->Get(0) == 1)
+			nowSong->danceMovie->Start();
 		if (touch->Get(4) == 1)
 			nowSong->danceMovie->Release();
 		break;

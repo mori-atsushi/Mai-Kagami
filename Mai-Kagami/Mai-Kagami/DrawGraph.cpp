@@ -47,15 +47,20 @@ MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, con
 //動画表示
 void MyDrawMovie::View() {
 	if (!CheckHandleASyncLoad(handle)) {
-		if (GetMovieStateToGraph(handle) == 0) {
-			SetPlaySpeedRateMovieToGraph(handle, speed);
-			SeekMovieToGraph(handle, 0);
-			PlayMovieToGraph(handle);
-		}
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 		DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, TRUE); //描画
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 	}
+}
+
+//指定したフレームに移動
+void MyDrawMovie::Seek(const int flame) {
+	SeekMovieToGraph(handle, flame);
+}
+
+//再生
+void MyDrawMovie::Start() {
+	PlayMovieToGraph(handle);
 }
 
 //再生停止
@@ -66,7 +71,10 @@ void MyDrawMovie::Stop() {
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
 	MyDrawMovie::speed = speed;
-	PauseMovieToGraph(handle);
+	Stop();
+	Seek();
+	SetPlaySpeedRateMovieToGraph(handle, speed);
+	Start();
 }
 
 //スピード取得
