@@ -29,27 +29,35 @@ int ThroughMain::Update() {
 	Load();
 
 	if (loadFlag == 2) {
-		KinectDistance kinectDistance;
-		if (kinectDistance.CheckDistance() == TRUE)
-			scene = THROUGH_PLAY;
-		else
-			scene = THROUGH_START;
+		switch (scene)
+		{
+		case THROUGH_PAUSE:
+			if (touch->Get(0) == 1)
+				scene = THROUGH_START;
+			break;
+		default:
+			KinectDistance kinectDistance;
+			if (kinectDistance.CheckDistance() == TRUE)
+				scene = THROUGH_PLAY;
+			else
+				scene = THROUGH_START;
+			if (touch->Get(0) == 1)
+				scene = THROUGH_PAUSE;
+		}
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
+		throughPause->Update(scene);
 	}
 	return THROUGH;
 }
 
 void ThroughMain::View() {
 	if (loadFlag == 2) {
+		throughPlay->View();
 		switch (scene)
 		{
 		case THROUGH_START:
-			throughPlay->View();
 			throughStart->View();
-			break;
-		case THROUGH_PLAY:
-			throughPlay->View();
 			break;
 		}
 		throughPause->View();

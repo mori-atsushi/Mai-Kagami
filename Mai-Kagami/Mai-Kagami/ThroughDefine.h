@@ -3,4 +3,5 @@
 
 #define THROUGH_START 0
 #define THROUGH_PLAY 1
+#define THROUGH_PAUSE 2
 #endif

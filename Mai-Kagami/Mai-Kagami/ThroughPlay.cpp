@@ -75,11 +75,11 @@ void ThroughPlay::Update(int scene) {
 	throughPlayBar->Update();
 	switch (scene)
 	{
-	case THROUGH_START:
-		song->danceMovie->Stop();
-		break;
 	case THROUGH_PLAY:
 		song->danceMovie->Start();
+		break;
+	default:
+		song->danceMovie->Stop();
 		break;
 	}
 }
