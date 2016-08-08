@@ -20,6 +20,7 @@ public:
 	void View();
 	~ThroughMain();
 private:
+	Song *song;
 	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;

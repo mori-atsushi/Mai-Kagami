@@ -11,6 +11,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 }
 
 void ThroughMain::Load() {
+	song = songs->GetSong(songs->GetNowSong());
 	if (loadFlag == 2)
 		return;
 
@@ -33,6 +34,10 @@ int ThroughMain::Update() {
 		case THROUGH_PAUSE:
 			if (touch->Get(0) == 1)
 				scene = THROUGH_START;
+			if (touch->Get(1) == 1) {
+				scene = THROUGH_START;
+				song->danceMovie->Seek();
+			}
 			break;
 		default:
 			KinectDistance kinectDistance;
