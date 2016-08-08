@@ -64,8 +64,11 @@ int SongSelect::Update() {
 			return TOP;
 		}
 		
-		if (scene == NEXT)
+		if (scene == NEXT) {
+			Delete();
+			scene = MAIN;
 			return THROUGH;
+		}
 
 		throughOptionButton->Update(touch, scene);
 		songSelectTitle->Update(scene);

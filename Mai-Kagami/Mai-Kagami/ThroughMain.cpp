@@ -38,6 +38,11 @@ int ThroughMain::Update() {
 				scene = THROUGH_START;
 				song->danceMovie->Seek();
 			}
+			if (touch->Get(2) == 1) {
+				Delete();
+				scene = THROUGH_START;
+				return SONG_SELECT;
+			}
 			break;
 		default:
 			KinectDistance kinectDistance;
