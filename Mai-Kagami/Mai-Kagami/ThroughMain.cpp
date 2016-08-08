@@ -17,8 +17,9 @@ void ThroughMain::Load() {
 		return;
 
 	if (loadFlag == 0 && GetASyncLoadNum() == 0) {
-		throughPlay->Load(songs->GetSong(songs->GetNowSong()));
+		throughPlay->Load(song);
 		throughPause->Load();
+		throughResult->Load(song);
 		loadFlag = 1;
 	}
 
@@ -46,6 +47,7 @@ int ThroughMain::Update() {
 			}
 			break;
 		case THROUGH_RESULT:
+			throughResult->Update();
 			break;
 		default:
 			KinectDistance kinectDistance;
