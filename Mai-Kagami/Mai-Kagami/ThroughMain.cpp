@@ -44,6 +44,8 @@ int ThroughMain::Update() {
 				return SONG_SELECT;
 			}
 			break;
+		case THROUGH_RESULT:
+			break;
 		default:
 			KinectDistance kinectDistance;
 			if (kinectDistance.CheckDistance() == TRUE)
@@ -52,6 +54,8 @@ int ThroughMain::Update() {
 				scene = THROUGH_START;
 			if (touch->Get(0) == 1)
 				scene = THROUGH_PAUSE;
+			if (song->danceMovie->GetNowFlame() == 100)
+				scene = THROUGH_RESULT;
 		}
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
@@ -62,14 +66,19 @@ int ThroughMain::Update() {
 
 void ThroughMain::View() {
 	if (loadFlag == 2) {
-		throughPlay->View();
 		switch (scene)
 		{
 		case THROUGH_START:
+			throughPlay->View();
 			throughStart->View();
+			throughPause->View();
+			break;
+		case THROUGH_PLAY:
+		case THROUGH_PAUSE:
+			throughPlay->View();
+			throughPause->View();
 			break;
 		}
-		throughPause->View();
 	}
 }
 
