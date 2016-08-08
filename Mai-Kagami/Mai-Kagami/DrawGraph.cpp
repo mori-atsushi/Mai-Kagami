@@ -55,13 +55,16 @@ void MyDrawMovie::View() {
 
 //éwíËÇµÇΩÉtÉåÅ[ÉÄÇ…à⁄ìÆ
 void MyDrawMovie::Seek(const int flame) {
-	SeekMovieToGraph(handle, flame);
+	SeekMovieToGraphToFrame(handle, flame);
 }
 
 //çƒê∂
 void MyDrawMovie::Start() {
-	if(!CheckHandleASyncLoad(handle) && GetMovieStateToGraph(handle) == 0)
+	if (!CheckHandleASyncLoad(handle) && GetMovieStateToGraph(handle) == 0) {
+		if (GetNowFlame() == GetAllFlame())
+			Seek();
 		PlayMovieToGraph(handle);
+	}
 }
 
 //çƒê∂í‚é~
@@ -86,7 +89,7 @@ int MyDrawMovie::GetNowFlame() {
 }
 
 int MyDrawMovie::GetAllFlame() {
-	return GetMovieTotalFrameToGraph(handle);
+	return GetMovieTotalFrameToGraph(handle) - 1;
 }
 
 MyDrawMovie::~MyDrawMovie() {
