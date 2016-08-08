@@ -1,12 +1,11 @@
 #include "ThroughMain.h"
 
 ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
-	f = font;
 	ThroughMain::songs = songs;
 	loadFlag = 0;
-	throughStart = new ThroughStart(f);
-	throughPlay = new ThroughPlay(f);
-	throughPause = new ThroughPause(f);
+	throughStart = new ThroughStart(font);
+	throughPlay = new ThroughPlay(font);
+	throughPause = new ThroughPause(font);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }

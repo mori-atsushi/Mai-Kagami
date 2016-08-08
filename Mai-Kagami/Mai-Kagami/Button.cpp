@@ -112,3 +112,30 @@ CircleGraphButton::~CircleGraphButton() {
 	delete myDrawCircle;
 	delete myDrawGraph;
 }
+
+//画像、テキスト付きのボタン
+CircleGraphTextButton::CircleGraphTextButton(Font *font, const char *str, const int num, const char *fileName)
+	: Button(num) {
+	float x = WIDTH * 0.965;
+	float y = GetY() * SIZE_RATE;
+	float r = WIDTH * 0.026;
+	text = new MyDrawText(font, str, x - r - 12, GetY() * SIZE_RATE, 2, 30);
+	myDrawCircle = new MyDrawCircle(x, y, r, "Blue");
+	myDrawGraph = new MyDrawGraph(x, y, fileName, 0.6);
+}
+
+void CircleGraphTextButton::Load() {
+	myDrawGraph->Load();
+}
+
+void CircleGraphTextButton::View() {
+	text->View();
+	myDrawCircle->View();
+	myDrawGraph->View();
+}
+
+CircleGraphTextButton::~CircleGraphTextButton() {
+	delete text;
+	delete myDrawCircle;
+	delete myDrawGraph;
+}

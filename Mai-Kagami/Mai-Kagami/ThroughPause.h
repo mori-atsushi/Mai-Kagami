@@ -18,7 +18,7 @@ private:
 	CircleGraphButton *pauseButton; //一時停止用ボタン
 	BlackBox *blackBox; //背景半透明黒の四角形
 	MyDrawText *title;
-	Button *button[4];
+	CircleGraphTextButton *button[4];
 };
 
 #endif

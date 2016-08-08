@@ -20,7 +20,6 @@ public:
 	void View();
 	~ThroughMain();
 private:
-	Font *f;
 	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;

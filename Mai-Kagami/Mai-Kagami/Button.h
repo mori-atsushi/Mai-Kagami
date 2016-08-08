@@ -76,4 +76,17 @@ private:
 	MyDrawGraph *myDrawGraph;
 };
 
+//画像、テキスト付きのボタン
+class CircleGraphTextButton : public Button {
+public:
+	CircleGraphTextButton(Font *font, const char *str, const int num, const char *fileName);
+	void Load();
+	void View();
+	~CircleGraphTextButton();
+private:
+	MyDrawCircle *myDrawCircle;
+	MyDrawGraph *myDrawGraph;
+	MyDrawText *text;
+};
+
 #endif
