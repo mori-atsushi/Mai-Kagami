@@ -32,7 +32,7 @@ int ThroughMain::Update() {
 			scene = THROUGH_PLAY;
 		else
 			scene = THROUGH_START;
-		throughPlay->Update();
+		throughPlay->Update(scene);
 	}
 	return THROUGH;
 }

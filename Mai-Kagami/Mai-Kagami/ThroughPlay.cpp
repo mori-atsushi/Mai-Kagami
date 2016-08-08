@@ -73,8 +73,17 @@ void ThroughPlay::Load(Song *song) {
 	throughPlayBar->Load(song);
 }
 
-void ThroughPlay::Update() {
+void ThroughPlay::Update(int scene) {
 	throughPlayBar->Update();
+	switch (scene)
+	{
+	case THROUGH_START:
+		song->danceMovie->Stop();
+		break;
+	case THROUGH_PLAY:
+		song->danceMovie->Start();
+		break;
+	}
 }
 
 void ThroughPlay::View() {

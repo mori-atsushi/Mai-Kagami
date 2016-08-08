@@ -7,6 +7,7 @@
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "Button.h"
+#include "ThroughDefine.h"
 
 //êiíªÉoÅ[
 class ThroughPlayBar {
@@ -30,7 +31,7 @@ public:
 	ThroughPlay(Font *font);
 	void Load(Song *song);
 	void View();
-	void Update();
+	void Update(int scene);
 	~ThroughPlay();
 private:
 	Font *font;
