@@ -15,10 +15,11 @@ public:
 	void View();
 	~ThroughStart();
 private:
+	boolean flag; //annotation表示用フラグ
 	MyDrawGraph *myDrawGraph;
 	MyDrawText *wait;
 	MyDrawText *caution;
-	MyDrawTexts *annnotation;
+	MyDrawTexts *annotation;
 	BlackBox *blackBox;
 };
 

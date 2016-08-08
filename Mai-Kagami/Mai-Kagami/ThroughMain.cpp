@@ -6,6 +6,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	loadFlag = 0;
 	throughStart = new ThroughStart(f);
 	throughPlay = new ThroughPlay(f);
+	throughPause = new ThroughPause(f);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }
@@ -16,6 +17,7 @@ void ThroughMain::Load() {
 
 	if (loadFlag == 0 && GetASyncLoadNum() == 0) {
 		throughPlay->Load(songs->GetSong(songs->GetNowSong()));
+		throughPause->Load();
 		loadFlag = 1;
 	}
 
@@ -50,6 +52,7 @@ void ThroughMain::View() {
 			throughPlay->View();
 			break;
 		}
+		throughPause->View();
 	}
 }
 

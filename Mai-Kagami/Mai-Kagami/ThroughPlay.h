@@ -36,7 +36,6 @@ public:
 private:
 	Font *font;
 	Song *song;
-	CircleGraphButton *pauseButton; //一時停止用ボタン
 	ThroughPlayBar *throughPlayBar; //進捗バー
 };
 

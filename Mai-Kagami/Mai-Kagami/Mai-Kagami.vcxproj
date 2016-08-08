@@ -38,6 +38,7 @@
     <ClCompile Include="SongSelectMain.cpp" />
     <ClCompile Include="ThroughMain.cpp" />
     <ClCompile Include="ThroughOption.cpp" />
+    <ClCompile Include="ThroughPause.cpp" />
     <ClCompile Include="ThroughPlay.cpp" />
     <ClCompile Include="ThroughStart.cpp" />
     <ClCompile Include="Top.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughMain.h" />
     <ClInclude Include="ThroughOption.h" />
+    <ClInclude Include="ThroughPause.h" />
     <ClInclude Include="ThroughPlay.h" />
     <ClInclude Include="ThroughStart.h" />
     <ClInclude Include="Top.h" />

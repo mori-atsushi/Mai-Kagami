@@ -9,6 +9,7 @@
 #include "ThroughStart.h"
 #include "ThroughDefine.h"
 #include "ThroughPlay.h"
+#include "ThroughPause.h"
 #include "Touch.h"
 #include "KinectDistance.h"
 
@@ -23,6 +24,7 @@ private:
 	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
+	ThroughPause *throughPause;
 	int loadFlag;
 	void Load();
 	void Delete();

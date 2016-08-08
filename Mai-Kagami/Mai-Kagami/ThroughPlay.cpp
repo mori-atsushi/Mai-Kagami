@@ -59,7 +59,6 @@ ThroughPlayBar::~ThroughPlayBar() {
 ThroughPlay::ThroughPlay(Font *font) {
 	ThroughPlay::font = font;
 	throughPlayBar = new ThroughPlayBar(font);
-	pauseButton = new CircleGraphButton(0, "img/pause.png");
 }
 
 void ThroughPlay::Load(Song *song) {
@@ -69,7 +68,6 @@ void ThroughPlay::Load(Song *song) {
 	song->danceMovie->Seek();
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);
 
-	pauseButton->Load();
 	throughPlayBar->Load(song);
 }
 
@@ -89,11 +87,9 @@ void ThroughPlay::Update(int scene) {
 void ThroughPlay::View() {
 	song->danceMovie->View();
 	song->drawSongTitle->View();
-	pauseButton->View();
 	throughPlayBar->View();
 }
 
 ThroughPlay::~ThroughPlay() {
 	delete throughPlayBar;
-	delete pauseButton;
 }
