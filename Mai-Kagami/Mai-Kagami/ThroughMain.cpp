@@ -25,16 +25,14 @@ void ThroughMain::Load() {
 
 int ThroughMain::Update() {
 	Load();
+
 	if (loadFlag == 2) {
-		switch (scene)
-		{
-		case THROUGH_START:
-			if (touch->Get(0) == 1)
-				scene = THROUGH_PLAY;
-			break;
-		case THROUGH_PLAY:
-			throughPlay->Update();
-		}
+		KinectDistance kinectDistance;
+		if (kinectDistance.CheckDistance() == TRUE)
+			scene = THROUGH_PLAY;
+		else
+			scene = THROUGH_START;
+		throughPlay->Update();
 	}
 	return THROUGH;
 }

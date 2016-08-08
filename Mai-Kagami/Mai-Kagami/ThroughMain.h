@@ -10,6 +10,7 @@
 #include "ThroughDefine.h"
 #include "ThroughPlay.h"
 #include "Touch.h"
+#include "KinectDistance.h"
 
 class ThroughMain {
 public:

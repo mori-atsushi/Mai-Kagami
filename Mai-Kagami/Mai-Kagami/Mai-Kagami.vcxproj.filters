@@ -49,6 +49,12 @@
     <Filter Include="ヘッダー ファイル\画面関係\通し練習">
       <UniqueIdentifier>{d5d28765-689d-4936-aa3a-6004395987f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\システム関係\kinect">
+      <UniqueIdentifier>{18fc3304-91cc-430a-b705-c73c859ff735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム関係\kinect">
+      <UniqueIdentifier>{eae67097-4b0a-410c-a48a-2da132089e59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -119,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="KinectDistance.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectDistance.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
