@@ -132,6 +132,9 @@
     <ClCompile Include="ThroughPause.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
+    <ClCompile Include="ThroughResult.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -213,6 +216,9 @@
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
     <ClInclude Include="ThroughPause.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResult.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
   </ItemGroup>

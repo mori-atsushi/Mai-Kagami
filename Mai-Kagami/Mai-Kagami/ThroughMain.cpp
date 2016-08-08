@@ -6,6 +6,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	throughStart = new ThroughStart(font);
 	throughPlay = new ThroughPlay(font);
 	throughPause = new ThroughPause(font);
+	throughResult = new ThroughResult(font);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }
@@ -78,6 +79,8 @@ void ThroughMain::View() {
 			throughPlay->View();
 			throughPause->View();
 			break;
+		case THROUGH_RESULT:
+			throughResult->View();
 		}
 	}
 }
