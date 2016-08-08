@@ -5,10 +5,13 @@
 #include "Font.h"
 #include "DrawGraph.h"
 #include "DrawText.h"
+#include "DrawObject.h"
+#include "ThroughDefine.h"
 
 class ThroughStart{
 public:
 	ThroughStart(Font *f);
+	void Update(int scene);
 	void View();
 	~ThroughStart();
 private:
@@ -16,6 +19,7 @@ private:
 	MyDrawText *wait;
 	MyDrawText *caution;
 	MyDrawTexts *annnotation;
+	BlackBox *blackBox;
 };
 
 #endif

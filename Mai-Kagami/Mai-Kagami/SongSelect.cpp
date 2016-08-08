@@ -20,7 +20,7 @@ SongSelectButton::~SongSelectButton() {
 }
 
 SongSelectPop::SongSelectPop(Font *font) {
-	myDrawBox = new MyDrawBox(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, "Black");
+	blackBox = new BlackBox();
 	title = new MyDrawText(font, "- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
 	message = new MyDrawText(font, "本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
 	button[0] = new CircleButton(font, "はい", 1, WIDTH * 0.75, "White");
@@ -28,9 +28,7 @@ SongSelectPop::SongSelectPop(Font *font) {
 }
 
 void SongSelectPop::View() {
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //透明度設定
-	myDrawBox->View();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
+	blackBox->View();
 	title->View();
 	message->View();
 	for (int i = 0; i < 2; i++)
@@ -38,7 +36,7 @@ void SongSelectPop::View() {
 }
 
 SongSelectPop::~SongSelectPop() {
-	delete myDrawBox;
+	delete blackBox;
 	delete title;
 	delete message;
 	for (int i = 0; i < 2; i++)

@@ -26,7 +26,7 @@ public:
 	void View();
 	~SongSelectPop();
 private:
-	MyDrawBox *myDrawBox;
+	BlackBox *blackBox;
 	MyDrawText *title;
 	MyDrawText *message;
 	Button *button[2];

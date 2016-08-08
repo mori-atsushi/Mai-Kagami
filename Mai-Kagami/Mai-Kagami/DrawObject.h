@@ -36,6 +36,14 @@ private:
 	float w, h, l; //幅、高さ、線の太さ
 };
 
+//ポップアップ用四角形（黒色半透明全画面）
+class BlackBox : public MyDrawBox {
+public:
+	BlackBox();
+	void View();
+private:
+};
+
 class MyDrawBar : public MyDrawBox {
 public:
 	MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName = "White"); //四角形初期化（塗りつぶしあり）
