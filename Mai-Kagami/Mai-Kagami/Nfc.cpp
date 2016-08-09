@@ -1,4 +1,5 @@
 #include "Nfc.h"
+#include "Client.h"
 
 #define PORT 9999;	//É|Å[Égî‘çÜ
 
