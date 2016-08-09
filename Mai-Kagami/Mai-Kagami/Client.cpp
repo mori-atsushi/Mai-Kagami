@@ -1,4 +1,5 @@
 #include "Client.h"
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 
 //コンストラクタ
 CClient::CClient() :m_DstSocket(INVALID_SOCKET)
