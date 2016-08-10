@@ -8,16 +8,18 @@
 #include "Touch.h"
 #include "SongSelectDefine.h"
 #include "Songs.h"
+#include "SeetingPop.h"
 
 class ThroughOptionButton {
 public:
 	ThroughOptionButton(Font *font, Songs *songs);
 	void View();
-	void Update(Touch *touch, int scene);
+	void Update(int scene);
 	~ThroughOptionButton();
 private:
 	Songs *songs;
-	Button *button[4];
+	SpeedOption *speedOption;
+	Button *button;
 	MyDrawText *speed[2];
 };
 

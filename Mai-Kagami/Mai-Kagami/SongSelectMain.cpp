@@ -70,7 +70,7 @@ int SongSelect::Update() {
 			return THROUGH;
 		}
 
-		throughOptionButton->Update(touch, scene);
+		throughOptionButton->Update(scene);
 		songSelectTitle->Update(scene);
 	}
 	return SONG_SELECT;
