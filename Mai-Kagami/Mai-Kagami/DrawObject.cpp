@@ -30,7 +30,7 @@ MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float r
 }
 
 void MyDrawCircleGauge::View() {
-	for (double i = 0; i < rad; i += 0.001) {
+	for (double i = 0; i < rad; i += 0.02) {
 		float x = (Draw::GetX() + r * sin(i)) * SIZE_RATE;
 		float y = (Draw::GetY() - r * cos(i)) * SIZE_RATE;
 		MyDrawCircle::ChangePos(x, y);
