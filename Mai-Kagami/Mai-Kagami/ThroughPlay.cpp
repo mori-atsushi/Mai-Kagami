@@ -56,9 +56,41 @@ ThroughPlayBar::~ThroughPlayBar() {
 		delete circle[i];
 }
 
+//カウントダウン画面
+ThroughCountDown::ThroughCountDown(Font *font) {
+	blackBox = new BlackBox();
+	text = new MyDrawText(font, "準備をしてください", WIDTH * 0.5, HEIGHT * 0.7, 1, 40);
+}
+
+void ThroughCountDown::Update() {
+	if (++count == max)
+		flag = FALSE;
+}
+
+void ThroughCountDown::View() {
+	blackBox->View();
+	text->View();
+}
+
+boolean ThroughCountDown::GetFlag() {
+	return flag;
+}
+
+void ThroughCountDown::SetFlag(const boolean flag) {
+	ThroughCountDown::flag = flag;
+	if (flag == TRUE)
+		count = 0;
+}
+
+ThroughCountDown::~ThroughCountDown() {
+	delete blackBox;
+	delete text;
+}
+
 ThroughPlay::ThroughPlay(Font *font) {
 	ThroughPlay::font = font;
 	throughPlayBar = new ThroughPlayBar(font);
+	throughCountDown = new ThroughCountDown(font);
 }
 
 void ThroughPlay::Load(Song *song) {
@@ -69,16 +101,22 @@ void ThroughPlay::Load(Song *song) {
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);
 
 	throughPlayBar->Load(song);
+	throughCountDown->SetFlag(TRUE);
 }
 
 void ThroughPlay::Update(int scene) {
+	ThroughPlay::scene = scene;
 	throughPlayBar->Update();
 	switch (scene)
 	{
 	case THROUGH_PLAY:
-		song->danceMovie->Start();
+		if (throughCountDown->GetFlag())
+			throughCountDown->Update();
+		else
+			song->danceMovie->Start();
 		break;
 	default:
+		throughCountDown->SetFlag(TRUE);
 		song->danceMovie->Stop();
 		break;
 	}
@@ -88,6 +126,8 @@ void ThroughPlay::View() {
 	song->danceMovie->View();
 	song->drawSongTitle->View();
 	throughPlayBar->View();
+	if (scene == THROUGH_PLAY && throughCountDown->GetFlag())
+		throughCountDown->View();
 }
 
 ThroughPlay::~ThroughPlay() {

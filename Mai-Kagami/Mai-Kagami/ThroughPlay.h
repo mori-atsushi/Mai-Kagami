@@ -8,6 +8,7 @@
 #include "DrawObject.h"
 #include "Button.h"
 #include "ThroughDefine.h"
+#include "SeetingPop.h"
 
 //進捗バー
 class ThroughPlayBar {
@@ -25,6 +26,23 @@ private:
 	MyDrawTextV *part[10];
 };
 
+//カウントダウン画面
+class ThroughCountDown {
+public:
+	ThroughCountDown(Font *font);
+	void Update();
+	void View();
+	boolean GetFlag();
+	void SetFlag(const boolean flag);
+	~ThroughCountDown();
+private:
+	boolean flag; //表示非表示
+	int count; //カウンタ
+	BlackBox *blackBox;
+	MyDrawText *text;
+	const int max = 120;
+};
+
 //通し練習画面
 class ThroughPlay {
 public:
@@ -37,6 +55,8 @@ private:
 	Font *font;
 	Song *song;
 	ThroughPlayBar *throughPlayBar; //進捗バー
+	ThroughCountDown *throughCountDown; //カウントダウン画面
+	int scene;
 };
 
 #endif
