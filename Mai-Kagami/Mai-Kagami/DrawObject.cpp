@@ -114,15 +114,6 @@ void MyDrawBox::ChangeSize(const float width, const float height) {
 	h = height / SIZE_RATE;
 }
 
-BlackBox::BlackBox() 
-	: MyDrawBox(WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, "Black") {}
-
-void BlackBox::View() {
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //透明度設定
-	MyDrawBox::View();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
-}
-
 //進捗バー初期化
 MyDrawBar::MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName)
 	:MyDrawBox(x + width / 2, y, width, height, colorName) {

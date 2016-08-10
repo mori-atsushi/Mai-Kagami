@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Font.h"
 #include "ThroughDefine.h"
+#include "SeetingPop.h"
 
 class ThroughPause {
 public:

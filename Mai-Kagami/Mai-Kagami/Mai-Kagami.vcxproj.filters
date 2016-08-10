@@ -55,6 +55,12 @@
     <Filter Include="ヘッダー ファイル\システム関係\kinect">
       <UniqueIdentifier>{eae67097-4b0a-410c-a48a-2da132089e59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{f44d20bb-4f91-4459-af88-db708e8bc837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{12be1523-1c04-4a07-99ee-a98da9c5fa32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -134,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="ThroughResult.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingPop.cpp">
+      <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="ThroughResult.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="SeetingPop.h">
+      <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

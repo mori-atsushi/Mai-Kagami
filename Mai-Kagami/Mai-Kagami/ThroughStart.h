@@ -7,6 +7,7 @@
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "ThroughDefine.h"
+#include "SeetingPop.h"
 
 class ThroughStart{
 public:

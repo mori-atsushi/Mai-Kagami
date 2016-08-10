@@ -8,6 +8,7 @@
 #include "Button.h"
 #include "Touch.h"
 #include "Font.h"
+#include "SeetingPop.h"
 
 //‹È‘I‘ð‰æ–Êƒ{ƒ^ƒ“ŠÖŒW
 class SongSelectButton {
