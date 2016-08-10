@@ -47,14 +47,23 @@ MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, con
 //動画表示
 void MyDrawMovie::View() {
 	if (!CheckHandleASyncLoad(handle)) {
-		if (GetMovieStateToGraph(handle) == 0) {
-			SetPlaySpeedRateMovieToGraph(handle, speed);
-			SeekMovieToGraph(handle, 0);
-			PlayMovieToGraph(handle);
-		}
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 		DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, TRUE); //描画
 		SetDrawMode(DX_DRAWMODE_NEAREST);
+	}
+}
+
+//指定したフレームに移動
+void MyDrawMovie::Seek(const int flame) {
+	SeekMovieToGraphToFrame(handle, flame);
+}
+
+//再生
+void MyDrawMovie::Start() {
+	if (!CheckHandleASyncLoad(handle) && GetMovieStateToGraph(handle) == 0) {
+		if (GetNowFlame() == GetAllFlame())
+			Seek();
+		PlayMovieToGraph(handle);
 	}
 }
 
@@ -66,7 +75,9 @@ void MyDrawMovie::Stop() {
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
 	MyDrawMovie::speed = speed;
-	PauseMovieToGraph(handle);
+	Stop();
+	Seek();
+	SetPlaySpeedRateMovieToGraph(handle, speed);
 }
 
 //スピード取得
@@ -74,8 +85,12 @@ double MyDrawMovie::GetSpeed() {
 	return speed;
 }
 
-float MyDrawMovie::GetNow() {
-	return (float)TellMovieToGraphToFrame(handle) / GetMovieTotalFrameToGraph(handle);
+int MyDrawMovie::GetNowFlame() {
+	return TellMovieToGraphToFrame(handle);
+}
+
+int MyDrawMovie::GetAllFlame() {
+	return GetMovieTotalFrameToGraph(handle) - 1;
 }
 
 MyDrawMovie::~MyDrawMovie() {

@@ -2,19 +2,23 @@
 
 //色指定
 Color::Color(const char *color) {
-	if(!strcmp(color, "White"))
-		c = GetColor(255, 255, 255); //白色
-	else if(!strcmp(color, "Blue"))
-		c = GetColor(127, 210, 234); //青色
-	else if(!strcmp(color, "Black"))
-		c = GetColor(0, 0, 0); //黒色
-	else if (!strcmp(color, "Yellow"))
-		c = GetColor(255, 255, 0); //黄色
+	ChangeColor(color);
 }
 
 //色取得
 int Color::Get() {
 	return c;
+}
+
+void Color::ChangeColor(const char *color) {
+	if (!strcmp(color, "White"))
+		c = GetColor(255, 255, 255); //白色
+	else if (!strcmp(color, "Blue"))
+		c = GetColor(127, 210, 234); //青色
+	else if (!strcmp(color, "Black"))
+		c = GetColor(0, 0, 0); //黒色
+	else if (!strcmp(color, "Yellow"))
+		c = GetColor(255, 255, 0); //黄色
 }
 
 //表示位置用クラスコンストラクタ

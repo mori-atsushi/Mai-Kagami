@@ -4,7 +4,7 @@ MaiKagami::MaiKagami() {
 	touch = new Touch();
 	scene = START; //ƒV[ƒ“‰Šú‰»
 	font = new Font();
-	songs = new Songs(); //‹Èˆê——ì¬
+	songs = new Songs(font); //‹Èˆê——ì¬
 	top = new Top(font);
 	songSelect = new SongSelect(font, touch, songs);
 	throughMain = new ThroughMain(font, touch, songs);

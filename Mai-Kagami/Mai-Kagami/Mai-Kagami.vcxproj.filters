@@ -49,6 +49,18 @@
     <Filter Include="ヘッダー ファイル\画面関係\通し練習">
       <UniqueIdentifier>{d5d28765-689d-4936-aa3a-6004395987f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\システム関係\kinect">
+      <UniqueIdentifier>{18fc3304-91cc-430a-b705-c73c859ff735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム関係\kinect">
+      <UniqueIdentifier>{eae67097-4b0a-410c-a48a-2da132089e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{f44d20bb-4f91-4459-af88-db708e8bc837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{12be1523-1c04-4a07-99ee-a98da9c5fa32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -56,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="Touch.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
     <ClCompile Include="MaiKagami.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
@@ -117,6 +126,27 @@
     <ClCompile Include="ThroughPlay.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Song.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="KinectDistance.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughPause.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughResult.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingPop.cpp">
+      <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -124,9 +154,6 @@
     </ClInclude>
     <ClInclude Include="Touch.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="MaiKagami.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
@@ -190,6 +217,27 @@
     </ClInclude>
     <ClInclude Include="ThroughPlay.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Song.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectDistance.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughPause.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResult.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="SeetingPop.h">
+      <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

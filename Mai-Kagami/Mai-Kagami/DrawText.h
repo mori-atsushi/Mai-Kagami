@@ -13,6 +13,7 @@ public:
 	MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void View(); //描画
 	void ChangeText(char *str); //テキスト変更
+	void ChangeFont(Font *font, const int point); //フォントサイズ変更
 	float GetHeight(); //縦取得
 	float GetWidth(); //幅取得
 protected:
@@ -46,8 +47,10 @@ class MyDrawTextLine : public MyDrawText {
 public:
 	MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName = "White");
 	void View();
+	void ChangePos(const float x, const float y);
 private:
-	float x1, x2, y1, y2, w; //座標、線の太さ
+	float x1, x2, y1, y2, w, l; //座標、線の太さ、線の長さ
+	void Calc(const float x, const float y); //座標計算
 };
 
 #endif

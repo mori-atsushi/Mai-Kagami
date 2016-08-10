@@ -1,21 +1,25 @@
 #include "ThroughMain.h"
 
 ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
-	f = font;
 	ThroughMain::songs = songs;
 	loadFlag = 0;
-	throughStart = new ThroughStart(f);
-	throughPlay = new ThroughPlay(f);
+	throughStart = new ThroughStart(font);
+	throughPlay = new ThroughPlay(font);
+	throughPause = new ThroughPause(font, songs);
+	throughResult = new ThroughResult(font);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }
 
 void ThroughMain::Load() {
+	song = songs->GetSong(songs->GetNowSong());
 	if (loadFlag == 2)
 		return;
 
-	if (loadFlag == 0) {
-		throughPlay->Load(songs->GetSong(songs->GetNowSong()));
+	if (loadFlag == 0 && GetASyncLoadNum() == 0) {
+		throughPlay->Load(song);
+		throughPause->Load();
+		throughResult->Load(song);
 		loadFlag = 1;
 	}
 
@@ -25,16 +29,49 @@ void ThroughMain::Load() {
 
 int ThroughMain::Update() {
 	Load();
+
 	if (loadFlag == 2) {
 		switch (scene)
 		{
-		case THROUGH_START:
+		case THROUGH_PAUSE:
 			if (touch->Get(0) == 1)
-				scene = THROUGH_PLAY;
+				scene = THROUGH_START;
+			if (touch->Get(1) == 1) {
+				scene = THROUGH_START;
+				song->danceMovie->Seek();
+			}
+			if (touch->Get(2) == 1) {
+				Delete();
+				scene = THROUGH_START;
+				return SONG_SELECT;
+			}
+			if (touch->Get(3) == 1) {
+				scene = THROUGH_SETTING;
+			}
 			break;
-		case THROUGH_PLAY:
-			throughPlay->Update();
+		case THROUGH_RESULT:
+			break;
+		case THROUGH_SETTING:
+			if (touch->Get(4) == 1)
+				scene = THROUGH_PAUSE;
+			throughPause->Check(touch);
+			break;
+		default:
+			KinectDistance kinectDistance;
+			if (kinectDistance.CheckDistance() == TRUE)
+				scene = THROUGH_PLAY;
+			else
+				scene = THROUGH_START;
+			if (touch->Get(0) == 1)
+				scene = THROUGH_PAUSE;
+			if (song->danceMovie->GetNowFlame() == 100)
+				scene = THROUGH_RESULT;
 		}
+		throughPlay->Update(scene);
+		throughStart->Update(scene);
+		throughPause->Update(scene);
+		if(scene == THROUGH_RESULT)
+			throughResult->Update();
 	}
 	return THROUGH;
 }
@@ -44,11 +81,18 @@ void ThroughMain::View() {
 		switch (scene)
 		{
 		case THROUGH_START:
+			throughPlay->View();
 			throughStart->View();
+			throughPause->View();
 			break;
 		case THROUGH_PLAY:
+		case THROUGH_PAUSE:
+		case THROUGH_SETTING:
 			throughPlay->View();
+			throughPause->View();
 			break;
+		case THROUGH_RESULT:
+			throughResult->View();
 		}
 	}
 }
