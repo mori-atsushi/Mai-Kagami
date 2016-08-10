@@ -3,7 +3,6 @@
 
 #include "DxLib.h"
 #include "DrawGraph.h"
-#include "Common.h"
 #include "Touch.h"
 #include "Font.h"
 #include "SongSelectCover.h"
@@ -40,8 +39,6 @@ private:
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;
-	MyDrawTextLine *songTitle;
-	MyDrawText *songArtist;
 	MyDrawText *songLast[2];
 };
 

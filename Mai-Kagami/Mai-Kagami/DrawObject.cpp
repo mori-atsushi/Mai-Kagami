@@ -22,6 +22,36 @@ void  MyDrawCircle::View() {
 	DrawCircleAA(GetX(), GetY(), r, 100, Color::Get(), flag, w);
 }
 
+//角度付きの円初期化
+MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName) 
+	:MyDrawCircle(0, 0, width, colorName), Draw(x, y){
+	r = radius / SIZE_RATE;
+	ChangeDegree(degree);
+}
+
+void MyDrawCircleGauge::View() {
+	for (double i = 0; i < rad; i += 0.02) {
+		float x = (Draw::GetX() + r * sin(i)) * SIZE_RATE;
+		float y = (Draw::GetY() - r * cos(i)) * SIZE_RATE;
+		MyDrawCircle::ChangePos(x, y);
+		MyDrawCircle::View();
+	}
+	MyDrawCircle::ChangePos(GetEndX() * SIZE_RATE, GetEndY() * SIZE_RATE);
+	MyDrawCircle::View();
+}
+
+void MyDrawCircleGauge::ChangeDegree(const double degree) {
+	rad = 2 * M_PI * degree / 100;
+}
+
+float  MyDrawCircleGauge::GetEndX() {
+	return Draw::GetX() + r * sin(rad);
+}
+
+float  MyDrawCircleGauge::GetEndY() {
+	return Draw::GetY() - r * cos(rad);
+}
+
 //三角形初期化
 MyDrawTriangle::MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName)
 	:Draw(x, y), Color(colorName) {
@@ -90,7 +120,7 @@ void MyDrawBox::ChangeSize(const float width, const float height) {
 	h = height / SIZE_RATE;
 }
 
-//四角形初期化(塗りつぶしあり)
+//進捗バー初期化
 MyDrawBar::MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName)
 	:MyDrawBox(x + width / 2, y, width, height, colorName) {
 	MyDrawBar::x = x;

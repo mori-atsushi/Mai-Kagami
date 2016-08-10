@@ -5,9 +5,10 @@
 #include "Main.h"
 #include "DrawObject.h"
 #include "Drawtext.h"
-#include "Common.h"
+#include "Button.h"
 #include "Touch.h"
 #include "Font.h"
+#include "SeetingPop.h"
 
 //‹È‘I‘ð‰æ–Êƒ{ƒ^ƒ“ŠÖŒW
 class SongSelectButton {
@@ -26,7 +27,7 @@ public:
 	void View();
 	~SongSelectPop();
 private:
-	MyDrawBox *myDrawBox;
+	BlackBox *blackBox;
 	MyDrawText *title;
 	MyDrawText *message;
 	Button *button[2];

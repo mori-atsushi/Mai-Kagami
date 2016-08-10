@@ -9,7 +9,10 @@
 #include "ThroughStart.h"
 #include "ThroughDefine.h"
 #include "ThroughPlay.h"
+#include "ThroughPause.h"
+#include "ThroughResult.h"
 #include "Touch.h"
+#include "KinectDistance.h"
 
 class ThroughMain {
 public:
@@ -18,10 +21,12 @@ public:
 	void View();
 	~ThroughMain();
 private:
-	Font *f;
+	Song *song;
 	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
+	ThroughPause *throughPause;
+	ThroughResult *throughResult;
 	int loadFlag;
 	void Load();
 	void Delete();

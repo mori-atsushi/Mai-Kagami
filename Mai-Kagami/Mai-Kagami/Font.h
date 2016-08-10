@@ -5,7 +5,7 @@
 #include "DxLib.h"
 #include "Main.h"
 
-#define FONT_NUM 8
+#define FONT_NUM 10
 
 //ƒtƒHƒ“ƒgŠÖŒW
 class Font {
@@ -15,7 +15,7 @@ public:
 	~Font();
 private:
 	std::map <int, int> id;
-	int p[FONT_NUM] = {16, 20, 24, 30, 36, 40, 46, 50 };
+	int p[FONT_NUM] = {16, 20, 24, 30, 36, 40, 46, 50 , 60, 100};
 };
 
 #endif

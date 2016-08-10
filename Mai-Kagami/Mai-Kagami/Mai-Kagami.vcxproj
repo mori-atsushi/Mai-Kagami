@@ -19,16 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawGraph.cpp" />
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="KinectDistance.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
+    <ClCompile Include="SettingPop.cpp" />
+    <ClCompile Include="Song.cpp" />
     <ClCompile Include="SongSelectCover.cpp" />
     <ClCompile Include="Songs.cpp" />
     <ClCompile Include="SongSelect.cpp" />
@@ -36,23 +39,28 @@
     <ClCompile Include="SongSelectMain.cpp" />
     <ClCompile Include="ThroughMain.cpp" />
     <ClCompile Include="ThroughOption.cpp" />
+    <ClCompile Include="ThroughPause.cpp" />
     <ClCompile Include="ThroughPlay.cpp" />
+    <ClCompile Include="ThroughResult.cpp" />
     <ClCompile Include="ThroughStart.cpp" />
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="TopMain.cpp" />
     <ClCompile Include="Touch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawGraph.h" />
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="KinectDistance.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
+    <ClInclude Include="SeetingPop.h" />
+    <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelectCover.h" />
     <ClInclude Include="Songs.h" />
     <ClInclude Include="SongSelect.h" />
@@ -62,7 +70,9 @@
     <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughMain.h" />
     <ClInclude Include="ThroughOption.h" />
+    <ClInclude Include="ThroughPause.h" />
     <ClInclude Include="ThroughPlay.h" />
+    <ClInclude Include="ThroughResult.h" />
     <ClInclude Include="ThroughStart.h" />
     <ClInclude Include="Top.h" />
     <ClInclude Include="TopMain.h" />

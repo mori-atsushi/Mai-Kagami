@@ -2,6 +2,7 @@
 #define __DRAWOBJECT_H_INCLUDED__
 
 #include "DxLib.h"
+#define _USE_MATH_DEFINES
 #include "Main.h"
 #include "Draw.h"
 
@@ -13,6 +14,19 @@ public:
 	void View();
 private:
 	float r, w; //”¼ŒaAü‚Ì‘¾‚³
+};
+
+//Šp“x•t‚«‚Ì‰~(ü‚Ì‚İ)
+class MyDrawCircleGauge : public MyDrawCircle , public Draw{
+public:
+	MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName = "Blue");
+	void View();
+	void ChangeDegree(const double degree);
+	float GetEndX();
+	float GetEndY();
+private:
+	float r; //”¼Œa
+	double rad; //Šp“xiƒ‰ƒWƒAƒ“j
 };
 
 //³OŠpŒ`ŠÖŒW

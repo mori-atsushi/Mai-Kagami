@@ -26,10 +26,13 @@ public:
 	MyDrawMovie(const char *filename); //初期化
 	MyDrawMovie(const float x, const float y, const char *filename, const double ExRate); //初期化
 	void View(); //表示
+	void Seek(const int flame = 0); //指定したフレームに移動
+	void Start(); //再生
 	void Stop(); //停止
 	void ChangeSpeed(double speed); //スピード変更
 	double GetSpeed(); //スピード取得
-	float GetNow();
+	int GetAllFlame(); //全体のフレーム数取得
+	int GetNowFlame(); //現在のフレーム数取得
 	~MyDrawMovie();
 private:
 	double speed;
