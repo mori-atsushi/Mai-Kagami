@@ -4,12 +4,13 @@
 #include "DxLib.h"
 #include "Button.h"
 #include "Font.h"
+#include "Songs.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
 
 class ThroughPause {
 public:
-	ThroughPause(Font *font);
+	ThroughPause(Font *font, Songs *songs);
 	void Update(int scene);
 	void Load();
 	void View();
@@ -20,6 +21,8 @@ private:
 	BlackBox *blackBox; //îwåiîºìßñæçïÇÃéläpå`
 	MyDrawText *title;
 	CircleGraphTextButton *button[4];
+	SpeedPop *speedPop;
+	int scene;
 };
 
 #endif

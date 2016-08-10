@@ -5,7 +5,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	loadFlag = 0;
 	throughStart = new ThroughStart(font);
 	throughPlay = new ThroughPlay(font);
-	throughPause = new ThroughPause(font);
+	throughPause = new ThroughPause(font, songs);
 	throughResult = new ThroughResult(font);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
@@ -45,8 +45,15 @@ int ThroughMain::Update() {
 				scene = THROUGH_START;
 				return SONG_SELECT;
 			}
+			if (touch->Get(3) == 1) {
+				scene = THROUGH_SETTING;
+			}
 			break;
 		case THROUGH_RESULT:
+			break;
+		case THROUGH_SETTING:
+			if (touch->Get(4) == 1)
+				scene = THROUGH_PAUSE;
 			break;
 		default:
 			KinectDistance kinectDistance;
@@ -79,6 +86,7 @@ void ThroughMain::View() {
 			break;
 		case THROUGH_PLAY:
 		case THROUGH_PAUSE:
+		case THROUGH_SETTING:
 			throughPlay->View();
 			throughPause->View();
 			break;
