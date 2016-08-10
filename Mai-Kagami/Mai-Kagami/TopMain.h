@@ -1,9 +1,9 @@
 #ifndef __TOPMAIN_H_INCLUDED__
 #define __TOPMAIN_H_INCLUDED__
 
+#include "Nfc.h"
 #include "DxLib.h"
 #include "Main.h"
-#include "Nfc.h"
 #include "Font.h"
 #include "Top.h"
 

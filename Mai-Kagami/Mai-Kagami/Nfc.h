@@ -1,6 +1,7 @@
 #ifndef __NFC_H_INCLUDED__
 #define __NFC_H_INCLUDED__
 
+#include "Client.h"
 #include <thread>
 #include"DxLib.h"
 
