@@ -56,7 +56,7 @@ void SongSelectCover::Draw(int scene) {
 		break;
 	default:
 		if (n == 0 && !playFlag) {
-			PlayMusic(music, DX_PLAYTYPE_LOOP);
+//			PlayMusic(music, DX_PLAYTYPE_LOOP); // d‚¢‚Ì‚Åˆê“I‚ÉÁ‹
 			playFlag = TRUE;
 		}
 		else if (n != 0) {
