@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Common.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawGraph.cpp" />
@@ -56,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
-    <ClInclude Include="Common.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawGraph.h" />

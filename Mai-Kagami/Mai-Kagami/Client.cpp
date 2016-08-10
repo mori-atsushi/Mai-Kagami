@@ -32,7 +32,7 @@ bool CClient::Connect(const char* IP, u_short PORT)
 	//接続
 	if (connect(m_DstSocket, (struct sockaddr *) &dstAddr, sizeof(dstAddr))
 		== SOCKET_ERROR) {
-
+		return false;
 	}
 	return true;
 }
@@ -40,11 +40,26 @@ bool CClient::Connect(const char* IP, u_short PORT)
 //受信
 RECVSTATUS CClient::Recv(char* pData, int DataSize, int *pRecvSize)
 {
+	int n = recv(m_DstSocket, pData, DataSize, 0);
+	if (n < 1) {
+		//データが来ていない
+		if (WSAGetLastError() == WSAEWOULDBLOCK) {
+			return RECV_STILL;
+		//切断orエラー
+		} else {
+			return RECV_FAILED;
+		}
+	}
+	*pRecvSize = n;	//受信データ長取得
 	return RECV_SUCCESSED;
 }
 
 //送信
 bool CClient::Send(char*pData, int DataSize)
 {
+	//バケットの送信
+	if (send(m_DstSocket, pData, DataSize, 0) == SOCKET_ERROR)
+		return false;
+
 	return true;
 }
