@@ -14,9 +14,8 @@ void ThroughOptionButton::View() {
 		button[i]->View();
 }
 
-void ThroughOptionButton::Update(int scene) {
-	if (scene == OPTION1)
-		speedOption->Update();
+void ThroughOptionButton::Update(Touch *touch) {
+	speedOption->Update(touch);
 }
 
 //ƒ‚[ƒh‘I‘ğíœ

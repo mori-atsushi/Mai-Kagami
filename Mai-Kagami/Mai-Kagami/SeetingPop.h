@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "Font.h"
 #include "Songs.h"
+#include "Touch.h"
 
 //ポップアップ用四角形（黒色半透明全画面）
 class BlackBox : public MyDrawBox {
@@ -20,7 +21,7 @@ private:
 class SpeedOption {
 public:
 	SpeedOption(Font *font, Songs *songs);
-	void Update();
+	void Update(Touch *touch);
 	void View();
 	~SpeedOption();
 private:
@@ -33,12 +34,12 @@ private:
 class SpeedPop : public SpeedOption {
 public:
 	SpeedPop(Font *font, Songs *songs);
-	void Update();
 	void View();
 	~SpeedPop();
 private:
 	BlackBox *blackBox;
 	Button *button;
+	MyDrawText *text;
 };
 
 #endif

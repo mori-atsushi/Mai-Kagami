@@ -68,7 +68,7 @@ int ThroughMain::Update() {
 		}
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
-		throughPause->Update(scene);
+		throughPause->Update(scene, touch);
 		if(scene == THROUGH_RESULT)
 			throughResult->Update();
 	}

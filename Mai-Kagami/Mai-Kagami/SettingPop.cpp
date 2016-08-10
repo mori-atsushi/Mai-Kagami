@@ -19,9 +19,12 @@ SpeedOption::SpeedOption(Font *font, Songs *songs) {
 	SpeedOption::songs = songs;
 }
 
-void SpeedOption::Update() {
+void SpeedOption::Update(Touch *touch) {
 	Song *song = songs->GetSong(songs->GetNowSong());
-
+	if (touch->Get(0) == 1)
+		song->ChangeSpeed(1);
+	if (touch->Get(1) == 1)
+		song->ChangeSpeed(-1);
 	char str[256];
 	sprintf_s(str, sizeof(str), "~%1.1lf", song->danceMovie->GetSpeed());
 	speed[1]->ChangeText(str);
@@ -46,19 +49,18 @@ SpeedPop::SpeedPop(Font *font, Songs *songs)
 	: SpeedOption(font, songs) {
 	blackBox = new BlackBox();
 	button = new CircleButton2(font, "Œˆ’è", 4);
+	text = new MyDrawText(font, "- ‘¬“xÝ’è -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40);
 }
 
 void SpeedPop::View() {
 	blackBox->View();
 	SpeedOption::View();
 	button->View();
-}
-
-void SpeedPop::Update() {
-	SpeedOption::Update();
+	text->View();
 }
 
 SpeedPop::~SpeedPop() {
 	delete blackBox;
 	delete button;
+	delete text;
 }

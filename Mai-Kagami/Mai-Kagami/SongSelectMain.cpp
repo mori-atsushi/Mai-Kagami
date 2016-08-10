@@ -57,6 +57,7 @@ int SongSelect::Update() {
 				scene = NEXT;
 			if (touch->Get(4) == 1)
 				scene = MODE;
+			throughOptionButton->Update(touch);
 		}
 
 		if (scene == BACK_TOP) {
@@ -70,7 +71,6 @@ int SongSelect::Update() {
 			return THROUGH;
 		}
 
-		throughOptionButton->Update(scene);
 		songSelectTitle->Update(scene);
 	}
 	return SONG_SELECT;

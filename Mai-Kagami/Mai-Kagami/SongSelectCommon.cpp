@@ -106,10 +106,6 @@ void SongInformation::Update(Touch *touch, int scene) {
 			nowSong->danceMovie->Release();
 		break;
 	case OPTION1:
-		if (touch->Get(0) == 1)
-			nowSong->ChangeSpeed(1);
-		if (touch->Get(1) == 1)
-			nowSong->ChangeSpeed(-1);
 		if (touch->Get(2) == 1)
 			nowSong->danceMovie->Stop();
 		if (touch->Get(4) == 1)

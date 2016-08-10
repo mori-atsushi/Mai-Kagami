@@ -7,11 +7,12 @@
 #include "Songs.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
+#include "Touch.h"
 
 class ThroughPause {
 public:
 	ThroughPause(Font *font, Songs *songs);
-	void Update(int scene);
+	void Update(const int scene, Touch *touch);
 	void Load();
 	void View();
 	~ThroughPause();

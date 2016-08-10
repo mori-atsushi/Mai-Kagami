@@ -75,6 +75,7 @@ void MyDrawMovie::Stop() {
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
 	MyDrawMovie::speed = speed;
+	Stop();
 	Seek();
 	SetPlaySpeedRateMovieToGraph(handle, speed);
 }

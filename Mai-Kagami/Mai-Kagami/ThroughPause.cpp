@@ -12,9 +12,9 @@ ThroughPause::ThroughPause(Font *font, Songs *songs) {
 	flag = FALSE;
 }
 
-void ThroughPause::Update(int scene) {
+void ThroughPause::Update(const int scene, Touch *touch) {
 	ThroughPause::scene = scene;
-	speedPop->Update();
+	speedPop->Update(touch);
 }
 
 void ThroughPause::Load() {
