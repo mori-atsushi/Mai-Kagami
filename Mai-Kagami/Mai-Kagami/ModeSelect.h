@@ -2,7 +2,7 @@
 #define __MODESELECT_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Common.h"
+#include "Button.h"
 #include "Font.h"
 
 class ModeSelectButton {

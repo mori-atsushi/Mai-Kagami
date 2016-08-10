@@ -10,6 +10,7 @@ class Color {
 public:
 	Color(const char *color);
 	int Get();
+	void ChangeColor(const char *color);
 private:
 	int c;
 };
