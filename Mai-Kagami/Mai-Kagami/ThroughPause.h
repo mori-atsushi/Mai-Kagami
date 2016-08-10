@@ -12,7 +12,8 @@
 class ThroughPause {
 public:
 	ThroughPause(Font *font, Songs *songs);
-	void Update(const int scene, Touch *touch);
+	void Check(Touch *touch);
+	void Update(const int scene);
 	void Load();
 	void View();
 	~ThroughPause();

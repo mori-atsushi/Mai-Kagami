@@ -19,7 +19,7 @@ SpeedOption::SpeedOption(Font *font, Songs *songs) {
 	SpeedOption::songs = songs;
 }
 
-void SpeedOption::Update(Touch *touch) {
+void SpeedOption::Check(Touch *touch) {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (touch->Get(0) == 1)
 		song->ChangeSpeed(1);

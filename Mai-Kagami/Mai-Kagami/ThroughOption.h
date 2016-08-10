@@ -14,7 +14,7 @@ class ThroughOptionButton {
 public:
 	ThroughOptionButton(Font *font, Songs *songs);
 	void View();
-	void Update(Touch *touch);
+	void Check(Touch *touch);
 	~ThroughOptionButton();
 private:
 	Songs *songs;

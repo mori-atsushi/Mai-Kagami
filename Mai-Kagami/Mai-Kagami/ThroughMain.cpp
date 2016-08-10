@@ -54,6 +54,7 @@ int ThroughMain::Update() {
 		case THROUGH_SETTING:
 			if (touch->Get(4) == 1)
 				scene = THROUGH_PAUSE;
+			throughPause->Check(touch);
 			break;
 		default:
 			KinectDistance kinectDistance;
@@ -68,7 +69,7 @@ int ThroughMain::Update() {
 		}
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
-		throughPause->Update(scene, touch);
+		throughPause->Update(scene);
 		if(scene == THROUGH_RESULT)
 			throughResult->Update();
 	}

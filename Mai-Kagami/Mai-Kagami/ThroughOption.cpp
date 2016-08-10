@@ -14,8 +14,8 @@ void ThroughOptionButton::View() {
 		button[i]->View();
 }
 
-void ThroughOptionButton::Update(Touch *touch) {
-	speedOption->Update(touch);
+void ThroughOptionButton::Check(Touch *touch) {
+	speedOption->Check(touch);
 }
 
 //ƒ‚[ƒh‘I‘ğíœ

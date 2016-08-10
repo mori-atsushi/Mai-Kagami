@@ -21,7 +21,7 @@ private:
 class SpeedOption {
 public:
 	SpeedOption(Font *font, Songs *songs);
-	void Update(Touch *touch);
+	void Check(Touch *touch);
 	void View();
 	~SpeedOption();
 private:
