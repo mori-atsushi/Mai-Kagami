@@ -60,9 +60,14 @@ ThroughPlayBar::~ThroughPlayBar() {
 ThroughCountDown::ThroughCountDown(Font *font) {
 	blackBox = new BlackBox();
 	text = new MyDrawText(font, "€”õ‚ð‚µ‚Ä‚­‚¾‚³‚¢", WIDTH * 0.5, HEIGHT * 0.7, 1, 40);
+	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.2, "White");
+	countCircle1 = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.2, 0, 4, "Yellow");
+	countCircle2 = new MyDrawCircle(0, 0, 12, "Yellow");
 }
 
 void ThroughCountDown::Update() {
+	countCircle1->ChangeDegree((double)count / max * 100);
+	countCircle2->ChangePos(countCircle1->GetEndX() * SIZE_RATE, countCircle1->GetEndY() * SIZE_RATE);
 	if (++count == max)
 		flag = FALSE;
 }
@@ -70,6 +75,11 @@ void ThroughCountDown::Update() {
 void ThroughCountDown::View() {
 	blackBox->View();
 	text->View();
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //“§–¾“xÝ’è
+	circle->View();
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //“§–¾“x‰ðœ
+	countCircle1->View();
+	countCircle2->View();
 }
 
 boolean ThroughCountDown::GetFlag() {
@@ -85,6 +95,9 @@ void ThroughCountDown::SetFlag(const boolean flag) {
 ThroughCountDown::~ThroughCountDown() {
 	delete blackBox;
 	delete text;
+	delete circle;
+	delete countCircle1;
+	delete countCircle2;
 }
 
 ThroughPlay::ThroughPlay(Font *font) {

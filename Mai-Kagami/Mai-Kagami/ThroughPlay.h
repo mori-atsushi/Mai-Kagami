@@ -40,6 +40,9 @@ private:
 	int count; //ƒJƒEƒ“ƒ^
 	BlackBox *blackBox;
 	MyDrawText *text;
+	MyDrawCircle *circle;
+	MyDrawCircleGauge *countCircle1;
+	MyDrawCircle *countCircle2;
 	const int max = 120;
 };
 

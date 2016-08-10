@@ -21,6 +21,7 @@ class MyDrawCircleGauge : public MyDrawCircle , public Draw{
 public:
 	MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName = "Blue");
 	void View();
+	void ChangeDegree(const double degree);
 	float GetEndX();
 	float GetEndY();
 private:

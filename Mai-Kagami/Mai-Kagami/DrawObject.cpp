@@ -26,7 +26,7 @@ void  MyDrawCircle::View() {
 MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName) 
 	:MyDrawCircle(0, 0, width, colorName), Draw(x, y){
 	r = radius / SIZE_RATE;
-	rad = 2 * M_PI * degree / 100;
+	ChangeDegree(degree);
 }
 
 void MyDrawCircleGauge::View() {
@@ -36,6 +36,12 @@ void MyDrawCircleGauge::View() {
 		MyDrawCircle::ChangePos(x, y);
 		MyDrawCircle::View();
 	}
+	MyDrawCircle::ChangePos(GetEndX() * SIZE_RATE, GetEndY() * SIZE_RATE);
+	MyDrawCircle::View();
+}
+
+void MyDrawCircleGauge::ChangeDegree(const double degree) {
+	rad = 2 * M_PI * degree / 100;
 }
 
 float  MyDrawCircleGauge::GetEndX() {
