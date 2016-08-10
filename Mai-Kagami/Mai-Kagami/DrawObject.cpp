@@ -22,6 +22,30 @@ void  MyDrawCircle::View() {
 	DrawCircleAA(GetX(), GetY(), r, 100, Color::Get(), flag, w);
 }
 
+//Šp“x•t‚«‚Ì‰~‰Šú‰»
+MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName) 
+	:MyDrawCircle(0, 0, width, colorName), Draw(x, y){
+	r = radius / SIZE_RATE;
+	rad = 2 * M_PI * degree / 100;
+}
+
+void MyDrawCircleGauge::View() {
+	for (double i = 0; i < rad; i += 0.001) {
+		float x = (Draw::GetX() + r * sin(i)) * SIZE_RATE;
+		float y = (Draw::GetY() - r * cos(i)) * SIZE_RATE;
+		MyDrawCircle::ChangePos(x, y);
+		MyDrawCircle::View();
+	}
+}
+
+float  MyDrawCircleGauge::GetEndX() {
+	return Draw::GetX() + r * sin(rad);
+}
+
+float  MyDrawCircleGauge::GetEndY() {
+	return Draw::GetY() - r * cos(rad);
+}
+
 //OŠpŒ`‰Šú‰»
 MyDrawTriangle::MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName)
 	:Draw(x, y), Color(colorName) {

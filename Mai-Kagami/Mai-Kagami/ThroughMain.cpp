@@ -47,7 +47,6 @@ int ThroughMain::Update() {
 			}
 			break;
 		case THROUGH_RESULT:
-			throughResult->Update();
 			break;
 		default:
 			KinectDistance kinectDistance;
@@ -63,6 +62,8 @@ int ThroughMain::Update() {
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
 		throughPause->Update(scene);
+		if(scene == THROUGH_RESULT)
+			throughResult->Update();
 	}
 	return THROUGH;
 }
