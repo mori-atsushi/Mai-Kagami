@@ -24,7 +24,7 @@ public:
 	void View();
 	~SpeedOption();
 private:
-	Button *button[3];
+	Button *button[2];
 	MyDrawText *speed[2];
 	Songs *songs;
 };
@@ -38,6 +38,7 @@ public:
 	~SpeedPop();
 private:
 	BlackBox *blackBox;
+	Button *button;
 };
 
 #endif

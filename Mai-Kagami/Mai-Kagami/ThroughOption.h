@@ -19,7 +19,7 @@ public:
 private:
 	Songs *songs;
 	SpeedOption *speedOption;
-	Button *button;
+	Button *button[2];
 	MyDrawText *speed[2];
 };
 
