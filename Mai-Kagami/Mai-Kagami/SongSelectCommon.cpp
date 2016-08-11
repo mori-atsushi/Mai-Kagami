@@ -1,10 +1,9 @@
 #include "SongSelectCommon.h"
 
 //曲選択画面タイトルロード
-SongSelectTitle::SongSelectTitle(Font *font, const float x, const float y) 
-	: Draw(x, y) {
-	title = new MyDrawTextLine(font, "", GetX() * SIZE_RATE, GetY() * SIZE_RATE - HEIGHT * 0.02, 1, 50, WIDTH * 0.4, 3);
-	subTitle = new MyDrawText(font, "", GetX() * SIZE_RATE, GetY() * SIZE_RATE + HEIGHT * 0.02, 1, 30, "Yellow");
+SongSelectTitle::SongSelectTitle(Font *font) {
+	title = new DrawTitle(font, "");
+	subTitle = new DrawSubtitle(font, "");
 	scene = -100;
 }
 

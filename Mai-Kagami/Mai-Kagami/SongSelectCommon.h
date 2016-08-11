@@ -3,22 +3,22 @@
 
 #include "DxLib.h"
 #include "DrawGraph.h"
+#include "CommonText.h"
 #include "Touch.h"
-#include "Font.h"
 #include "SongSelectCover.h"
 #include "Songs.h"
 #include "SongSelectDefine.h"
 
 //曲選択画面タイトル
-class SongSelectTitle : public Draw {
+class SongSelectTitle {
 public:
-	SongSelectTitle(Font *font, const float x, const float y); //初期化
+	SongSelectTitle(Font *font); //初期化
 	void Update(int scene); //計算
 	void View(); //表示
 	~SongSelectTitle();
 private:
-	MyDrawTextLine *title;
-	MyDrawText *subTitle;
+	DrawTitle *title;
+	DrawSubtitle *subTitle;
 	int scene;
 };
 
