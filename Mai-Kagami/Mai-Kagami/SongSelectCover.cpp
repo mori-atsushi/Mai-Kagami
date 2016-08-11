@@ -19,8 +19,9 @@ void SongSelectCover::Release() {
 
 //•\Ž¦ˆÊ’u‚ÌŒvŽZ
 void SongSelectCover::Update(int num, int max) {
-	Change(num, max);
+	static int t = 0;
 	int n = GetNow();
+	Change(num, max);
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
 		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
@@ -34,6 +35,8 @@ void SongSelectCover::Update(int num, int max) {
 			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
 		}
 	}
+	if (t < 1000)
+		t++;
 }
 
 void SongSelectCover::Draw(int scene) {
