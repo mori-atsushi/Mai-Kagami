@@ -2,7 +2,8 @@
 #define __THROUGHDETAIL_H_INCLUDED__
 
 #include "DxLib.h"
-#include "DrawText.h"
+#include "CommonText.h"
+#include "Button.h"
 
 class ThroughDetail {
 public:
@@ -10,7 +11,8 @@ public:
 	void View();
 	~ThroughDetail();
 private:
-	MyDrawTextLine *title;
+	DrawTitle *title;
+	Button *button;
 };
 
 #endif
