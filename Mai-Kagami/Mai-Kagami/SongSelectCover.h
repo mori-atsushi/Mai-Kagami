@@ -16,10 +16,10 @@ public:
 	SongSelectCover(Font *font, Song *song, const int now);
 	void Load();
 	void Release();
-	void Update(int, int);
+	void Update(int, int);  // Change ‚ğ“‡‚µ‚½‚Ì‚ÅAˆø”’Ç‰Á Jaity
 	void Draw(int scene);
-	void Change(int num, int max);
 private:
+	void Change(int num, int max); // public‚©‚ç’Ç•ú‚³‚ê‚Ü‚µ‚½ Jaity
 	boolean playFlag = 0;
 	Font *font;
 };
