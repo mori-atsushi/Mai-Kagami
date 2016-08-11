@@ -108,7 +108,7 @@ ThroughPlay::ThroughPlay(Font *font) {
 
 void ThroughPlay::Load(Song *song) {
 	ThroughPlay::song = song;
-	song->danceMovie->ChangeEx(1);
+	song->danceMovie->ChangeEx(1.2);
 	song->danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.5);
 	song->danceMovie->Seek();
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);

@@ -52,7 +52,7 @@ int ThroughMain::Update() {
 		case THROUGH_RESULT:
 			break;
 		case THROUGH_SETTING:
-			if (touch->Get(4) == 1)
+			if (touch->Get(4) == 1) 
 				scene = THROUGH_PAUSE;
 			throughPause->Check(touch);
 			break;
