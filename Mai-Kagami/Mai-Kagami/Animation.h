@@ -2,24 +2,28 @@
 #define __ANIMATION_H_INCLUDED__
 
 #include "Animation.h"
+#define _USE_MATH_DEFINES  // 円周率M_PIを使うため
 #include <math.h>
-
-#ifndef PI
-#define PI 3.1415926535897932
-#endif
+#include "DxLib.h"
 
 typedef unsigned long MyTime;
 
 class Animation {
 public:
-	double ProgressRate(MyTime, int, MyTime);
-	void Stop();
+	MyTime GetTime();
+	void Reset();
+protected:
+	double UpdateRate();
+	void SetRate(MyTime, int);
+	void SetTime(MyTime);
 	enum {
 		LINER,
 		EASE
 	};
 private:
-	unsigned long t;  // アニメーションの現在時刻
+	MyTime t = 0;		// アニメーションの現在時刻
+	MyTime duration;	// アニメーション動作時間
+	int ease = LINER;	// アニメーション種類
 };
 
 

@@ -19,12 +19,18 @@ void SongSelectCover::Release() {
 
 //•\Ž¦ˆÊ’u‚ÌŒvŽZ
 void SongSelectCover::Update(int num, int max) {
-	static int t = 0;
+	//static int t = 0;	// Ž×–‚ Jaity
 	int n = GetNow();
 	Change(num, max);
+
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
-		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		if (coverGraph->GetTime() == 0) { // Å‰‚¾‚¯
+			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+			coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35, 60);
+		}
+		//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		coverGraph->Update();
 	}
 	else {
 		coverGraph->ChangeEx(0.7);
@@ -35,8 +41,8 @@ void SongSelectCover::Update(int num, int max) {
 			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
 		}
 	}
-	if (t < 1000)
-		t++;
+	//if (t < 1000)	// Ž×–‚ Jaity
+	//	t++;		// Ž×–‚ Jaity
 }
 
 void SongSelectCover::Draw(int scene) {
