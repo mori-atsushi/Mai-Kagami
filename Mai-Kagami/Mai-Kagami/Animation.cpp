@@ -1,6 +1,4 @@
 #include "Animation.h"
-#include <math.h>
-#define PI 3.1415926535897932
 
 // アニメーションの進行割合を返す
 // 終了時刻, タイプ, 遅延

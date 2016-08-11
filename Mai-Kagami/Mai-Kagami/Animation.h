@@ -2,6 +2,11 @@
 #define __ANIMATION_H_INCLUDED__
 
 #include "Animation.h"
+#include <math.h>
+
+#ifndef PI
+#define PI 3.1415926535897932
+#endif
 
 typedef unsigned long MyTime;
 
