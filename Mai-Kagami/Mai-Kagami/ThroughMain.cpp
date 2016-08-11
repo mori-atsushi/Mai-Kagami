@@ -7,6 +7,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	throughPlay = new ThroughPlay(font);
 	throughPause = new ThroughPause(font, songs);
 	throughResult = new ThroughResult(font);
+	throughDetail = new ThroughDetail(font);
 	scene = THROUGH_START;
 	ThroughMain::touch = touch;
 }
@@ -50,6 +51,10 @@ int ThroughMain::Update() {
 			}
 			break;
 		case THROUGH_RESULT:
+			if (touch->Get(4) == 1)
+				scene = THROUGH_DETAIL;
+			break;
+		case THROUGH_DETAIL:
 			break;
 		case THROUGH_SETTING:
 			if (touch->Get(4) == 1) 
@@ -93,6 +98,10 @@ void ThroughMain::View() {
 			break;
 		case THROUGH_RESULT:
 			throughResult->View();
+			break;
+		case THROUGH_DETAIL:
+			throughDetail->View();
+			break;
 		}
 	}
 }
