@@ -30,12 +30,13 @@ public:
 	void Start(); //再生
 	void Stop(); //停止
 	void ChangeSpeed(double speed); //スピード変更
+	void SetSpeed(); //スピードセット
 	double GetSpeed(); //スピード取得
 	int GetAllFlame(); //全体のフレーム数取得
 	int GetNowFlame(); //現在のフレーム数取得
 	~MyDrawMovie();
 private:
-	double speed;
+	double speed, sp;
 };
 
 #endif

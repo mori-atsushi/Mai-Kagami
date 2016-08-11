@@ -34,9 +34,11 @@ private:
 class SpeedPop : public SpeedOption {
 public:
 	SpeedPop(Font *font, Songs *songs);
+	void Check(Touch *touch);
 	void View();
 	~SpeedPop();
 private:
+	Songs *songs;
 	BlackBox *blackBox;
 	Button *button;
 	MyDrawText *text;

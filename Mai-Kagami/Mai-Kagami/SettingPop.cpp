@@ -47,9 +47,17 @@ SpeedOption::~SpeedOption() {
 //スピードオプションポップアップ
 SpeedPop::SpeedPop(Font *font, Songs *songs)
 	: SpeedOption(font, songs) {
+	SpeedPop::songs = songs;
 	blackBox = new BlackBox();
 	button = new CircleButton2(font, "決定", 4);
 	text = new MyDrawText(font, "- 速度設定 -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40);
+}
+
+void SpeedPop::Check(Touch *touch) {
+	Song *song = songs->GetSong(songs->GetNowSong());
+	SpeedOption::Check(touch);
+	if (touch->Get(4) == 1)
+		song->danceMovie->SetSpeed();
 }
 
 void SpeedPop::View() {
