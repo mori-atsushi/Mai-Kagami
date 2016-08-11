@@ -68,13 +68,15 @@ void SongInformation::Load() {
 }
 
 void SongInformation::Update(Touch *touch, int scene) {
+	int direct = 0;  // increase or decrease of IDs
 	switch (scene)
 	{
 	case MAIN:
 		//ボタン0が押されたら
 		if (touch->Get(0) == 1) {
-			for (int i = 0; i < n; i++)
-				songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント
+			//for (int i = 0; i < n; i++)
+			//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント
+			direct = 1;
 		}
 
 		//ボタン1が押されたら
@@ -95,11 +97,12 @@ void SongInformation::Update(Touch *touch, int scene) {
 
 		//ボタン2が押されたら
 		if (touch->Get(2) == 1) {
-			for (int i = 0; i < n; i++)
-				songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント
+			//for (int i = 0; i < n; i++)
+			//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント
+			direct = -1;
 		}
 		for (int i = 0; i < n; i++)
-			songCover[i]->Update();
+			songCover[i]->Update(direct, n);
 		break;
 	case MODE:
 		if (touch->Get(4) == 1)

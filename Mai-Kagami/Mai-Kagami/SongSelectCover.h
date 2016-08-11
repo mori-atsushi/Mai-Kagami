@@ -16,7 +16,7 @@ public:
 	SongSelectCover(Font *font, Song *song, const int now);
 	void Load();
 	void Release();
-	void Update();
+	void Update(int, int);
 	void Draw(int scene);
 	void Change(int num, int max);
 private:

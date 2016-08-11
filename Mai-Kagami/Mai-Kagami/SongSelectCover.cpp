@@ -18,7 +18,8 @@ void SongSelectCover::Release() {
 }
 
 //•\Ž¦ˆÊ’u‚ÌŒvŽZ
-void SongSelectCover::Update() {
+void SongSelectCover::Update(int num, int max) {
+	Change(num, max);
 	int n = GetNow();
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
