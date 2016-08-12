@@ -23,6 +23,9 @@ class Nfc
 public:
 	void Init();	//初期化
 	int GetId();	//ユーザーIDの取得
+	bool Connect(const char* IP, u_short PORT);	//接続
+	RECVSTATUS Recv(char* pData, int DataSize, int *pRecvSize);	//受信
+
 private:
 	IPDATA Ip;			//接続用IPアドレスデータ
 	int id;

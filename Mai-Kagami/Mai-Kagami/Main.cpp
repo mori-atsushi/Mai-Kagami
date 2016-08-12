@@ -1,3 +1,4 @@
+#include <WinSock2.h>
 #include "DxLib.h"
 #include "MaiKagami.h"
 #include "Draw.h"

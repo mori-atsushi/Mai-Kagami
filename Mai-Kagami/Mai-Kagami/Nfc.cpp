@@ -17,14 +17,10 @@ void Nfc::Init() {
 
 	if (NetHandle == -1)
 		exit(-1);
-
-	//	auto thd = std::thread(&Nfc::CheckThread, this);
-//	thd.detach();
 }
 
 //ユーザーIDの取得
 int Nfc::GetId() {
-	//printfDx("%d\n", NetHandle);
 //取得していない受信データ量を得る
 	DataLength = GetNetWorkDataLength(NetHandle);
 	//取得していない受信データ量が0じゃない場合はループを抜ける
@@ -42,28 +38,7 @@ int Nfc::GetId() {
 	return temp;
 }
 
-//NFCをチェックするためのスレッド
-void Nfc::CheckThread() {
+bool Connect(const char* IP, u_short port)
+{
 
-
-	//確立が成功した場合のみ中の処理をする
-	if (NetHandle != -1)
-	{
-		//データが来るのを待つ
-		while (!ProcessMessage())
-		{
-			printfDx("ok");
-			//取得していない受信データ量を得る
-			DataLength = GetNetWorkDataLength(NetHandle);
-
-			//取得していない受信データ量が0じゃない場合はループを抜ける
-			if (DataLength != 0) break;
-		}
-
-
-
-	}
-
-	//WaitKey();
-	//id = 1;	//取得したidを返す
 }
