@@ -126,9 +126,6 @@
     <ClCompile Include="ThroughPlay.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
-    <ClCompile Include="Client.cpp">
-      <Filter>ソース ファイル\システム関係</Filter>
-    </ClCompile>
     <ClCompile Include="Song.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
@@ -217,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="ThroughPlay.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
     <ClInclude Include="Song.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
