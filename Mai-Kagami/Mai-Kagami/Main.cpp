@@ -1,5 +1,3 @@
-#include <WinSock2.h>
-#include <WS2tcpip.h>
 #include "DxLib.h"
 #include "MaiKagami.h"
 #include "Draw.h"
