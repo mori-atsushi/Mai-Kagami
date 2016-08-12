@@ -7,5 +7,6 @@
 #define THROUGH_RESULT 3
 #define THROUGH_SETTING 4
 #define THROUGH_DETAIL 5
+#define THROUGH_FINISH 6
 
 #endif

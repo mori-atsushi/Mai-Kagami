@@ -55,6 +55,10 @@ int ThroughMain::Update() {
 				scene = THROUGH_DETAIL;
 			break;
 		case THROUGH_DETAIL:
+			if (touch->Get(4) == 1)
+				scene = THROUGH_FINISH;
+			break;
+		case THROUGH_FINISH:
 			break;
 		case THROUGH_SETTING:
 			if (touch->Get(4) == 1) 
@@ -75,6 +79,7 @@ int ThroughMain::Update() {
 		throughPlay->Update(scene);
 		throughStart->Update(scene);
 		throughPause->Update(scene);
+		throughDetail->Update(scene);
 		if(scene == THROUGH_RESULT)
 			throughResult->Update();
 	}
@@ -100,6 +105,7 @@ void ThroughMain::View() {
 			throughResult->View();
 			break;
 		case THROUGH_DETAIL:
+		case THROUGH_FINISH:
 			throughDetail->View();
 			break;
 		}
