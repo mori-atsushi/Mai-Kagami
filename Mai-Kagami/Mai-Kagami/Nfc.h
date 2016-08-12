@@ -28,7 +28,8 @@ public:
 
 private:
 	IPDATA Ip;			//接続用IPアドレスデータ
-	int id;
+	int id;				//取得したID
+	SOCKET m_DstSocket;	//送受信用ソケット
 	int NetHandle;		//ネットワークハンドル
 	int DataLength;		//受信データ量保存用変数
 	char StrBuf[256];	//データバッファ
