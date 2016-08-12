@@ -43,7 +43,6 @@ int ThroughMain::Update() {
 			}
 			if (touch->Get(2) == 1) {
 				Delete();
-				scene = THROUGH_START;
 				return SONG_SELECT;
 			}
 			if (touch->Get(3) == 1) {
@@ -59,6 +58,14 @@ int ThroughMain::Update() {
 				scene = THROUGH_FINISH;
 			break;
 		case THROUGH_FINISH:
+			if (touch->Get(2) == 1) {
+				Delete();
+				return SONG_SELECT;
+			}
+			if (touch->Get(3) == 1) {
+				Delete();
+				return TOP;
+			}
 			break;
 		case THROUGH_SETTING:
 			if (touch->Get(4) == 1) 
@@ -114,6 +121,7 @@ void ThroughMain::View() {
 
 void ThroughMain::Delete() {
 	loadFlag = 0;
+	scene = THROUGH_START;
 }
 
 ThroughMain::~ThroughMain() {
