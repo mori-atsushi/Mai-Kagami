@@ -38,14 +38,15 @@ void Pos::ChangePos(const float x, const float y) {
 
 // アニメーション用パラメータセット Jaity
 void Pos::SetPosAnimation(float _target_x, float _target_y, MyTime _duration, int _ease) {
-	printfDx("Set: %f %f\n", GetX(), GetY());
 	if (GetTime() != 0)
 		return;
-	default_x = GetX();
-	default_y = GetY();
+	default_x = GetX() * SIZE_RATE;
+	default_y = GetY() * SIZE_RATE;
 	target_x = _target_x;
 	target_y = _target_y;
 	SetRate(_duration, _ease);
+	//printfDx("Set: %f %f\n", default_x, default_y);
+	//printfDx("Set: %f %f\n", target_x, target_y);
 }
 
 

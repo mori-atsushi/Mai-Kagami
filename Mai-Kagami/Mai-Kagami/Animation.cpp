@@ -4,10 +4,10 @@
 // 終了時刻, タイプ, 遅延
 double Animation::UpdateRate() {
 	double r, rate;
-	if (duration <= 0) {
-		return 0;
-	}
-	r = (double)t / duration;
+	if (duration)
+		r = (double)t / duration;
+	else
+		r = 1;
 	switch (ease) {
 	EASE:
 		rate = (1 - cos(r * M_PI)) / 2;
@@ -22,11 +22,7 @@ double Animation::UpdateRate() {
 
 // パラメータ代入
 void Animation::SetRate(MyTime _duration, int _ease = LINER) {
-	if (duration <= 0) {
-		duration = 60;
-		printfDx("ERROR: Animation->duration\n");
-	}
-	duration = _duration;
+	duration = _duration <= 0 ? 0 : _duration;
 	ease = _ease;
 }
 

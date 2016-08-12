@@ -77,6 +77,8 @@ void SongInformation::Update(Touch *touch, int scene) {
 			//for (int i = 0; i < n; i++)  // 不要 Jaity
 			//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント // 不要 Jaity
 			direct = 1;  // Jaity
+			for (int i = 0; i < n; i++)
+				songCover[i]->coverGraph->Reset();
 		}
 
 		//ボタン1が押されたら
@@ -100,6 +102,8 @@ void SongInformation::Update(Touch *touch, int scene) {
 			//for (int i = 0; i < n; i++) // 不要 Jaity
 			//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント // 不要 Jaity
 			direct = -1;  // Jaity
+			for (int i = 0; i < n; i++)
+				songCover[i]->coverGraph->Reset();
 		}
 		for (int i = 0; i < n; i++)
 			songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity

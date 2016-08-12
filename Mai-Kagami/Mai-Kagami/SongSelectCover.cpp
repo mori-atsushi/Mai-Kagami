@@ -20,27 +20,33 @@ void SongSelectCover::Release() {
 //•\Ž¦ˆÊ’u‚ÌŒvŽZ
 void SongSelectCover::Update(int num, int max) {
 	//static int t = 0;	// Ž×–‚ Jaity
-	int n = GetNow();
 	Change(num, max);
+	int n = GetNow();
+	int duration = 10;
 
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
 		if (coverGraph->GetTime() == 0) { // Å‰‚¾‚¯
-			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
-			coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35, 60);
+			coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35, duration);
+			//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
 		}
 		//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
-		coverGraph->Update();
+		//coverGraph->Update();
 	}
 	else {
 		coverGraph->ChangeEx(0.7);
-		if (n == -1) {
-			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
-		}
-		else if (n <= 5) {
-			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
+		if (coverGraph->GetTime() == 0) { // Å‰‚¾‚¯
+			if (n == -1) {
+				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
+				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 - 180, duration);
+			}
+			else if (n <= 5) {
+				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
+				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n, duration);
+			}
 		}
 	}
+	coverGraph->Update();
 	//if (t < 1000)	// Ž×–‚ Jaity
 	//	t++;		// Ž×–‚ Jaity
 }
