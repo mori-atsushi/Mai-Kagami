@@ -24,7 +24,7 @@ public:
 	void View();
 	~TriangleButton();
 private:
-	MyDrawTriangle *myDrawTriangle;
+	MyDrawTriangle2 *myDrawTriangle2;
 	MyDrawText *text; //ボタンの文字
 };
 
@@ -37,7 +37,7 @@ public:
 private:
 	MyDrawText *text; //ボタンの文字
 	MyDrawTexts *descriptionText;
-	MyDrawTriangle *myDrawTriangle;
+	MyDrawTriangle2 *myDrawTriangle2;
 	MyDrawBox *myDrawBox;
 };
 

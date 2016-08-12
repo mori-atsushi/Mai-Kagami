@@ -145,6 +145,12 @@
       <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughDetail.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonText.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
   </ItemGroup>
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughDetail.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonText.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

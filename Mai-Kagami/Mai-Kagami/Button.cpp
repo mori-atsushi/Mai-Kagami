@@ -8,16 +8,16 @@ Button::Button(const int num)
 TriangleButton::TriangleButton(Font *font, const char *str, const int direction, const int num, char *colorName)
 	: Button(num) {
 	text = new MyDrawText(font, str, WIDTH * 0.94, GetY() * SIZE_RATE, 2, 30);
-	myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
+	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
 }
 
 void TriangleButton::View() {
-	myDrawTriangle->View();
+	myDrawTriangle2->View();
 	text->View();
 }
 
 TriangleButton::~TriangleButton() {
-	delete myDrawTriangle;
+	delete myDrawTriangle2;
 	delete text;
 }
 
@@ -30,18 +30,18 @@ TriangleButton2::TriangleButton2(Font *font, const char *title, const char *str,
 
 	float width = WIDTH * 0.35;
 	myDrawBox = new MyDrawBox(x + width / 2, GetY() * SIZE_RATE, width + WIDTH * 0.05, HEIGHT * 0.09, 2, colorName);
-	myDrawTriangle = new MyDrawTriangle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
+	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
 }
 
 void TriangleButton2::View() {
 	descriptionText->View();
 	myDrawBox->View();
-	myDrawTriangle->View();
+	myDrawTriangle2->View();
 	text->View();
 }
 
 TriangleButton2::~TriangleButton2() {
-	delete myDrawTriangle;
+	delete myDrawTriangle2;
 	delete myDrawBox;
 	delete descriptionText;
 	delete text;

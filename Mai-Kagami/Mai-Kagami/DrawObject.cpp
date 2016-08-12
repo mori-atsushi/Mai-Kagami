@@ -53,19 +53,40 @@ float  MyDrawCircleGauge::GetEndY() {
 }
 
 //三角形初期化
-MyDrawTriangle::MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName)
-	:Draw(x, y), Color(colorName) {
-	w = width / SIZE_RATE;
-	d = direction;
+MyDrawTriangle::MyDrawTriangle(const char *colorName) 
+	: Color(colorName) {}
+
+//三角形初期化
+MyDrawTriangle::MyDrawTriangle(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3, const char *colorName)
+	: Color(colorName) {
+	ChangePos(x1, y1, x2, y2, x3, y3);
 }
 
 //三角形表示
-void  MyDrawTriangle::View() {
+void MyDrawTriangle::View() {
+	DrawTriangleAA(x1, y1, x2, y2, x3, y3, Color::Get(), TRUE);
+}
+
+void MyDrawTriangle::ChangePos(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3) {
+	MyDrawTriangle::x1 = x1 / SIZE_RATE;
+	MyDrawTriangle::y1 = y1 / SIZE_RATE;
+	MyDrawTriangle::x2 = x2 / SIZE_RATE;
+	MyDrawTriangle::y2 = y2 / SIZE_RATE;
+	MyDrawTriangle::x3 = x3 / SIZE_RATE;
+	MyDrawTriangle::y3 = y3 / SIZE_RATE;
+}
+
+//正三角形初期化
+MyDrawTriangle2::MyDrawTriangle2(const float x, const float y, const float width, const int direction, const char *colorName)
+	: MyDrawTriangle(colorName) {
+	w = width;
+	d = direction;
+
 	float x1, x2, x3, y1, y2, y3;
 	float a = w * sqrt(3) / 4;
 
-	x1 = x2 = x3 = GetX();
-	y1 = y2 = y3 = GetY();
+	x1 = x2 = x3 = x;
+	y1 = y2 = y3 = y;
 
 	switch (d)
 	{
@@ -83,7 +104,7 @@ void  MyDrawTriangle::View() {
 		break;
 	}
 
-	DrawTriangleAA(x1, y1, x2, y2, x3, y3, Color::Get(), TRUE);
+	ChangePos(x1, y1, x2, y2, x3, y3);
 }
 
 //四角形初期化(塗りつぶしあり)

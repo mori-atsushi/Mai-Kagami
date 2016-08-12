@@ -11,6 +11,7 @@
 #include "ThroughPlay.h"
 #include "ThroughPause.h"
 #include "ThroughResult.h"
+#include "ThroughDetail.h"
 #include "Touch.h"
 #include "KinectDistance.h"
 
@@ -27,6 +28,7 @@ private:
 	ThroughPlay *throughPlay;
 	ThroughPause *throughPause;
 	ThroughResult *throughResult;
+	ThroughDetail *throughDetail;
 	int loadFlag;
 	void Load();
 	void Delete();

@@ -29,11 +29,20 @@ private:
 	double rad; //角度（ラジアン）
 };
 
-//正三角形関係
-class MyDrawTriangle : public Draw, public Color {
+class MyDrawTriangle : public Color {
 public:
-	MyDrawTriangle(const float x, const float y, const float width, const int direction, const char *colorName = "Blue");
-	void View(); //表示
+	MyDrawTriangle(const char *colorName = "Blue");
+	MyDrawTriangle(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3, const char *colorName = "Blue");
+	void View();
+	void ChangePos(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3);
+private:
+	float x1, y1, x2, y2, x3, y3;
+};
+
+//正三角形関係
+class MyDrawTriangle2 : public MyDrawTriangle {
+public:
+	MyDrawTriangle2(const float x, const float y, const float width, const int direction, const char *colorName = "Blue");
 private:
 	int d;
 	float w;
