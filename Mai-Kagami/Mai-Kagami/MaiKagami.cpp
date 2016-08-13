@@ -18,7 +18,7 @@ void MaiKagami::Update() {
 		now = scene;
 		switch (scene) {
 		case TOP:
-			scene = top->Update(); //トップ画面計算
+			scene = top->Update(scene); //トップ画面計算
 			break;
 		case SONG_SELECT:
 			scene = songSelect->Update();

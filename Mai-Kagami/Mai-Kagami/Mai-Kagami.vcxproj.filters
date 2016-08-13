@@ -153,6 +153,9 @@
     <ClCompile Include="CommonText.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="CommonText.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
