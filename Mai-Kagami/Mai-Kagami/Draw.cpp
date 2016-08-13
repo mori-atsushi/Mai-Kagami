@@ -23,28 +23,28 @@ void Color::ChangeColor(const char *color) {
 
 //表示位置用クラスコンストラクタ
 Pos::Pos() {
-	a = 0; b = 0;
+	x = 0; y = 0;
 }
 
 //表示位置用クラスコンストラクタ
 Pos::Pos(const float x, const float y) {
-	a = x / SIZE_RATE; b = y / SIZE_RATE;
+	this->x = x / SIZE_RATE; this->y = y / SIZE_RATE;
 }
 
 //表示位置変更
 void Pos::ChangePos(const float x, const float y) {
-	a = x / SIZE_RATE; b = y / SIZE_RATE;
+	this->x = x / SIZE_RATE; this->y = y / SIZE_RATE;
 }
 
 // アニメーション用パラメータセット Jaity
-void Pos::SetPosAnimation(float _target_x, float _target_y, MyTime _duration, int _ease) {
+void Pos::SetPosAnimation(float target_x, float target_y, MyTime duration, int ease) {
 	if (GetTime() != 0)
 		return;
 	default_x = GetX() * SIZE_RATE;
 	default_y = GetY() * SIZE_RATE;
-	target_x = _target_x;
-	target_y = _target_y;
-	SetRate(_duration, _ease);
+	this->target_x = target_x;
+	this->target_y = target_y;
+	SetRate(duration, ease);
 	//printfDx("Set: %f %f\n", default_x, default_y);
 	//printfDx("Set: %f %f\n", target_x, target_y);
 }
@@ -62,12 +62,12 @@ void Pos::Update() {
 
 //x座標取得
 float Pos::GetX() {
-	return a;
+	return x;
 }
 
 //y座標取得
 float Pos::GetY() {
-	return b;
+	return y;
 }
 
 //描画用クラスコンストラクタ
@@ -75,6 +75,18 @@ Draw::Draw(){}
 
 //描画用クラスコンストラクタ
 Draw::Draw(const float x, const float y) : Pos(x, y) {}
+
+//描画
+void Draw::View() {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha); //透明度設定
+	ContentView(); //内容表示
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
+}
+
+//透明度指定
+void Draw::SetAlpha(const int alpha) {
+	this->alpha = alpha;
+}
 
 Draw2::Draw2(const int pos) {
 	p = pos;

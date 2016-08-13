@@ -10,7 +10,7 @@ MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y
 }
 
 //テキスト表示
-void MyDrawText::View() {
+void MyDrawText::ContentView() {
 	DrawStringFToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
 }
 
@@ -45,7 +45,7 @@ float MyDrawText::GetWidth() {
 MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
 	: MyDrawText(font, str, x, y, pos, point, colorName) {}
 
-void MyDrawTextV::View() {
+void MyDrawTextV::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
 	DrawRotaStringToHandle(GetX(), GetY(), 1, 1, 0, GetHeight() / SIZE_RATE / 2, - 2.0 / 6.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
 	SetDrawMode(DX_DRAWMODE_NEAREST);
@@ -71,9 +71,9 @@ MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float
 	ChangePos(x, y);
 }
 
-void MyDrawTexts::View() {
+void MyDrawTexts::ContentView() {
 	for (int i = 0; i < l; i++)
-		myDrawText[i]->View();
+		myDrawText[i]->ContentView();
 }
 
 void MyDrawTexts::ChangePos(const float x, const float y) {
@@ -113,8 +113,8 @@ MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const
 }
 
 //アンダーライン付きテキスト描画
-void MyDrawTextLine::View() {
-	MyDrawText::View();
+void MyDrawTextLine::ContentView() {
+	MyDrawText::ContentView();
 	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
 }
 

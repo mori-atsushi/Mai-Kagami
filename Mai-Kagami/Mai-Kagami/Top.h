@@ -25,7 +25,7 @@ private:
 };
 
 //NFCタッチボタン関係
-class TopTouchButton : public Draw{
+class TopTouchButton : public Pos{
 public:
 	TopTouchButton(Font *font);
 	void View(); //表示

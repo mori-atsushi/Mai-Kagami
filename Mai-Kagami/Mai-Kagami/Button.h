@@ -14,14 +14,14 @@
 class Button : public Draw {
 public:
 	Button(const int num);
-	virtual void View() = 0; //表示用関数
+	virtual void ContentView() = 0; //表示用関数
 };
 
 //三角形のボタン
 class TriangleButton : public Button {
 public:
 	TriangleButton(Font *font, const char *str, const int direction, const int num, char *colorName = "Blue");
-	void View();
+	void ContentView();
 	~TriangleButton();
 private:
 	MyDrawTriangle2 *myDrawTriangle2;
@@ -32,7 +32,7 @@ private:
 class TriangleButton2 : public Button {
 public:
 	TriangleButton2(Font *font, const char *title, const char *str, const int direction, const int num, const float x, const char *colorName);
-	void View();
+	void ContentView();
 	~TriangleButton2();
 private:
 	MyDrawText *text; //ボタンの文字
@@ -46,7 +46,7 @@ class CircleButton : public Button {
 public:
 	CircleButton(Font *font, const char *str, const int num, char *colorName = "Blue"); //文字右寄せボタン
 	CircleButton(Font *font, const char *str, const int num, const float x, char *colorName = "Blue"); //文字中央寄せボタン
-	void View();
+	void ContentView();
 	~CircleButton();
 private:
 	MyDrawText *text; //ボタンの文字
@@ -57,7 +57,7 @@ private:
 class CircleButton2 : public Button {
 public:
 	CircleButton2(Font *font, const char *str, const int num, char *colorName = "Blue");
-	void View();
+	void ContentView();
 	~CircleButton2();
 private:
 	MyDrawText *text; //ボタンの文字
@@ -68,7 +68,7 @@ private:
 class CircleGraphButton : public Button {
 public:
 	CircleGraphButton(const int num, const char *fileName);
-	void View();
+	void ContentView();
 	void Load();
 	~CircleGraphButton();
 private:
@@ -81,7 +81,7 @@ class CircleGraphTextButton : public Button {
 public:
 	CircleGraphTextButton(Font *font, const char *str, const int num, const char *fileName);
 	void Load();
-	void View();
+	void ContentView();
 	~CircleGraphTextButton();
 private:
 	MyDrawCircle *myDrawCircle;

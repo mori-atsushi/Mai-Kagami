@@ -8,7 +8,7 @@
 #include "Font.h"
 
 //曲名、アーティスト情報
-class DrawSongTitle : public Draw {
+class DrawSongTitle : public Pos {
 public:
 	DrawSongTitle(Font *font, const char *title, const char *artist);
 	void ChangePos(const float x, const float y);

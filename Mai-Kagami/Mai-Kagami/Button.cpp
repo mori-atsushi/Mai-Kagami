@@ -11,7 +11,7 @@ TriangleButton::TriangleButton(Font *font, const char *str, const int direction,
 	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
 }
 
-void TriangleButton::View() {
+void TriangleButton::ContentView() {
 	myDrawTriangle2->View();
 	text->View();
 }
@@ -33,7 +33,7 @@ TriangleButton2::TriangleButton2(Font *font, const char *title, const char *str,
 	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
 }
 
-void TriangleButton2::View() {
+void TriangleButton2::ContentView() {
 	descriptionText->View();
 	myDrawBox->View();
 	myDrawTriangle2->View();
@@ -62,7 +62,7 @@ CircleButton::CircleButton(Font *font, const char *str, const int num, const flo
 	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.015, 7, colorName);
 }
 
-void CircleButton::View() {
+void CircleButton::ContentView() {
 	myDrawCircle->View();
 	text->View();
 }
@@ -81,7 +81,7 @@ CircleButton2::CircleButton2(Font *font, const char *str, const int num, char *c
 	myDrawCircle = new MyDrawCircle(x, GetY() * SIZE_RATE, r, colorName);
 }
 
-void CircleButton2::View() {
+void CircleButton2::ContentView() {
 	myDrawCircle->View();
 	text->View();
 }
@@ -103,7 +103,7 @@ void CircleGraphButton::Load() {
 	myDrawGraph->Load();
 }
 
-void CircleGraphButton::View() {
+void CircleGraphButton::ContentView() {
 	myDrawCircle->View();
 	myDrawGraph->View();
 }
@@ -128,7 +128,7 @@ void CircleGraphTextButton::Load() {
 	myDrawGraph->Load();
 }
 
-void CircleGraphTextButton::View() {
+void CircleGraphTextButton::ContentView() {
 	text->View();
 	myDrawCircle->View();
 	myDrawGraph->View();
