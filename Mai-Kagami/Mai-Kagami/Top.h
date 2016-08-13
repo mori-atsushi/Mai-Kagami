@@ -21,7 +21,7 @@ public:
 	void Update(); //計算
 	void View(); //表示
 private:
-	int alpha, t; //透明度, 時間
+	int t; //時間
 };
 
 //NFCタッチボタン関係
