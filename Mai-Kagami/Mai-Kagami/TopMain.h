@@ -12,6 +12,7 @@
 class Top : public Scene {
 public:
 	Top(Font *font);
+	int Switch();
 	~Top();
 private:
 	Font *f;
@@ -19,7 +20,7 @@ private:
 	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
-	int ContentUpdate(); //計算
+	void ContentUpdate(); //計算
 	void ContentView(); //表示
 	void ContentLoad();
 	void ContentDelete();

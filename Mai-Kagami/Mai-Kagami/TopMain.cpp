@@ -16,14 +16,19 @@ void Top::ContentLoad() {
 	nfc.Init();
 }
 
-//トップ画面計算
-int Top::ContentUpdate() {
-	topTouchMessage->Update(); //NFCタッチメッセージ計算
+//場面の切り替え
+int Top::Switch() {
 	if (nfc.GetId() != 0) {
 		Delete();
 		return SONG_SELECT;
 	}
 	return TOP;
+}
+
+
+//トップ画面計算
+void Top::ContentUpdate() {
+	topTouchMessage->Update(); //NFCタッチメッセージ計算
 }
 
 //トップ画面表示

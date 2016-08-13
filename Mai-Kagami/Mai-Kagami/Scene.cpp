@@ -15,11 +15,10 @@ void Scene::Load() {
 }
 
 //XV
-int Scene::Update(const int scene) {
+void Scene::Update() {
 	Load();
 	if (loadFlag == 2)
-		return ContentUpdate();
-	return scene;
+		ContentUpdate();
 }
 
 //•\¦

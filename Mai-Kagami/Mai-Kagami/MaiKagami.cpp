@@ -12,22 +12,29 @@ MaiKagami::MaiKagami() {
 
 //全体の算計
 void MaiKagami::Update() {
-	int now;
 	touch->Check();
-	do {
-		now = scene;
-		switch (scene) {
-		case TOP:
-			scene = top->Update(scene); //トップ画面計算
-			break;
-		case SONG_SELECT:
-			scene = songSelect->Update();
-			break;
-		case THROUGH:
-			scene = throughMain->Update();
-			break;
-		}
-	} while (now != scene);
+
+	switch (scene) {
+	case TOP:
+		scene = top->Switch();
+		break;
+	case SONG_SELECT:
+		scene = songSelect->Update();
+		break;
+	case THROUGH:
+		scene = throughMain->Update();
+		break;
+	}
+
+	switch (scene) {
+	case TOP:
+		top->Update(); //トップ画面計算
+		break;
+	case SONG_SELECT:
+		break;
+	case THROUGH:
+		break;
+	}
 }
 
 //全体の描画
