@@ -144,6 +144,9 @@
     <ClCompile Include="SettingPop.cpp">
       <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
     <ClCompile Include="ThroughDetail.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="SeetingPop.h">
       <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
     <ClInclude Include="ThroughDetail.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>

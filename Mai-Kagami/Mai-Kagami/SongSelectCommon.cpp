@@ -45,7 +45,7 @@ SongInformation::SongInformation(Font *font, Songs *songs) {
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
 		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
-		songCover[i]->Change(0, n);
+		//songCover[i]->Change(0, n);  // Updateに統合したから要らなくなった Jaity
 	}
 
 	float x = HEIGHT * 0.35;
@@ -67,13 +67,17 @@ void SongInformation::Load() {
 }
 
 void SongInformation::Update(Touch *touch, int scene) {
+	int direct = 0;  // increase or decrease of IDs  Jaity
 	switch (scene)
 	{
 	case MAIN:
 		//ボタン0が押されたら
 		if (touch->Get(0) == 1) {
+			//for (int i = 0; i < n; i++)  // 不要 Jaity
+			//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント // 不要 Jaity
+			direct = 1;  // Jaity
 			for (int i = 0; i < n; i++)
-				songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント
+				songCover[i]->coverGraph->Reset();
 		}
 
 		//ボタン1が押されたら
@@ -94,11 +98,14 @@ void SongInformation::Update(Touch *touch, int scene) {
 
 		//ボタン2が押されたら
 		if (touch->Get(2) == 1) {
+			//for (int i = 0; i < n; i++) // 不要 Jaity
+			//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント // 不要 Jaity
+			direct = -1;  // Jaity
 			for (int i = 0; i < n; i++)
-				songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント
+				songCover[i]->coverGraph->Reset();
 		}
 		for (int i = 0; i < n; i++)
-			songCover[i]->Update();
+			songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
 		break;
 	case MODE:
 		if (touch->Get(4) == 1)

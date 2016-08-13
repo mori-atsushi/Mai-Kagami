@@ -18,21 +18,37 @@ void SongSelectCover::Release() {
 }
 
 //表示位置の計算
-void SongSelectCover::Update() {
+void SongSelectCover::Update(int num, int max) {
+	//static int t = 0;	// 邪魔 Jaity
+	Change(num, max);
 	int n = GetNow();
+	int duration = 10;
+
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
-		coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		if (coverGraph->GetTime() == 0) { // 最初だけ
+			coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35, duration);
+			//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		}
+		//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
+		//coverGraph->Update();
 	}
 	else {
 		coverGraph->ChangeEx(0.7);
-		if (n == -1) {
-			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
-		}
-		else if (n <= 5) {
-			coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
+		if (coverGraph->GetTime() == 0) { // 最初だけ
+			if (n == -1) {
+				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
+				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 - 180, duration);
+			}
+			else if (n <= 5) {
+				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
+				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n, duration);
+			}
 		}
 	}
+	coverGraph->Update();
+	//if (t < 1000)	// 邪魔 Jaity
+	//	t++;		// 邪魔 Jaity
 }
 
 void SongSelectCover::Draw(int scene) {
@@ -56,7 +72,7 @@ void SongSelectCover::Draw(int scene) {
 		break;
 	default:
 		if (n == 0 && !playFlag) {
-			PlayMusic(music, DX_PLAYTYPE_LOOP);
+//			PlayMusic(music, DX_PLAYTYPE_LOOP); // 重いので一時的に消去 Jaity
 			playFlag = TRUE;
 		}
 		else if (n != 0) {
