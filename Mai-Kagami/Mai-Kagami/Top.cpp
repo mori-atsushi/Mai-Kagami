@@ -40,8 +40,8 @@ void TopTouchMessage::View() {
 TopTouchButton::TopTouchButton(Font *font)
 	: Pos(WIDTH, NFC_POS) {
 	float r = WIDTH / 12;
-	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() * SIZE_RATE - r, GetY() * SIZE_RATE, 2, 40, 20);
-	circle = new MyDrawCircle(GetX() * SIZE_RATE, GetY() * SIZE_RATE, r);
+	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() - r, GetY(), 2, 40, 20);
+	circle = new MyDrawCircle(GetX(), GetY(), r);
 }
 
 //NFCタッチボタン表示

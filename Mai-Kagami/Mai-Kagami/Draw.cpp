@@ -62,12 +62,12 @@ void Pos::Update() {
 
 //x座標取得
 float Pos::GetX() {
-	return x;
+	return x * SIZE_RATE;
 }
 
 //y座標取得
 float Pos::GetY() {
-	return y;
+	return y * SIZE_RATE;
 }
 
 //描画用クラスコンストラクタ
@@ -97,9 +97,7 @@ Draw2::Draw2(const float x, const float y, const int pos) {
 	ChangePos(x, y);
 }
 
-void Draw2::ChangePos(const float x, const float y) {
-	Draw2::x = x;
-	Draw2::y = y;
+void Draw2::ChangePos() {
 	float a = 0;
 	switch (p) {
 	case 1:
@@ -110,5 +108,11 @@ void Draw2::ChangePos(const float x, const float y) {
 		break;
 	}
 
-	Draw::ChangePos(Draw2::x + a, Draw2::y - GetHeight() / 2);
+	Draw::ChangePos(xx + a, yy - GetHeight() / 2);
+}
+
+void Draw2::ChangePos(const float x, const float y) {
+	xx = x;
+	yy = y;
+	Draw2::ChangePos();
 }

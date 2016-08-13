@@ -19,7 +19,7 @@ void  MyDrawCircle::ContentView() {
 	boolean flag = TRUE;
 	if (w != 0)
 		flag = FALSE;
-	DrawCircleAA(GetX(), GetY(), r, 100, Color::Get(), flag, w);
+	DrawCircleAA(x, y, r, 100, Color::Get(), flag, w);
 }
 
 //Šp“x•t‚«‚Ì‰~‰Šú‰»

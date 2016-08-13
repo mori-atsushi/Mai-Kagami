@@ -19,7 +19,7 @@ void MyDrawGraph::Load() {
 //‰æ‘œ•\Ž¦
 void MyDrawGraph::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //•`‰æ
+	DrawRotaGraphF(x, y, ex / SIZE_RATE, 0, handle, TRUE, FALSE); //•`‰æ
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
@@ -48,7 +48,7 @@ MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, con
 void MyDrawMovie::ContentView() {
 	if (!CheckHandleASyncLoad(handle)) {
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
-		DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, TRUE); //•`‰æ
+		DrawRotaGraphF(x, y, ex / SIZE_RATE, 0, handle, TRUE, TRUE); //•`‰æ
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 	}
 }

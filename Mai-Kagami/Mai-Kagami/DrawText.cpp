@@ -11,13 +11,13 @@ MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y
 
 //テキスト表示
 void MyDrawText::ContentView() {
-	DrawStringFToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
+	DrawStringFToHandle(x, y, s.c_str(), Color::Get(), f); //文字表示
 }
 
 //テキスト変更
 void MyDrawText::ChangeText(char *str) {
 	s = str;
-	ChangePos(Draw2::x, Draw2::y);
+	ChangePos();
 }
 
 //フォントサイズ変更
@@ -81,7 +81,7 @@ void MyDrawTexts::ChangePos(const float x, const float y) {
 	float height = myDrawText[0]->GetHeight();
 	float yy = y - (height + inter) / 2 * (l - 1);
 	for (int i = 0; i < l; i++) {
-		myDrawText[i]->ChangePos(GetX() * SIZE_RATE, yy);
+		myDrawText[i]->ChangePos(GetX(), yy);
 		yy += height + inter;
 	}
 }
