@@ -23,6 +23,7 @@ void Nfc::Init() {
 int Nfc::GetId() {
 //取得していない受信データ量を得る
 	DataLength = GetNetWorkDataLength(NetHandle);
+	printfDx("%d", DataLength);
 	//取得していない受信データ量が0じゃない場合はループを抜ける
 	if (DataLength != 0) {
 		//データ受信
