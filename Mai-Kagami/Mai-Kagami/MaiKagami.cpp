@@ -19,7 +19,7 @@ void MaiKagami::Update() {
 		scene = top->Switch();
 		break;
 	case SONG_SELECT:
-		scene = songSelect->Update();
+		scene = songSelect->Switch();
 		break;
 	case THROUGH:
 		scene = throughMain->Update();
@@ -31,6 +31,7 @@ void MaiKagami::Update() {
 		top->Update(); //トップ画面計算
 		break;
 	case SONG_SELECT:
+		songSelect->Update(); //曲選択画面計算
 		break;
 	case THROUGH:
 		break;

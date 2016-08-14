@@ -11,13 +11,13 @@
 #include "SongSelect.h"
 #include "SongSelectDefine.h"
 #include "ThroughOption.h"
+#include "Scene.h"
 
 //曲選択画面関係
-class SongSelect {
+class SongSelect : public Scene{
 public:
 	SongSelect(Font *font, Touch *touch, Songs *songs);
-	int Update();
-	void View();
+	int Switch();
 	~SongSelect();
 private:
 	Font *f;
@@ -29,9 +29,10 @@ private:
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
 	Touch *touch; //サイドタッチパネル
 	int scene;
-	int loadFlag;
-	void Load();
-	void Delete();
+	void ContentLoad();
+	void ContentUpdate();
+	void ContentView();
+	void ContentDelete();
 };
 
 #endif

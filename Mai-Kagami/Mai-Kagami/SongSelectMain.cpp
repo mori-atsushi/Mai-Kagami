@@ -2,7 +2,6 @@
 
 SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 	f = font;
-	loadFlag = 0;
 	songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
 	songSelectButton = new SongSelectButton(f);
 	songInformation = new SongInformation(f, songs); //選択中の曲初期化
@@ -13,95 +12,83 @@ SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 }
 
 //曲選択画面ロード
-void SongSelect::Load() {
-	if (loadFlag == 2)
-		return;
-
-	if (loadFlag == 0) {
-		songInformation->Load(); //カバー表示
-		loadFlag = 1;
-		scene = MAIN;
-	}
-
-	if (loadFlag == 1 && GetASyncLoadNum() == 0)
-		loadFlag = 2;
+void SongSelect::ContentLoad() {
+	songInformation->Load(); //カバー画像ロード
+	scene = MAIN;
 }
 
-//曲選択画面計算
-int SongSelect::Update() {
-	Load();
-	if (loadFlag == 2) {
-		songInformation->Update(touch, scene);
-		switch (scene)
-		{
-		case BACK:
-			if (touch->Get(1) == 1)
-				scene = BACK_TOP;
-			if (touch->Get(2) == 1)
-				scene = MAIN;
-			break;
-		case MAIN:
-			if (touch->Get(1) == 1)
-				scene = MODE;
-			if (touch->Get(4) == 1)
-				scene = BACK;
-			break;
-		case MODE:
-			if (touch->Get(0) == 1)
-				scene = OPTION1;
-			if (touch->Get(4) == 1)
-				scene = MAIN;
-			break;
-		case OPTION1:
-			if (touch->Get(2) == 1)
-				scene = NEXT;
-			if (touch->Get(4) == 1)
-				scene = MODE;
-			throughOptionButton->Check(touch);
-		}
-
-		if (scene == BACK_TOP) {
-			Delete();
-			return TOP;
-		}
-		
-		if (scene == NEXT) {
-			Delete();
+//曲選択画面場面切り替え
+int SongSelect::Switch() {
+	songInformation->Update(touch, scene);
+	switch (scene)
+	{
+	case BACK:
+		if (touch->Get(1) == 1)
+			scene = BACK_TOP;
+		if (touch->Get(2) == 1)
 			scene = MAIN;
-			return THROUGH;
-		}
+		break;
+	case MAIN:
+		if (touch->Get(1) == 1)
+			scene = MODE;
+		if (touch->Get(4) == 1)
+			scene = BACK;
+		break;
+	case MODE:
+		if (touch->Get(0) == 1)
+			scene = OPTION1;
+		if (touch->Get(4) == 1)
+			scene = MAIN;
+		break;
+	case OPTION1:
+		if (touch->Get(2) == 1)
+			scene = NEXT;
+		if (touch->Get(4) == 1)
+			scene = MODE;
+		throughOptionButton->Check(touch);
+	}
 
-		songSelectTitle->Update(scene);
+	if (scene == BACK_TOP) {
+		Delete();
+		return TOP;
+	}
+
+	if (scene == NEXT) {
+		Delete();
+		scene = MAIN;
+		return THROUGH;
 	}
 	return SONG_SELECT;
 }
 
-//曲選択画面表示
-void SongSelect::View() {
-	if (loadFlag == 2) {
-		songInformation->View(scene); //カバー表示
-		songSelectTitle->View(); //タイトル表示
+//曲選択画面計算
+void SongSelect::ContentUpdate() {
+	songSelectTitle->Update(scene);
+}
 
-		switch (scene)
-		{
-		case BACK:
-			songSelectPop->View();
-			break;
-		case MAIN:
-			songSelectButton->View(); //曲選択ボタン表示
-			break;
-		case MODE:
-			modeSelectButton->View(); //モード選択ボタン表示
-			break;
-		case OPTION1:
-			throughOptionButton->View();
-			break;
-		}
+//曲選択画面表示
+void SongSelect::ContentView() {
+	songInformation->View(scene); //カバー表示
+	songSelectTitle->View(); //タイトル表示
+
+	switch (scene)
+	{
+	case BACK:
+		songSelectPop->View();
+		break;
+	case MAIN:
+		songSelectButton->View(); //曲選択ボタン表示
+		break;
+	case MODE:
+		modeSelectButton->View(); //モード選択ボタン表示
+		break;
+	case OPTION1:
+		throughOptionButton->View();
+		break;
 	}
 }
 
-void SongSelect::Delete() {
-	loadFlag = 0;
+void SongSelect::ContentDelete() {
 	songInformation->Release();
 }
 
