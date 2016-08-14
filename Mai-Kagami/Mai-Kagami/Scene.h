@@ -8,9 +8,12 @@ class SubScene {
 public:
 	int Switch(const int scene) { return scene; }; //場面の切り替え
 	void Update() {}; //更新
-	void View() {}; //表示
+	void View(); //表示
 	void Load() {}; //ロード
 	void Delete() {}; //削除
+protected:
+	virtual void ContentView() = 0; //表示詳細
+	boolean viewFlag = TRUE; //表示用フラグ(TRUE:表示、FALSE：非表示)
 };
 
 //場面定義

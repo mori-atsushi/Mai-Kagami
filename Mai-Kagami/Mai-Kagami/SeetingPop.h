@@ -13,7 +13,6 @@
 class BlackBox : public MyDrawBox {
 public:
 	BlackBox();
-	void View();
 private:
 };
 

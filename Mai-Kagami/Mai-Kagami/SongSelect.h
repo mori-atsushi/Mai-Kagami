@@ -9,6 +9,8 @@
 #include "Touch.h"
 #include "Font.h"
 #include "SeetingPop.h"
+#include "Scene.h"
+#include "SongSelectDefine.h"
 
 //曲選択画面ボタン関係
 class SongSelectButton {
@@ -20,13 +22,15 @@ private:
 	Button *button[4];
 };
 
-//ポップアップ関係
-class SongSelectPop{
+//終了用ポップアップ
+class SongSelectPop : public SubScene {
 public:
-	SongSelectPop(Font *font);
-	void View();
+	SongSelectPop(Font *font, Touch *touch);
+	int Switch(const int scene);
+	void ContentView();
 	~SongSelectPop();
 private:
+	Touch *touch;
 	BlackBox *blackBox;
 	MyDrawText *title;
 	MyDrawText *message;

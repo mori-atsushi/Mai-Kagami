@@ -19,7 +19,9 @@ SongSelectButton::~SongSelectButton() {
 		delete button[i];
 }
 
-SongSelectPop::SongSelectPop(Font *font) {
+//終了用ポップアップ
+SongSelectPop::SongSelectPop(Font *font, Touch *touch) {
+	this->touch = touch;
 	blackBox = new BlackBox();
 	title = new MyDrawText(font, "- 終了 -", WIDTH * 0.75, HEIGHT * 0.4, 1, 40, "Blue");
 	message = new MyDrawText(font, "本当に終了\nしますか？", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
@@ -27,7 +29,15 @@ SongSelectPop::SongSelectPop(Font *font) {
 	button[1] = new CircleButton(font, "いいえ", 2, WIDTH * 0.75, "White");
 }
 
-void SongSelectPop::View() {
+int SongSelectPop::Switch(const int scene) {
+	if (touch->Get(1) == 1)
+		return BACK_TOP;
+	if (touch->Get(2) == 1)
+		return MAIN;
+	return scene;
+}
+
+void SongSelectPop::ContentView() {
 	blackBox->View();
 	title->View();
 	message->View();

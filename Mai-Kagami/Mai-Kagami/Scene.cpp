@@ -1,5 +1,11 @@
 #include "Scene.h"
 
+//表示
+void SubScene::View() {
+	if (viewFlag)
+		ContentView();
+}
+
 //ロード
 void Scene::Load() {
 	if (loadFlag == 2)
@@ -23,7 +29,7 @@ void Scene::Update() {
 
 //表示
 void Scene::View() {
-	if (loadFlag == 2)
+	if(viewFlag && loadFlag == 2)
 		ContentView();
 }
 
