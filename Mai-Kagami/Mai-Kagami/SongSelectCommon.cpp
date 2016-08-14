@@ -40,8 +40,9 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongInformation::SongInformation(Font *font, Songs *songs) {
-	SongInformation::songs = songs;
+SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
+	this->touch = touch;
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
 		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
@@ -65,86 +66,93 @@ void SongInformation::Load() {
 	for (int i = 0; i < n; i++)
 		songCover[i]->Load();
 	box->Load();
+	viewFlag = TRUE;
 }
 
-void SongInformation::Update(Touch *touch, int scene) {
+void SongInformation::ContentUpdate() {
 	int direct = 0;  // increase or decrease of IDs  Jaity
-	switch (scene)
-	{
-	case MAIN:
-		//ボタン0が押されたら
-		if (touch->Get(0) == 1) {
-			//for (int i = 0; i < n; i++)  // 不要 Jaity
-			//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント // 不要 Jaity
-			direct = 1;  // Jaity
-			for (int i = 0; i < n; i++)
-				songCover[i]->coverGraph->Reset();
-		}
+	static int lastScene = nowScene;
+	
+	if (nowScene == lastScene) {
+		switch (nowScene)
+		{
+		case MAIN:
+			//ボタン0が押されたら
+			if (touch->Get(0) == 1) {
+				//for (int i = 0; i < n; i++)  // 不要 Jaity
+				//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント // 不要 Jaity
+				direct = 1;  // Jaity
+				for (int i = 0; i < n; i++)
+					songCover[i]->coverGraph->Reset();
+			}
 
-		//ボタン1が押されたら
-		if (touch->Get(1) == 1) {
-			nowSong->danceMovie->Load();
-			nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
-		}
-		else {
-			nowSong = songCover[songs->GetNowSong()];
-			for (int i = 0; i < n; i++) {
-				if (songCover[i]->GetNow() == 0) {
-					now = i;
-					nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
-					break;
+			//ボタン1が押されたら
+			if (touch->Get(1) == 1) {
+				nowSong->danceMovie->Load();
+				nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
+			}
+			else {
+				nowSong = songCover[songs->GetNowSong()];
+				for (int i = 0; i < n; i++) {
+					if (songCover[i]->GetNow() == 0) {
+						now = i;
+						nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
+						break;
+					}
 				}
 			}
-		}
 
-		//ボタン2が押されたら
-		if (touch->Get(2) == 1) {
-			//for (int i = 0; i < n; i++) // 不要 Jaity
-			//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント // 不要 Jaity
-			direct = -1;  // Jaity
+			//ボタン2が押されたら
+			if (touch->Get(2) == 1) {
+				//for (int i = 0; i < n; i++) // 不要 Jaity
+				//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント // 不要 Jaity
+				direct = -1;  // Jaity
+				for (int i = 0; i < n; i++)
+					songCover[i]->coverGraph->Reset();
+
+			}
 			for (int i = 0; i < n; i++)
-				songCover[i]->coverGraph->Reset();
+				songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
+			break;
+		case MODE:
+			if (touch->Get(4) == 1)
+				nowSong->danceMovie->Release();
+			break;
+		case OPTION1:
+			if (touch->Get(2) == 1)
+				nowSong->danceMovie->Stop();
+			if (touch->Get(4) == 1)
+				nowSong->danceMovie->Stop();
 		}
-		for (int i = 0; i < n; i++)
-			songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
-		break;
-	case MODE:
-		if (touch->Get(4) == 1)
-			nowSong->danceMovie->Release();
-		break;
-	case OPTION1:
-		if (touch->Get(2) == 1)
-			nowSong->danceMovie->Stop();
-		if (touch->Get(4) == 1)
-			nowSong->danceMovie->Stop();
 	}
+	lastScene = nowScene;
 }
 
 //曲選択画面カバー画像表示
-void SongInformation::View(int scene) {
+void SongInformation::ContentView() {
 	nowSong->drawSongTitle->View();
 	for (int i = 0; i < 2; i++) {
 		songLast[i]->View();
 	}
-	switch (scene)
+	switch (nowScene)
 	{
 	case BACK:
 	case MAIN:
 		myDrawBox->View();
 		box->View();
 		for (int i = 0; i < n; i++)
-			songCover[i]->Draw(scene);
+			songCover[i]->Draw(nowScene);
 		for (int i = 0; i < 2; i++)
 			grad[i]->View();
 		break;
 	case MODE:
 	case OPTION1:
-		nowSong->Draw(scene);
+		nowSong->Draw(nowScene);
 		break;
 	}
 }
 
-void SongInformation::Release() {
+void SongInformation::Delete() {
 	for (int i = 0; i < 2; i++)
 		grad[i]->Release();
 	for (int i = 0; i < n; i++)

@@ -37,6 +37,13 @@ int SongSelectPop::Switch(const int scene) {
 	return scene;
 }
 
+void SongSelectPop::ContentUpdate() {
+	if (nowScene == BACK)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
 void SongSelectPop::ContentView() {
 	blackBox->View();
 	title->View();

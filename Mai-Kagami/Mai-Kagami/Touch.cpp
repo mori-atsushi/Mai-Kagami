@@ -1,5 +1,6 @@
 #include "Touch.h"
 
+//Šm”F
 void Touch::Check() {
 	if (CheckHitKey(KEY_INPUT_1))
 		key[0]++;
@@ -27,6 +28,7 @@ void Touch::Check() {
 		key[4] = 0;
 }
 
+//Žæ“¾
 int Touch::Get(int num) {
 	return key[num];
 }
