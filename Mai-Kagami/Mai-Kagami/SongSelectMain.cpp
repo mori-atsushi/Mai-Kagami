@@ -22,7 +22,6 @@ void SongSelect::ContentLoad() {
 
 //‹È‘I‘ð‰æ–Êê–ÊØ‚è‘Ö‚¦
 int SongSelect::Switch(const int scene) {
-
 	switch (this->scene)
 	{
 	case BACK:

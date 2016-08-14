@@ -14,12 +14,14 @@
 #include "ThroughDetail.h"
 #include "Touch.h"
 #include "KinectDistance.h"
+#include "Scene.h"
 
-class ThroughMain {
+class ThroughMain : public Scene{
 public:
 	ThroughMain(Font *font, Touch *touch, Songs *songs);
-	int Update();
-	void View();
+	void ContentUpdate();
+	int Switch(const int scene);
+	void ContentView();
 	~ThroughMain();
 private:
 	Song *song;
@@ -29,9 +31,8 @@ private:
 	ThroughPause *throughPause;
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
-	int loadFlag;
-	void Load();
-	void Delete();
+	void ContentLoad();
+	void ContentDelete();
 	int scene;
 	Touch *touch;
 };
