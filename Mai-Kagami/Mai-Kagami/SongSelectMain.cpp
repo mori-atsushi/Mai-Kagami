@@ -2,7 +2,7 @@
 
 SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 	songSelectTitle = new SongSelectTitle(font); //曲選択画面タイトル初期化
-	songSelectButton = new SongSelectButton(font);
+	songSelectButton = new SongSelectButton(font, touch);
 	songInformation = new SongInformation(font, songs, touch); //選択中の曲初期化
 	songSelectPop = new SongSelectPop(font, touch);
 	modeSelectButton = new ModeSelectButton(font); //モード選択ボタン初期化
@@ -26,10 +26,7 @@ int SongSelect::Switch(const int scene) {
 		this->scene = songSelectPop->Switch(this->scene);
 		break;
 	case MAIN:
-		if (touch->Get(1) == 1)
-			this->scene = MODE;
-		if (touch->Get(4) == 1)
-			this->scene = BACK;
+		this->scene = songSelectButton->Switch(this->scene);
 		break;
 	case MODE:
 		if (touch->Get(0) == 1)
@@ -66,6 +63,7 @@ void SongSelect::ContentUpdate() {
 		songInformation->Update(scene);
 		songSelectTitle->Update(scene);
 		songSelectPop->Update(scene);
+		songSelectButton->Update(scene);
 	}
 }
 
@@ -73,13 +71,10 @@ void SongSelect::ContentUpdate() {
 void SongSelect::ContentView() {
 	songInformation->View(); //カバー表示
 	songSelectTitle->View(); //タイトル表示
-	songSelectPop->View();
-
+	songSelectPop->View(); //終了用ポップアップ表示
+	songSelectButton->View(); //曲選択ボタン表示
 	switch (scene)
 	{
-	case MAIN:
-		songSelectButton->View(); //曲選択ボタン表示
-		break;
 	case MODE:
 		modeSelectButton->View(); //モード選択ボタン表示
 		break;
@@ -91,6 +86,7 @@ void SongSelect::ContentView() {
 
 void SongSelect::ContentDelete() {
 	songInformation->Delete();
+	songSelectTitle->Delete();
 }
 
 SongSelect::~SongSelect() {

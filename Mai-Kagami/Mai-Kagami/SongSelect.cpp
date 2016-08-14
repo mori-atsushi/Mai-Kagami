@@ -1,15 +1,33 @@
 #include "SongSelect.h"
 
 //曲選択画面ボタン初期化
-SongSelectButton::SongSelectButton(Font *font) {
+SongSelectButton::SongSelectButton(Font *font, Touch *touch) {
+	this->touch = touch;
 	button[0] = new TriangleButton(font, "前の曲へ", 0, 0);
 	button[1] = new CircleButton(font, "決定", 1);
 	button[2] = new TriangleButton(font, "次の曲へ", 1, 2);
 	button[3] = new CircleButton2(font, "終了", 4);
 }
 
+//曲選択画面ボタン画面切り替え
+int SongSelectButton::Switch(const int scene) {
+	if (touch->Get(1) == 1)
+		return MODE;
+	if (touch->Get(4) == 1)
+		return BACK;
+	return scene;
+}
+
+//曲選択画面ボタン計算
+void SongSelectButton::ContentUpdate() {
+	if (nowScene == MAIN)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
 //曲選択画面ボタン表示
-void SongSelectButton::View() {
+void SongSelectButton::ContentView() {
 	for (int i = 0; i < 4; i++)
 		button[i]->View();
 }

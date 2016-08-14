@@ -13,12 +13,15 @@
 #include "SongSelectDefine.h"
 
 //曲選択画面ボタン関係
-class SongSelectButton {
+class SongSelectButton : public SubScene{
 public:
-	SongSelectButton(Font *font); //初期化
-	void View(); //表示
+	SongSelectButton(Font *font, Touch *touch); //初期化
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView(); //表示
 	~SongSelectButton();
 private:
+	Touch *touch;
 	Button *button[4];
 };
 
