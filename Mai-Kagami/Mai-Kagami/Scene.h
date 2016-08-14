@@ -9,8 +9,8 @@ public:
 	int Switch(const int scene); //場面の切り替え
 	void Update(const int scene); //更新
 	void View(); //表示
-	void Load() {}; //ロード
-	void Delete() {}; //削除
+	void Load(); //ロード
+	void Delete(); //削除
 protected:
 	int nowScene;
 	boolean viewFlag = FALSE; //表示用フラグ(TRUE:表示、FALSE：非表示)

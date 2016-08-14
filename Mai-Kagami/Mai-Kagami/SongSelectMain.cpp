@@ -13,6 +13,7 @@ SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 //曲選択画面ロード
 void SongSelect::ContentLoad() {
 	songInformation->Load(); //カバー画像ロード
+	songSelectTitle->Load();
 	scene = MAIN;
 }
 

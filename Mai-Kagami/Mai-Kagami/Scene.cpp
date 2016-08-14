@@ -1,12 +1,22 @@
 #include "Scene.h"
 
+//ê–Ê‚ÌØ‚è‘Ö‚¦
 int SubScene::Switch(const int scene) {
 	return scene;
 }
 
+//ŒvZ
 void SubScene::Update(const int scene) {
 	nowScene = scene;
 	ContentUpdate();
+}
+
+void SubScene::Load() {
+	viewFlag = TRUE;
+}
+
+void SubScene::Delete() {
+	viewFlag = FALSE;
 }
 
 //•\¦

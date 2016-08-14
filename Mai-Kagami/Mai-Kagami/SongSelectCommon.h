@@ -11,16 +11,15 @@
 #include "Scene.h"
 
 //曲選択画面タイトル
-class SongSelectTitle {
+class SongSelectTitle : public SubScene {
 public:
 	SongSelectTitle(Font *font); //初期化
-	void Update(int scene); //計算
-	void View(); //表示
+	void ContentUpdate(); //計算
+	void ContentView(); //表示
 	~SongSelectTitle();
 private:
 	DrawTitle *title;
 	DrawSubtitle *subTitle;
-	int scene;
 };
 
 //曲選択画面カバー関係

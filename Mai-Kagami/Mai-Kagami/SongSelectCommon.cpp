@@ -4,14 +4,14 @@
 SongSelectTitle::SongSelectTitle(Font *font) {
 	title = new DrawTitle(font, "");
 	subTitle = new DrawSubtitle(font, "");
-	scene = -100;
 }
 
 //曲選択画面タイトル計算
-void SongSelectTitle::Update(int scene) {
-	if (SongSelectTitle::scene != scene) {
-		SongSelectTitle::scene = scene;
-		switch (scene)
+void SongSelectTitle::ContentUpdate() {
+	static int lastScene = -100;
+	if (lastScene != nowScene) {
+		lastScene = nowScene;
+		switch (nowScene)
 		{
 		case MODE:
 			title->ChangeText("Mode Select");
@@ -28,9 +28,9 @@ void SongSelectTitle::Update(int scene) {
 }
 
 //曲選択画面タイトル表示
-void SongSelectTitle::View() {
+void SongSelectTitle::ContentView() {
 	title->View(); //テキスト表示
-	if(scene == OPTION1)
+	if(nowScene == OPTION1)
 		subTitle->View(); //テキスト表示
 }
 
