@@ -38,18 +38,17 @@ int SongSelect::Switch(const int scene) {
 		break;
 	}
 
-	if (this->scene == BACK_TOP) {
+	switch (this->scene)
+	{
+	case BACK_TOP:
 		Delete();
 		return TOP;
-	}
-
-	if (this->scene == NEXT) {
+	case NEXT:
 		Delete();
-		this->scene = MAIN;
 		return THROUGH;
+	default:
+		return SONG_SELECT;
 	}
-
-	return SONG_SELECT;
 }
 
 //‹È‘I‘ð‰æ–ÊŒvŽZ
