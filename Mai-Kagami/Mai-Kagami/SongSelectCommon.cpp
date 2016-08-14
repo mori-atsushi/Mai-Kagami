@@ -72,58 +72,51 @@ void SongInformation::Load() {
 void SongInformation::ContentUpdate() {
 	int direct = 0;  // increase or decrease of IDs  Jaity
 	static int lastScene = nowScene;
-	
-	if (nowScene == lastScene) {
-		switch (nowScene)
-		{
-		case MAIN:
+
+	switch (nowScene)
+	{
+	case MAIN:
+		if (nowScene == lastScene) {
 			//ボタン0が押されたら
 			if (touch->Get(0) == 1) {
-				//for (int i = 0; i < n; i++)  // 不要 Jaity
-				//	songCover[i]->Change(1, n); //すべての曲の位置IDをインクリメント // 不要 Jaity
 				direct = 1;  // Jaity
 				for (int i = 0; i < n; i++)
 					songCover[i]->coverGraph->Reset();
 			}
 
-			//ボタン1が押されたら
-			if (touch->Get(1) == 1) {
-				nowSong->danceMovie->Load();
-				nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
-			}
-			else {
-				nowSong = songCover[songs->GetNowSong()];
-				for (int i = 0; i < n; i++) {
-					if (songCover[i]->GetNow() == 0) {
-						now = i;
-						nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
-						break;
-					}
-				}
-			}
-
 			//ボタン2が押されたら
 			if (touch->Get(2) == 1) {
-				//for (int i = 0; i < n; i++) // 不要 Jaity
-				//	songCover[i]->Change(-1, n); //すべての曲の位置IDをデクリメント // 不要 Jaity
 				direct = -1;  // Jaity
 				for (int i = 0; i < n; i++)
 					songCover[i]->coverGraph->Reset();
-
 			}
-			for (int i = 0; i < n; i++)
-				songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
-			break;
-		case MODE:
-			if (touch->Get(4) == 1)
-				nowSong->danceMovie->Release();
-			break;
-		case OPTION1:
-			if (touch->Get(2) == 1)
-				nowSong->danceMovie->Stop();
-			if (touch->Get(4) == 1)
-				nowSong->danceMovie->Stop();
 		}
+
+		for (int i = 0; i < n; i++)
+			songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
+
+		nowSong = songCover[songs->GetNowSong()];
+		for (int i = 0; i < n; i++) {
+			if (songCover[i]->GetNow() == 0) {
+				now = i;
+				nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
+				break;
+			}
+		}
+
+		if(lastScene == MODE)
+			nowSong->danceMovie->Release();
+		break;
+	case MODE:
+		if (lastScene == MAIN) {
+			nowSong->danceMovie->Load();
+			nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
+		}
+		else if (lastScene == OPTION1) {
+			nowSong->danceMovie->Stop();
+			nowSong->danceMovie->Seek();
+		}
+		break;
 	}
 	lastScene = nowScene;
 }
@@ -157,6 +150,7 @@ void SongInformation::Delete() {
 		grad[i]->Release();
 	for (int i = 0; i < n; i++)
 		songCover[i]->Release();
+	SubScene::Delete();
 }
 
 SongInformation::~SongInformation() {
