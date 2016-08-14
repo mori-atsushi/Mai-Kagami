@@ -6,14 +6,17 @@ SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
 	songInformation = new SongInformation(font, songs, touch); //選択中の曲初期化
 	songSelectPop = new SongSelectPop(font, touch);
 	modeSelectButton = new ModeSelectButton(font, touch); //モード選択ボタン初期化
-	throughOptionButton = new ThroughOptionButton(font, songs); //通し練習オプションボタン初期化
-	SongSelect::touch = touch;
+	throughOptionButton = new ThroughOptionButton(font, songs, touch); //通し練習オプションボタン初期化
 }
 
 //曲選択画面ロード
 void SongSelect::ContentLoad() {
 	songInformation->Load(); //カバー画像ロード
-	songSelectTitle->Load();
+	songSelectTitle->Load(); //タイトルロード
+	songSelectPop->Load();	 //終了用ポップアップロード
+	songSelectButton->Load(); //曲選択ボタンロード
+	modeSelectButton->Load(); //モード選択ボタンロード
+	throughOptionButton->Load(); //オプション画面ボタンロード
 	scene = MAIN;
 }
 
@@ -32,11 +35,8 @@ int SongSelect::Switch(const int scene) {
 		this->scene = modeSelectButton->Switch(this->scene);
 		break;
 	case OPTION1:
-		if (touch->Get(2) == 1)
-			this->scene = NEXT;
-		if (touch->Get(4) == 1)
-			this->scene = MODE;
-		throughOptionButton->Check(touch);
+		this->scene = throughOptionButton->Switch(this->scene);
+		break;
 	}
 
 	if (this->scene == BACK_TOP) {
@@ -62,6 +62,7 @@ void SongSelect::ContentUpdate() {
 		songSelectPop->Update(scene);
 		songSelectButton->Update(scene);
 		modeSelectButton->Update(scene);
+		throughOptionButton->Update(scene);
 	}
 }
 
@@ -72,17 +73,16 @@ void SongSelect::ContentView() {
 	songSelectPop->View(); //終了用ポップアップ表示
 	songSelectButton->View(); //曲選択ボタン表示
 	modeSelectButton->View(); //モード選択ボタン表示
-	switch (scene)
-	{
-	case OPTION1:
-		throughOptionButton->View();
-		break;
-	}
+	throughOptionButton->View(); //オプション画面ボタン表示
 }
 
 void SongSelect::ContentDelete() {
-	songInformation->Delete();
-	songSelectTitle->Delete();
+	songInformation->Delete(); //カバー削除
+	songSelectTitle->Delete(); //タイトル削除
+	songSelectPop->Delete();	 //終了用ポップアップ削除
+	songSelectButton->Delete(); //曲選択ボタン削除
+	modeSelectButton->Delete(); //モード選択ボタン削除
+	throughOptionButton->Delete(); //オプション画面ボタン削除
 }
 
 SongSelect::~SongSelect() {

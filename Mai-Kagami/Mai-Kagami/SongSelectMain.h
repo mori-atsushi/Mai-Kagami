@@ -26,7 +26,6 @@ private:
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
-	Touch *touch; //サイドタッチパネル
 	int scene;
 	void ContentLoad();
 	void ContentUpdate();

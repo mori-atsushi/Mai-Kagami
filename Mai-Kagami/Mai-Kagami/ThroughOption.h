@@ -9,14 +9,18 @@
 #include "SongSelectDefine.h"
 #include "Songs.h"
 #include "SeetingPop.h"
+#include "Scene.h"
+#include "SongSelectDefine.h"
 
-class ThroughOptionButton {
+class ThroughOptionButton : public SubScene{
 public:
-	ThroughOptionButton(Font *font, Songs *songs);
-	void View();
-	void Check(Touch *touch);
+	ThroughOptionButton(Font *font, Songs *songs, Touch *touch);
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughOptionButton();
 private:
+	Touch *touch;
 	Songs *songs;
 	SpeedOption *speedOption;
 	Button *button[2];
