@@ -31,10 +31,6 @@ void Top::ContentUpdate() {
 	if (nowScene == TOP) {
 		Load();
 		topTouchMessage->Update(); //NFCタッチメッセージ計算
-		viewFlag = TRUE;
-	}
-	else {
-		viewFlag = FALSE;
 	}
 }
 

@@ -13,7 +13,7 @@ public:
 	void Delete() {}; //削除
 protected:
 	int nowScene;
-	boolean viewFlag = TRUE; //表示用フラグ(TRUE:表示、FALSE：非表示)
+	boolean viewFlag = FALSE; //表示用フラグ(TRUE:表示、FALSE：非表示)
 	virtual void ContentView() = 0; //表示詳細
 	virtual void ContentUpdate() = 0; //更新詳細
 };

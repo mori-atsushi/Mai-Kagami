@@ -25,8 +25,10 @@ void Scene::Load() {
 		loadFlag = 1;
 	}
 
-	if (loadFlag == 1 && GetASyncLoadNum() == 0)
+	if (loadFlag == 1 && GetASyncLoadNum() == 0) {
+		viewFlag = TRUE;
 		loadFlag = 2;
+	}
 }
 
 //ï\é¶
@@ -38,5 +40,6 @@ void Scene::View() {
 //çÌèú
 void Scene::Delete() {
 	ContentDelete();
+	viewFlag = FALSE;
 	loadFlag = 0;
 }

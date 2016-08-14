@@ -59,7 +59,10 @@ int SongSelect::Switch(const int scene) {
 
 //曲選択画面計算
 void SongSelect::ContentUpdate() {
-	songSelectTitle->Update(scene);
+	if (nowScene == SONG_SELECT) {
+		Load();
+		songSelectTitle->Update(scene);
+	}
 }
 
 //曲選択画面表示

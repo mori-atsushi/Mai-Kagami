@@ -26,28 +26,15 @@ void MaiKagami::Update() {
 	}
 
 	top->Update(scene); //トップ画面計算
-
-	switch (scene) {
-	case TOP:
-		break;
-	case SONG_SELECT:
-		songSelect->Update(scene); //曲選択画面計算
-		break;
-	case THROUGH:
-		break;
-	}
+	songSelect->Update(scene); //曲選択画面計算
 }
 
 //全体の描画
 void MaiKagami::View() {
 	top->View(); //トップ画面表示
+	songSelect->View(); //曲選択画面表示
 
 	switch (scene) {
-	case TOP:
-		break;
-	case SONG_SELECT:
-		songSelect->View();
-		break;
 	case THROUGH:
 		throughMain->View();
 		break;
