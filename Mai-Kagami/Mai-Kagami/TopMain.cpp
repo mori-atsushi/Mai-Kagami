@@ -28,7 +28,14 @@ int Top::Switch(const int scene) {
 
 //トップ画面計算
 void Top::ContentUpdate() {
-	topTouchMessage->Update(); //NFCタッチメッセージ計算
+	if (nowScene == TOP) {
+		Load();
+		topTouchMessage->Update(); //NFCタッチメッセージ計算
+		viewFlag = TRUE;
+	}
+	else {
+		viewFlag = FALSE;
+	}
 }
 
 //トップ画面表示

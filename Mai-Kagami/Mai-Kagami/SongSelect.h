@@ -27,6 +27,7 @@ class SongSelectPop : public SubScene {
 public:
 	SongSelectPop(Font *font, Touch *touch);
 	int Switch(const int scene);
+	void ContentUpdate() {};
 	void ContentView();
 	~SongSelectPop();
 private:

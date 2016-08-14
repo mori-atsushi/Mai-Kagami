@@ -1,5 +1,14 @@
 #include "Scene.h"
 
+int SubScene::Switch(const int scene) {
+	return scene;
+}
+
+void SubScene::Update(const int scene) {
+	nowScene = scene;
+	ContentUpdate();
+}
+
 //表示
 void SubScene::View() {
 	if (viewFlag)
@@ -20,17 +29,10 @@ void Scene::Load() {
 		loadFlag = 2;
 }
 
-//更新
-void Scene::Update() {
-	Load();
-	if (loadFlag == 2)
-		ContentUpdate();
-}
-
 //表示
 void Scene::View() {
-	if(viewFlag && loadFlag == 2)
-		ContentView();
+	if (loadFlag == 2)
+		SubScene::View();
 }
 
 //削除
