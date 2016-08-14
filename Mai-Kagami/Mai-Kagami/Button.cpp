@@ -7,8 +7,8 @@ Button::Button(const int num)
 //三角形のボタン
 TriangleButton::TriangleButton(Font *font, const char *str, const int direction, const int num, char *colorName)
 	: Button(num) {
-	text = new MyDrawText(font, str, WIDTH * 0.94, GetY() * SIZE_RATE, 2, 30);
-	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
+	text = new MyDrawText(font, str, WIDTH * 0.94, GetY(), 2, 30);
+	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY(), WIDTH * 0.03, direction, colorName);
 }
 
 void TriangleButton::ContentView() {
@@ -24,13 +24,13 @@ TriangleButton::~TriangleButton() {
 //説明文付き三角形のボタン
 TriangleButton2::TriangleButton2(Font *font, const char *title, const char *str, const int direction, const int num, const float x, const char *colorName)
 	: Button(num) {
-	float pos = GetY() * SIZE_RATE;
+	float pos = GetY();
 	text = new MyDrawText(font, title, x, pos - HEIGHT * 0.03, 0, 30, colorName);
 	descriptionText = new MyDrawTexts(font, str, x, pos + HEIGHT * 0.01, 0, 20, 15);
 
 	float width = WIDTH * 0.35;
-	myDrawBox = new MyDrawBox(x + width / 2, GetY() * SIZE_RATE, width + WIDTH * 0.05, HEIGHT * 0.09, 2, colorName);
-	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.03, direction, colorName);
+	myDrawBox = new MyDrawBox(x + width / 2, pos, width + WIDTH * 0.05, HEIGHT * 0.09, 2, colorName);
+	myDrawTriangle2 = new MyDrawTriangle2(WIDTH * 0.97, pos, WIDTH * 0.03, direction, colorName);
 }
 
 void TriangleButton2::ContentView() {
@@ -51,15 +51,15 @@ TriangleButton2::~TriangleButton2() {
 //文字右寄せボタン
 CircleButton::CircleButton(Font *font, const char *str, const int num, char *colorName) 
 	: Button(num) {
-	text = new MyDrawText(font, str, WIDTH * 0.94, GetY() * SIZE_RATE, 2, 30);
-	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.015, 7, colorName);
+	text = new MyDrawText(font, str, WIDTH * 0.94, GetY(), 2, 30);
+	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, colorName);
 }
 
 //文字中央寄せボタン
 CircleButton::CircleButton(Font *font, const char *str, const int num, const float x, char *colorName)
 	: Button(num) {
-	text = new MyDrawText(font, str, x, GetY() * SIZE_RATE, 1, 30);
-	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY() * SIZE_RATE, WIDTH * 0.015, 7, colorName);
+	text = new MyDrawText(font, str, x, GetY(), 1, 30);
+	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, colorName);
 }
 
 void CircleButton::ContentView() {
@@ -77,8 +77,8 @@ CircleButton2::CircleButton2(Font *font, const char *str, const int num, char *c
 	: Button(num) {
 	float r = WIDTH * 0.045;
 	float x = WIDTH - r - 4;
-	text = new MyDrawText(font, str, x, GetY() * SIZE_RATE, 1, 30, "Black");
-	myDrawCircle = new MyDrawCircle(x, GetY() * SIZE_RATE, r, colorName);
+	text = new MyDrawText(font, str, x, GetY(), 1, 30, "Black");
+	myDrawCircle = new MyDrawCircle(x, GetY(), r, colorName);
 }
 
 void CircleButton2::ContentView() {
@@ -95,8 +95,8 @@ CircleButton2::~CircleButton2() {
 CircleGraphButton::CircleGraphButton(const int num, const char *fileName) 
 	: Button(num) {
 	float r = WIDTH * 0.075;
-	myDrawCircle = new MyDrawCircle(WIDTH, GetY() * SIZE_RATE, r);
-	myDrawGraph = new MyDrawGraph(WIDTH  - 35, GetY() * SIZE_RATE, fileName);
+	myDrawCircle = new MyDrawCircle(WIDTH, GetY(), r);
+	myDrawGraph = new MyDrawGraph(WIDTH  - 35, GetY(), fileName);
 }
 
 void CircleGraphButton::Load() {
@@ -117,9 +117,9 @@ CircleGraphButton::~CircleGraphButton() {
 CircleGraphTextButton::CircleGraphTextButton(Font *font, const char *str, const int num, const char *fileName)
 	: Button(num) {
 	float x = WIDTH * 0.965;
-	float y = GetY() * SIZE_RATE;
+	float y = GetY();
 	float r = WIDTH * 0.026;
-	text = new MyDrawText(font, str, x - r - 12, GetY() * SIZE_RATE, 2, 30);
+	text = new MyDrawText(font, str, x - r - 12, y, 2, 30);
 	myDrawCircle = new MyDrawCircle(x, y, r, "Blue");
 	myDrawGraph = new MyDrawGraph(x, y, fileName, 0.6);
 }

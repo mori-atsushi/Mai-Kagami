@@ -128,10 +128,10 @@ void  MyDrawBox::ContentView() {
 	boolean flag = TRUE;
 	if (l != 0)
 		flag = FALSE;
-	float x1 = GetX() - w / 2 + 1;
-	float y1 = GetY() - h / 2 + 1;
-	float x2 = GetX() + w / 2;
-	float y2 = GetY() + h / 2;
+	float x1 = x - w / 2 + 1;
+	float y1 = y - h / 2 + 1;
+	float x2 = x + w / 2;
+	float y2 = y + h / 2;
 
 	DrawBoxAA(x1, y1, x2, y2, Color::Get(), flag, l);
 }

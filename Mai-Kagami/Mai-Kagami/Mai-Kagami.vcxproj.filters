@@ -144,9 +144,6 @@
     <ClCompile Include="SettingPop.cpp">
       <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>ソース ファイル\画面関係\通し練習</Filter>
-    </ClCompile>
     <ClCompile Include="ThroughDetail.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
@@ -154,6 +151,9 @@
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
   </ItemGroup>

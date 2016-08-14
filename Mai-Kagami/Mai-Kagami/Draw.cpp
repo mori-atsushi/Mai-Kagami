@@ -40,8 +40,8 @@ void Pos::ChangePos(const float x, const float y) {
 void Pos::SetPosAnimation(float target_x, float target_y, MyTime duration, int ease) {
 	if (GetTime() != 0)
 		return;
-	default_x = GetX() * SIZE_RATE;
-	default_y = GetY() * SIZE_RATE;
+	default_x = GetX();
+	default_y = GetY();
 	this->target_x = target_x;
 	this->target_y = target_y;
 	SetRate(duration, ease);

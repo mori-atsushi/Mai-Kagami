@@ -1,13 +1,12 @@
 #include "SongSelectMain.h"
 
 SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
-	f = font;
-	songSelectTitle = new SongSelectTitle(f); //曲選択画面タイトル初期化
-	songSelectButton = new SongSelectButton(f);
-	songInformation = new SongInformation(f, songs); //選択中の曲初期化
-	songSelectPop = new SongSelectPop(f);
-	modeSelectButton = new ModeSelectButton(f); //モード選択ボタン初期化
-	throughOptionButton = new ThroughOptionButton(f, songs); //通し練習オプションボタン初期化
+	songSelectTitle = new SongSelectTitle(font); //曲選択画面タイトル初期化
+	songSelectButton = new SongSelectButton(font);
+	songInformation = new SongInformation(font, songs); //選択中の曲初期化
+	songSelectPop = new SongSelectPop(font);
+	modeSelectButton = new ModeSelectButton(font); //モード選択ボタン初期化
+	throughOptionButton = new ThroughOptionButton(font, songs); //通し練習オプションボタン初期化
 	SongSelect::touch = touch;
 }
 

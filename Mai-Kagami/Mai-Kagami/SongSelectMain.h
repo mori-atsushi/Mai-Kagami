@@ -20,7 +20,6 @@ public:
 	int Switch();
 	~SongSelect();
 private:
-	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
 	SongInformation *songInformation; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
