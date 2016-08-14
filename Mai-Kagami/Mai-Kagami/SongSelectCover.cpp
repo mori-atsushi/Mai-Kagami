@@ -54,13 +54,14 @@ void SongSelectCover::Update(int num, int max) {
 void SongSelectCover::Draw(int scene) {
 	int n = GetNow();
 	if (n != 0) {
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
+		coverGraph->SetAlpha(180); //透明度指定
+	}
+	else {
+		coverGraph->SetAlpha(); //透明度解除
 	}
 	if (n >= -1 && n <= 5) {
 		coverGraph->View();
 	}
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-
 
 	switch (scene) {
 	case OPTION1:
@@ -73,6 +74,7 @@ void SongSelectCover::Draw(int scene) {
 	default:
 		if (n == 0 && !playFlag) {
 //			PlayMusic(music, DX_PLAYTYPE_LOOP); // 重いので一時的に消去 Jaity
+			PlayMusic(music, DX_PLAYTYPE_LOOP);
 			playFlag = TRUE;
 		}
 		else if (n != 0) {

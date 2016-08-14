@@ -50,6 +50,7 @@ SongInformation::SongInformation(Font *font, Songs *songs) {
 
 	float x = HEIGHT * 0.35;
 	myDrawBox = new MyDrawBox(WIDTH * 0.5, HEIGHT * 0.5, 170, 1000);
+	myDrawBox->SetAlpha(90); //“§–¾“xŽw’è
 	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
@@ -129,9 +130,7 @@ void SongInformation::View(int scene) {
 	{
 	case BACK:
 	case MAIN:
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
 		myDrawBox->View();
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		box->View();
 		for (int i = 0; i < n; i++)
 			songCover[i]->Draw(scene);
