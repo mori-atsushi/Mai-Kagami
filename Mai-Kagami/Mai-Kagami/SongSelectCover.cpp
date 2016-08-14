@@ -53,15 +53,12 @@ void SongSelectCover::Update(int num, int max) {
 
 void SongSelectCover::Draw(int scene) {
 	int n = GetNow();
-	if (n != 0) {
+	if (n != 0)
 		coverGraph->SetAlpha(180); //“§–¾“xŽw’è
-	}
-	else {
+	else
 		coverGraph->SetAlpha(); //“§–¾“x‰ðœ
-	}
-	if (n >= -1 && n <= 5) {
+	if (n >= -1 && n <= 5)
 		coverGraph->View();
-	}
 
 	switch (scene) {
 	case OPTION1:

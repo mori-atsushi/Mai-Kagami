@@ -17,7 +17,7 @@
 class SongSelect : public Scene{
 public:
 	SongSelect(Font *font, Touch *touch, Songs *songs);
-	int Switch();
+	int Switch(const int scene);
 	~SongSelect();
 private:
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル

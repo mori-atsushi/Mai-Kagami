@@ -17,33 +17,33 @@ void SongSelect::ContentLoad() {
 }
 
 //‹È‘I‘ð‰æ–Êê–ÊØ‚è‘Ö‚¦
-int SongSelect::Switch() {
-	songInformation->Update(touch, scene);
-	switch (scene)
+int SongSelect::Switch(const int scene) {
+	songInformation->Update(touch, this->scene);
+	switch (this->scene)
 	{
 	case BACK:
 		if (touch->Get(1) == 1)
-			scene = BACK_TOP;
+			this->scene = BACK_TOP;
 		if (touch->Get(2) == 1)
-			scene = MAIN;
+			this->scene = MAIN;
 		break;
 	case MAIN:
 		if (touch->Get(1) == 1)
-			scene = MODE;
+			this->scene = MODE;
 		if (touch->Get(4) == 1)
-			scene = BACK;
+			this->scene = BACK;
 		break;
 	case MODE:
 		if (touch->Get(0) == 1)
-			scene = OPTION1;
+			this->scene = OPTION1;
 		if (touch->Get(4) == 1)
-			scene = MAIN;
+			this->scene = MAIN;
 		break;
 	case OPTION1:
 		if (touch->Get(2) == 1)
-			scene = NEXT;
+			this->scene = NEXT;
 		if (touch->Get(4) == 1)
-			scene = MODE;
+			this->scene = MODE;
 		throughOptionButton->Check(touch);
 	}
 
@@ -54,7 +54,7 @@ int SongSelect::Switch() {
 
 	if (scene == NEXT) {
 		Delete();
-		scene = MAIN;
+		this->scene = MAIN;
 		return THROUGH;
 	}
 	return SONG_SELECT;

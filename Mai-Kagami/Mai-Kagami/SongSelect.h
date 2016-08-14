@@ -21,7 +21,7 @@ private:
 };
 
 //ポップアップ関係
-class SongSelectPop {
+class SongSelectPop{
 public:
 	SongSelectPop(Font *font);
 	void View();

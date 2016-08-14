@@ -12,7 +12,7 @@
 class Top : public Scene {
 public:
 	Top(Font *font);
-	int Switch();
+	int Switch(const int scene);
 	~Top();
 private:
 	Font *f;

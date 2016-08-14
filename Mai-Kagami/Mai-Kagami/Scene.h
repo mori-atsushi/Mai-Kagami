@@ -3,10 +3,19 @@
 
 #include "DxLib.h"
 
-//場面定義
-class Scene {
+//サブ場面定義
+class SubScene {
 public:
-	virtual int Switch() = 0; //場面の切り替え
+	int Switch(const int scene) { return scene; }; //場面の切り替え
+	void Update() {}; //更新
+	void View() {}; //表示
+	void Load() {}; //ロード
+	void Delete() {}; //削除
+};
+
+//場面定義
+class Scene : public SubScene {
+public:
 	void Update(); //更新
 	void View(); //表示
 protected:

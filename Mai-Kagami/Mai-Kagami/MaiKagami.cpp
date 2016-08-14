@@ -16,10 +16,10 @@ void MaiKagami::Update() {
 
 	switch (scene) {
 	case TOP:
-		scene = top->Switch();
+		scene = top->Switch(scene);
 		break;
 	case SONG_SELECT:
-		scene = songSelect->Switch();
+		scene = songSelect->Switch(scene);
 		break;
 	case THROUGH:
 		scene = throughMain->Update();
