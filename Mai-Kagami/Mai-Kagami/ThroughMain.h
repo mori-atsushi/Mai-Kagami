@@ -20,7 +20,7 @@ class ThroughMain : public Scene{
 public:
 	ThroughMain(Font *font, Touch *touch, Songs *songs);
 	void ContentUpdate();
-	int Switch(const int scene);
+	MainScene Switch(const MainScene scene);
 	void ContentView();
 	~ThroughMain();
 private:
@@ -33,7 +33,7 @@ private:
 	ThroughDetail *throughDetail;
 	void ContentLoad();
 	void ContentDelete();
-	int scene;
+	ThroughScene scene;
 	Touch *touch;
 };
 

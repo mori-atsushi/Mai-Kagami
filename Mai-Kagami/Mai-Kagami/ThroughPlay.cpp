@@ -71,7 +71,7 @@ void ThroughPlay::Load() {
 	throughPlayBar->Load(song);
 }
 
-int ThroughPlay::Switch(const int scene) {
+ThroughScene ThroughPlay::Switch(const ThroughScene scene) {
 	KinectDistance kinectDistance;
 
 	if (kinectDistance.CheckDistance() == FALSE) //ƒ†[ƒU‚ª2m‚æ‚è‹ß‚©‚Á‚½‚ç

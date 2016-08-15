@@ -15,7 +15,7 @@ public:
 	void Update();
 	void View(); //表示
 private:
-	int scene; //シーン
+	MainScene scene; //シーン
 	Font *font; //フォント
 	Top *top; //トップ画面
 	SongSelect *songSelect; //曲選択画面

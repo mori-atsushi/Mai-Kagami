@@ -20,7 +20,7 @@ void ThroughPause::Load() {
 		button[i]->Load();
 }
 
-int ThroughPause::Switch(const int scene) {
+ThroughScene ThroughPause::Switch(const ThroughScene scene) {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	switch (scene)
 	{
@@ -37,7 +37,7 @@ int ThroughPause::Switch(const int scene) {
 			return THROUGH_START;
 		}
 		if (touch->Get(2) == 1)
-			return BACK_SONG_SELECT;
+			return THROUGH_BACK_SONG_SELECT;
 		if (touch->Get(3) == 1)
 			return THROUGH_SETTING;
 	case THROUGH_SETTING:

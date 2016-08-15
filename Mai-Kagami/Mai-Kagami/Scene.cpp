@@ -1,10 +1,5 @@
 #include "Scene.h"
 
-//ê–Ê‚ÌØ‚è‘Ö‚¦
-int SubScene::Switch(const int scene) {
-	return scene;
-}
-
 //ŒvZ
 void SubScene::Update(const int scene) {
 	nowScene = scene;
@@ -44,12 +39,6 @@ void Scene::Load() {
 		viewFlag = TRUE;
 		loadFlag = 2;
 	}
-}
-
-//•\¦
-void Scene::View() {
-	if (loadFlag == 2)
-		SubScene::View();
 }
 
 //íœ

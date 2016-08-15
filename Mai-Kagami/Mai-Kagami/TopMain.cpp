@@ -17,7 +17,7 @@ void Top::ContentLoad() {
 }
 
 //ê–Ê‚ÌØ‚è‘Ö‚¦
-int Top::Switch(const int scene) {
+MainScene Top::Switch(const MainScene scene) {
 	if (nfc.GetId() != 0) {
 		Delete();
 		return SONG_SELECT;

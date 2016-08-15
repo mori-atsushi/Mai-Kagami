@@ -24,7 +24,7 @@ ThroughCountDown::ThroughCountDown(Font *font) {
 	playTriangle = new PlayTriangle(x, y);
 }
 
-int ThroughCountDown::Switch(const int scene) {
+ThroughScene ThroughCountDown::Switch(const ThroughScene scene) {
 	if (++count == max)
 		return THROUGH_PLAY;
 	return scene;

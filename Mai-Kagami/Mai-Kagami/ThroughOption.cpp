@@ -7,7 +7,7 @@ ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch)
 	button[1] = new CircleButton2(font, "–ß‚é", 4);
 }
 
-int ThroughOptionButton::Switch(const int scene) {
+SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {
 	if (touch->Get(2) == 1)
 		return NEXT;
 	if (touch->Get(4) == 1)

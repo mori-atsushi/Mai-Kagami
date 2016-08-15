@@ -34,7 +34,7 @@ ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
 	throughFinish = new ThroughFinish(font);
 }
 
-int ThroughDetail::Switch(const int scene) {
+ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
 	switch (scene)
 	{
 	case THROUGH_DETAIL:
@@ -42,9 +42,9 @@ int ThroughDetail::Switch(const int scene) {
 			return THROUGH_FINISH;
 	case THROUGH_FINISH:
 		if (touch->Get(2) == 1)
-			return BACK_SONG_SELECT;
+			return THROUGH_BACK_SONG_SELECT;
 		if (touch->Get(3) == 1)
-			return BACK_TOP;
+			return THROUGH_BACK_TOP;
 	}
 	return scene;
 }

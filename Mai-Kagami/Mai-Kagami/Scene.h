@@ -2,11 +2,11 @@
 #define __SCENE_H_INCLUDED__
 
 #include "DxLib.h"
+#include "Main.h"
 
 //サブ場面定義
 class SubScene {
 public:
-	int Switch(const int scene); //場面の切り替え
 	void Update(const int scene); //更新
 	void View(); //表示
 	void Load(); //ロード
@@ -21,8 +21,6 @@ protected:
 
 //場面定義
 class Scene : public SubScene {
-public:
-	void View(); //表示
 protected:
 	void Load(); //ロード
 	void Delete(); //削除

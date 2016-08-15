@@ -20,7 +20,7 @@ void ThroughMain::ContentLoad() {
 	throughDetail->Load();
 }
 
-int ThroughMain::Switch(const int scene) {
+MainScene ThroughMain::Switch(const MainScene scene) {
 	switch (this->scene)
 	{
 	case THROUGH_COUNTDOWN:
@@ -40,11 +40,11 @@ int ThroughMain::Switch(const int scene) {
 		break;
 	}
 
-	if (this->scene == BACK_TOP) {
+	if (this->scene == THROUGH_BACK_TOP) {
 		Delete();
 		return TOP;
 	}
-	if (this->scene == BACK_SONG_SELECT) {
+	if (this->scene == THROUGH_BACK_SONG_SELECT) {
 		Delete();
 		return SONG_SELECT;
 	}

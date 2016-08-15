@@ -34,7 +34,7 @@ class ThroughPlay : public SubScene {
 public:
 	ThroughPlay(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	int Switch(const int scene);
+	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughPlay();

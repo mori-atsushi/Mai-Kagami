@@ -2,7 +2,7 @@
 
 MaiKagami::MaiKagami() {
 	touch = new Touch();
-	scene = START; //シーン初期化
+	scene = TOP; //シーン初期化
 	font = new Font();
 	songs = new Songs(font); //曲一覧作成
 	top = new Top(font);

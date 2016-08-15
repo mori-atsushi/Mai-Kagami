@@ -17,7 +17,7 @@
 class SongSelect : public Scene{
 public:
 	SongSelect(Font *font, Touch *touch, Songs *songs);
-	int Switch(const int scene);
+	MainScene Switch(const MainScene scene);
 	~SongSelect();
 private:
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
@@ -26,7 +26,7 @@ private:
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
-	int scene;
+	SongSelectScene scene;
 	void ContentLoad();
 	void ContentUpdate();
 	void ContentView();

@@ -19,7 +19,7 @@ void ThroughResult::Load() {
 	song->coverGraph->Load();
 }
 
-int ThroughResult::Switch(const int scene) {
+ThroughScene ThroughResult::Switch(const ThroughScene scene) {
 	if (touch->Get(4) == 1)
 		return THROUGH_DETAIL;
 	return scene;

@@ -22,7 +22,7 @@ private:
 class ThroughDetail : public SubScene {
 public:
 	ThroughDetail(Font *font, Touch *touch);
-	int Switch(const int scene);
+	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughDetail();

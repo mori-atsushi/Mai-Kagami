@@ -15,7 +15,7 @@
 class ThroughOptionButton : public SubScene{
 public:
 	ThroughOptionButton(Font *font, Songs *songs, Touch *touch);
-	int Switch(const int scene);
+	SongSelectScene Switch(const SongSelectScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughOptionButton();
