@@ -11,6 +11,7 @@ public:
 	void View(); //表示
 	void Load(); //ロード
 	void Delete(); //削除
+	boolean CheckView(); //表示中かどうか確認する(TRUE:表示中、FALSE：非表示中)
 protected:
 	int nowScene;
 	boolean viewFlag = FALSE; //表示用フラグ(TRUE:表示、FALSE：非表示)

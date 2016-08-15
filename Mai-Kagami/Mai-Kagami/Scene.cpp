@@ -25,6 +25,11 @@ void SubScene::View() {
 		ContentView();
 }
 
+//表示中かどうか確認する(TRUE:表示中、FALSE：非表示中)
+boolean SubScene::CheckView() {
+	return viewFlag;
+}
+
 //ロード
 void Scene::Load() {
 	if (loadFlag == 2)

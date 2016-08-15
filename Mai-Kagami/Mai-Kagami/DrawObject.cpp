@@ -31,9 +31,9 @@ MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float r
 
 void MyDrawCircleGauge::ContentView() {
 	for (double i = 0; i < rad; i += 0.02) {
-		float x = (Pos::GetX() + r * sin(i)) * SIZE_RATE;
-		float y = (Pos::GetY() - r * cos(i)) * SIZE_RATE;
-		MyDrawCircle::ChangePos(x, y);
+		float xx = (Pos::x + r * sin(i)) * SIZE_RATE;
+		float yy = (Pos::y - r * cos(i)) * SIZE_RATE;
+		MyDrawCircle::ChangePos(xx, yy);
 		MyDrawCircle::ContentView();
 	}
 	MyDrawCircle::ChangePos(GetEndX() * SIZE_RATE, GetEndY() * SIZE_RATE);
@@ -45,11 +45,11 @@ void MyDrawCircleGauge::ChangeDegree(const double degree) {
 }
 
 float  MyDrawCircleGauge::GetEndX() {
-	return Draw::GetX() + r * sin(rad);
+	return Pos::x + r * sin(rad);
 }
 
 float  MyDrawCircleGauge::GetEndY() {
-	return Draw::GetY() - r * cos(rad);
+	return Pos::y - r * cos(rad);
 }
 
 //ŽOŠpŒ`‰Šú‰»

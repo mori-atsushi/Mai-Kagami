@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "Touch.h"
 #include "KinectDistance.h"
+#include "ThroughCountDown.h"
 
 //進捗バー
 class ThroughPlayBar {
@@ -26,34 +27,6 @@ private:
 	MyDrawBar *barAll, *barNow;
 	MyDrawCircle *circle[2];
 	MyDrawTextV *part[10];
-};
-
-//カウントダウン画面用再生三角形
-class PlayTriangle : public MyDrawTriangle {
-public:
-	PlayTriangle(const float x, const float y);
-};
-
-
-//カウントダウン画面
-class ThroughCountDown {
-public:
-	ThroughCountDown(Font *font);
-	void Update();
-	void View();
-	boolean GetFlag();
-	void SetFlag(const boolean flag);
-	~ThroughCountDown();
-private:
-	boolean flag; //表示非表示
-	int count; //カウンタ
-	BlackBox *blackBox;
-	MyDrawText *text;
-	MyDrawCircle *circle;
-	MyDrawCircleGauge *countCircle1;
-	MyDrawCircle *countCircle2;
-	PlayTriangle *playTriangle;
-	const int max = 120;
 };
 
 //通し練習画面
