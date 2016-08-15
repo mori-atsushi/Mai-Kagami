@@ -1,6 +1,8 @@
 #include "ThroughResult.h"
 
-ThroughResult::ThroughResult(Font *font) {
+ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
+	this->touch = touch;
+	this->songs = songs;
 	title = new MyDrawTextLine(font, "Ì“_Œ‹‰Ê", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
 	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE");
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6);
@@ -12,17 +14,29 @@ ThroughResult::ThroughResult(Font *font) {
 	last = new MyDrawText(font, "‘O‰ñ --“_", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "Black");
 }
 
-void ThroughResult::Load(Song *song) {
-	ThroughResult::song = song;
+void ThroughResult::Load() {
+	song = songs->GetSong(songs->GetNowSong());
 	song->coverGraph->Load();
 }
 
-void ThroughResult::Update() {
-	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
-	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
+int ThroughResult::Switch(const int scene) {
+	if (touch->Get(4) == 1)
+		return THROUGH_DETAIL;
+	return scene;
 }
 
-void ThroughResult::View() {
+void ThroughResult::ContentUpdate() {
+	if (nowScene == THROUGH_RESULT) {
+		song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
+		song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
+		viewFlag = TRUE;
+	}
+	else {
+		viewFlag = FALSE;
+	}
+}
+
+void ThroughResult::ContentView() {
 	title->View();
 	song->coverGraph->View();
 	song->drawSongTitle->View();
