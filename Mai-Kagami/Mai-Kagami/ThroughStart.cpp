@@ -10,14 +10,22 @@ ThroughStart::ThroughStart(Font *f) {
 	flag = TRUE;
 }
 
-void ThroughStart::Update(int scene) {
-	if (scene == THROUGH_PLAY) {
+void ThroughStart::ContentUpdate() {
+	switch (nowScene)
+	{
+	case THROUGH_START:
+		viewFlag = TRUE;
+		break;
+	case THROUGH_PLAY:
 		wait->ChangeText("ˆêŽž’âŽ~’†");
 		flag = FALSE;
+	default:
+		viewFlag = FALSE;
+		break;
 	}
 }
 
-void ThroughStart::View() {
+void ThroughStart::ContentView() {
 	blackBox->View();
 	myDrawGraph->View();
 	wait->View();

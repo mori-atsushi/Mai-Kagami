@@ -2,18 +2,18 @@
 #define __THROUGHSTART_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Font.h"
 #include "DrawGraph.h"
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
+#include "Scene.h"
 
-class ThroughStart{
+class ThroughStart : public SubScene{
 public:
 	ThroughStart(Font *f);
-	void Update(int scene);
-	void View();
+	void ContentUpdate();
+	void ContentView();
 	~ThroughStart();
 private:
 	boolean flag; //annotation表示用フラグ

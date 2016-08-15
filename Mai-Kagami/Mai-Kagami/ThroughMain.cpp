@@ -13,6 +13,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 
 void ThroughMain::ContentLoad() {
 	song = songs->GetSong(songs->GetNowSong());
+	throughStart->Load();
 	throughPlay->Load(song);
 	throughPause->Load();
 	throughResult->Load(song);
@@ -76,8 +77,8 @@ int ThroughMain::Switch(const int scene) {
 void ThroughMain::ContentUpdate() {
 	if (nowScene == THROUGH) {
 		Load();
-		throughPlay->Update(scene);
 		throughStart->Update(scene);
+		throughPlay->Update(scene);
 		throughPause->Update(scene);
 		throughDetail->Update(scene);
 		if (scene == THROUGH_RESULT)
@@ -90,7 +91,6 @@ void ThroughMain::ContentView() {
 	{
 	case THROUGH_START:
 		throughPlay->View();
-		throughStart->View();
 		throughPause->View();
 		break;
 	case THROUGH_PLAY:
@@ -107,6 +107,7 @@ void ThroughMain::ContentView() {
 		throughDetail->View();
 		break;
 	}
+	throughStart->View();
 }
 
 void ThroughMain::ContentDelete() {
