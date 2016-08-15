@@ -8,7 +8,14 @@ ThroughFinish::ThroughFinish(Font *font) {
 	button[3] = new CircleButton(font, "I—¹", 3, WIDTH * 0.75, "White");
 }
 
-void ThroughFinish::View() {
+void ThroughFinish::ContentUpdate() {
+	if (nowScene == THROUGH_FINISH)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
+void ThroughFinish::ContentView() {
 	blackBox->View();
 	for (int i = 0; i < 4; i++)
 		button[i]->View();
@@ -43,6 +50,7 @@ int ThroughDetail::Switch(const int scene) {
 }
 
 void ThroughDetail::ContentUpdate() {
+	throughFinish->Update(nowScene);
 	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
 		viewFlag = TRUE;
 	else
@@ -52,8 +60,7 @@ void ThroughDetail::ContentUpdate() {
 void ThroughDetail::ContentView() {
 	title->View();
 	button->View();
-	if (nowScene == THROUGH_FINISH)
-		throughFinish->View();
+	throughFinish->View();
 }
 
 ThroughDetail::~ThroughDetail() {

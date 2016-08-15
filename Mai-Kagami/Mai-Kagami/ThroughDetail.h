@@ -8,10 +8,11 @@
 #include "SeetingPop.h"
 #include "Scene.h"
 
-class ThroughFinish {
+class ThroughFinish : public SubScene {
 public:
 	ThroughFinish(Font *font);
-	void View();
+	void ContentUpdate();
+	void ContentView();
 	~ThroughFinish();
 private:
 	BlackBox *blackBox;
