@@ -8,23 +8,25 @@
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
 #include "Touch.h"
+#include "Scene.h"
 
-class ThroughPause {
+class ThroughPause : public SubScene {
 public:
-	ThroughPause(Font *font, Songs *songs);
-	void Check(Touch *touch);
-	void Update(const int scene);
+	ThroughPause(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	void View();
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughPause();
 private:
+	Touch *touch;
+	Songs *songs;
 	boolean flag; //ポーズ中かどうかのフラグ
 	CircleGraphButton *pauseButton; //一時停止用ボタン
 	BlackBox *blackBox; //背景半透明黒の四角形
 	MyDrawText *title;
 	CircleGraphTextButton *button[4];
 	SpeedPop *speedPop;
-	int scene;
 };
 
 #endif
