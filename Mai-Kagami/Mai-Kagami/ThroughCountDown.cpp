@@ -31,7 +31,6 @@ int ThroughCountDown::Switch(const int scene) {
 }
 
 void ThroughCountDown::ContentUpdate() {
-	static int lastScene = -100;
 	if (nowScene == THROUGH_COUNTDOWN) {
 		viewFlag = TRUE;
 		countCircle1->ChangeDegree((double)count / max * 100);
@@ -41,7 +40,6 @@ void ThroughCountDown::ContentUpdate() {
 		count = 0;
 		viewFlag = FALSE;
 	}
-	lastScene = nowScene;
 }
 
 void ThroughCountDown::ContentView() {

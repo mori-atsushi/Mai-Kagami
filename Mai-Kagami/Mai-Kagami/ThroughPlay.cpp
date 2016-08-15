@@ -74,7 +74,7 @@ void ThroughPlay::Load() {
 int ThroughPlay::Switch(const int scene) {
 	KinectDistance kinectDistance;
 
-	if (kinectDistance.CheckDistance() == FALSE)
+	if (kinectDistance.CheckDistance() == FALSE) //ƒ†[ƒU‚ª2m‚æ‚è‹ß‚©‚Á‚½‚ç
 		return THROUGH_START;
 
 	switch (scene)
@@ -94,27 +94,25 @@ void ThroughPlay::ContentUpdate() {
 	throughPlayBar->Update();
 	throughCountDown->Update(nowScene);
 
-	if (nowScene == THROUGH_PLAY) {
-		if (!throughCountDown->CheckView())
-			song->danceMovie->Start();
-		viewFlag = TRUE;
-	}
-	else {
+	if(nowScene == THROUGH_PLAY)
+		song->danceMovie->Start();
+	else
 		song->danceMovie->Stop();
-		switch (nowScene)
-		{
-		case THROUGH_COUNTDOWN:
-		case THROUGH_SETTING:
-		case THROUGH_START:
-		case THROUGH_PAUSE:
-			viewFlag = TRUE;
-			break;
-		case THROUGH_RESULT:
-		case THROUGH_DETAIL:
-		case THROUGH_FINISH:
-			viewFlag = FALSE;
-			break;
-		}
+
+	switch (nowScene)
+	{
+	case THROUGH_COUNTDOWN:
+	case THROUGH_SETTING:
+	case THROUGH_START:
+	case THROUGH_PLAY:
+	case THROUGH_PAUSE:
+		viewFlag = TRUE;
+		break;
+	case THROUGH_RESULT:
+	case THROUGH_DETAIL:
+	case THROUGH_FINISH:
+		viewFlag = FALSE;
+		break;
 	}
 }
 

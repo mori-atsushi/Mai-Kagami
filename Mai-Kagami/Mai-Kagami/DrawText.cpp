@@ -47,7 +47,7 @@ MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float
 
 void MyDrawTextV::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaStringToHandle(GetX(), GetY(), 1, 1, 0, GetHeight() / SIZE_RATE / 2, - 2.0 / 6.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
+	DrawRotaStringToHandle(x, y, 1, 1, 0, GetHeight() / SIZE_RATE / 2, - 2.0 / 6.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
