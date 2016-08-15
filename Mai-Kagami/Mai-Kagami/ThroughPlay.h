@@ -2,13 +2,15 @@
 #define __THROUGHPLAY_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Font.h"
 #include "Songs.h"
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "Button.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
+#include "Scene.h"
+#include "Touch.h"
+#include "KinectDistance.h"
 
 //進捗バー
 class ThroughPlayBar {
@@ -55,19 +57,20 @@ private:
 };
 
 //通し練習画面
-class ThroughPlay {
+class ThroughPlay : public SubScene {
 public:
-	ThroughPlay(Font *font);
-	void Load(Song *song);
-	void View();
-	void Update(int scene);
+	ThroughPlay(Font *font, Songs *songs, Touch *touch);
+	void Load();
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughPlay();
 private:
-	Font *font;
+	Songs *songs;
 	Song *song;
+	Touch *touch;
 	ThroughPlayBar *throughPlayBar; //進捗バー
 	ThroughCountDown *throughCountDown; //カウントダウン画面
-	int scene;
 };
 
 #endif

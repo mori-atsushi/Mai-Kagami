@@ -115,14 +115,15 @@ ThroughCountDown::~ThroughCountDown() {
 	delete playTriangle;
 }
 
-ThroughPlay::ThroughPlay(Font *font) {
-	ThroughPlay::font = font;
+ThroughPlay::ThroughPlay(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
+	this->touch = touch;
 	throughPlayBar = new ThroughPlayBar(font);
 	throughCountDown = new ThroughCountDown(font);
 }
 
-void ThroughPlay::Load(Song *song) {
-	ThroughPlay::song = song;
+void ThroughPlay::Load() {
+	song = songs->GetSong(songs->GetNowSong());
 	song->danceMovie->ChangeEx(1.2);
 	song->danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.5);
 	song->danceMovie->Seek();
@@ -132,32 +133,77 @@ void ThroughPlay::Load(Song *song) {
 	throughCountDown->SetFlag(TRUE);
 }
 
-void ThroughPlay::Update(int scene) {
-	ThroughPlay::scene = scene;
-	throughPlayBar->Update();
+int ThroughPlay::Switch(const int scene) {
 	switch (scene)
 	{
+	case THROUGH_PAUSE:
+		if (touch->Get(0) == 1)
+			return THROUGH_START;
+		if (touch->Get(1) == 1) {
+			song->danceMovie->Seek();
+			return THROUGH_START;
+		}
+		if (touch->Get(2) == 1)
+			return BACK_SONG_SELECT;
+		if (touch->Get(3) == 1)
+			return THROUGH_SETTING;
+		break;
+	case THROUGH_SETTING:
+		if (touch->Get(4) == 1)
+			return THROUGH_PAUSE;
+		break;
 	case THROUGH_PLAY:
+	case THROUGH_START:
+		KinectDistance kinectDistance;
+		if (touch->Get(0) == 1)
+			return THROUGH_PAUSE;
+		if (song->danceMovie->GetNowFlame() == 100)
+			return THROUGH_RESULT;
+		if (kinectDistance.CheckDistance() == TRUE)
+			return THROUGH_PLAY;
+		else
+			return THROUGH_START;
+	}
+	return scene;
+}
+
+void ThroughPlay::ContentUpdate() {
+	throughPlayBar->Update();
+	if (nowScene == THROUGH_PLAY) {
 		if (throughCountDown->GetFlag())
 			throughCountDown->Update();
 		else
 			song->danceMovie->Start();
-		break;
-	default:
+		viewFlag = TRUE;
+	}
+	else {
 		throughCountDown->SetFlag(TRUE);
 		song->danceMovie->Stop();
-		break;
+		switch (nowScene)
+		{
+		case THROUGH_SETTING:
+		case THROUGH_START:
+		case THROUGH_PAUSE:
+			viewFlag = TRUE;
+			break;
+		case THROUGH_RESULT:
+		case THROUGH_DETAIL:
+		case THROUGH_FINISH:
+			viewFlag = FALSE;
+			break;
+		}
 	}
 }
 
-void ThroughPlay::View() {
+void ThroughPlay::ContentView() {
 	song->danceMovie->View();
 	song->drawSongTitle->View();
 	throughPlayBar->View();
-	if (scene == THROUGH_PLAY && throughCountDown->GetFlag())
+	if (nowScene == THROUGH_PLAY && throughCountDown->GetFlag())
 		throughCountDown->View();
 }
 
 ThroughPlay::~ThroughPlay() {
 	delete throughPlayBar;
+	delete throughCountDown;
 }

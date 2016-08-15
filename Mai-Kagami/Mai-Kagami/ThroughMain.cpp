@@ -3,7 +3,7 @@
 ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	ThroughMain::songs = songs;
 	throughStart = new ThroughStart(font);
-	throughPlay = new ThroughPlay(font);
+	throughPlay = new ThroughPlay(font, songs, touch);
 	throughPause = new ThroughPause(font, songs);
 	throughResult = new ThroughResult(font);
 	throughDetail = new ThroughDetail(font);
@@ -14,7 +14,7 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 void ThroughMain::ContentLoad() {
 	song = songs->GetSong(songs->GetNowSong());
 	throughStart->Load();
-	throughPlay->Load(song);
+	throughPlay->Load();
 	throughPause->Load();
 	throughResult->Load(song);
 }
@@ -22,21 +22,6 @@ void ThroughMain::ContentLoad() {
 int ThroughMain::Switch(const int scene) {
 	switch (this->scene)
 	{
-	case THROUGH_PAUSE:
-		if (touch->Get(0) == 1)
-			this->scene = THROUGH_START;
-		if (touch->Get(1) == 1) {
-			this->scene = THROUGH_START;
-			song->danceMovie->Seek();
-		}
-		if (touch->Get(2) == 1) {
-			Delete();
-			return SONG_SELECT;
-		}
-		if (touch->Get(3) == 1) {
-			this->scene = THROUGH_SETTING;
-		}
-		break;
 	case THROUGH_RESULT:
 		if (touch->Get(4) == 1)
 			this->scene = THROUGH_DETAIL;
@@ -56,20 +41,13 @@ int ThroughMain::Switch(const int scene) {
 		}
 		break;
 	case THROUGH_SETTING:
-		if (touch->Get(4) == 1)
-			this->scene = THROUGH_PAUSE;
 		throughPause->Check(touch);
 		break;
-	default:
-		KinectDistance kinectDistance;
-		if (kinectDistance.CheckDistance() == TRUE)
-			this->scene = THROUGH_PLAY;
-		else
-			this->scene = THROUGH_START;
-		if (touch->Get(0) == 1)
-			this->scene = THROUGH_PAUSE;
-		if (song->danceMovie->GetNowFlame() == 100)
-			this->scene = THROUGH_RESULT;
+	}
+	this->scene = throughPlay->Switch(this->scene);
+	if (this->scene == BACK_SONG_SELECT) {
+		Delete();
+		return SONG_SELECT;
 	}
 	return THROUGH;
 }
@@ -90,7 +68,6 @@ void ThroughMain::ContentView() {
 	switch (scene)
 	{
 	case THROUGH_START:
-		throughPlay->View();
 		throughPause->View();
 		break;
 	case THROUGH_PLAY:
@@ -107,6 +84,7 @@ void ThroughMain::ContentView() {
 		throughDetail->View();
 		break;
 	}
+	throughPlay->View();
 	throughStart->View();
 }
 
