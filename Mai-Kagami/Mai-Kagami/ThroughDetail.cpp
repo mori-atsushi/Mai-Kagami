@@ -20,20 +20,39 @@ ThroughFinish::~ThroughFinish() {
 		delete button[i];
 }
 
-ThroughDetail::ThroughDetail(Font *font) {
+ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
+	this->touch = touch;
 	title = new DrawTitle(font, "Ì“_Œ‹‰Ê");
 	button = new CircleButton2(font, "ŽŸ‚Ö", 4);
 	throughFinish = new ThroughFinish(font);
 }
 
-void ThroughDetail::Update(const int scene) {
-	ThroughDetail::scene = scene;
+int ThroughDetail::Switch(const int scene) {
+	switch (scene)
+	{
+	case THROUGH_DETAIL:
+		if (touch->Get(4) == 1)
+			return THROUGH_FINISH;
+	case THROUGH_FINISH:
+		if (touch->Get(2) == 1)
+			return BACK_SONG_SELECT;
+		if (touch->Get(3) == 1)
+			return BACK_TOP;
+	}
+	return scene;
 }
 
-void ThroughDetail::View() {
+void ThroughDetail::ContentUpdate() {
+	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
+void ThroughDetail::ContentView() {
 	title->View();
 	button->View();
-	if (scene == THROUGH_FINISH)
+	if (nowScene == THROUGH_FINISH)
 		throughFinish->View();
 }
 

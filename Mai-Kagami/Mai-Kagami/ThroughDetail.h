@@ -6,6 +6,7 @@
 #include "ThroughDefine.h"
 #include "Button.h"
 #include "SeetingPop.h"
+#include "Scene.h"
 
 class ThroughFinish {
 public:
@@ -17,17 +18,18 @@ private:
 	Button *button[4];
 };
 
-class ThroughDetail {
+class ThroughDetail : public SubScene {
 public:
-	ThroughDetail(Font *font);
-	void View();
-	void Update(const int scene);
+	ThroughDetail(Font *font, Touch *touch);
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughDetail();
 private:
+	Touch *touch;
 	DrawTitle *title;
 	Button *button;
 	ThroughFinish *throughFinish;
-	int scene;
 };
 
 #endif
