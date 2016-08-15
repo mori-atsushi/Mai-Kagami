@@ -72,35 +72,20 @@ void ThroughPlay::Load() {
 }
 
 int ThroughPlay::Switch(const int scene) {
+	KinectDistance kinectDistance;
+
+	if (kinectDistance.CheckDistance() == FALSE)
+		return THROUGH_START;
+
 	switch (scene)
 	{
-	case THROUGH_PAUSE:
-		if (touch->Get(0) == 1)
-			return THROUGH_START;
-		if (touch->Get(1) == 1) {
-			song->danceMovie->Seek();
-			return THROUGH_START;
-		}
-		if (touch->Get(2) == 1)
-			return BACK_SONG_SELECT;
-		if (touch->Get(3) == 1)
-			return THROUGH_SETTING;
-		break;
-	case THROUGH_SETTING:
-		if (touch->Get(4) == 1)
-			return THROUGH_PAUSE;
-		break;
-	case THROUGH_PLAY:
 	case THROUGH_START:
-		KinectDistance kinectDistance;
-		if (touch->Get(0) == 1)
-			return THROUGH_PAUSE;
+		return THROUGH_COUNTDOWN;
+	case THROUGH_COUNTDOWN:
+		return throughCountDown->Switch(scene);
+	case THROUGH_PLAY:
 		if (song->danceMovie->GetNowFlame() == 100)
 			return THROUGH_RESULT;
-		if (kinectDistance.CheckDistance() == TRUE)
-			return THROUGH_PLAY;
-		else
-			return THROUGH_START;
 	}
 	return scene;
 }
@@ -118,6 +103,7 @@ void ThroughPlay::ContentUpdate() {
 		song->danceMovie->Stop();
 		switch (nowScene)
 		{
+		case THROUGH_COUNTDOWN:
 		case THROUGH_SETTING:
 		case THROUGH_START:
 		case THROUGH_PAUSE:

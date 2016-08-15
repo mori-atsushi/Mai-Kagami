@@ -22,6 +22,30 @@ void ThroughMain::ContentLoad() {
 int ThroughMain::Switch(const int scene) {
 	switch (this->scene)
 	{
+	case THROUGH_COUNTDOWN:
+	case THROUGH_PLAY:
+	case THROUGH_START:
+		this->scene = throughPlay->Switch(this->scene);
+		if (touch->Get(0) == 1)
+			this->scene = THROUGH_PAUSE;
+		break;
+	case THROUGH_PAUSE:
+		if (touch->Get(0) == 1)
+			this->scene = THROUGH_START;
+		if (touch->Get(1) == 1) {
+			song->danceMovie->Seek();
+			this->scene = THROUGH_START;
+		}
+		if (touch->Get(2) == 1)
+			this->scene = BACK_SONG_SELECT;
+		if (touch->Get(3) == 1)
+			this->scene = THROUGH_SETTING;
+		break;
+	case THROUGH_SETTING:
+		if (touch->Get(4) == 1)
+			this->scene = THROUGH_PAUSE;
+		throughPause->Check(touch);
+		break;
 	case THROUGH_RESULT:
 		if (touch->Get(4) == 1)
 			this->scene = THROUGH_DETAIL;
@@ -40,11 +64,7 @@ int ThroughMain::Switch(const int scene) {
 			return TOP;
 		}
 		break;
-	case THROUGH_SETTING:
-		throughPause->Check(touch);
-		break;
 	}
-	this->scene = throughPlay->Switch(this->scene);
 	if (this->scene == BACK_SONG_SELECT) {
 		Delete();
 		return SONG_SELECT;

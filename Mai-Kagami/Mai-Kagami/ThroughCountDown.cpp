@@ -24,17 +24,18 @@ ThroughCountDown::ThroughCountDown(Font *font) {
 	playTriangle = new PlayTriangle(x, y);
 }
 
+int ThroughCountDown::Switch(const int scene) {
+	if (++count == max)
+		return THROUGH_PLAY;
+	return scene;
+}
+
 void ThroughCountDown::ContentUpdate() {
 	static int lastScene = -100;
-	if (nowScene == THROUGH_PLAY) {
-		if (nowScene != lastScene)
-			viewFlag = TRUE;
-		if(viewFlag) {
-			countCircle1->ChangeDegree((double)count / max * 100);
-			countCircle2->ChangePos(countCircle1->GetEndX() * SIZE_RATE, countCircle1->GetEndY() * SIZE_RATE);
-			if (++count == max)
-				viewFlag = FALSE;
-		}
+	if (nowScene == THROUGH_COUNTDOWN) {
+		viewFlag = TRUE;
+		countCircle1->ChangeDegree((double)count / max * 100);
+		countCircle2->ChangePos(countCircle1->GetEndX() * SIZE_RATE, countCircle1->GetEndY() * SIZE_RATE);
 	}
 	else {
 		count = 0;

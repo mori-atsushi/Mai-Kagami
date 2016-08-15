@@ -23,6 +23,7 @@ public:
 class ThroughCountDown : public	SubScene {
 public:
 	ThroughCountDown(Font *font);
+	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughCountDown();
