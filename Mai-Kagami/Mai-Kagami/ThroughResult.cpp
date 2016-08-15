@@ -5,6 +5,7 @@ ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
 	title = new MyDrawTextLine(font, "Ì“_Œ‹‰Ê", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
 	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE");
+	circle->SetAlpha(220);
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6);
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16);
 	button = new CircleButton2(font, "ŽŸ‚Ö", 4);
@@ -40,9 +41,7 @@ void ThroughResult::ContentView() {
 	title->View();
 	song->coverGraph->View();
 	song->drawSongTitle->View();
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220); //“§–¾“xÝ’è
 	circle->View();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //“§–¾“x‰ðœ
 	pointCircle->View();
 	pointCircle2->View();
 	text->View();

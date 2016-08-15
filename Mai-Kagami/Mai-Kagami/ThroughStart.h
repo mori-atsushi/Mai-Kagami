@@ -16,7 +16,6 @@ public:
 	void ContentView();
 	~ThroughStart();
 private:
-	boolean flag; //annotation表示用フラグ
 	MyDrawGraph *myDrawGraph;
 	MyDrawText *wait;
 	MyDrawText *caution;

@@ -40,9 +40,11 @@ public:
 	Draw(const float x, const float y);
 	void View();
 	void SetAlpha(const int alpha = 255); //透明度指定
+	void SetViewFlag(const boolean viewFlag);
 private:
 	virtual void ContentView() = 0; //表示メソッド
 	int alpha = 255; //透明度
+	boolean viewFlag = TRUE;
 };
 
 //描画用クラス（位置指定あり）
