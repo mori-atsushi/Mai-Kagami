@@ -2,9 +2,9 @@
 
 ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch) {
 	this->touch = touch;
-	speedOption = new SpeedOption(font, songs);
-	button[0] = new CircleButton(font, "スタート!", 2);
-	button[1] = new CircleButton2(font, "戻る", 4);
+	speedOption = new SpeedOption(font, songs, touch);
+	button[0] = new CircleButton(font, touch, "スタート!", 2);
+	button[1] = new CircleButton2(font, touch, "戻る", 4);
 }
 
 SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {

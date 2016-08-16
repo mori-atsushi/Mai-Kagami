@@ -8,7 +8,7 @@ ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	circle->SetAlpha(220);
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6);
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16);
-	button = new CircleButton2(font, "éüÇ÷", 4);
+	button = new CircleButton2(font, touch, "éüÇ÷", 4);
 	text = new MyDrawText(font, "ëççáìæì_", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "Black");
 	point = new MyDrawText(font, "78", WIDTH * 0.46, HEIGHT * 0.5, 1, 100, "Blue");
 	unit = new MyDrawText(font, "ì_", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "Black");

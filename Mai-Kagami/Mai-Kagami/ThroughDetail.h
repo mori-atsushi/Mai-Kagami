@@ -10,7 +10,7 @@
 
 class ThroughFinish : public SubScene {
 public:
-	ThroughFinish(Font *font);
+	ThroughFinish(Font *font, Touch *touch);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughFinish();

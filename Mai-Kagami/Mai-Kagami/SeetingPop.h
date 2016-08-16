@@ -19,7 +19,7 @@ private:
 //スピードオプション表示
 class SpeedOption {
 public:
-	SpeedOption(Font *font, Songs *songs);
+	SpeedOption(Font *font, Songs *songs, Touch *touch);
 	void Check(Touch *touch);
 	void View();
 	~SpeedOption();
@@ -32,7 +32,7 @@ private:
 //スピードオプションポップアップ
 class SpeedPop : public SpeedOption {
 public:
-	SpeedPop(Font *font, Songs *songs);
+	SpeedPop(Font *font, Songs *songs, Touch *touch);
 	void Check(Touch *touch);
 	void View();
 	~SpeedPop();

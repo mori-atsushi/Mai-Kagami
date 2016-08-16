@@ -1,11 +1,11 @@
 #include "ThroughDetail.h"
 
-ThroughFinish::ThroughFinish(Font *font) {
+ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
 	blackBox = new BlackBox();
-	button[0] = new CircleButton(font, "おすすめ練習", 0, WIDTH * 0.75, "White");
-	button[1] = new CircleButton(font, "練習方法選択", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(font, "曲選択画面", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(font, "終了", 3, WIDTH * 0.75, "White");
+	button[0] = new CircleButton(font, touch, "おすすめ練習", 0, WIDTH * 0.75, "White");
+	button[1] = new CircleButton(font, touch, "練習方法選択", 1, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(font, touch, "曲選択画面", 2, WIDTH * 0.75, "White");
+	button[3] = new CircleButton(font, touch, "終了", 3, WIDTH * 0.75, "White");
 }
 
 void ThroughFinish::ContentUpdate() {
@@ -30,8 +30,8 @@ ThroughFinish::~ThroughFinish() {
 ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
 	this->touch = touch;
 	title = new DrawTitle(font, "採点結果");
-	button = new CircleButton2(font, "次へ", 4);
-	throughFinish = new ThroughFinish(font);
+	button = new CircleButton2(font, touch, "次へ", 4);
+	throughFinish = new ThroughFinish(font, touch);
 }
 
 ThroughScene ThroughDetail::Switch(const ThroughScene scene) {

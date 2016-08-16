@@ -6,9 +6,9 @@ BlackBox::BlackBox()
 	MyDrawBox::SetAlpha(220);
 }
 
-SpeedOption::SpeedOption(Font *font, Songs *songs) {
-	button[0] = new TriangleButton(font, "UP", 0, 0);
-	button[1] = new TriangleButton(font, "DOWN", 1, 1);
+SpeedOption::SpeedOption(Font *font, Songs *songs, Touch *touch) {
+	button[0] = new TriangleButton(font, touch, "UP", 0, 0);
+	button[1] = new TriangleButton(font, touch, "DOWN", 1, 1);
 	float height = BUTTON_POS + BUTTON_INTERVAL / 2;
 	speed[0] = new MyDrawText(font, "スピード", WIDTH * 0.72, height, 0, 30);
 	speed[1] = new MyDrawText(font, "×1.0", WIDTH * 0.86, height, 0, 30, "Yellow");
@@ -41,11 +41,11 @@ SpeedOption::~SpeedOption() {
 }
 
 //スピードオプションポップアップ
-SpeedPop::SpeedPop(Font *font, Songs *songs)
-	: SpeedOption(font, songs) {
+SpeedPop::SpeedPop(Font *font, Songs *songs, Touch *touch)
+	: SpeedOption(font, songs, touch) {
 	SpeedPop::songs = songs;
 	blackBox = new BlackBox();
-	button = new CircleButton2(font, "決定", 4);
+	button = new CircleButton2(font, touch, "決定", 4);
 	text = new MyDrawText(font, "- 速度設定 -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40);
 }
 
