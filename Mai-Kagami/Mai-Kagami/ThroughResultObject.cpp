@@ -68,3 +68,36 @@ ResultComment::~ResultComment() {
 	delete title;
 	delete comment;
 }
+
+ResultBody::ResultBody(Font *font) 
+	: Draw(WIDTH * 0.8, HEIGHT * 0.53) {
+	body = new MyDrawGraph(GetX(), GetY(), "img/man.png");
+	part[0] = new MyDrawText(font, "¶Žè", GetX() - 106, GetY() - 68, 1, 20);
+	part[1] = new MyDrawText(font, "‰EŽè", GetX() + 140, GetY() - 55, 1, 20);
+	part[2] = new MyDrawText(font, "¶‘«", GetX() - 100, GetY() + 68, 1, 20);
+	part[3] = new MyDrawText(font, "‰E‘«", GetX() + 122, GetY() + 55, 1, 20);
+	point[0] = new MyDrawText(font, "A", GetX() - 147, GetY() - 70, 1, 30, "Yellow");
+	point[1] = new MyDrawText(font, "A", GetX() + 99, GetY() - 57, 1, 30, "Yellow");
+	point[2] = new MyDrawText(font, "B", GetX() - 141, GetY() + 66, 1, 30, "Yellow");
+	point[3] = new MyDrawText(font, "C", GetX() + 81, GetY() + 53, 1, 30, "Yellow");
+}
+
+void ResultBody::Load() {
+	body->Load();
+}
+
+void ResultBody::ContentView() {
+	body->View();
+	for (int i = 0; i < 4; i++) {
+		part[i]->View();
+		point[i]->View();
+	}
+}
+
+ResultBody::~ResultBody() {
+	delete body;
+	for (int i = 0; i < 4; i++) {
+		delete part[i];
+		delete point[i];
+	}
+}

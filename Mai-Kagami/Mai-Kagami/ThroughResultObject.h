@@ -40,4 +40,16 @@ private:
 	MyDrawTexts *comment;
 };
 
+class ResultBody : public Draw {
+public:
+	ResultBody(Font *font);
+	void Load();
+	~ResultBody();
+private:
+	void ContentView();
+	MyDrawGraph *body;
+	MyDrawText *part[4];
+	MyDrawText *point[4];
+};
+
 #endif

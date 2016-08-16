@@ -40,6 +40,7 @@ ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	timingBar = new TimingBar(font);
 	expressionBar = new ExpressionBar(font);
 	resultComment = new ResultComment(font);
+	resultBody = new ResultBody(font);
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
 
@@ -52,6 +53,7 @@ ThroughScene ThroughDetailScreen::Switch(const ThroughScene scene) {
 void ThroughDetailScreen::Load() {
 	timingBar->Load(4);
 	expressionBar->Load(2);
+	resultBody->Load();
 }
 
 void ThroughDetailScreen::ContentUpdate() {
@@ -67,6 +69,7 @@ void ThroughDetailScreen::ContentView() {
 	expressionBar->View();
 	resultComment->View();
 	button->View();
+	resultBody->View();
 }
 
 ThroughDetailScreen::~ThroughDetailScreen() {
