@@ -37,6 +37,8 @@ ThroughFinish::~ThroughFinish() {
 
 ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	title = new DrawTitle(font, "Ì“_Œ‹‰Ê");
+	timingBar = new TimingBar(font);
+	expressionBar = new ExpressionBar(font);
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
 
@@ -44,6 +46,11 @@ ThroughScene ThroughDetailScreen::Switch(const ThroughScene scene) {
 	if (button->GetTouch() == 1)
 		return THROUGH_FINISH;
 	return scene;
+}
+
+void ThroughDetailScreen::Load() {
+	timingBar->Load(4);
+	expressionBar->Load(2);
 }
 
 void ThroughDetailScreen::ContentUpdate() {
@@ -55,11 +62,15 @@ void ThroughDetailScreen::ContentUpdate() {
 
 void ThroughDetailScreen::ContentView() {
 	title->View();
+	timingBar->View();
+	expressionBar->View();
 	button->View();
 }
 
 ThroughDetailScreen::~ThroughDetailScreen() {
 	delete title;
+	delete timingBar;
+	delete expressionBar;
 	delete button;
 }
 
@@ -77,6 +88,11 @@ ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
 		return throughFinish->Switch(scene);
 	}
 	return scene;
+}
+
+void ThroughDetail::Load() {
+	throughDetailScreen->Load();
+	throughFinish->Load();
 }
 
 void ThroughDetail::ContentUpdate() {

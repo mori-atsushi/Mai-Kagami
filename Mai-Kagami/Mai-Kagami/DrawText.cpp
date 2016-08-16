@@ -81,7 +81,7 @@ void MyDrawTexts::ChangePos(const float x, const float y) {
 	float height = myDrawText[0]->GetHeight();
 	float yy = y - (height + inter) / 2 * (l - 1);
 	for (int i = 0; i < l; i++) {
-		myDrawText[i]->ChangePos(GetX(), yy);
+		myDrawText[i]->ChangePos(this->x * SIZE_RATE, yy);
 		yy += height + inter;
 	}
 }

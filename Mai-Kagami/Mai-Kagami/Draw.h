@@ -54,6 +54,8 @@ public:
 	Draw2(const float x, const float y, const int pos);
 	void ChangePos();
 	void ChangePos(const float x, const float y);
+	float GetX(); //xÀ•Wæ“¾
+	float GetY(); //yÀ•Wæ“¾
 	virtual float GetWidth() = 0;
 	virtual float GetHeight() = 0;
 private :

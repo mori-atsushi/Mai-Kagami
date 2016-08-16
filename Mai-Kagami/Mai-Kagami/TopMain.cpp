@@ -25,7 +25,6 @@ MainScene Top::Switch(const MainScene scene) {
 	return TOP;
 }
 
-
 //トップ画面計算
 void Top::ContentUpdate() {
 	if (nowScene == TOP) {
@@ -38,7 +37,7 @@ void Top::ContentUpdate() {
 void Top::ContentView() {
 	topLogo->View(); //ロゴ表示
 	topTouchMessage->View(); //NFCタッチメッセージ表示
-	topTouchButton->View(); //NFCタッチボタン表示}
+	topTouchButton->View(); //NFCタッチボタン表示
 }
 
 void Top::ContentDelete() {

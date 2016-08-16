@@ -122,3 +122,11 @@ void Draw2::ChangePos(const float x, const float y) {
 	yy = y;
 	Draw2::ChangePos();
 }
+
+float Draw2::GetX() {
+	return xx;
+}
+
+float Draw2::GetY() {
+	return yy;
+}

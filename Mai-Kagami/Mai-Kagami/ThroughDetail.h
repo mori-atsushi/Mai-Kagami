@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "SeetingPop.h"
 #include "Scene.h"
+#include "ThroughResultObject.h"
 
 class ThroughFinish : public SubScene {
 public:
@@ -24,11 +25,14 @@ class ThroughDetailScreen : public SubScene {
 public:
 	ThroughDetailScreen(Font *font, Touch *touch);
 	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	void Load();
 	~ThroughDetailScreen();
 private:
+	void ContentUpdate();
+	void ContentView();
 	DrawTitle *title;
+	TimingBar *timingBar;
+	ExpressionBar *expressionBar;
 	Button *button;
 };
 
@@ -36,10 +40,11 @@ class ThroughDetail : public SubScene {
 public:
 	ThroughDetail(Font *font, Touch *touch);
 	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	void Load();
 	~ThroughDetail();
 private:
+	void ContentUpdate();
+	void ContentView();
 	ThroughDetailScreen *throughDetailScreen;
 	ThroughFinish *throughFinish;
 };

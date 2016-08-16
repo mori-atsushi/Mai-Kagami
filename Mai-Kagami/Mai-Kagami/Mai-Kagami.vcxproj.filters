@@ -159,6 +159,9 @@
     <ClCompile Include="ThroughCountDown.cpp">
       <Filter>ソース ファイル\画面関係\通し練習</Filter>
     </ClCompile>
+    <ClCompile Include="ThroughResultObject.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="ThroughPause.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResultObject.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

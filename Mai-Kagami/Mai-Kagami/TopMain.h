@@ -7,6 +7,7 @@
 #include "Font.h"
 #include "Top.h"
 #include "Scene.h"
+#include "ThroughResultObject.h" //テスト用
 
 //トップ画面関係
 class Top : public Scene {
@@ -24,6 +25,7 @@ private:
 	void ContentView(); //表示
 	void ContentLoad();
 	void ContentDelete();
+	TimingBar *timingBar;
 };
 
 #endif

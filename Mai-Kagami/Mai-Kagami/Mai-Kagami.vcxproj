@@ -47,6 +47,7 @@
     <ClCompile Include="ThroughPlay.cpp" />
     <ClCompile Include="ThroughCountDown.cpp" />
     <ClCompile Include="ThroughResult.cpp" />
+    <ClCompile Include="ThroughResultObject.cpp" />
     <ClCompile Include="ThroughStart.cpp" />
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="TopMain.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="ThroughPlay.h" />
     <ClInclude Include="ThroughCountDown.h" />
     <ClInclude Include="ThroughResult.h" />
+    <ClInclude Include="ThroughResultObject.h" />
     <ClInclude Include="ThroughStart.h" />
     <ClInclude Include="Top.h" />
     <ClInclude Include="TopMain.h" />
