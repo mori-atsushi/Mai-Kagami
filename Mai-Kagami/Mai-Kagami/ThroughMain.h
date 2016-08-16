@@ -24,8 +24,6 @@ public:
 	void ContentView();
 	~ThroughMain();
 private:
-	Song *song;
-	Songs *songs;
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
 	ThroughPause *throughPause;
@@ -34,7 +32,6 @@ private:
 	void ContentLoad();
 	void ContentDelete();
 	ThroughScene scene;
-	Touch *touch;
 };
 
 #endif

@@ -13,6 +13,7 @@ ThroughScene ThroughFinish::Switch(const ThroughScene scene) {
 		return THROUGH_BACK_SONG_SELECT;
 	if (button[3]->GetTouch() == 1)
 		return THROUGH_BACK_TOP;
+	return scene;
 }
 
 void ThroughFinish::ContentUpdate() {

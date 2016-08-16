@@ -1,18 +1,15 @@
 #include "ThroughMain.h"
 
 ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
-	ThroughMain::songs = songs;
 	throughStart = new ThroughStart(font);
 	throughPlay = new ThroughPlay(font, songs, touch);
 	throughPause = new ThroughPause(font, songs, touch);
 	throughResult = new ThroughResult(font, songs, touch);
 	throughDetail = new ThroughDetail(font, touch);
-	scene = THROUGH_START;
-	ThroughMain::touch = touch;
 }
 
 void ThroughMain::ContentLoad() {
-	song = songs->GetSong(songs->GetNowSong());
+	scene = THROUGH_START;
 	throughStart->Load();
 	throughPlay->Load();
 	throughPause->Load();
