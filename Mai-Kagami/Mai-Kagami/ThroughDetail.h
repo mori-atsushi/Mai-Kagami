@@ -32,6 +32,7 @@ private:
 	void ContentView();
 	DrawTitle *title;
 	TimingBar *timingBar;
+	ResultComment *resultComment;
 	ExpressionBar *expressionBar;
 	Button *button;
 };

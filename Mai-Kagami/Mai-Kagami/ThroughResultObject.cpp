@@ -51,3 +51,20 @@ ScoreBar::~ScoreBar() {
 TimingBar::TimingBar(Font *font) : ScoreBar(font, HEIGHT * 0.44, "タイミング", "slow", "early") {}
 
 ExpressionBar::ExpressionBar(Font *font) : ScoreBar(font, HEIGHT * 0.54, "表情", "bad", "good") {}
+
+ResultComment::ResultComment(Font *font)
+	: Draw(WIDTH * 0.6, HEIGHT * 0.64) {
+	char *str = "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。";
+	title = new MyDrawTextLine(font, "コメント", GetX(), GetY(), 0, 24, WIDTH * 0.55, 2);
+	comment = new MyDrawTexts(font, str, GetX(), GetY() + 66, 1, 20, 16);
+}
+
+void ResultComment::ContentView() {
+	title->View();
+	comment->View();
+}
+
+ResultComment::~ResultComment() {
+	delete title;
+	delete comment;
+}

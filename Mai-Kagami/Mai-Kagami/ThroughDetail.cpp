@@ -39,6 +39,7 @@ ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	title = new DrawTitle(font, "Ì“_Œ‹‰Ê");
 	timingBar = new TimingBar(font);
 	expressionBar = new ExpressionBar(font);
+	resultComment = new ResultComment(font);
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
 
@@ -64,6 +65,7 @@ void ThroughDetailScreen::ContentView() {
 	title->View();
 	timingBar->View();
 	expressionBar->View();
+	resultComment->View();
 	button->View();
 }
 
@@ -71,6 +73,7 @@ ThroughDetailScreen::~ThroughDetailScreen() {
 	delete title;
 	delete timingBar;
 	delete expressionBar;
+	delete resultComment;
 	delete button;
 }
 

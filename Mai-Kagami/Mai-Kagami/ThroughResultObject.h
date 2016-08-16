@@ -6,7 +6,7 @@
 #include "DrawObject.h"
 #include "DrawGraph.h"
 
-class ScoreBar : public Draw{
+class ScoreBar : public Draw {
 public:
 	ScoreBar(Font *font, const float y, const char *title, const char *para1, const char *para2);
 	void Load(const int p);
@@ -28,6 +28,16 @@ public:
 class ExpressionBar : public ScoreBar {
 public:
 	ExpressionBar(Font *font);
+};
+
+class ResultComment : public Draw {
+public:
+	ResultComment(Font *font);
+	~ResultComment();
+private:
+	void ContentView();
+	MyDrawTextLine *title;
+	MyDrawTexts *comment;
 };
 
 #endif

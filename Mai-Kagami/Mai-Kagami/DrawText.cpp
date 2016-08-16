@@ -60,13 +60,17 @@ MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float
 
 	l = 0;
 	char a[256];
-	for (int i = 0, j = 0; i < strlen(str); i++) {
+	int i, j;
+	for (i = 0, j = 0; i < strlen(str); i++) {
 		a[j++] = str[i];
 		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
 			a[j] = '\0';
 			myDrawText[l] = new MyDrawText(font, a, 0, 0, 0, point, colorName);
 			l++; i++; j = 0;
 		}
+	}
+	if (i == 0) {
+		myDrawText[0] = new MyDrawText(font, "", 0, 0, 0, point, colorName);
 	}
 	ChangePos(x, y);
 }
