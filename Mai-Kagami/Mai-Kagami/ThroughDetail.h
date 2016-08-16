@@ -11,6 +11,7 @@
 class ThroughFinish : public SubScene {
 public:
 	ThroughFinish(Font *font, Touch *touch);
+	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughFinish();
@@ -27,7 +28,6 @@ public:
 	void ContentView();
 	~ThroughDetail();
 private:
-	Touch *touch;
 	DrawTitle *title;
 	Button *button;
 	ThroughFinish *throughFinish;

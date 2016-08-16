@@ -8,6 +8,13 @@ ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
 	button[3] = new CircleButton(font, touch, "I—¹", 3, WIDTH * 0.75, "White");
 }
 
+ThroughScene ThroughFinish::Switch(const ThroughScene scene) {
+	if (button[2]->GetTouch() == 1)
+		return THROUGH_BACK_SONG_SELECT;
+	if (button[3]->GetTouch() == 1)
+		return THROUGH_BACK_TOP;
+}
+
 void ThroughFinish::ContentUpdate() {
 	if (nowScene == THROUGH_FINISH)
 		viewFlag = TRUE;
@@ -28,7 +35,6 @@ ThroughFinish::~ThroughFinish() {
 }
 
 ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
-	this->touch = touch;
 	title = new DrawTitle(font, "Ì“_Œ‹‰Ê");
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 	throughFinish = new ThroughFinish(font, touch);
@@ -38,13 +44,10 @@ ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
 	switch (scene)
 	{
 	case THROUGH_DETAIL:
-		if (touch->Get(4) == 1)
+		if (button->GetTouch() == 1)
 			return THROUGH_FINISH;
 	case THROUGH_FINISH:
-		if (touch->Get(2) == 1)
-			return THROUGH_BACK_SONG_SELECT;
-		if (touch->Get(3) == 1)
-			return THROUGH_BACK_TOP;
+		return throughFinish->Switch(scene);
 	}
 	return scene;
 }

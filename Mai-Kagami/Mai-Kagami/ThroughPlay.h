@@ -41,7 +41,6 @@ public:
 private:
 	Songs *songs;
 	Song *song;
-	Touch *touch;
 	ThroughPlayBar *throughPlayBar; //進捗バー
 	ThroughCountDown *throughCountDown; //カウントダウン画面
 };

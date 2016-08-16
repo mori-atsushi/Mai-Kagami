@@ -21,7 +21,6 @@ public:
 	void ContentView(); //•\Ž¦
 	~SongSelectButton();
 private:
-	Touch *touch;
 	Button *button[4];
 };
 

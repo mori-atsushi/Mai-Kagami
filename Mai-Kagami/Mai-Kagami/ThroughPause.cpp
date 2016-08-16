@@ -1,7 +1,6 @@
 #include "ThroughPause.h"
 
 ThroughPause::ThroughPause(Font *font, Songs *songs, Touch *touch) {
-	this->touch = touch;
 	this->songs = songs;
 	pauseButton = new CircleGraphButton(touch, 0, "img/pause.png");
 	blackBox = new BlackBox();
@@ -27,22 +26,22 @@ ThroughScene ThroughPause::Switch(const ThroughScene scene) {
 	case THROUGH_COUNTDOWN:
 	case THROUGH_PLAY:
 	case THROUGH_START:
-		if (touch->Get(0) == 1)
+		if (pauseButton->GetTouch() == 1)
 			return THROUGH_PAUSE;
 	case THROUGH_PAUSE:
-		if (touch->Get(0) == 1)
+		if (button[0]->GetTouch() == 1)
 			return THROUGH_START;
-		if (touch->Get(1) == 1) {
+		if (button[1]->GetTouch() == 1) {
 			song->danceMovie->Seek();
 			return THROUGH_START;
 		}
-		if (touch->Get(2) == 1)
+		if (button[2]->GetTouch() == 1)
 			return THROUGH_BACK_SONG_SELECT;
-		if (touch->Get(3) == 1)
+		if (button[3]->GetTouch() == 1)
 			return THROUGH_SETTING;
-	case THROUGH_SETTING:
-		if (touch->Get(4) == 1)
-			return THROUGH_PAUSE;
+//	case THROUGH_SETTING:
+//		if (touch->Get(4) == 1)
+//			return THROUGH_PAUSE;
 	}
 	return scene;
 }
@@ -51,7 +50,7 @@ void ThroughPause::ContentUpdate() {
 	switch (nowScene)
 	{
 	case THROUGH_SETTING:
-		speedPop->Check(touch);
+		speedPop->Check();
 	case THROUGH_PLAY:
 	case THROUGH_PAUSE:
 	case THROUGH_COUNTDOWN:

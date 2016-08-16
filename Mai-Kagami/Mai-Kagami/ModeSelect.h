@@ -16,7 +16,6 @@ public:
 	void ContentView();
 	~ModeSelectButton();
 private:
-	Touch *touch;
 	Button *button[3];
 };
 

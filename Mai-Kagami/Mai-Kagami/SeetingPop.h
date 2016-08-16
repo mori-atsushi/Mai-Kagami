@@ -20,7 +20,7 @@ private:
 class SpeedOption {
 public:
 	SpeedOption(Font *font, Songs *songs, Touch *touch);
-	void Check(Touch *touch);
+	void Check();
 	void View();
 	~SpeedOption();
 private:
@@ -33,7 +33,7 @@ private:
 class SpeedPop : public SpeedOption {
 public:
 	SpeedPop(Font *font, Songs *songs, Touch *touch);
-	void Check(Touch *touch);
+	void Check();
 	void View();
 	~SpeedPop();
 private:

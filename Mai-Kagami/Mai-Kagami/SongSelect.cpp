@@ -2,7 +2,6 @@
 
 //曲選択画面ボタン初期化
 SongSelectButton::SongSelectButton(Font *font, Touch *touch) {
-	this->touch = touch;
 	button[0] = new TriangleButton(font, touch, "前の曲へ", 0, 0);
 	button[1] = new CircleButton(font, touch, "決定", 1);
 	button[2] = new TriangleButton(font, touch, "次の曲へ", 1, 2);
@@ -11,9 +10,9 @@ SongSelectButton::SongSelectButton(Font *font, Touch *touch) {
 
 //曲選択画面ボタン画面切り替え
 SongSelectScene SongSelectButton::Switch(const SongSelectScene scene) {
-	if (touch->Get(1) == 1)
+	if (button[1]->GetTouch() == 1)
 		return MODE;
-	if (touch->Get(4) == 1)
+	if (button[3]->GetTouch() == 1)
 		return BACK;
 	return scene;
 }

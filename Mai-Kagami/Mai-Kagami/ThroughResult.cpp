@@ -1,7 +1,6 @@
 #include "ThroughResult.h"
 
 ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
-	this->touch = touch;
 	this->songs = songs;
 	title = new MyDrawTextLine(font, "Ì“_Œ‹‰Ê", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
 	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE");
@@ -21,7 +20,7 @@ void ThroughResult::Load() {
 }
 
 ThroughScene ThroughResult::Switch(const ThroughScene scene) {
-	if (touch->Get(4) == 1)
+	if (button->GetTouch() == 1)
 		return THROUGH_DETAIL;
 	return scene;
 }

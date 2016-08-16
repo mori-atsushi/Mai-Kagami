@@ -1,16 +1,15 @@
 #include "ThroughOption.h"
 
 ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch) {
-	this->touch = touch;
 	speedOption = new SpeedOption(font, songs, touch);
 	button[0] = new CircleButton(font, touch, "スタート!", 2);
 	button[1] = new CircleButton2(font, touch, "戻る", 4);
 }
 
 SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {
-	if (touch->Get(2) == 1)
+	if (button[0]->GetTouch() == 1)
 		return NEXT;
-	if (touch->Get(4) == 1)
+	if (button[1]->GetTouch() == 1)
 		return MODE;
 	return scene;
 }
@@ -19,7 +18,7 @@ SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {
 void ThroughOptionButton::ContentUpdate() {
 	if (nowScene == OPTION1) {
 		viewFlag = TRUE;
-		speedOption->Check(touch);
+		speedOption->Check();
 	}
 	else {
 		viewFlag = FALSE;

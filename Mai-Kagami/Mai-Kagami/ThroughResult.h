@@ -30,7 +30,6 @@ private:
 	Button *button; //ŽŸ‚Öƒ{ƒ^ƒ“
 	Song *song;
 	Songs *songs;
-	Touch *touch;
 };
 
 #endif

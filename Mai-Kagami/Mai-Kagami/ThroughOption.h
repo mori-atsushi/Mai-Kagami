@@ -20,7 +20,6 @@ public:
 	void ContentView();
 	~ThroughOptionButton();
 private:
-	Touch *touch;
 	Songs *songs;
 	SpeedOption *speedOption;
 	Button *button[2];

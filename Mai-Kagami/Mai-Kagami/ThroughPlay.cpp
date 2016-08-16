@@ -57,7 +57,6 @@ ThroughPlayBar::~ThroughPlayBar() {
 
 ThroughPlay::ThroughPlay(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
-	this->touch = touch;
 	throughPlayBar = new ThroughPlayBar(font);
 	throughCountDown = new ThroughCountDown(font);
 }

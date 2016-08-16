@@ -19,7 +19,6 @@ public:
 	void ContentView();
 	~ThroughPause();
 private:
-	Touch *touch;
 	Songs *songs;
 	boolean flag; //ポーズ中かどうかのフラグ
 	CircleGraphButton *pauseButton; //一時停止用ボタン
