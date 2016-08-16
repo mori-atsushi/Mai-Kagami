@@ -35,9 +35,36 @@ ThroughFinish::~ThroughFinish() {
 		delete button[i];
 }
 
-ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
+ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	title = new DrawTitle(font, "Ì“_Œ‹‰Ê");
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
+}
+
+ThroughScene ThroughDetailScreen::Switch(const ThroughScene scene) {
+	if (button->GetTouch() == 1)
+		return THROUGH_FINISH;
+	return scene;
+}
+
+void ThroughDetailScreen::ContentUpdate() {
+	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
+void ThroughDetailScreen::ContentView() {
+	title->View();
+	button->View();
+}
+
+ThroughDetailScreen::~ThroughDetailScreen() {
+	delete title;
+	delete button;
+}
+
+ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
+	throughDetailScreen = new ThroughDetailScreen(font, touch);
 	throughFinish = new ThroughFinish(font, touch);
 }
 
@@ -45,8 +72,7 @@ ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
 	switch (scene)
 	{
 	case THROUGH_DETAIL:
-		if (button->GetTouch() == 1)
-			return THROUGH_FINISH;
+		return throughDetailScreen->Switch(scene);
 	case THROUGH_FINISH:
 		return throughFinish->Switch(scene);
 	}
@@ -55,6 +81,7 @@ ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
 
 void ThroughDetail::ContentUpdate() {
 	throughFinish->Update(nowScene);
+	throughDetailScreen->Update(nowScene);
 	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
 		viewFlag = TRUE;
 	else
@@ -62,13 +89,11 @@ void ThroughDetail::ContentUpdate() {
 }
 
 void ThroughDetail::ContentView() {
-	title->View();
-	button->View();
+	throughDetailScreen->View();
 	throughFinish->View();
 }
 
 ThroughDetail::~ThroughDetail() {
-	delete title;
-	delete button;
+	delete throughDetailScreen;
 	delete throughFinish;
 }

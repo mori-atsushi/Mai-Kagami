@@ -20,6 +20,18 @@ private:
 	Button *button[4];
 };
 
+class ThroughDetailScreen : public SubScene {
+public:
+	ThroughDetailScreen(Font *font, Touch *touch);
+	ThroughScene Switch(const ThroughScene scene);
+	void ContentUpdate();
+	void ContentView();
+	~ThroughDetailScreen();
+private:
+	DrawTitle *title;
+	Button *button;
+};
+
 class ThroughDetail : public SubScene {
 public:
 	ThroughDetail(Font *font, Touch *touch);
@@ -28,8 +40,7 @@ public:
 	void ContentView();
 	~ThroughDetail();
 private:
-	DrawTitle *title;
-	Button *button;
+	ThroughDetailScreen *throughDetailScreen;
 	ThroughFinish *throughFinish;
 };
 
