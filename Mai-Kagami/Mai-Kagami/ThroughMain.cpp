@@ -39,7 +39,6 @@ MainScene ThroughMain::Switch(const MainScene scene) {
 		this->scene = throughDetail->Switch(this->scene);
 		break;
 	}
-
 	if (this->scene == THROUGH_BACK_TOP) {
 		Delete();
 		return TOP;
