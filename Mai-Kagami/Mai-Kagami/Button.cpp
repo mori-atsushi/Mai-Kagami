@@ -115,6 +115,10 @@ void CircleGraphButton::ContentView() {
 	myDrawGraph->View();
 }
 
+void CircleGraphButton::Release() {
+	myDrawGraph->Release();
+}
+
 CircleGraphButton::~CircleGraphButton() {
 	delete myDrawCircle;
 	delete myDrawGraph;
@@ -139,6 +143,10 @@ void CircleGraphTextButton::ContentView() {
 	text->View();
 	myDrawCircle->View();
 	myDrawGraph->View();
+}
+
+void CircleGraphTextButton::Release() {
+	myDrawGraph->Release();
 }
 
 CircleGraphTextButton::~CircleGraphTextButton() {

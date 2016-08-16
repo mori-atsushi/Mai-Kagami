@@ -32,6 +32,10 @@ void ThroughPauseButton::ContentView() {
 	pauseButton->View();
 }
 
+void ThroughPauseButton::Delete() {
+	pauseButton->Release();
+}
+
 ThroughPauseButton::~ThroughPauseButton() {
 	delete pauseButton;
 }
@@ -78,6 +82,11 @@ void ThroughPauseScreen::ContentView() {
 	title->View();
 	for (int i = 0; i < 4; i++)
 		button[i]->View();
+}
+
+void ThroughPauseScreen::Delete() {
+	for (int i = 0; i < 4; i++)
+		button[i]->Release();
 }
 
 ThroughPauseScreen::~ThroughPauseScreen() {
@@ -157,6 +166,12 @@ void ThroughPause::ContentView() {
 	throughPauseButton->View();
 	throughPauseScreen->View();
 	throughPauseSetting->View();
+}
+
+void ThroughPause::Delete() {
+	throughPauseButton->Delete();
+	throughPauseScreen->Delete();
+	throughPauseSetting->Delete();
 }
 
 ThroughPause::~ThroughPause() {

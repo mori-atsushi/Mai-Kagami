@@ -18,6 +18,7 @@ public:
 	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
+	void Delete();
 	~ThroughPauseButton();
 private:
 	CircleGraphButton *pauseButton; //ˆêŽž’âŽ~—pƒ{ƒ^ƒ“
@@ -31,6 +32,7 @@ public:
 	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
+	void Delete();
 	~ThroughPauseScreen();
 private:
 	Songs *songs;
@@ -55,6 +57,7 @@ public:
 	ThroughScene Switch(const ThroughScene scene);
 	void ContentUpdate();
 	void ContentView();
+	void Delete();
 	~ThroughPause();
 private:
 	Songs *songs;

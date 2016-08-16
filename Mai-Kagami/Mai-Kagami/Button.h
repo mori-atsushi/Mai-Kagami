@@ -74,6 +74,7 @@ public:
 	CircleGraphButton(Touch *touch, const int num, const char *fileName);
 	void ContentView();
 	void Load();
+	void Release();
 	~CircleGraphButton();
 private:
 	MyDrawCircle *myDrawCircle;
@@ -86,6 +87,7 @@ public:
 	CircleGraphTextButton(Font *font, Touch *touch, const char *str, const int num, const char *fileName);
 	void Load();
 	void ContentView();
+	void Release();
 	~CircleGraphTextButton();
 private:
 	MyDrawCircle *myDrawCircle;
