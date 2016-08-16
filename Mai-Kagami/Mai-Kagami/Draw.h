@@ -58,9 +58,10 @@ public:
 	float GetY(); //y座標取得
 	virtual float GetWidth() = 0;
 	virtual float GetHeight() = 0;
+protected:
+	int p; //ポジション情報
 private :
 	float xx, yy; //座標
-	int p; //ポジション情報
 };
 
 #endif

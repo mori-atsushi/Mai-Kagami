@@ -43,14 +43,17 @@ private:
 };
 
 //アンダーライン付きテキスト
-class MyDrawTextLine : public MyDrawText {
+class MyDrawTextLine : public Color, public Draw {
 public:
 	MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName = "White");
 	void ContentView();
 	void ChangePos(const float x, const float y);
+	void ChangeText(char *str); //テキスト変更
+	~MyDrawTextLine();
 private:
+	MyDrawText *myDrawText;
+	int pos;
 	float x1, x2, y1, y2, w, l; //座標、線の太さ、線の長さ
-	void Calc(const float x, const float y); //座標計算
 };
 
 #endif

@@ -2,10 +2,10 @@
 
 ScoreBar::ScoreBar(Font *font, const float y, const char *title, const char *para1, const char *para2)
  : Draw(WIDTH * 0.475, y) {
-	const float height = 140;
-	this->title = new MyDrawTextLine(font, title, GetX(), GetY(), 1, 24, WIDTH * 0.3, 2);
-	mark = new MyDrawGraph(0, GetY() + 80, "img/mark.png");
-	score = new MyDrawText(font, "", 0, GetY() + 75, 1, 30);
+	const float height = 110;
+	this->title = new MyDrawTextLine(font, title, GetX(), GetY(), 0, 24, WIDTH * 0.3, 2);
+	mark = new MyDrawGraph(0, GetY() + height - 50, "img/mark.png");
+	score = new MyDrawText(font, "", 0, GetY() + height - 55, 1, 30);
 	para[0] = new MyDrawText(font, para1, GetX() - 100, GetY() + height, 2, 20);
 	para[1] = new MyDrawText(font, para2, GetX() + 100, GetY() + height, 0, 20);
 	for (int i = 0; i < 8; i++)
@@ -48,6 +48,6 @@ ScoreBar::~ScoreBar() {
 		delete box[i];
 }
 
-TimingBar::TimingBar(Font *font) : ScoreBar(font, HEIGHT * 0.42, "タイミング", "slow", "early") {}
+TimingBar::TimingBar(Font *font) : ScoreBar(font, HEIGHT * 0.44, "タイミング", "slow", "early") {}
 
 ExpressionBar::ExpressionBar(Font *font) : ScoreBar(font, HEIGHT * 0.54, "表情", "bad", "good") {}
