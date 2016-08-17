@@ -14,7 +14,7 @@ void ThroughPlayBar::Load(Song *song) {
 	for (int i = 0; i < song->GetPartNum(); i++) {
 		SongPart *songPart = song->GetPart(i);
 		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)songPart->GetFlame() / song->danceMovie->GetAllFlame();
-		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.054, 0, 16);
+		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.056, 0, 16);
 	}
 }
 

@@ -6,6 +6,7 @@
 #include "DrawObject.h"
 #include "DrawGraph.h"
 
+//得点バー
 class ScoreBar : public Draw {
 public:
 	ScoreBar(Font *font, const float y, const char *title, const char *para1, const char *para2);
@@ -20,16 +21,19 @@ private:
 	MyDrawText *score;
 };
 
+//タイミング得点バー
 class TimingBar : public ScoreBar {
 public:
 	TimingBar(Font *font);
 };
 
+//表情得点バー
 class ExpressionBar : public ScoreBar {
 public:
 	ExpressionBar(Font *font);
 };
 
+//コメント表示
 class ResultComment : public Draw {
 public:
 	ResultComment(Font *font);
@@ -40,6 +44,7 @@ private:
 	MyDrawTexts *comment;
 };
 
+//体のパーツ別採点結果表示
 class ResultBody : public Draw {
 public:
 	ResultBody(Font *font);
@@ -50,6 +55,18 @@ private:
 	MyDrawGraph *body;
 	MyDrawText *part[4];
 	MyDrawText *point[4];
+};
+
+//区間別採点グラフ表示
+class ResultGraph : public Draw {
+public:
+	ResultGraph(Font *font);
+	~ResultGraph();
+private:
+	void ContentView();
+	MyDrawBox *myDrawBox;
+	MyDrawTexts *scale; //目盛り
+	MyDrawTextV *part[10];
 };
 
 #endif

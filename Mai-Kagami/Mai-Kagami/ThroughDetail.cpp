@@ -41,6 +41,7 @@ ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	expressionBar = new ExpressionBar(font);
 	resultComment = new ResultComment(font);
 	resultBody = new ResultBody(font);
+	resultGraph = new ResultGraph(font);
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
 
@@ -70,6 +71,7 @@ void ThroughDetailScreen::ContentView() {
 	resultComment->View();
 	button->View();
 	resultBody->View();
+	resultGraph->View();
 }
 
 ThroughDetailScreen::~ThroughDetailScreen() {
@@ -78,6 +80,7 @@ ThroughDetailScreen::~ThroughDetailScreen() {
 	delete expressionBar;
 	delete resultComment;
 	delete button;
+	delete resultGraph;
 }
 
 ThroughDetail::ThroughDetail(Font *font, Touch *touch) {

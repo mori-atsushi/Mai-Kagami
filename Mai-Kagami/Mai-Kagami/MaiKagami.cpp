@@ -2,7 +2,6 @@
 
 MaiKagami::MaiKagami() {
 	touch = new Touch();
-	scene = TOP; //ƒV[ƒ“‰Šú‰»
 	font = new Font();
 	songs = new Songs(font); //‹Èˆê——ì¬
 	top = new Top(font);

@@ -26,6 +26,8 @@ class MyDrawTextV : public MyDrawText {
 public:
 	MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName = "White"); // pos=左寄せ:0 / 中央寄せ:1 / 右寄せ:2
 	void ContentView();
+private:
+	float RotCenterX;
 };
 
 //複数行のテキスト

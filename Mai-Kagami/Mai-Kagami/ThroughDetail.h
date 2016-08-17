@@ -35,6 +35,7 @@ private:
 	ExpressionBar *expressionBar;
 	ResultComment *resultComment;
 	ResultBody *resultBody;
+	ResultGraph *resultGraph;
 	Button *button;
 };
 

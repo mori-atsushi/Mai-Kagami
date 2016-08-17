@@ -99,5 +99,29 @@ ResultBody::~ResultBody() {
 	for (int i = 0; i < 4; i++) {
 		delete part[i];
 		delete point[i];
+
 	}
+}
+
+ResultGraph::ResultGraph(Font *font) 
+	: Draw(WIDTH * 0.65, HEIGHT * 0.31) {
+	float w = WIDTH * 0.6, h = HEIGHT * 0.13;
+	myDrawBox = new MyDrawBox(GetX(), GetY(), w, h, 2, "White");
+	scale = new MyDrawTexts(font, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
+	part[0] = new MyDrawTextV(font, "イントロ", GetX() - w / 2 + WIDTH * 0.05, GetY() + HEIGHT * 0.075, 2, 16);
+	part[1] = new MyDrawTextV(font, "Aメロ", GetX() - w / 2 + WIDTH * 0.1, GetY() + HEIGHT * 0.075, 2, 16);
+}
+
+void ResultGraph::ContentView() {
+	myDrawBox->View();
+	for (int i = 0; i < 2; i++)
+		part[i]->View();
+	scale->View();
+}
+
+ResultGraph::~ResultGraph() {
+	delete myDrawBox;
+	for (int i = 0; i < 2; i++)
+		delete part[i];
+	scale->View();
 }
