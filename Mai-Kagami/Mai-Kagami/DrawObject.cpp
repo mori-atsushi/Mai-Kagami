@@ -52,6 +52,29 @@ float  MyDrawCircleGauge::GetEndY() {
 	return Pos::y - r * cos(rad);
 }
 
+//線初期化
+MyDrawLine::MyDrawLine(const float width, const char *colorName)
+	: Color(colorName) {}
+
+//線初期化
+MyDrawLine::MyDrawLine(const float x1, const float y1, const float x2, const float y2, const float width, const char *colorName)
+	: Color(colorName) {
+	ChangePos(x1, y1, x2, y2);
+	w = width / SIZE_RATE;
+}
+
+//三角形表示
+void MyDrawLine::ContentView() {
+	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
+}
+
+void MyDrawLine::ChangePos(const float x1, const float y1, const float x2, const float y2) {
+	this->x1 = x1 / SIZE_RATE;
+	this->y1 = y1 / SIZE_RATE;
+	this->x2 = x2 / SIZE_RATE;
+	this->y2 = y2 / SIZE_RATE;
+}
+
 //三角形初期化
 MyDrawTriangle::MyDrawTriangle(const char *colorName) 
 	: Color(colorName) {}
@@ -67,13 +90,14 @@ void MyDrawTriangle::ContentView() {
 	DrawTriangleAA(x1, y1, x2, y2, x3, y3, Color::Get(), TRUE);
 }
 
+
 void MyDrawTriangle::ChangePos(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3) {
-	MyDrawTriangle::x1 = x1 / SIZE_RATE;
-	MyDrawTriangle::y1 = y1 / SIZE_RATE;
-	MyDrawTriangle::x2 = x2 / SIZE_RATE;
-	MyDrawTriangle::y2 = y2 / SIZE_RATE;
-	MyDrawTriangle::x3 = x3 / SIZE_RATE;
-	MyDrawTriangle::y3 = y3 / SIZE_RATE;
+	this->x1 = x1 / SIZE_RATE;
+	this->y1 = y1 / SIZE_RATE;
+	this->x2 = x2 / SIZE_RATE;
+	this->y2 = y2 / SIZE_RATE;
+	this->x3 = x3 / SIZE_RATE;
+	this->y3 = y3 / SIZE_RATE;
 }
 
 //正三角形初期化
@@ -128,8 +152,8 @@ void  MyDrawBox::ContentView() {
 	boolean flag = TRUE;
 	if (l != 0)
 		flag = FALSE;
-	float x1 = x - w / 2 + 1;
-	float y1 = y - h / 2 + 1;
+	float x1 = x - w / 2;
+	float y1 = y - h / 2;
 	float x2 = x + w / 2;
 	float y2 = y + h / 2;
 

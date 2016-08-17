@@ -29,13 +29,24 @@ private:
 	double rad; //角度（ラジアン）
 };
 
+//線
+class MyDrawLine : public Draw, public Color {
+public:
+	MyDrawLine(const float width, const char *colorName = "Blue");
+	MyDrawLine(const float x1, const float y1, const float x2, const float y2, const float width, const char *colorName = "Blue");
+	void ChangePos(const float x1, const float y1, const float x2, const float y2);
+private:
+	void ContentView();
+	float x1, y1, x2, y2, w;
+};
+
 class MyDrawTriangle : public Draw, public Color {
 public:
 	MyDrawTriangle(const char *colorName = "Blue");
 	MyDrawTriangle(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3, const char *colorName = "Blue");
-	void ContentView();
 	void ChangePos(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3);
 private:
+	void ContentView();
 	float x1, y1, x2, y2, x3, y3;
 };
 

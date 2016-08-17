@@ -66,6 +66,9 @@ private:
 	void ContentView();
 	MyDrawBox *myDrawBox;
 	MyDrawTexts *scale; //ñ⁄ê∑ÇË
+	MyDrawCircle *dot[10]; //ì_
+	MyDrawLine *line[9]; //ì_
+	MyDrawLine *frame[2]; //ògê¸
 	MyDrawTextV *part[10];
 };
 
