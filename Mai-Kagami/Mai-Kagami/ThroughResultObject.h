@@ -37,6 +37,7 @@ public:
 class ResultComment : public Draw {
 public:
 	ResultComment(Font *font);
+	void Load(const char *str);
 	~ResultComment();
 private:
 	void ContentView();

@@ -31,17 +31,20 @@ private:
 };
 
 //複数行のテキスト
-class MyDrawTexts : public Color, public Draw2 {
+class MyDrawTexts : public Color, public Draw {
 public:
 	MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
 	void ContentView();
 	void ChangePos(const float x, const float y);
+	void ChangeText(const char *str); //テキスト変更
 	float GetWidth(); //幅取得
 	float GetHeight(); //高さ取得
 	~MyDrawTexts();
 private:
 	MyDrawText *myDrawText[256];
-	int l, p, inter; //行数, ポジション情報, 間隔
+	Font *f;
+	int l = 0, p, inter, point; //行数, ポジション情報, 間隔、ポイント数
+	char color[100];
 };
 
 //アンダーライン付きテキスト

@@ -54,9 +54,12 @@ ExpressionBar::ExpressionBar(Font *font) : ScoreBar(font, HEIGHT * 0.54, "表情",
 
 ResultComment::ResultComment(Font *font)
 	: Draw(WIDTH * 0.6, HEIGHT * 0.64) {
-	char *str = "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。";
 	title = new MyDrawTextLine(font, "コメント", GetX(), GetY(), 0, 24, WIDTH * 0.55, 2);
-	comment = new MyDrawTexts(font, str, GetX(), GetY() + 66, 1, 20, 16);
+	comment = new MyDrawTexts(font, "", GetX(), GetY() + 66, 1, 20, 16);
+}
+ 
+void ResultComment::Load(const char *str) {
+	comment->ChangeText(str);
 }
 
 void ResultComment::ContentView() {

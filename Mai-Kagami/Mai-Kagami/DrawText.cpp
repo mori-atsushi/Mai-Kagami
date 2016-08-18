@@ -66,26 +66,15 @@ void MyDrawTextV::ContentView() {
 
 //複数行のテキスト
 MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
-	: Color(colorName) , Draw2(pos) {
+	: Color(colorName) , Draw(x, y) {
 
 	p = pos; //位置情報
 	inter = lineInterval; //間隔
+	strcpy_s(color, sizeof(color), colorName);
+	this->point = point;
+	f = font;
 
-	l = 0;
-	char a[256];
-	int i, j;
-	for (i = 0, j = 0; i < strlen(str); i++) {
-		a[j++] = str[i];
-		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
-			a[j] = '\0';
-			myDrawText[l] = new MyDrawText(font, a, x, 0, pos, point, colorName);
-			l++; i++; j = 0;
-		}
-	}
-	if (i == 0) {
-		myDrawText[0] = new MyDrawText(font, str, x, 0, pos, point, colorName);
-	}
-	ChangePos(x, y);
+	ChangeText(str);
 }
 
 void MyDrawTexts::ContentView() {
@@ -94,13 +83,35 @@ void MyDrawTexts::ContentView() {
 }
 
 void MyDrawTexts::ChangePos(const float x, const float y) {
-	Draw2::ChangePos(x, y);
+	Draw::ChangePos(x, y);
 	float height = myDrawText[0]->GetHeight();
 	float yy = y - (height + inter) / 2 * (l - 1);
 	for (int i = 0; i < l; i++) {
 		myDrawText[i]->ChangePos(myDrawText[i]->GetX(), yy);
 		yy += height + inter;
 	}
+}
+
+void MyDrawTexts::ChangeText(const char *str) {
+	for (int i = 0; i < l; i++)
+		delete myDrawText[i];
+
+	l = 0;
+	char a[256];
+	int i, j;
+	for (i = 0, j = 0; i < strlen(str); i++) {
+		a[j++] = str[i];
+		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
+			a[j] = '\0';
+			myDrawText[l] = new MyDrawText(f, a, GetX(), 0, p, point, color);
+			l++; i++; j = 0;
+		}
+	}
+	if (i == 0) {
+		myDrawText[0] = new MyDrawText(f, str, GetX(), 0, p, point, color);
+		l = 1;
+	}
+	ChangePos(GetX(), GetY());
 }
 
 float MyDrawTexts::GetWidth() {
@@ -118,7 +129,7 @@ float MyDrawTexts::GetHeight() {
 
 MyDrawTexts::~MyDrawTexts() {
 	for (int i = 0; i < l; i++)
-		delete myDrawText;
+		delete myDrawText[i];
 }
 
 //アンダーライン付きテキスト

@@ -52,9 +52,11 @@ ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
 }
 
 void ThroughDetailScreen::Load() {
+	char *comment = "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。";
 	timingBar->Load(4);
 	expressionBar->Load(2);
 	resultBody->Load();
+	resultComment->Load(comment);
 }
 
 void ThroughDetailScreen::ContentUpdate() {
