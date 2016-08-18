@@ -5,6 +5,7 @@
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "DrawGraph.h"
+#include "Song.h"
 
 //得点バー
 class ScoreBar : public Draw {
@@ -62,7 +63,7 @@ private:
 class ResultGraph : public Draw {
 public:
 	ResultGraph(Font *font);
-	void Load(const int *ponit, const int num);
+	void Load(const int *ponit, const int num, Song *song);
 	void Delete();
 	~ResultGraph();
 private:
@@ -72,9 +73,10 @@ private:
 	MyDrawCircle *dot[10]; //点
 	MyDrawLine *line[9]; //点
 	MyDrawLine *frame[2]; //枠線
-	MyDrawTextV *part[10];
+	MyDrawTextV *part[64];
+	Font *font;
 	const float w = WIDTH * 0.6, h = HEIGHT * 0.13;
-	int max = 0;
+	int pointMax = 0, partMax = 0;
 };
 
 #endif

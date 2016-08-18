@@ -121,15 +121,15 @@ ResultBody::~ResultBody() {
 
 ResultGraph::ResultGraph(Font *font) 
 	: Draw(WIDTH * 0.65, HEIGHT * 0.31) {
+	this->font = font;
 	frame[0] = new MyDrawLine(GetX() - w / 2, GetY() - h / 2, GetX() - w / 2, GetY() + h / 2, 6, "White");
 	frame[1] = new MyDrawLine(GetX() - w / 2, GetY() + h / 2, GetX() + w / 2, GetY() + h / 2, 6, "White");
 	scale = new MyDrawTexts(font, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
-	part[0] = new MyDrawTextV(font, "イントロ", GetX() - w / 2 + WIDTH * 0.05, GetY() + HEIGHT * 0.075, 2, 16);
-	part[1] = new MyDrawTextV(font, "Aメロ", GetX() - w / 2 + WIDTH * 0.1, GetY() + HEIGHT * 0.075, 2, 16);
 }
 
-void ResultGraph::Load(const int *point, const int num) {
-	max = num;
+void ResultGraph::Load(const int *point, const int num, Song *song) {
+	pointMax = num;
+	partMax = song->GetPartNum();
 	for (int i = 0; i < num; i++) {
 		float x1 = GetX() - w / 2 + (float)i / (num - 1) * w;
 		float y1 = GetY() + h / 2 - (float)point[i] / 100 * h;
@@ -144,14 +144,20 @@ void ResultGraph::Load(const int *point, const int num) {
 		else
 			dot[i]->SetViewFlag(FALSE);
 	}
+
+	for (int i = 0; i < partMax; i++) {
+		SongPart *songPart = song->GetPart(i);
+		float x = GetX() - w / 2 + w * (float)songPart->GetFlame() / song->danceMovie->GetAllFlame();
+		part[i] = new MyDrawTextV(font, songPart->GetName(),  x, GetY() + HEIGHT * 0.075, 2, 16);
+	}
 }
 
 void ResultGraph::ContentView() {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < partMax; i++)
 		part[i]->View();
-	for (int i = 0; i < max - 1; i++)
-			line[i - 1]->View();
-	for(int i = 0; i < max; i++)
+	for (int i = 0; i < pointMax - 1; i++)
+		line[i]->View();
+	for(int i = 0; i < pointMax; i++)
 		dot[i]->View();
 
 	for (int i = 0; i < 2; i++)
@@ -160,16 +166,16 @@ void ResultGraph::ContentView() {
 }
 
 void ResultGraph::Delete() {
-	for (int i = 0; i < max; i++) {
+	for (int i = 0; i < pointMax; i++) {
 		delete dot[i];
 		if (i > 0)
 			delete line[i - 1];
 	}
+	for (int i = 0; i < partMax; i++)
+		delete part[i];
 }
 
 ResultGraph::~ResultGraph() {
-	for (int i = 0; i < 2; i++)
-		delete part[i];
 	for (int i = 0; i < 2; i++)
 		delete frame[i];
 	scale->View();

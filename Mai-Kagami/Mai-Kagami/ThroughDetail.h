@@ -24,7 +24,7 @@ private:
 
 class ThroughDetailScreen : public SubScene {
 public:
-	ThroughDetailScreen(Font *font, Touch *touch);
+	ThroughDetailScreen(Font *font, Songs *songs, Touch *touch);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();
@@ -39,11 +39,12 @@ private:
 	ResultBody *resultBody;
 	ResultGraph *resultGraph;
 	Button *button;
+	Songs *songs;
 };
 
 class ThroughDetail : public SubScene {
 public:
-	ThroughDetail(Font *font, Touch *touch);
+	ThroughDetail(Font *font, Songs *songs, Touch *touch);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();

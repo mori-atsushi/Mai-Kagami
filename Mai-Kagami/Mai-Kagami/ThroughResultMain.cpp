@@ -2,7 +2,7 @@
 
 ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs) {
 	throughResult = new ThroughResult(font, songs, touch);
-	throughDetail = new ThroughDetail(font, touch);
+	throughDetail = new ThroughDetail(font, songs, touch);
 }
 
 void ThroughResultMain::ContentLoad() {
