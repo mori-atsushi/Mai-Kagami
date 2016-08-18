@@ -49,7 +49,7 @@ private:
 class ResultBody : public Draw {
 public:
 	ResultBody(Font *font);
-	void Load();
+	void Load(const int point[4]);
 	~ResultBody();
 private:
 	void ContentView();
