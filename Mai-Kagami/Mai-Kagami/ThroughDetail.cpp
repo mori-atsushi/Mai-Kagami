@@ -54,10 +54,13 @@ ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
 void ThroughDetailScreen::Load() {
 	char *comment = "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。";
 	int point[] = { 1, 1, 2, 3 };
+	int max = 10;
+	int score[] = { 50, 80, 40, 90, 100, 70, 60, 80, 40, 70 };
 	timingBar->Load(4);
 	expressionBar->Load(2);
 	resultBody->Load(point);
 	resultComment->Load(comment);
+	resultGraph->Load(score, max);
 }
 
 void ThroughDetailScreen::ContentUpdate() {
@@ -75,6 +78,11 @@ void ThroughDetailScreen::ContentView() {
 	button->View();
 	resultBody->View();
 	resultGraph->View();
+}
+
+void ThroughDetailScreen::Delete() {
+	resultGraph->Delete();
+	printfDx("ok");
 }
 
 ThroughDetailScreen::~ThroughDetailScreen() {
@@ -119,6 +127,10 @@ void ThroughDetail::ContentUpdate() {
 void ThroughDetail::ContentView() {
 	throughDetailScreen->View();
 	throughFinish->View();
+}
+
+void ThroughDetail::Delete() {
+	throughDetailScreen->Delete();
 }
 
 ThroughDetail::~ThroughDetail() {

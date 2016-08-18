@@ -62,6 +62,8 @@ private:
 class ResultGraph : public Draw {
 public:
 	ResultGraph(Font *font);
+	void Load(const int *ponit, const int num);
+	void Delete();
 	~ResultGraph();
 private:
 	void ContentView();
@@ -71,6 +73,8 @@ private:
 	MyDrawLine *line[9]; //ì_
 	MyDrawLine *frame[2]; //ògê¸
 	MyDrawTextV *part[10];
+	const float w = WIDTH * 0.6, h = HEIGHT * 0.13;
+	int max = 0;
 };
 
 #endif

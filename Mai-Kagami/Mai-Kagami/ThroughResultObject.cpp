@@ -121,23 +121,6 @@ ResultBody::~ResultBody() {
 
 ResultGraph::ResultGraph(Font *font) 
 	: Draw(WIDTH * 0.65, HEIGHT * 0.31) {
-	float w = WIDTH * 0.6, h = HEIGHT * 0.13;
-	int score[10] = { 50, 80, 40, 90, 100, 70, 60, 80, 40, 70 };
-	int max = 10;
-	for (int i = 0; i < max; i++) {
-		float x1 = GetX() - w / 2 + (float)i / (max - 1) * w;
-		float y1 = GetY() + h / 2 - (float)score[i] / 100 * h;
-		if (i > 0) {
-			float x2 = GetX() - w / 2 + (float)(i - 1) / (max - 1) * w;
-			float y2 = GetY() + h / 2 - (float)score[i - 1] / 100 * h;
-			line[i - 1] = new MyDrawLine(x1, y1, x2, y2, 3);
-		}
-		dot[i] = new MyDrawCircle(x1, y1, 10, "Yellow");
-		if (score[i] > 80)
-			dot[i]->SetViewFlag(TRUE);
-		else
-			dot[i]->SetViewFlag(FALSE);
-	}
 	frame[0] = new MyDrawLine(GetX() - w / 2, GetY() - h / 2, GetX() - w / 2, GetY() + h / 2, 6, "White");
 	frame[1] = new MyDrawLine(GetX() - w / 2, GetY() + h / 2, GetX() + w / 2, GetY() + h / 2, 6, "White");
 	scale = new MyDrawTexts(font, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
@@ -145,12 +128,30 @@ ResultGraph::ResultGraph(Font *font)
 	part[1] = new MyDrawTextV(font, "Aメロ", GetX() - w / 2 + WIDTH * 0.1, GetY() + HEIGHT * 0.075, 2, 16);
 }
 
+void ResultGraph::Load(const int *point, const int num) {
+	max = num;
+	for (int i = 0; i < num; i++) {
+		float x1 = GetX() - w / 2 + (float)i / (num - 1) * w;
+		float y1 = GetY() + h / 2 - (float)point[i] / 100 * h;
+		if (i > 0) {
+			float x2 = GetX() - w / 2 + (float)(i - 1) / (num - 1) * w;
+			float y2 = GetY() + h / 2 - (float)point[i - 1] / 100 * h;
+			line[i - 1] = new MyDrawLine(x1, y1, x2, y2, 3);
+		}
+		dot[i] = new MyDrawCircle(x1, y1, 10, "Yellow");
+		if (point[i] > 80)
+			dot[i]->SetViewFlag(TRUE);
+		else
+			dot[i]->SetViewFlag(FALSE);
+	}
+}
+
 void ResultGraph::ContentView() {
 	for (int i = 0; i < 2; i++)
 		part[i]->View();
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < max - 1; i++)
 			line[i - 1]->View();
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < max; i++)
 		dot[i]->View();
 
 	for (int i = 0; i < 2; i++)
@@ -158,14 +159,17 @@ void ResultGraph::ContentView() {
 	scale->View();
 }
 
-ResultGraph::~ResultGraph() {
-	for (int i = 0; i < 2; i++)
-		delete part[i];
-	for (int i = 0; i < 10; i++) {
+void ResultGraph::Delete() {
+	for (int i = 0; i < max; i++) {
 		delete dot[i];
 		if (i > 0)
 			delete line[i - 1];
 	}
+}
+
+ResultGraph::~ResultGraph() {
+	for (int i = 0; i < 2; i++)
+		delete part[i];
 	for (int i = 0; i < 2; i++)
 		delete frame[i];
 	scale->View();

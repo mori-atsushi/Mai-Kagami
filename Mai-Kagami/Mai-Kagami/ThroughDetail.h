@@ -27,6 +27,7 @@ public:
 	ThroughDetailScreen(Font *font, Touch *touch);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
+	void Delete();
 	~ThroughDetailScreen();
 private:
 	void ContentUpdate();
@@ -45,6 +46,7 @@ public:
 	ThroughDetail(Font *font, Touch *touch);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
+	void Delete();
 	~ThroughDetail();
 private:
 	void ContentUpdate();
