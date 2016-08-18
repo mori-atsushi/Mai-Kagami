@@ -11,7 +11,6 @@ TopTouchMessage::TopTouchMessage(Font *font, const float y)
 	Init(); //初期化
 }
 
-
 //NFCタッチメッセージ初期化
 void TopTouchMessage::Init() {
 	t = 0;

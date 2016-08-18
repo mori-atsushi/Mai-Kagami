@@ -8,16 +8,16 @@ ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
 	button[3] = new CircleButton(font, touch, "I—¹", 3, WIDTH * 0.75, "White");
 }
 
-ThroughScene ThroughFinish::Switch(const ThroughScene scene) {
+ThroughResultScene ThroughFinish::Switch(const ThroughResultScene scene) {
 	if (button[2]->GetTouch() == 1)
-		return THROUGH_BACK_SONG_SELECT;
+		return THROUGH_RESULT_BACK_SONG_SELECT;
 	if (button[3]->GetTouch() == 1)
 		return THROUGH_BACK_TOP;
 	return scene;
 }
 
 void ThroughFinish::ContentUpdate() {
-	if (nowScene == THROUGH_FINISH)
+	if (nowScene == THROUGH_RESULT_FINISH)
 		viewFlag = TRUE;
 	else
 		viewFlag = FALSE;
@@ -45,9 +45,9 @@ ThroughDetailScreen::ThroughDetailScreen(Font *font, Touch *touch) {
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
 
-ThroughScene ThroughDetailScreen::Switch(const ThroughScene scene) {
+ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
 	if (button->GetTouch() == 1)
-		return THROUGH_FINISH;
+		return THROUGH_RESULT_FINISH;
 	return scene;
 }
 
@@ -58,7 +58,7 @@ void ThroughDetailScreen::Load() {
 }
 
 void ThroughDetailScreen::ContentUpdate() {
-	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
+	if (nowScene == THROUGH_RESULT_DETAIL || nowScene == THROUGH_RESULT_FINISH)
 		viewFlag = TRUE;
 	else
 		viewFlag = FALSE;
@@ -88,12 +88,12 @@ ThroughDetail::ThroughDetail(Font *font, Touch *touch) {
 	throughFinish = new ThroughFinish(font, touch);
 }
 
-ThroughScene ThroughDetail::Switch(const ThroughScene scene) {
+ThroughResultScene ThroughDetail::Switch(const ThroughResultScene scene) {
 	switch (scene)
 	{
-	case THROUGH_DETAIL:
+	case THROUGH_RESULT_DETAIL:
 		return throughDetailScreen->Switch(scene);
-	case THROUGH_FINISH:
+	case THROUGH_RESULT_FINISH:
 		return throughFinish->Switch(scene);
 	}
 	return scene;
@@ -107,7 +107,7 @@ void ThroughDetail::Load() {
 void ThroughDetail::ContentUpdate() {
 	throughFinish->Update(nowScene);
 	throughDetailScreen->Update(nowScene);
-	if (nowScene == THROUGH_DETAIL || nowScene == THROUGH_FINISH)
+	if (nowScene == THROUGH_RESULT_DETAIL || nowScene == THROUGH_RESULT_FINISH)
 		viewFlag = TRUE;
 	else
 		viewFlag = FALSE;

@@ -68,6 +68,7 @@ void ThroughPlay::Load() {
 	song->danceMovie->Seek();
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);
 	throughPlayBar->Load(song);
+	viewFlag = TRUE;
 }
 
 ThroughScene ThroughPlay::Switch(const ThroughScene scene) {
@@ -84,7 +85,7 @@ ThroughScene ThroughPlay::Switch(const ThroughScene scene) {
 		return throughCountDown->Switch(scene);
 	case THROUGH_PLAY:
 		if (song->danceMovie->GetNowFlame() == 100)
-			return THROUGH_RESULT;
+			return THROUGH_NEXT;
 	}
 	return scene;
 }
@@ -97,22 +98,6 @@ void ThroughPlay::ContentUpdate() {
 		song->danceMovie->Start();
 	else
 		song->danceMovie->Stop();
-
-	switch (nowScene)
-	{
-	case THROUGH_COUNTDOWN:
-	case THROUGH_SETTING:
-	case THROUGH_START:
-	case THROUGH_PLAY:
-	case THROUGH_PAUSE:
-		viewFlag = TRUE;
-		break;
-	case THROUGH_RESULT:
-	case THROUGH_DETAIL:
-	case THROUGH_FINISH:
-		viewFlag = FALSE;
-		break;
-	}
 }
 
 void ThroughPlay::ContentView() {

@@ -11,7 +11,8 @@
 typedef enum {
 	TOP,
 	SONG_SELECT,
-	THROUGH
+	THROUGH,
+	THROUGH_RESULT
 } MainScene;
 
 #endif

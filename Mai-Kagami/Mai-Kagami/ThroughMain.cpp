@@ -4,8 +4,6 @@ ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
 	throughStart = new ThroughStart(font);
 	throughPlay = new ThroughPlay(font, songs, touch);
 	throughPause = new ThroughPause(font, songs, touch);
-	throughResult = new ThroughResult(font, songs, touch);
-	throughDetail = new ThroughDetail(font, touch);
 }
 
 void ThroughMain::ContentLoad() {
@@ -13,8 +11,6 @@ void ThroughMain::ContentLoad() {
 	throughStart->Load();
 	throughPlay->Load();
 	throughPause->Load();
-	throughResult->Load();
-	throughDetail->Load();
 }
 
 MainScene ThroughMain::Switch(const MainScene scene) {
@@ -28,17 +24,10 @@ MainScene ThroughMain::Switch(const MainScene scene) {
 	case THROUGH_SETTING:
 		this->scene = throughPause->Switch(this->scene);
 		break;
-	case THROUGH_RESULT:
-		this->scene = throughResult->Switch(this->scene);
-		break;
-	case THROUGH_DETAIL:
-	case THROUGH_FINISH:
-		this->scene = throughDetail->Switch(this->scene);
-		break;
 	}
-	if (this->scene == THROUGH_BACK_TOP) {
+	if (this->scene == THROUGH_NEXT) {
 		Delete();
-		return TOP;
+		return THROUGH_RESULT;
 	}
 	if (this->scene == THROUGH_BACK_SONG_SELECT) {
 		Delete();
@@ -53,8 +42,6 @@ void ThroughMain::ContentUpdate() {
 		throughStart->Update(scene);
 		throughPlay->Update(scene);
 		throughPause->Update(scene);
-		throughResult->Update(scene);
-		throughDetail->Update(scene);
 	}
 }
 
@@ -62,22 +49,16 @@ void ThroughMain::ContentView() {
 	throughPlay->View();
 	throughStart->View();
 	throughPause->View();
-	throughResult->View();
-	throughDetail->View();
 }
 
 void ThroughMain::ContentDelete() {
 	throughStart->Delete();
 	throughPlay->Delete();
 	throughPause->Delete();
-	throughResult->Delete();
-	throughDetail->Delete();
 }
 
 ThroughMain::~ThroughMain() {
 	delete throughStart;
 	delete throughPlay;
 	delete throughPause;
-	delete throughResult;
-	delete throughDetail;
 }

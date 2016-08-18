@@ -8,13 +8,14 @@
 #include "Songs.h"
 #include "Scene.h"
 #include "ThroughDefine.h"
+#include "ThroughResultDefine.h"
 #include "Touch.h"
 
 class ThroughResult : public SubScene {
 public:
 	ThroughResult(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	ThroughScene Switch(const ThroughScene scene);
+	ThroughResultScene Switch(const ThroughResultScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughResult();

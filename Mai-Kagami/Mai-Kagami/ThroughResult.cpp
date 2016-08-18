@@ -17,23 +17,21 @@ ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 void ThroughResult::Load() {
 	song = songs->GetSong(songs->GetNowSong());
 	song->coverGraph->Load();
+	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
+	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
 }
 
-ThroughScene ThroughResult::Switch(const ThroughScene scene) {
+ThroughResultScene ThroughResult::Switch(const ThroughResultScene scene) {
 	if (button->GetTouch() == 1)
-		return THROUGH_DETAIL;
+		return THROUGH_RESULT_DETAIL;
 	return scene;
 }
 
 void ThroughResult::ContentUpdate() {
-	if (nowScene == THROUGH_RESULT) {
-		song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
-		song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
+	if (nowScene == THROUGH_RESULT_TOP)
 		viewFlag = TRUE;
-	}
-	else {
+	else
 		viewFlag = FALSE;
-	}
 }
 
 void ThroughResult::ContentView() {

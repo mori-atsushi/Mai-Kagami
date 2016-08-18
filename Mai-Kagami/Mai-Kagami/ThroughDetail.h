@@ -8,11 +8,12 @@
 #include "SeetingPop.h"
 #include "Scene.h"
 #include "ThroughResultObject.h"
+#include "ThroughResultDefine.h"
 
 class ThroughFinish : public SubScene {
 public:
 	ThroughFinish(Font *font, Touch *touch);
-	ThroughScene Switch(const ThroughScene scene);
+	ThroughResultScene Switch(const ThroughResultScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughFinish();
@@ -24,7 +25,7 @@ private:
 class ThroughDetailScreen : public SubScene {
 public:
 	ThroughDetailScreen(Font *font, Touch *touch);
-	ThroughScene Switch(const ThroughScene scene);
+	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	~ThroughDetailScreen();
 private:
@@ -42,7 +43,7 @@ private:
 class ThroughDetail : public SubScene {
 public:
 	ThroughDetail(Font *font, Touch *touch);
-	ThroughScene Switch(const ThroughScene scene);
+	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	~ThroughDetail();
 private:
