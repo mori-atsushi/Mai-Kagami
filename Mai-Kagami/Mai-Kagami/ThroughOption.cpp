@@ -16,13 +16,16 @@ SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {
 
 //モード選択ボタン計算
 void ThroughOptionButton::ContentUpdate() {
+	static int lastScene = TOP;
 	if (nowScene == OPTION1) {
 		viewFlag = TRUE;
-		speedOption->Check();
+		if(lastScene == nowScene)
+			speedOption->Check();
 	}
 	else {
 		viewFlag = FALSE;
 	}
+	lastScene = nowScene;
 }
 
 //オプション画面ボタン表示
