@@ -22,9 +22,9 @@ MainScene ThroughResultMain::Switch(const MainScene scene) {
 		this->scene = throughDetail->Switch(this->scene);
 		break;
 	}
-	if (this->scene == THROUGH_BACK_TOP) {
+	if (this->scene == THROUGH_RESULT_BACK_PLAY) {
 		Delete();
-		return TOP;
+		return THROUGH;
 	}
 	if (this->scene == THROUGH_RESULT_BACK_SONG_SELECT) {
 		Delete();

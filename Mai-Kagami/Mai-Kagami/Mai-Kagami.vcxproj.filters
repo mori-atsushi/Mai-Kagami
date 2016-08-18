@@ -263,9 +263,6 @@
     <ClInclude Include="ThroughCountDown.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClInclude>
-    <ClInclude Include="ThroughPause.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
-    </ClInclude>
     <ClInclude Include="CommonText.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
@@ -283,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="ThroughResultDefine.h">
       <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughPause.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

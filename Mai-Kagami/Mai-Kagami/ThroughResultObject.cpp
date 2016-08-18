@@ -110,6 +110,10 @@ void ResultBody::ContentView() {
 	}
 }
 
+void ResultBody::Delete() {
+	body->Release();
+}
+
 ResultBody::~ResultBody() {
 	delete body;
 	for (int i = 0; i < 4; i++) {

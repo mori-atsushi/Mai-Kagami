@@ -3,16 +3,16 @@
 ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
 	blackBox = new BlackBox();
 	button[0] = new CircleButton(font, touch, "‚¨‚·‚·‚ß—ûK", 0, WIDTH * 0.75, "White");
-	button[1] = new CircleButton(font, touch, "—ûK•û–@‘I‘ð", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(font, touch, "‹È‘I‘ð‰æ–Ê", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(font, touch, "I—¹", 3, WIDTH * 0.75, "White");
+	button[1] = new CircleButton(font, touch, "‚à‚¤ˆê“x", 1, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(font, touch, "•”•ª—ûK", 2, WIDTH * 0.75, "White");
+	button[3] = new CircleButton(font, touch, "‹È‘I‘ð‰æ–Ê", 3, WIDTH * 0.75, "White");
 }
 
 ThroughResultScene ThroughFinish::Switch(const ThroughResultScene scene) {
-	if (button[2]->GetTouch() == 1)
-		return THROUGH_RESULT_BACK_SONG_SELECT;
+	if (button[1]->GetTouch() == 1)
+		return THROUGH_RESULT_BACK_PLAY;
 	if (button[3]->GetTouch() == 1)
-		return THROUGH_BACK_TOP;
+		return THROUGH_RESULT_BACK_SONG_SELECT;
 	return scene;
 }
 
@@ -84,6 +84,7 @@ void ThroughDetailScreen::ContentView() {
 
 void ThroughDetailScreen::Delete() {
 	resultGraph->Delete();
+	resultBody->Delete();
 }
 
 ThroughDetailScreen::~ThroughDetailScreen() {

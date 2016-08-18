@@ -51,6 +51,7 @@ class ResultBody : public Draw {
 public:
 	ResultBody(Font *font);
 	void Load(const int point[4]);
+	void Delete();
 	~ResultBody();
 private:
 	void ContentView();

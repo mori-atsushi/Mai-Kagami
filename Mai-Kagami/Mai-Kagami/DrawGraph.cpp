@@ -55,6 +55,7 @@ void MyDrawMovie::ContentView() {
 
 //w’è‚µ‚½ƒtƒŒ[ƒ€‚ÉˆÚ“®
 void MyDrawMovie::Seek(const int flame) {
+	Stop();
 	SeekMovieToGraphToFrame(handle, flame);
 }
 

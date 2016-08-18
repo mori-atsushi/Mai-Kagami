@@ -35,10 +35,11 @@ public:
 	ThroughPlay(Font *font, Songs *songs, Touch *touch);
 	void Load();
 	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	void Delete();
 	~ThroughPlay();
 private:
+	void ContentUpdate();
+	void ContentView();
 	Songs *songs;
 	Song *song;
 	ThroughPlayBar *throughPlayBar; //êiíªÉoÅ[

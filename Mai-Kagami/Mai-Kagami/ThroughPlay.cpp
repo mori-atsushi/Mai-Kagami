@@ -107,6 +107,8 @@ void ThroughPlay::ContentView() {
 	throughCountDown->View();
 }
 
+void ThroughPlay::Delete() {}
+
 ThroughPlay::~ThroughPlay() {
 	delete throughPlayBar;
 	delete throughCountDown;
