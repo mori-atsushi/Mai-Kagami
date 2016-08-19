@@ -1,12 +1,12 @@
 #ifndef __MAIKAGAMI_H_INCLUDED__
 #define __MAIKAGAMI_H_INCLUDED__
 
-#include "DxLib.h"
 #include "TopMain.h"
 #include "SongSelectMain.h"
 #include "Songs.h"
 #include "ThroughMain.h"
 #include "Touch.h"
+#include "DxLib.h"
 
 class MaiKagami
 {
