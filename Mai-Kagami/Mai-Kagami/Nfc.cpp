@@ -12,7 +12,7 @@ void Nfc::Init()
 int Nfc::GetId()
 {
 	int recvsize;				//受信データ長
-	char recvMessage[5] = {};	//受信ストリーム
+	char recvMessage[5] = {};	//受信バッファ
 	char data[256] = {};		//受信したIDを格納する変数
 
 	//接続に失敗したときのエラー処理
@@ -21,19 +21,24 @@ int Nfc::GetId()
 	}
 
 	//受信
+	//tcp/ip通信では4バイトごと送信される
+	//つまり一回受信しただけでは完全に受信されていない可能性がある
+	//なので何度か受信されたか確認することによって完全に受信させる
 	while (true) {
 		RECVSTATUS status = Recv(
 			recvMessage,		//受信データ格納用の配列 
 			sizeof(recvsize),	//受信データ長
 			&recvsize);			//受信データ長のポインタ
 		switch (status) {
+		//データが来ていないとき
 		case RECV_STILL:
-			printfDx("0");
 			continue;
+		//成功
 		case RECV_SUCCESSED:
 			printfDx("受け取りました:%s\n", data);
 			strcat(data, recvMessage);
 			continue;
+		//切断orエラー
 		case RECV_FAILED:
 			printfDx("受け取りに失敗しました\n");
 			break;
