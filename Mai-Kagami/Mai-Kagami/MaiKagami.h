@@ -7,6 +7,7 @@
 #include "Songs.h"
 #include "ThroughMain.h"
 #include "ThroughResultMain.h"
+#include "PartMain.h"
 #include "Touch.h"
 
 class MaiKagami
@@ -23,6 +24,7 @@ private:
 	SongSelect *songSelect; //曲選択画面
 	ThroughMain *throughMain; //通し練習プレイ画面
 	ThroughResultMain *throughResultMain; //通し練習結果画面
+	PartMain *partMain; //部分練習プレイ画面
 	Songs *songs; //曲一覧
 	Touch *touch;
 };

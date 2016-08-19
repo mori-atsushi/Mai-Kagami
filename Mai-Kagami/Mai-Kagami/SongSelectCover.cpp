@@ -68,6 +68,11 @@ void SongSelectCover::Draw(int scene) {
 		danceMovie->Start();
 		danceMovie->View();
 		break;
+	case OPTION2:
+		if (playFlag)
+			StopMusic();
+		playFlag = FALSE;
+		break;
 	default:
 		if (n == 0 && !playFlag) {
 //			PlayMusic(music, DX_PLAYTYPE_LOOP); // d‚¢‚Ì‚Åˆê“I‚ÉÁ‹ Jaity

@@ -8,6 +8,8 @@ PartOptionButton::PartOptionButton(Font *font, Songs *songs, Touch *touch) {
 }
 
 SongSelectScene PartOptionButton::Switch(const SongSelectScene scene) {
+	if (button[2]->GetTouch() == 1)
+		return NEXT2;
 	if (button[3]->GetTouch() == 1)
 		return MODE;
 	return scene;

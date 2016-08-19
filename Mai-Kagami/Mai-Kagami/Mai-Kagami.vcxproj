@@ -32,6 +32,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
+    <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SettingPop.cpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
+    <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />

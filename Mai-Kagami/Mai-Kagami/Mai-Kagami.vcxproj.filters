@@ -67,6 +67,12 @@
     <Filter Include="ソース ファイル\画面関係\通し練習結果画面">
       <UniqueIdentifier>{943f4e47-3de0-4780-8b28-c6c750d69a66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係\部分練習プレイ画面">
+      <UniqueIdentifier>{12ba7a3c-37f0-468a-91c3-0ae9cf1e1054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\部分練習プレイ画面">
+      <UniqueIdentifier>{1ec47139-a6bf-49ec-a2d9-9cf55667abf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -173,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="PartOption.cpp">
       <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartMain.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="PartOption.h">
       <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartMain.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

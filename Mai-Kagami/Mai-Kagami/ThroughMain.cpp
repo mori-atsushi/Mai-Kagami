@@ -25,11 +25,13 @@ MainScene ThroughMain::Switch(const MainScene scene) {
 		this->scene = throughPause->Switch(this->scene);
 		break;
 	}
-	if (this->scene == THROUGH_NEXT) {
+
+	switch (this->scene)
+	{
+	case THROUGH_NEXT:
 		Delete();
 		return THROUGH_RESULT;
-	}
-	if (this->scene == THROUGH_BACK_SONG_SELECT) {
+	case THROUGH_BACK_SONG_SELECT:
 		Delete();
 		return SONG_SELECT;
 	}
