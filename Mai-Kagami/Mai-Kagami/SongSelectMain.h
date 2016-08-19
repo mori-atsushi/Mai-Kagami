@@ -11,6 +11,7 @@
 #include "SongSelect.h"
 #include "SongSelectDefine.h"
 #include "ThroughOption.h"
+#include "PartOption.h"
 #include "Scene.h"
 
 //曲選択画面関係
@@ -26,6 +27,7 @@ private:
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
+	PartOptionButton *partOptionButton; //部分練習オプションボタン
 	SongSelectScene scene;
 	void ContentLoad();
 	void ContentUpdate();

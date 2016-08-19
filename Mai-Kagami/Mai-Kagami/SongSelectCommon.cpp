@@ -15,13 +15,21 @@ void SongSelectTitle::ContentUpdate() {
 		{
 		case MODE:
 			title->ChangeText("Mode Select");
+			subTitle->SetViewFlag(FALSE);
 			break;
 		case OPTION1:
 			title->ChangeText("Option");
 			subTitle->ChangeText("通し練習モード");
+			subTitle->SetViewFlag(TRUE);
+			break;
+		case OPTION2:
+			title->ChangeText("Option");
+			subTitle->ChangeText("部分練習モード");
+			subTitle->SetViewFlag(TRUE);
 			break;
 		default:
 			title->ChangeText("Song Select");
+			subTitle->SetViewFlag(FALSE);
 			break;
 		}
 	}
@@ -30,8 +38,7 @@ void SongSelectTitle::ContentUpdate() {
 //曲選択画面タイトル表示
 void SongSelectTitle::ContentView() {
 	title->View(); //テキスト表示
-	if(nowScene == OPTION1)
-		subTitle->View(); //テキスト表示
+	subTitle->View(); //テキスト表示
 }
 
 SongSelectTitle::~SongSelectTitle() {
@@ -140,6 +147,7 @@ void SongInformation::ContentView() {
 		break;
 	case MODE:
 	case OPTION1:
+	case OPTION2:
 		nowSong->Draw(nowScene);
 		break;
 	}

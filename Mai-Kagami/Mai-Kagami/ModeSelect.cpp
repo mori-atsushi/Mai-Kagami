@@ -12,6 +12,8 @@ ModeSelectButton::ModeSelectButton(Font *font, Touch *touch) {
 SongSelectScene ModeSelectButton::Switch(const SongSelectScene scene) {
 	if (button[0]->GetTouch() == 1)
 		return OPTION1;
+	if (button[1]->GetTouch() == 1)
+		return OPTION2;
 	if (button[2]->GetTouch() == 1)
 		return MAIN;
 	return scene;

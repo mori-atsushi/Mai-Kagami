@@ -16,11 +16,10 @@ class ThroughOptionButton : public SubScene{
 public:
 	ThroughOptionButton(Font *font, Songs *songs, Touch *touch);
 	SongSelectScene Switch(const SongSelectScene scene);
-	void ContentUpdate();
-	void ContentView();
 	~ThroughOptionButton();
 private:
-	Songs *songs;
+	void ContentUpdate();
+	void ContentView();
 	SpeedOption *speedOption;
 	Button *button[2];
 	MyDrawText *speed[2];
