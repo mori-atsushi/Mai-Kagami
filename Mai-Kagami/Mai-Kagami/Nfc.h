@@ -3,6 +3,7 @@
 
 #include <WinSock2.h>
 #include <Ws2tcpip.h>
+#include "DxLib.h"
 #pragma comment(lib, "ws2_32.lib")
 
 #ifndef _RECVSTATUS_
@@ -26,7 +27,9 @@ public:
 	//ユーザーIDの取得
 	int GetId();
 	//ソケットとの接続
-	bool Connect(const char* IP, u_short PORT);	
+	bool Connect(const char* Ip, u_short Port);	
+	//受信
+	RECVSTATUS Recv(char* pData, int DataSize, int *pRecvSize);
 private:
 	SOCKET m_DstSocket;
 };
