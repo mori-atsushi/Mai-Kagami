@@ -21,11 +21,13 @@ void SongSelectTitle::ContentUpdate() {
 			title->ChangeText("Option");
 			subTitle->ChangeText("’Ê‚µ—ûKƒ‚[ƒh");
 			subTitle->SetViewFlag(TRUE);
+			subTitle->ChangeColor("Blue");
 			break;
 		case OPTION2:
 			title->ChangeText("Option");
 			subTitle->ChangeText("•”•ª—ûKƒ‚[ƒh");
 			subTitle->SetViewFlag(TRUE);
+			subTitle->ChangeColor("Yellow");
 			break;
 		default:
 			title->ChangeText("Song Select");

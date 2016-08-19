@@ -10,8 +10,9 @@
 class Color {
 public:
 	Color(const char *color);
-	int Get();
 	void ChangeColor(const char *color);
+protected:
+	int Get();
 private:
 	int c;
 };

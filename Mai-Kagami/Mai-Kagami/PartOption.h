@@ -18,6 +18,7 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	Button *button[4];
 };
 
 
