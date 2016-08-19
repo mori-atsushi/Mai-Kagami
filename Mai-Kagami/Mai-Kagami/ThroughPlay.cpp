@@ -84,8 +84,10 @@ ThroughScene ThroughPlay::Switch(const ThroughScene scene) {
 	case THROUGH_COUNTDOWN:
 		return throughCountDown->Switch(scene);
 	case THROUGH_PLAY:
-		if (song->danceMovie->GetNowFlame() == 100)
+		if (song->danceMovie->GetNowFlame() == 100) {
+			song->danceMovie->Stop();
 			return THROUGH_NEXT;
+		}
 	}
 	return scene;
 }

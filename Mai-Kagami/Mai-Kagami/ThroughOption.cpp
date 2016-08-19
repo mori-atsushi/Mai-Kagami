@@ -8,7 +8,7 @@ ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch)
 
 SongSelectScene ThroughOptionButton::Switch(const SongSelectScene scene) {
 	if (button[0]->GetTouch() == 1)
-		return NEXT;
+		return NEXT1;
 	if (button[1]->GetTouch() == 1)
 		return MODE;
 	return scene;

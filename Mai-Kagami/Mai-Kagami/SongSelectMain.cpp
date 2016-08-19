@@ -48,7 +48,7 @@ MainScene SongSelect::Switch(const MainScene scene) {
 	case BACK_TOP:
 		Delete();
 		return TOP;
-	case NEXT:
+	case NEXT1:
 		Delete();
 		return THROUGH;
 	default:
