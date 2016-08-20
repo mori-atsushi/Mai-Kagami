@@ -21,7 +21,8 @@ private:
 	void ContentView();
 	void ContentDelete();
 	PartStart *partStart;
-	PartScene scene;
+	PartPlay *partPlay;
+	int scene;
 };
 
 #endif
