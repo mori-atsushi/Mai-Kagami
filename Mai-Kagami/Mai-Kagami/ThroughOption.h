@@ -18,6 +18,7 @@ public:
 	SongSelectScene Switch(const SongSelectScene scene);
 	~ThroughOptionButton();
 private:
+	Songs *songs;
 	void ContentUpdate();
 	void ContentView();
 	SpeedOption *speedOption;

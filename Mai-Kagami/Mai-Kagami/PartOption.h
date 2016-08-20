@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Font.h"
 #include "Songs.h"
+#include "Song.h"
 #include "Touch.h"
 #include "SongSelectDefine.h"
 #include "SeetingPop.h"
@@ -16,6 +17,7 @@ public:
 	SongSelectScene Switch(const SongSelectScene scene);
 	~PartOptionButton();
 private:
+	Songs *songs;
 	void ContentUpdate();
 	void ContentView();
 	Button *button[4];

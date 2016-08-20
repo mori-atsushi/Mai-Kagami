@@ -30,7 +30,7 @@ int PlayScreen::Switch(const int scene) {
 	else if (scene == countDownScene)
 		return countDown->Switch(scene);
 	else if (scene == playScene) {
-		if (song->danceMovie->GetNowFlame() == 100) {
+		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetAllFlame()) {
 			song->danceMovie->Stop();
 			return finishScene;
 		}

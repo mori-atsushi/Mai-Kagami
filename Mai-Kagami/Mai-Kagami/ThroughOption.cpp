@@ -1,6 +1,7 @@
 #include "ThroughOption.h"
 
 ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
 	speedOption = new SpeedOption(font, songs, touch);
 	button[0] = new CircleButton(font, touch, "スタート!", 2);
 	button[1] = new CircleButton2(font, touch, "戻る", 4);
@@ -19,8 +20,12 @@ void ThroughOptionButton::ContentUpdate() {
 	static int lastScene = TOP;
 	if (nowScene == OPTION1) {
 		viewFlag = TRUE;
-		if(lastScene == nowScene)
+		Song *song = songs->GetSong(songs->GetNowSong());
+		song->danceMovie->SetStartFlame();
+		song->danceMovie->SetEndFlame();
+		if (lastScene == nowScene) {
 			speedOption->Check();
+		}
 	}
 	else {
 		viewFlag = FALSE;

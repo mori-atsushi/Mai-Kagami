@@ -56,7 +56,10 @@ void MyDrawMovie::ContentView() {
 //指定したフレームに移動
 void MyDrawMovie::Seek(const int flame) {
 	Stop();
-	SeekMovieToGraphToFrame(handle, flame);
+	if(flame == -1)
+		SeekMovieToGraphToFrame(handle, startFlame);
+	else
+		SeekMovieToGraphToFrame(handle, flame);
 }
 
 //再生
@@ -95,12 +98,31 @@ double MyDrawMovie::GetSpeed() {
 	return sp;
 }
 
+//最初のフレーム数取得
+int MyDrawMovie::GetStartFlame() {
+	return startFlame;
+}
+
+//現在のフレーム数取得
 int MyDrawMovie::GetNowFlame() {
 	return TellMovieToGraphToFrame(handle);
 }
 
+//全体のフレーム数取得
 int MyDrawMovie::GetAllFlame() {
-	return GetMovieTotalFrameToGraph(handle) - 1;
+	if (endFlame == -1)
+		return GetMovieTotalFrameToGraph(handle) - 1;
+	return endFlame;
+}
+
+//スタートフレーム指定
+void MyDrawMovie::SetStartFlame(const int flame) {
+	startFlame = flame;
+}
+
+//エンドフレーム指定
+void MyDrawMovie::SetEndFlame(const int flame) {
+	endFlame = flame;
 }
 
 MyDrawMovie::~MyDrawMovie() {

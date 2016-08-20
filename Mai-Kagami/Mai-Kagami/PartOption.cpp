@@ -1,6 +1,7 @@
 #include "PartOption.h"
 
 PartOptionButton::PartOptionButton(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
 	button[0] = new CircleButton(font, touch, "区間：イントロ ～ Aパート１", 0, WIDTH * 0.75);
 	button[1] = new CircleButton(font, touch, "速度：×0.6", 1, WIDTH * 0.75);
 	button[2] = new CircleButton(font, touch, "スタート!", 2, WIDTH * 0.75);
@@ -16,10 +17,15 @@ SongSelectScene PartOptionButton::Switch(const SongSelectScene scene) {
 }
 
 void PartOptionButton::ContentUpdate() {
-	if (nowScene == OPTION2)
+	if (nowScene == OPTION2) {
+		Song *song = songs->GetSong(songs->GetNowSong());
+		song->danceMovie->SetStartFlame(1000);
+		song->danceMovie->SetEndFlame(2000);
 		viewFlag = TRUE;
-	else
+	}
+	else {
 		viewFlag = FALSE;
+	}
 }
 
 void PartOptionButton::ContentView() {
