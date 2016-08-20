@@ -198,6 +198,9 @@
     <ClCompile Include="PlayScreenObject.cpp">
       <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
     </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -327,6 +330,9 @@
       <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="PlayScreenObject.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
       <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>

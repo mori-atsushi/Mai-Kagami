@@ -40,61 +40,8 @@ ThroughPauseButton::~ThroughPauseButton() {
 	delete pauseButton;
 }
 
-ThroughPauseScreen::ThroughPauseScreen(Font *font, Songs *songs, Touch *touch) {
-	this->songs = songs;
-	blackBox = new BlackBox();
-	title = new MyDrawText(font, "- ポーズ -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40, "Yellow");
-	button[0] = new CircleGraphTextButton(font, touch, "戻る", 0, "img/play.png");
-	button[1] = new CircleGraphTextButton(font, touch, "はじめから", 1, "img/rewind.png");
-	button[2] = new CircleGraphTextButton(font, touch, "曲選択へ", 2, "img/back.png");
-	button[3] = new CircleGraphTextButton(font, touch, "設定変更", 3, "img/setting.png");
-}
-
-void ThroughPauseScreen::Load() {
-	for (int i = 0; i < 4; i++)
-		button[i]->Load();
-}
-
-int ThroughPauseScreen::Switch(const int scene) {
-	Song *song = songs->GetSong(songs->GetNowSong());
-	if (button[0]->GetTouch() == 1)
-		return THROUGH_START;
-	if (button[1]->GetTouch() == 1) {
-		song->danceMovie->Seek();
-		return THROUGH_START;
-	}
-	if (button[2]->GetTouch() == 1)
-		return THROUGH_BACK_SONG_SELECT;
-	if (button[3]->GetTouch() == 1)
-		return THROUGH_SETTING;
-	return scene;
-}
-
-void ThroughPauseScreen::ContentUpdate() {
-	if (nowScene == THROUGH_PAUSE)
-		viewFlag = TRUE;
-	else
-		viewFlag = FALSE;
-}
-
-void ThroughPauseScreen::ContentView() {
-	blackBox->View();
-	title->View();
-	for (int i = 0; i < 4; i++)
-		button[i]->View();
-}
-
-void ThroughPauseScreen::Delete() {
-	for (int i = 0; i < 4; i++)
-		button[i]->Release();
-}
-
-ThroughPauseScreen::~ThroughPauseScreen() {
-	delete blackBox;
-	delete title;
-	for (int i = 0; i < 4; i++)
-		delete button[i];
-}
+ThroughPauseScreen::ThroughPauseScreen(Font *font, Songs *songs, Touch *touch) 
+	: PauseScreen(font, songs, touch, THROUGH_PAUSE, THROUGH_START, THROUGH_BACK_SONG_SELECT, THROUGH_SETTING) {}
 
 int ThroughPauseSetting::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
