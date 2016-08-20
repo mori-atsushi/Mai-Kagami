@@ -11,6 +11,7 @@
 class StartSceen : public SubScene {
 public:
 	StartSceen(Font *f, const int startScene, const int playScene);
+	void Load();
 	~StartSceen();
 private:
 	void ContentUpdate();

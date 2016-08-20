@@ -15,12 +15,12 @@ class ThroughPauseButton : public SubScene {
 public:
 	ThroughPauseButton(Touch *touch);
 	void Load();
-	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	int Switch(const int scene);
 	void Delete();
 	~ThroughPauseButton();
 private:
+	void ContentUpdate();
+	void ContentView();
 	CircleGraphButton *pauseButton; //一時停止用ボタン
 };
 
@@ -29,12 +29,12 @@ class ThroughPauseScreen : public SubScene {
 public:
 	ThroughPauseScreen(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	int Switch(const int scene);
 	void Delete();
 	~ThroughPauseScreen();
 private:
+	void ContentUpdate();
+	void ContentView();
 	Songs *songs;
 	BlackBox *blackBox; //背景半透明黒の四角形
 	MyDrawText *title;
@@ -45,7 +45,7 @@ private:
 class ThroughPauseSetting : public SpeedPop {
 public:
 	ThroughPauseSetting::ThroughPauseSetting(Font *font, Songs *songs, Touch *touch) : SpeedPop(font, songs, touch) {};
-	ThroughScene Switch(const ThroughScene scene);
+	int Switch(const int scene);
 	void ContentUpdate();
 };
 
@@ -54,12 +54,12 @@ class ThroughPause : public SubScene {
 public:
 	ThroughPause(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	ThroughScene Switch(const ThroughScene scene);
-	void ContentUpdate();
-	void ContentView();
+	int Switch(const int scene);
 	void Delete();
 	~ThroughPause();
 private:
+	void ContentUpdate();
+	void ContentView();
 	Songs *songs;
 	boolean flag; //ポーズ中かどうかのフラグ
 	ThroughPauseButton *throughPauseButton; //ポーズボタン画面

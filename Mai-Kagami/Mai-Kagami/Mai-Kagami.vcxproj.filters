@@ -168,9 +168,6 @@
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
-    <ClCompile Include="ThroughCountDown.cpp">
-      <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
-    </ClCompile>
     <ClCompile Include="ThroughResultObject.cpp">
       <Filter>ソース ファイル\画面関係\通し練習結果画面</Filter>
     </ClCompile>
@@ -194,6 +191,12 @@
     </ClCompile>
     <ClCompile Include="PartPlay.cpp">
       <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScreenObject.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +287,6 @@
     <ClInclude Include="Scene.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
-    <ClInclude Include="ThroughCountDown.h">
-      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
-    </ClInclude>
     <ClInclude Include="CommonText.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
     </ClInclude>
@@ -321,6 +321,12 @@
       <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="StartScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScreenObject.h">
       <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>

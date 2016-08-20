@@ -27,7 +27,7 @@ private:
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
 	ThroughPause *throughPause;
-	ThroughScene scene;
+	int scene;
 };
 
 #endif

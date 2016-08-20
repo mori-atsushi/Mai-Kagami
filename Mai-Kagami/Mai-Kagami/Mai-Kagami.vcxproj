@@ -35,6 +35,8 @@
     <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
     <ClCompile Include="PartPlay.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="PlayScreenObject.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SettingPop.cpp" />
     <ClCompile Include="Song.cpp" />
@@ -49,7 +51,6 @@
     <ClCompile Include="ThroughOption.cpp" />
     <ClCompile Include="ThroughPause.cpp" />
     <ClCompile Include="ThroughPlay.cpp" />
-    <ClCompile Include="ThroughCountDown.cpp" />
     <ClCompile Include="ThroughResult.cpp" />
     <ClCompile Include="ThroughResultMain.cpp" />
     <ClCompile Include="ThroughResultObject.cpp" />
@@ -76,6 +77,8 @@
     <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
     <ClInclude Include="PartPlay.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="PlayScreenObject.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
     <ClInclude Include="Song.h" />
@@ -92,7 +95,6 @@
     <ClInclude Include="ThroughOption.h" />
     <ClInclude Include="ThroughPause.h" />
     <ClInclude Include="ThroughPlay.h" />
-    <ClInclude Include="ThroughCountDown.h" />
     <ClInclude Include="ThroughResult.h" />
     <ClInclude Include="ThroughResultDefine.h" />
     <ClInclude Include="ThroughResultMain.h" />

@@ -8,7 +8,7 @@ void ThroughPauseButton::Load() {
 	pauseButton->Load();
 }
 
-ThroughScene ThroughPauseButton::Switch(const ThroughScene scene) {
+int ThroughPauseButton::Switch(const int scene) {
 	if (pauseButton->GetTouch() == 1)
 		return THROUGH_PAUSE;
 	return scene;
@@ -55,7 +55,7 @@ void ThroughPauseScreen::Load() {
 		button[i]->Load();
 }
 
-ThroughScene ThroughPauseScreen::Switch(const ThroughScene scene) {
+int ThroughPauseScreen::Switch(const int scene) {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (button[0]->GetTouch() == 1)
 		return THROUGH_START;
@@ -96,7 +96,7 @@ ThroughPauseScreen::~ThroughPauseScreen() {
 		delete button[i];
 }
 
-ThroughScene ThroughPauseSetting::Switch(const ThroughScene scene) {
+int ThroughPauseSetting::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
 		song->danceMovie->SetSpeed();
 		return THROUGH_PAUSE;
@@ -127,7 +127,7 @@ void ThroughPause::Load() {
 	throughPauseSetting->Load();
 }
 
-ThroughScene ThroughPause::Switch(const ThroughScene scene) {
+int ThroughPause::Switch(const int scene) {
 	switch (scene)
 	{
 	case THROUGH_COUNTDOWN:
