@@ -9,6 +9,7 @@
 #include "Touch.h"
 #include "PartDefine.h"
 #include "PartPlay.h"
+#include "PartPause.h"
 
 class PartMain : public Scene {
 public:
@@ -22,6 +23,7 @@ private:
 	void ContentDelete();
 	PartStart *partStart;
 	PartPlay *partPlay;
+	PartPause *partPause;
 	int scene;
 };
 

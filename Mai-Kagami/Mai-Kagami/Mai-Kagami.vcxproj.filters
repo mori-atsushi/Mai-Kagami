@@ -201,6 +201,9 @@
     <ClCompile Include="PauseScreen.cpp">
       <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
     </ClCompile>
+    <ClCompile Include="PartPause.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -334,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="PauseScreen.h">
       <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartPause.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

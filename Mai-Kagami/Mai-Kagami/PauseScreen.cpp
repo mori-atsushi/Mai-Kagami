@@ -29,6 +29,7 @@ int PauseScreen::Switch(const int scene) {
 	}
 	if (button[2]->GetTouch() == 1)
 		return songSelectScene;
+
 	if (button[3]->GetTouch() == 1)
 		return settingScene;
 	return scene;

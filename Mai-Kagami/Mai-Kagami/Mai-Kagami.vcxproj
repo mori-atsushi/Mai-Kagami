@@ -34,6 +34,7 @@
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
+    <ClCompile Include="PartPause.cpp" />
     <ClCompile Include="PartPlay.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="PartDefine.h" />
     <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
+    <ClInclude Include="PartPause.h" />
     <ClInclude Include="PartPlay.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
