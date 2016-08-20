@@ -7,6 +7,8 @@
 #include "Font.h"
 #include "Songs.h"
 #include "Touch.h"
+#include "PartDefine.h"
+#include "PartPlay.h"
 
 class PartMain : public Scene {
 public:
@@ -18,6 +20,8 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	void ContentDelete();
+	PartStart *partStart;
+	PartScene scene;
 };
 
 #endif

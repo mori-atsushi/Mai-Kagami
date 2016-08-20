@@ -34,6 +34,7 @@
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
+    <ClCompile Include="PartPlay.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SettingPop.cpp" />
     <ClCompile Include="Song.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="SongSelect.cpp" />
     <ClCompile Include="SongSelectCommon.cpp" />
     <ClCompile Include="SongSelectMain.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="ThroughDetail.cpp" />
     <ClCompile Include="ThroughMain.cpp" />
     <ClCompile Include="ThroughOption.cpp" />
@@ -70,8 +72,10 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
+    <ClInclude Include="PartDefine.h" />
     <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
+    <ClInclude Include="PartPlay.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
     <ClInclude Include="Song.h" />
@@ -81,6 +85,7 @@
     <ClInclude Include="SongSelectCommon.h" />
     <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughDetail.h" />
     <ClInclude Include="ThroughMain.h" />

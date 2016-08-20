@@ -73,6 +73,12 @@
     <Filter Include="ヘッダー ファイル\画面関係\部分練習プレイ画面">
       <UniqueIdentifier>{1ec47139-a6bf-49ec-a2d9-9cf55667abf2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\画面関係\プレイ画面">
+      <UniqueIdentifier>{027b5b5d-279e-4c69-a026-a74a84e565c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\プレイ画面">
+      <UniqueIdentifier>{81ee12c2-da3a-41fa-a0cf-8ea386e0c377}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -181,6 +187,12 @@
       <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="PartMain.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartPlay.cpp">
       <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClCompile>
   </ItemGroup>
@@ -301,6 +313,15 @@
     </ClInclude>
     <ClInclude Include="PartMain.h">
       <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartPlay.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
