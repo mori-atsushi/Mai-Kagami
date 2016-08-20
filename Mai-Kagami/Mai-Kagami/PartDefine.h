@@ -7,6 +7,7 @@ typedef enum {
 	PART_COUNTDOWN,
 	PART_PLAY,
 	PART_PAUSE,
+	PART_REWIND,
 	PART_SETTING,
 	PART_NEXT
 } PartScene;

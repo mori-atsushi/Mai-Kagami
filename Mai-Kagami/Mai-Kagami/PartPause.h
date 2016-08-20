@@ -14,7 +14,7 @@
 //ポーズボタン画面
 class PartPauseButton : public SubScene {
 public:
-	PartPauseButton(Touch *touch);
+	PartPauseButton(Touch *touch, Songs *songs);
 	void Load();
 	int Switch(const int scene);
 	void Delete();
@@ -22,7 +22,8 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
-	CircleGraphButton *pauseButton; //一時停止用ボタン
+	Songs *songs;
+	CircleGraphButton *button[2]; //ボタン
 };
 
 //ポーズ画面
