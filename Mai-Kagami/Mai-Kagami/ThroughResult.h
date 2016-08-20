@@ -5,15 +5,19 @@
 #include "DrawText.h"
 #include "DrawObject.h"
 #include "Button.h"
-#include "Font.h"
-#include "Song.h"
+#include "Songs.h"
+#include "Scene.h"
+#include "ThroughDefine.h"
+#include "ThroughResultDefine.h"
+#include "Touch.h"
 
-class ThroughResult {
+class ThroughResult : public SubScene {
 public:
-	ThroughResult(Font *font);
-	void Update();
-	void Load(Song *song);
-	void View();
+	ThroughResult(Font *font, Songs *songs, Touch *touch);
+	void Load();
+	ThroughResultScene Switch(const ThroughResultScene scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughResult();
 private:
 	MyDrawTextLine *title; //採点結果画面タイトル
@@ -26,6 +30,7 @@ private:
 	MyDrawText *last; //前回の得点
 	Button *button; //次へボタン
 	Song *song;
+	Songs *songs;
 };
 
 #endif

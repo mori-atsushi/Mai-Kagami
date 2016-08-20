@@ -8,31 +8,32 @@
 #include "SongSelectCover.h"
 #include "Songs.h"
 #include "SongSelectDefine.h"
+#include "Scene.h"
 
 //曲選択画面タイトル
-class SongSelectTitle {
+class SongSelectTitle : public SubScene {
 public:
 	SongSelectTitle(Font *font); //初期化
-	void Update(int scene); //計算
-	void View(); //表示
+	void ContentUpdate(); //計算
+	void ContentView(); //表示
 	~SongSelectTitle();
 private:
 	DrawTitle *title;
 	DrawSubtitle *subTitle;
-	int scene;
 };
 
 //曲選択画面カバー関係
-class SongInformation {
+class SongInformation : public SubScene {
 public:
-	SongInformation(Font *font, Songs *songs); //初期化
+	SongInformation(Font *font, Songs *songs, Touch *touch); //初期化
 	void Load();
-	void View(int scene); //表示
-	void Update(Touch *touch, int scene);
-	void Release();
+	void ContentView(); //表示
+	void ContentUpdate();
+	void Delete();
 	~SongInformation();
 private:
 	int n, now;
+	Touch *touch;
 	SongSelectCover *songCover[256];
 	Songs *songs;
 	SongSelectCover *nowSong;

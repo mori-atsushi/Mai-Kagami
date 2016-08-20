@@ -21,11 +21,11 @@ public:
 	void Update(); //計算
 	void View(); //表示
 private:
-	int alpha, t; //透明度, 時間
+	int t; //時間
 };
 
 //NFCタッチボタン関係
-class TopTouchButton : public Draw{
+class TopTouchButton : public Pos{
 public:
 	TopTouchButton(Font *font);
 	void View(); //表示

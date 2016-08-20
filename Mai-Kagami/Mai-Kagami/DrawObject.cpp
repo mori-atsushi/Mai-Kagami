@@ -15,29 +15,29 @@ MyDrawCircle::MyDrawCircle(const float x, const float y, const float radius, con
 }
 
 //円表示
-void  MyDrawCircle::View() {
+void  MyDrawCircle::ContentView() {
 	boolean flag = TRUE;
 	if (w != 0)
 		flag = FALSE;
-	DrawCircleAA(GetX(), GetY(), r, 100, Color::Get(), flag, w);
+	DrawCircleAA(x, y, r, 100, Color::Get(), flag, w);
 }
 
 //角度付きの円初期化
 MyDrawCircleGauge::MyDrawCircleGauge(const float x, const float y, const float radius, const double degree, const float width, const char *colorName) 
-	:MyDrawCircle(0, 0, width, colorName), Draw(x, y){
+	:MyDrawCircle(0, 0, width, colorName), Pos(x, y){
 	r = radius / SIZE_RATE;
 	ChangeDegree(degree);
 }
 
-void MyDrawCircleGauge::View() {
+void MyDrawCircleGauge::ContentView() {
 	for (double i = 0; i < rad; i += 0.02) {
-		float x = (Draw::GetX() + r * sin(i)) * SIZE_RATE;
-		float y = (Draw::GetY() - r * cos(i)) * SIZE_RATE;
-		MyDrawCircle::ChangePos(x, y);
-		MyDrawCircle::View();
+		float xx = (Pos::x + r * sin(i)) * SIZE_RATE;
+		float yy = (Pos::y - r * cos(i)) * SIZE_RATE;
+		MyDrawCircle::ChangePos(xx, yy);
+		MyDrawCircle::ContentView();
 	}
 	MyDrawCircle::ChangePos(GetEndX() * SIZE_RATE, GetEndY() * SIZE_RATE);
-	MyDrawCircle::View();
+	MyDrawCircle::ContentView();
 }
 
 void MyDrawCircleGauge::ChangeDegree(const double degree) {
@@ -45,11 +45,34 @@ void MyDrawCircleGauge::ChangeDegree(const double degree) {
 }
 
 float  MyDrawCircleGauge::GetEndX() {
-	return Draw::GetX() + r * sin(rad);
+	return Pos::x + r * sin(rad);
 }
 
 float  MyDrawCircleGauge::GetEndY() {
-	return Draw::GetY() - r * cos(rad);
+	return Pos::y - r * cos(rad);
+}
+
+//線初期化
+MyDrawLine::MyDrawLine(const float width, const char *colorName)
+	: Color(colorName) {}
+
+//線初期化
+MyDrawLine::MyDrawLine(const float x1, const float y1, const float x2, const float y2, const float width, const char *colorName)
+	: Color(colorName) {
+	ChangePos(x1, y1, x2, y2);
+	w = width / SIZE_RATE;
+}
+
+//三角形表示
+void MyDrawLine::ContentView() {
+	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
+}
+
+void MyDrawLine::ChangePos(const float x1, const float y1, const float x2, const float y2) {
+	this->x1 = x1 / SIZE_RATE;
+	this->y1 = y1 / SIZE_RATE;
+	this->x2 = x2 / SIZE_RATE;
+	this->y2 = y2 / SIZE_RATE;
 }
 
 //三角形初期化
@@ -63,17 +86,18 @@ MyDrawTriangle::MyDrawTriangle(const float x1, const float y1, const float x2, c
 }
 
 //三角形表示
-void MyDrawTriangle::View() {
+void MyDrawTriangle::ContentView() {
 	DrawTriangleAA(x1, y1, x2, y2, x3, y3, Color::Get(), TRUE);
 }
 
+
 void MyDrawTriangle::ChangePos(const float x1, const float y1, const float x2, const float y2, const float x3, const float y3) {
-	MyDrawTriangle::x1 = x1 / SIZE_RATE;
-	MyDrawTriangle::y1 = y1 / SIZE_RATE;
-	MyDrawTriangle::x2 = x2 / SIZE_RATE;
-	MyDrawTriangle::y2 = y2 / SIZE_RATE;
-	MyDrawTriangle::x3 = x3 / SIZE_RATE;
-	MyDrawTriangle::y3 = y3 / SIZE_RATE;
+	this->x1 = x1 / SIZE_RATE;
+	this->y1 = y1 / SIZE_RATE;
+	this->x2 = x2 / SIZE_RATE;
+	this->y2 = y2 / SIZE_RATE;
+	this->x3 = x3 / SIZE_RATE;
+	this->y3 = y3 / SIZE_RATE;
 }
 
 //正三角形初期化
@@ -124,14 +148,14 @@ MyDrawBox::MyDrawBox(const float x, const float y, const float width, const floa
 }
 
 //四角形表示
-void  MyDrawBox::View() {
+void  MyDrawBox::ContentView() {
 	boolean flag = TRUE;
 	if (l != 0)
 		flag = FALSE;
-	float x1 = GetX() - w / 2 + 1;
-	float y1 = GetY() - h / 2 + 1;
-	float x2 = GetX() + w / 2;
-	float y2 = GetY() + h / 2;
+	float x1 = x - w / 2;
+	float y1 = y - h / 2;
+	float x2 = x + w / 2;
+	float y2 = y + h / 2;
 
 	DrawBoxAA(x1, y1, x2, y2, Color::Get(), flag, l);
 }

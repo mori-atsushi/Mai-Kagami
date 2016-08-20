@@ -7,7 +7,7 @@ DrawSongTitle::DrawSongTitle(Font *font, const char *title, const char *artist) 
 }
 
 void DrawSongTitle::ChangePos(const float x, const float y) {
-	Draw::ChangePos(x, y);
+	Pos::ChangePos(x, y);
 	songTitle->ChangePos(x, y);
 	songArtist->ChangePos(x + WIDTH * 0.17, y + HEIGHT * 0.025);
 }

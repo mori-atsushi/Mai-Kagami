@@ -10,14 +10,14 @@ MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y
 }
 
 //テキスト表示
-void MyDrawText::View() {
-	DrawStringFToHandle(GetX(), GetY(), s.c_str(), Color::Get(), f); //文字表示
+void MyDrawText::ContentView() {
+	DrawStringFToHandle(x, y, s.c_str(), Color::Get(), f); //文字表示
 }
 
 //テキスト変更
 void MyDrawText::ChangeText(char *str) {
 	s = str;
-	ChangePos(Draw2::x, Draw2::y);
+	ChangePos();
 }
 
 //フォントサイズ変更
@@ -43,47 +43,75 @@ float MyDrawText::GetWidth() {
 
 //テキスト初期化
 MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
-	: MyDrawText(font, str, x, y, pos, point, colorName) {}
+	: MyDrawText(font, str, x, y, 0, point, colorName) {
+	switch (pos)
+	{
+	case 0:
+		RotCenterX = 0;
+		break;
+	case 1:
+		RotCenterX = GetWidth() / SIZE_RATE / 2;
+		break;
+	case 2:
+		RotCenterX = GetWidth() / SIZE_RATE;
+		break;
+	}
+}
 
-void MyDrawTextV::View() {
+void MyDrawTextV::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaStringToHandle(GetX(), GetY(), 1, 1, 0, GetHeight() / SIZE_RATE / 2, - 2.0 / 6.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
+	DrawRotaStringToHandle(x, y, 1, 1, RotCenterX, GetHeight() / SIZE_RATE / 2, - 1.0 / 2.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
 //複数行のテキスト
 MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
-	: Color(colorName) , Draw2(pos) {
+	: Color(colorName) , Draw(x, y) {
 
 	p = pos; //位置情報
 	inter = lineInterval; //間隔
+	strcpy_s(color, sizeof(color), colorName);
+	this->point = point;
+	f = font;
 
-	l = 0;
-	char a[256];
-	for (int i = 0, j = 0; i < strlen(str); i++) {
-		a[j++] = str[i];
-		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
-			a[j] = '\0';
-			myDrawText[l] = new MyDrawText(font, a, 0, 0, 0, point, colorName);
-			l++; i++; j = 0;
-		}
-	}
-	ChangePos(x, y);
+	ChangeText(str);
 }
 
-void MyDrawTexts::View() {
+void MyDrawTexts::ContentView() {
 	for (int i = 0; i < l; i++)
-		myDrawText[i]->View();
+		myDrawText[i]->ContentView();
 }
 
 void MyDrawTexts::ChangePos(const float x, const float y) {
-	Draw2::ChangePos(x, y);
+	Draw::ChangePos(x, y);
 	float height = myDrawText[0]->GetHeight();
 	float yy = y - (height + inter) / 2 * (l - 1);
 	for (int i = 0; i < l; i++) {
-		myDrawText[i]->ChangePos(GetX() * SIZE_RATE, yy);
+		myDrawText[i]->ChangePos(myDrawText[i]->GetX(), yy);
 		yy += height + inter;
 	}
+}
+
+void MyDrawTexts::ChangeText(const char *str) {
+	for (int i = 0; i < l; i++)
+		delete myDrawText[i];
+
+	l = 0;
+	char a[256];
+	int i, j;
+	for (i = 0, j = 0; i < strlen(str); i++) {
+		a[j++] = str[i];
+		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
+			a[j] = '\0';
+			myDrawText[l] = new MyDrawText(f, a, GetX(), 0, p, point, color);
+			l++; i++; j = 0;
+		}
+	}
+	if (i == 0) {
+		myDrawText[0] = new MyDrawText(f, str, GetX(), 0, p, point, color);
+		l = 1;
+	}
+	ChangePos(GetX(), GetY());
 }
 
 float MyDrawTexts::GetWidth() {
@@ -101,30 +129,51 @@ float MyDrawTexts::GetHeight() {
 
 MyDrawTexts::~MyDrawTexts() {
 	for (int i = 0; i < l; i++)
-		delete myDrawText;
+		delete myDrawText[i];
 }
 
 //アンダーライン付きテキスト
 MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
-	: MyDrawText(font, str, x, y, pos, point, colorName)  {
+	: Color(colorName), Draw(x, y) {
+	myDrawText = new MyDrawText(font, str, x, y, pos, point, colorName);
 	l = lineLength / SIZE_RATE;
 	w = lineWidth / SIZE_RATE;
-	Calc(x, y);
+	this->pos = pos;
+	ChangePos(x, y);
 }
 
 //アンダーライン付きテキスト描画
-void MyDrawTextLine::View() {
-	MyDrawText::View();
+void MyDrawTextLine::ContentView() {
+	myDrawText->View();
 	DrawLineAA(x1, y1, x2, y2, Color::Get(), w);
 }
 
 void MyDrawTextLine::ChangePos(const float x, const float y) {
-	MyDrawText::ChangePos(x, y);
-	Calc(x, y);
-}
-
-void MyDrawTextLine::Calc(const float x, const float y) {
 	x1 = x / SIZE_RATE - l / 2;
 	x2 = x / SIZE_RATE + l / 2;
-	y1 = y2 = (y + MyDrawText::GetHeight() * 0.9) / SIZE_RATE;
+	y1 = y2 = (y + myDrawText->GetHeight() * 0.9) / SIZE_RATE;
+
+	float xx;
+	switch (pos)
+	{
+	case 0:
+		xx = x1 * SIZE_RATE + 10;
+		break;
+	case 1:
+		xx = x;
+		break;
+	case 2:
+		xx = x2 * SIZE_RATE - 10;
+		break;
+	}
+	myDrawText->ChangePos(xx, y);
+}
+
+void MyDrawTextLine::ChangeText(char *str) {
+	myDrawText->ChangeText(str);
+	ChangePos(GetX(), GetY());
+}
+
+MyDrawTextLine::~MyDrawTextLine() {
+	delete myDrawText;
 }

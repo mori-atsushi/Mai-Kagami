@@ -17,9 +17,9 @@ void MyDrawGraph::Load() {
 }
 
 //画像表示
-void MyDrawGraph::View() {
+void MyDrawGraph::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
+	DrawRotaGraphF(x, y, ex / SIZE_RATE, 0, handle, TRUE, FALSE); //描画
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
@@ -45,16 +45,17 @@ MyDrawMovie::MyDrawMovie(const float x, const float y, const char *filename, con
 }
 
 //動画表示
-void MyDrawMovie::View() {
+void MyDrawMovie::ContentView() {
 	if (!CheckHandleASyncLoad(handle)) {
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
-		DrawRotaGraphF(GetX(), GetY(), ex / SIZE_RATE, 0, handle, TRUE, TRUE); //描画
+		DrawRotaGraphF(x, y, ex / SIZE_RATE, 0, handle, TRUE, TRUE); //描画
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 	}
 }
 
 //指定したフレームに移動
 void MyDrawMovie::Seek(const int flame) {
+	Stop();
 	SeekMovieToGraphToFrame(handle, flame);
 }
 

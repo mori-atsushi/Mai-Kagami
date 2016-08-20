@@ -5,8 +5,8 @@
 
 class Touch {
 public:
-	void Check();
-	int Get(int num);
+	void Check(); //Šm”F
+	int Get(int num); //Žæ“¾
 private:
 	int key[5];
 };

@@ -8,20 +8,20 @@
 #include "Font.h"
 #include "Songs.h"
 #include "Touch.h"
+#include "Scene.h"
 
 //ポップアップ用四角形（黒色半透明全画面）
 class BlackBox : public MyDrawBox {
 public:
 	BlackBox();
-	void View();
 private:
 };
 
 //スピードオプション表示
 class SpeedOption {
 public:
-	SpeedOption(Font *font, Songs *songs);
-	void Check(Touch *touch);
+	SpeedOption(Font *font, Songs *songs, Touch *touch);
+	void Check();
 	void View();
 	~SpeedOption();
 private:
@@ -31,14 +31,17 @@ private:
 };
 
 //スピードオプションポップアップ
-class SpeedPop : public SpeedOption {
+class SpeedPop : public SubScene {
 public:
-	SpeedPop(Font *font, Songs *songs);
-	void Check(Touch *touch);
-	void View();
+	SpeedPop(Font *font, Songs *songs, Touch *touch);
+	void Load();
+	void ContentUpdate();
+	void ContentView();
 	~SpeedPop();
-private:
+protected:
 	Songs *songs;
+	Song *song;
+	SpeedOption *speedOption;
 	BlackBox *blackBox;
 	Button *button;
 	MyDrawText *text;

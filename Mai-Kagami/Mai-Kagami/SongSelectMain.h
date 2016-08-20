@@ -11,27 +11,28 @@
 #include "SongSelect.h"
 #include "SongSelectDefine.h"
 #include "ThroughOption.h"
+#include "PartOption.h"
+#include "Scene.h"
 
 //曲選択画面関係
-class SongSelect {
+class SongSelect : public Scene{
 public:
 	SongSelect(Font *font, Touch *touch, Songs *songs);
-	int Update();
-	void View();
+	MainScene Switch(const MainScene scene);
 	~SongSelect();
 private:
-	Font *f;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
 	SongInformation *songInformation; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係
 	SongSelectPop *songSelectPop; //終了用ポップアップ
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
-	Touch *touch; //サイドタッチパネル
-	int scene;
-	int loadFlag;
-	void Load();
-	void Delete();
+	PartOptionButton *partOptionButton; //部分練習オプションボタン
+	SongSelectScene scene;
+	void ContentLoad();
+	void ContentUpdate();
+	void ContentView();
+	void ContentDelete();
 };
 
 #endif

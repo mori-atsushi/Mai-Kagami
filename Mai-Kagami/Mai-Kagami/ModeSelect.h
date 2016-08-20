@@ -3,12 +3,17 @@
 
 #include "DxLib.h"
 #include "Button.h"
+#include "SongSelectDefine.h"
 #include "Font.h"
+#include "Scene.h"
+#include "Touch.h"
 
-class ModeSelectButton {
+class ModeSelectButton : public SubScene{
 public:
-	ModeSelectButton(Font *font);
-	void View();
+	ModeSelectButton(Font *font, Touch *touch);
+	SongSelectScene Switch(const SongSelectScene scene);
+	void ContentUpdate();
+	void ContentView();
 	~ModeSelectButton();
 private:
 	Button *button[3];

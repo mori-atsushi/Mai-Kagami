@@ -6,4 +6,4 @@ DrawTitle::DrawTitle(Font *font, const char *str)
 
 //サブタイトル表示用
 DrawSubtitle::DrawSubtitle(Font *font, const char *str)
-	: MyDrawText(font, str, WIDTH * 0.65, HEIGHT * 0.25, 1, 30, "Yellow") {}
+	: MyDrawText(font, str, WIDTH * 0.65, HEIGHT * 0.25, 1, 30) {}

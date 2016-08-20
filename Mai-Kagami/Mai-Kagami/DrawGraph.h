@@ -10,7 +10,7 @@ class MyDrawGraph : public Draw{
 public:
 	MyDrawGraph(const char *fileName); //初期化
 	MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate = 1.0); //初期化
-	void View(); //表示
+	void ContentView(); //表示
 	void Load();
 	void ChangeEx(const double ExRate); //倍率変更
 	void Release();
@@ -25,7 +25,7 @@ class MyDrawMovie : public MyDrawGraph {
 public:
 	MyDrawMovie(const char *filename); //初期化
 	MyDrawMovie(const float x, const float y, const char *filename, const double ExRate); //初期化
-	void View(); //表示
+	void ContentView(); //表示
 	void Seek(const int flame = 0); //指定したフレームに移動
 	void Start(); //再生
 	void Stop(); //停止

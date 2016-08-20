@@ -6,13 +6,13 @@
 #include "Nfc.h"
 #include "Font.h"
 #include "Top.h"
+#include "Scene.h"
 
 //トップ画面関係
-class Top {
+class Top : public Scene {
 public:
 	Top(Font *font);
-	int Update(); //計算
-	void View(); //表示
+	MainScene Switch(const MainScene scene);
 	~Top();
 private:
 	Font *f;
@@ -20,9 +20,10 @@ private:
 	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
-	int loadFlag;
-	void Load();
-	void Delete();
+	void ContentUpdate(); //計算
+	void ContentView(); //表示
+	void ContentLoad();
+	void ContentDelete();
 };
 
 #endif

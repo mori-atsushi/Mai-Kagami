@@ -6,28 +6,54 @@
 #include "ThroughDefine.h"
 #include "Button.h"
 #include "SeetingPop.h"
+#include "Scene.h"
+#include "ThroughResultObject.h"
+#include "ThroughResultDefine.h"
 
-class ThroughFinish {
+class ThroughFinish : public SubScene {
 public:
-	ThroughFinish(Font *font);
-	void View();
+	ThroughFinish(Font *font, Touch *touch);
+	ThroughResultScene Switch(const ThroughResultScene scene);
+	void ContentUpdate();
+	void ContentView();
 	~ThroughFinish();
 private:
 	BlackBox *blackBox;
 	Button *button[4];
 };
 
-class ThroughDetail {
+class ThroughDetailScreen : public SubScene {
 public:
-	ThroughDetail(Font *font);
-	void View();
-	void Update(const int scene);
+	ThroughDetailScreen(Font *font, Songs *songs, Touch *touch);
+	ThroughResultScene Switch(const ThroughResultScene scene);
+	void Load();
+	void Delete();
+	~ThroughDetailScreen();
+private:
+	void ContentUpdate();
+	void ContentView();
+	DrawTitle *title;
+	TimingBar *timingBar;
+	ExpressionBar *expressionBar;
+	ResultComment *resultComment;
+	ResultBody *resultBody;
+	ResultGraph *resultGraph;
+	Button *button;
+	Songs *songs;
+};
+
+class ThroughDetail : public SubScene {
+public:
+	ThroughDetail(Font *font, Songs *songs, Touch *touch);
+	ThroughResultScene Switch(const ThroughResultScene scene);
+	void Load();
+	void Delete();
 	~ThroughDetail();
 private:
-	DrawTitle *title;
-	Button *button;
+	void ContentUpdate();
+	void ContentView();
+	ThroughDetailScreen *throughDetailScreen;
 	ThroughFinish *throughFinish;
-	int scene;
 };
 
 #endif
