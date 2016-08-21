@@ -25,7 +25,7 @@ public:
 	//初期化
 	void Init();
 	//ユーザーIDの取得
-	int GetId();
+	char* GetId();
 	//ソケットとの接続
 	bool Connect(const char* Ip, u_short Port);	
 	//受信

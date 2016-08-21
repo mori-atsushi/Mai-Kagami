@@ -1,4 +1,5 @@
 #include "Nfc.h"
+#include <stdio.h>
 
 #define PORT 9999		//ポート番号
 #define IP "127.0.0.1"	//IP番号(ローカルホスト) 
@@ -9,15 +10,16 @@ void Nfc::Init()
 	WSAStartup(MAKEWORD(2, 0), &data);
 }
 
-int Nfc::GetId()
+char* Nfc::GetId()
 {
 	int recvsize;				//受信データ長
 	char recvMessage[5] = {};	//受信バッファ
 	char data[256] = {};		//受信したIDを格納する変数
+	int result = 0;				//IDをint型にキャストしたもの
 
 	//接続に失敗したときのエラー処理
 	if (!Connect(IP, PORT)) {
-		return -1;
+		return 0;
 	}
 
 	//受信
@@ -29,25 +31,23 @@ int Nfc::GetId()
 			recvMessage,		//受信データ格納用の配列 
 			sizeof(recvsize),	//受信データ長
 			&recvsize);			//受信データ長のポインタ
+
 		switch (status) {
 		//データが来ていないとき
 		case RECV_STILL:
 			continue;
 		//成功
 		case RECV_SUCCESSED:
-			printfDx("受け取りました:%s\n", data);
 			strcat(data, recvMessage);
 			continue;
 		//切断orエラー
 		case RECV_FAILED:
-			printfDx("受け取りに失敗しました\n");
 			break;
 		}
 		break;
 	}
-	printfDx("受信データ:%s", data);
 
-	return 1;
+	return data;
 }
 
 //接続
