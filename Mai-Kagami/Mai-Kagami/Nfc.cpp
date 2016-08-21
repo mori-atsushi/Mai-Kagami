@@ -14,12 +14,17 @@ char* Nfc::GetId()
 {
 	int recvsize;				//受信データ長
 	char recvMessage[5] = {};	//受信バッファ
-	char data[256] = {};		//受信したIDを格納する変数
+	char data[256] = "\0";		//受信したIDを格納する変数
 	int result = 0;				//IDをint型にキャストしたもの
+	int cont = 0;
+
+	//呼び出された回数をカウント
+	calledCont++;
 
 	//接続に失敗したときのエラー処理
-	if (!Connect(IP, PORT)) {
-		return 0;
+	//またnfc監視を初めてから1秒間の間は0を返す
+	if (!Connect(IP, PORT) || calledCont <= 60) {
+		return data;
 	}
 
 	//受信
@@ -90,3 +95,5 @@ RECVSTATUS Nfc::Recv(char* pData, int DataSize, int *pRecvSize)
 	*pRecvSize = n;	//受信データ長取得
 	return RECV_SUCCESSED;
 }
+
+void Nfc::reset_calledCont() { calledCont = 0; }

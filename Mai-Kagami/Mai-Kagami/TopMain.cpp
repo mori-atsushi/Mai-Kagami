@@ -33,8 +33,9 @@ int Top::Update() {
 	if (loadFlag == 2) {
 		topTouchMessage->Update(); //NFCタッチメッセージ計算
 		char* id = nfc.GetId();
-		if (id != 0) {
+		if (id[0] != '\0') {
 			printfDx("id:%s", id);
+			nfc.reset_calledCont();
 			Delete();
 			return SONG_SELECT;
 		}

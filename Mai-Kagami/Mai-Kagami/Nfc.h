@@ -30,8 +30,14 @@ public:
 	bool Connect(const char* Ip, u_short Port);	
 	//受信
 	RECVSTATUS Recv(char* pData, int DataSize, int *pRecvSize);
+	//calledContのリセット
+	//読み込みが完了、または読み込みの開始前にこれを呼び出してください
+	void reset_calledCont();
 private:
+	//ソケット
 	SOCKET m_DstSocket;
+	//nfcの監視が始まってからGetId()が呼び出された回数
+	int calledCont = 0;
 };
 
 #endif
