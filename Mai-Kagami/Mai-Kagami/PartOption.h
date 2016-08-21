@@ -19,6 +19,14 @@ private:
 	void ContentUpdate();
 };
 
+class PartOptionPartPop : public PartPop {
+public:
+	PartOptionPartPop(Font *font, Songs *songs, Touch *touch);
+	int Switch(const int scene);
+private:
+	void ContentUpdate();
+};
+
 class PartOptionButton : public SubScene {
 public:
 	PartOptionButton(Font *font, Songs *songs, Touch *touch);
@@ -32,6 +40,7 @@ private:
 	void ContentView();
 	Button *button[4];
 	PartOptionSpeedPop *speedPop;
+	PartOptionPartPop *partPop;
 };
 
 

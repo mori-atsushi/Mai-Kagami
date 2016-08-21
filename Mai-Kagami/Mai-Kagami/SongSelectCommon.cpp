@@ -152,6 +152,8 @@ void SongInformation::ContentView() {
 	case MODE:
 	case OPTION1:
 	case OPTION2:
+	case OPTION2_PART:
+	case OPTION2_SPEED:
 		nowSong->Draw(nowScene);
 		break;
 	}
