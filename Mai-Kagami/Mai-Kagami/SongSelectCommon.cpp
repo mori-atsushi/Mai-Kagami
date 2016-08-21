@@ -24,6 +24,8 @@ void SongSelectTitle::ContentUpdate() {
 			subTitle->ChangeColor("Blue");
 			break;
 		case OPTION2:
+		case OPTION2_PART:
+		case OPTION2_SPEED:
 			title->ChangeText("Option");
 			subTitle->ChangeText("•”•ª—ûKƒ‚[ƒh");
 			subTitle->SetViewFlag(TRUE);

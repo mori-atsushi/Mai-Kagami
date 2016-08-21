@@ -9,7 +9,7 @@ ModeSelectButton::ModeSelectButton(Font *font, Touch *touch) {
 	button[2] = new CircleButton2(font, touch, "–ß‚é", 4);
 }
 
-SongSelectScene ModeSelectButton::Switch(const SongSelectScene scene) {
+int ModeSelectButton::Switch(const int scene) {
 	if (button[0]->GetTouch() == 1)
 		return OPTION1;
 	if (button[1]->GetTouch() == 1)

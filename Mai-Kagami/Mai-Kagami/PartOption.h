@@ -11,16 +11,27 @@
 #include "SeetingPop.h"
 #include "Button.h"
 
+class PartOptionSpeedPop : public SpeedPop {
+public:
+	PartOptionSpeedPop(Font *font, Songs *songs, Touch *touch);
+	int Switch(const int scene);
+private:
+	void ContentUpdate();
+};
+
 class PartOptionButton : public SubScene {
 public:
 	PartOptionButton(Font *font, Songs *songs, Touch *touch);
-	SongSelectScene Switch(const SongSelectScene scene);
+	int Switch(const int scene);
+	void Load();
+	void Delete();
 	~PartOptionButton();
 private:
 	Songs *songs;
 	void ContentUpdate();
 	void ContentView();
 	Button *button[4];
+	PartOptionSpeedPop *speedPop;
 };
 
 

@@ -39,6 +39,8 @@ MainScene SongSelect::Switch(const MainScene scene) {
 		this->scene = throughOptionButton->Switch(this->scene);
 		break;
 	case OPTION2:
+	case OPTION2_PART:
+	case OPTION2_SPEED:
 		this->scene = partOptionButton->Switch(this->scene);
 		break;
 	}

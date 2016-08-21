@@ -28,7 +28,7 @@ private:
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
 	PartOptionButton *partOptionButton; //部分練習オプションボタン
-	SongSelectScene scene;
+	int scene;
 	void ContentLoad();
 	void ContentUpdate();
 	void ContentView();

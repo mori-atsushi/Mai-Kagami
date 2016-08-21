@@ -35,10 +35,10 @@ class SpeedPop : public SubScene {
 public:
 	SpeedPop(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	void ContentUpdate();
-	void ContentView();
 	~SpeedPop();
 protected:
+	void ContentUpdate();
+	void ContentView();
 	Songs *songs;
 	Song *song;
 	SpeedOption *speedOption;

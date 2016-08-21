@@ -11,7 +11,7 @@
 class ModeSelectButton : public SubScene{
 public:
 	ModeSelectButton(Font *font, Touch *touch);
-	SongSelectScene Switch(const SongSelectScene scene);
+	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView();
 	~ModeSelectButton();
