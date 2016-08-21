@@ -22,7 +22,7 @@ private:
 //パート情報
 class SongPart {
 public:
-	SongPart(const int flame, const char *name);
+	void Set(const int flame, const char *name);
 	int GetFlame(); //フレーム数取得
 	char *GetName(); //パート名取得
 private:
@@ -36,6 +36,10 @@ public:
 	int GetNow(); //現在の位置IDを取得
 	void SetNow(const int n); //位置IDをセット
 	void ChangeSpeed(int num); //動画の再生速度変更
+	void ChangeStart(int num); //動画の開始位置変更
+	void ChangeEnd(int num); //動画の終了位置変更
+	int StartPart();
+	int EndPart();
 	void LoadPart(); //パート情報ロード
 	SongPart *GetPart(int num); //パート情報取得
 	int GetPartNum(); //パート数取得
@@ -45,7 +49,7 @@ public:
 protected:
 	char music[256], folder[256]; //音楽ファイル、フォルダ
 private:
-	int id, *n, songPartNum; //ID、現在の番号, 曲数
+	int id, *n, *songPartNum, *start, *end; //ID、現在の番号, 曲数、開始、終了
 	SongPart *songPart[256];
 };
 

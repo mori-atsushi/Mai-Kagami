@@ -96,8 +96,8 @@ void PartOptionButton::ContentUpdate() {
 	switch (nowScene)
 	{
 	case OPTION2:
-		song->danceMovie->SetStartFlame(1000);
-		song->danceMovie->SetEndFlame(2000);
+		song->ChangeStart(0);
+		song->ChangeEnd(0);
 		for (int i = 0; i < 4; i++)
 			button[i]->SetViewFlag(TRUE);
 		viewFlag = TRUE;

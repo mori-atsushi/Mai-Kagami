@@ -58,12 +58,15 @@ PartOption::PartOption(Font *font, Songs *songs, Touch *touch) {
 void PartOption::Check() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (button[0]->GetTouch() == 1)
-		song->ChangeSpeed(1);
+		song->ChangeStart(1);
 	if (button[1]->GetTouch() == 1)
-		song->ChangeSpeed(-1);
-	char str[256];
-	sprintf_s(str, sizeof(str), "~%1.1lf", song->danceMovie->GetSpeed());
-//	part[1]->ChangeText(str);
+		song->ChangeStart(-1);
+	if (button[2]->GetTouch() == 1)
+		song->ChangeEnd(1);
+	if (button[3]->GetTouch() == 1)
+		song->ChangeEnd(-1);
+	part[1]->ChangeText(song->GetPart(song->StartPart())->GetName());
+	part[3]->ChangeText(song->GetPart(song->EndPart())->GetName());
 }
 
 void PartOption::View() {

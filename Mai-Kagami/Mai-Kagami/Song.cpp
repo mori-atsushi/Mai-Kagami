@@ -23,11 +23,11 @@ DrawSongTitle::~DrawSongTitle() {
 }
 
 //パート情報
-SongPart::SongPart(const int flame, const char *name) {
-	SongPart::flame = flame;
-	strcpy_s(SongPart::name, sizeof(SongPart::name), name);
-
+void SongPart::Set(const int flame, const char *name) {
+	this->flame = flame;
+	strcpy_s(this->name, sizeof(this->name), name);
 }
+
 
 //フレーム数取得
 int SongPart::GetFlame() {
@@ -47,6 +47,13 @@ Song::Song(Font *font, const int id, const char *title, const char *artist, cons
 	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder); //動画
 	Song::id = id;
 	n = new int();
+	songPartNum = new int();
+	start = new int();
+	end = new int();
+	*start = 0;
+	*end = 1;
+	for(int i = 0; i < 256; i++)
+		songPart[i] = new SongPart();
 
 	drawSongTitle = new DrawSongTitle(font, title, artist);
 	coverGraph = new MyDrawGraph(cover);
@@ -77,6 +84,35 @@ void Song::ChangeSpeed(int num) {
 	}
 }
 
+//動画の開始位置を変更
+void Song::ChangeStart(int num) {
+	if (num == 1 && *start > 0)
+		(*start) -= 1;
+	if (num == -1 && *start < *end - 1)
+		(*start) += 1;
+	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
+	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
+
+}
+
+//動画の終了位置を変更
+void Song::ChangeEnd(int num) {
+	if (num == 1 && *end > *start + 1)
+		(*end) -= 1;
+	if (num == -1 && *end < GetPartNum() - 1)
+		(*end) += 1;
+	danceMovie->SetEndFlame(GetPart(*end)->GetFlame());
+	danceMovie->SetEndFlame(GetPart(*end)->GetFlame());
+}
+
+int Song::StartPart() {
+	return *start;
+}
+
+int Song::EndPart() {
+	return *end;
+}
+
 //パート情報をロード
 void Song::LoadPart() {
 	char part[256];
@@ -86,10 +122,10 @@ void Song::LoadPart() {
 	SetUseASyncLoadFlag(TRUE);
 	char buf[256];
 	int flame;
-	songPartNum = 0;
+	*songPartNum = 0;
 	while (FileRead_scanf(file, "%d,%[^\n\r]", &flame, buf) != EOF) {
-		songPart[songPartNum] = new SongPart(flame, buf);
-		songPartNum++;
+		songPart[*songPartNum]->Set(flame, buf);
+		(*songPartNum)++;
 	}
 }
 
@@ -100,5 +136,5 @@ SongPart *Song::GetPart(int num) {
 
 //パート数取得
 int Song::GetPartNum() {
-	return songPartNum;
+	return *songPartNum;
 }

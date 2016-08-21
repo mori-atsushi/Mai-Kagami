@@ -121,6 +121,7 @@ void SongInformation::ContentUpdate() {
 	case MODE:
 		if (lastScene == MAIN) {
 			nowSong->danceMovie->Load();
+			nowSong->LoadPart();
 			nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
 		}
 		else if (lastScene == OPTION1) {
