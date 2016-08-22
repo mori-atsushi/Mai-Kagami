@@ -20,7 +20,7 @@ void Top::ContentLoad() {
 MainScene Top::Switch(const MainScene scene) {
 	char* id = nfc.GetId();
 	if (id[0] != '\0') {
-		printfDx("id:%s", id);
+//		printfDx("id:%s", id);
 		nfc.reset_calledCont();
 		Delete();
 		return SONG_SELECT;

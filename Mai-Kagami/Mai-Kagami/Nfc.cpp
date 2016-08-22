@@ -1,4 +1,5 @@
 #include "Nfc.h"
+#include "Main.h"
 #include <stdio.h>
 #include<iostream>
 #include<fstream>
@@ -14,6 +15,11 @@ void Nfc::Init()
 
 char* Nfc::GetId()
 {
+	if (CheckHitKey(KEY_INPUT_S)) //Sキー（スキップ）が押されたら
+		return "daichi";
+	if (!NFC_FLAG) //NFC_FLAGがfalseだったら
+		return "\0";
+
 	int recvsize;				//受信データ長
 	char recvMessage[5] = {};	//受信バッファ
 	char data[256] = "\0";		//受信したIDを格納する変数
@@ -26,7 +32,7 @@ char* Nfc::GetId()
 	//接続に失敗したときのエラー処理
 	//またnfc監視を初めてから1秒間の間は0を返す
 	if (!Connect(IP, PORT) || calledCont < 10) {
-		printfDx("%d ", calledCont);
+//		printfDx("%d ", calledCont);
 		return data;
 	}
 
@@ -43,17 +49,17 @@ char* Nfc::GetId()
 		switch (status) {
 		//データが来ていないとき
 		case RECV_STILL:
-			printfDx("0 ");
+//			printfDx("0 ");
 			continue;
 		//成功
 		case RECV_SUCCESSED:
-			printfDx("1 ");
+//			printfDx("1 ");
 			strcat(data, recvMessage);
-			printfDx(data);
+//			printfDx(data);
 			continue;
 		//切断orエラー
 		case RECV_FAILED:
-			printfDx("2 ");
+//			printfDx("2 ");
 			break;
 		}
 		break;

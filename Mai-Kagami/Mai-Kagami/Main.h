@@ -6,7 +6,7 @@
 #define HEIGHT		1920
 
 #define NFC_POS		HEIGHT * 0.85
-
+#define NFC_FLAG FALSE //NFCƒJ[ƒh‚ğ“Ç‚İ‚Ş‚©‚Ç‚¤‚©(TRUE:“Ç‚İ‚Ş/FALSE:“Ç‚İ‚Ü‚È‚¢)
 
 typedef enum {
 	TOP,
