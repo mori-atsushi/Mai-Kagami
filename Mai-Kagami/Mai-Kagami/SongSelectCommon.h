@@ -8,7 +8,9 @@
 #include "SongSelectCover.h"
 #include "Songs.h"
 #include "SongSelectDefine.h"
+#include "Login.h"
 #include "Scene.h"
+#include "User.h"
 
 //曲選択画面タイトル
 class SongSelectTitle : public SubScene {
@@ -25,7 +27,7 @@ private:
 //曲選択画面カバー関係
 class SongInformation : public SubScene {
 public:
-	SongInformation(Font *font, Songs *songs, Touch *touch); //初期化
+	SongInformation(Font *font, Songs *songs, Touch *touch, User *user); //初期化
 	void Load();
 	void ContentView(); //表示
 	void ContentUpdate();
@@ -33,9 +35,11 @@ public:
 	~SongInformation();
 private:
 	int n, now;
+	User *user;
 	Touch *touch;
 	SongSelectCover *songCover[256];
 	Songs *songs;
+	Login *login;
 	SongSelectCover *nowSong;
 	MyDrawGraph *grad[2]; //カバー画像
 	MyDrawGraph *box; //カバー画像
