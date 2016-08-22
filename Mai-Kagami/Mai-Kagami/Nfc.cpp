@@ -48,7 +48,7 @@ char* Nfc::GetId()
 		//¬Œ÷
 		case RECV_SUCCESSED:
 			printfDx("1 ");
-			strcat(data, recvMessage);
+			strcat_s(data, sizeof(data), recvMessage);
 			printfDx(data);
 			continue;
 		//Ø’forƒGƒ‰[
