@@ -1,6 +1,6 @@
-#include "DxLib.h"
 #include "MaiKagami.h"
 #include "Draw.h"
+#include "DxLib.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetGraphMode(WIDTH / SIZE_RATE, HEIGHT / SIZE_RATE, 32); //ウィンドウサイズ設定

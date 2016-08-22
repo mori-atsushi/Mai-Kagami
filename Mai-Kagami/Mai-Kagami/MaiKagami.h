@@ -1,7 +1,6 @@
 #ifndef __MAIKAGAMI_H_INCLUDED__
 #define __MAIKAGAMI_H_INCLUDED__
 
-#include "DxLib.h"
 #include "TopMain.h"
 #include "SongSelectMain.h"
 #include "Songs.h"
@@ -9,6 +8,7 @@
 #include "ThroughResultMain.h"
 #include "PartMain.h"
 #include "Touch.h"
+#include "DxLib.h"
 
 class MaiKagami
 {

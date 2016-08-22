@@ -9,6 +9,7 @@ MaiKagami::MaiKagami() {
 	throughMain = new ThroughMain(font, touch, songs);
 	throughResultMain = new ThroughResultMain(font, touch, songs);
 	partMain = new PartMain(font, touch, songs);
+	scene = TOP;
 }
 
 //‘S‘Ì‚ÌŽZŒv
