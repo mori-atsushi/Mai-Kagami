@@ -204,6 +204,9 @@
     <ClCompile Include="PartPause.cpp">
       <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="PartPause.h">
       <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

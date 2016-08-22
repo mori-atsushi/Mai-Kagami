@@ -65,6 +65,7 @@
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="TopMain.cpp" />
     <ClCompile Include="Touch.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Top.h" />
     <ClInclude Include="TopMain.h" />
     <ClInclude Include="Touch.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2ED7E73D-E57A-4A66-AE24-94CE667A078D}</ProjectGuid>

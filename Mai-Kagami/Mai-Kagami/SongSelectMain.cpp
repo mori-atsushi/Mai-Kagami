@@ -1,6 +1,7 @@
 #include "SongSelectMain.h"
 
-SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
+SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs, User *user) {
+	this->user = user;
 	songSelectTitle = new SongSelectTitle(font); //曲選択画面タイトル初期化
 	songSelectButton = new SongSelectButton(font, touch);
 	songInformation = new SongInformation(font, songs, touch); //選択中の曲初期化

@@ -8,6 +8,7 @@
 #include "ThroughResultMain.h"
 #include "PartMain.h"
 #include "Touch.h"
+#include "User.h"
 #include "DxLib.h"
 
 class MaiKagami
@@ -27,6 +28,7 @@ private:
 	PartMain *partMain; //部分練習プレイ画面
 	Songs *songs; //曲一覧
 	Touch *touch;
+	User *user; //ユーザー情報
 };
 
 #endif
