@@ -1,5 +1,7 @@
 #include "Nfc.h"
 #include <stdio.h>
+#include<iostream>
+#include<fstream>
 
 #define PORT 9999		//ポート番号
 #define IP "127.0.0.1"	//IP番号(ローカルホスト) 
@@ -23,7 +25,8 @@ char* Nfc::GetId()
 
 	//接続に失敗したときのエラー処理
 	//またnfc監視を初めてから1秒間の間は0を返す
-	if (!Connect(IP, PORT) || calledCont <= 60) {
+	if (!Connect(IP, PORT) || calledCont < 10) {
+		printfDx("%d ", calledCont);
 		return data;
 	}
 
@@ -40,13 +43,17 @@ char* Nfc::GetId()
 		switch (status) {
 		//データが来ていないとき
 		case RECV_STILL:
+			printfDx("0 ");
 			continue;
 		//成功
 		case RECV_SUCCESSED:
+			printfDx("1 ");
 			strcat(data, recvMessage);
+			printfDx(data);
 			continue;
 		//切断orエラー
 		case RECV_FAILED:
+			printfDx("2 ");
 			break;
 		}
 		break;
