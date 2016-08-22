@@ -19,6 +19,10 @@ Login::Login() {
 
 //履歴ロード
 void Login::LoadHistory(const char *userId) {
+	//ここでサーバに接続して前回と前々回の点数を受信
+	//以下の式を実行することによってデータを保存
+	//songHistory[＜曲ID＞]->Set(＜前回と前々回の点数（配列ポインタ）＞);
+
 	int history[3][2] = { {22, -1}, {44, 55}, {66, 77} };
 	for(int i = 0; i < 3; i++)
 		songHistory[i + 1]->Set(history[i]);
