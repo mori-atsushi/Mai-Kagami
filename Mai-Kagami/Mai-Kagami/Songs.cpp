@@ -1,5 +1,7 @@
 #include "Songs.h"
 
+//曲数
+#define NUMSONGS 3
 
 LPBYTE ReadData(HINTERNET hRequest, LPDWORD lpdwSize);
 
@@ -45,7 +47,7 @@ int Songs::LoadHistory(const char *userId) {
 	WCHAR          szHostName[256], szUrlPath[2048];
 	//URL
 	WCHAR          szUrl[] = L"http://globalstudios.jp/mai-archive/api_history.php?user=daichi";
-	LPBYTE         lpHeader, lpData;
+	LPBYTE         lpData;
 	DWORD          dwSize;
 
 	hSession = WinHttpOpen(L"Sample Application/1.0", 
@@ -98,8 +100,21 @@ int Songs::LoadHistory(const char *userId) {
 
 	WinHttpReceiveResponse(hRequest, NULL);
 
+	//ボディ取得
 	lpData = ReadData(hRequest, &dwSize);
-	MessageBoxA(NULL, (LPSTR)lpData, "ボディ", MB_OK);
+	char* temp[NUMSONGS + 1] = {};
+	temp[0] = strtok((char*)lpData, "\n");
+	int i = 0;
+	do {
+		i++;
+		temp[i] = strtok(NULL, "\n");  /* 2回目以降 */
+	} while (temp[i] != NULL);
+
+	int history[NUMSONGS][2] = {};
+	int hoge = 0;
+	for (int i = 0; i < NUMSONGS; i++) {
+		sscanf(temp[i], "%d||%d||%d", &hoge, &history[i][0], &history[i][1]);
+	}
 	HeapFree(GetProcessHeap(), 0, lpData);
 
 	WinHttpCloseHandle(hRequest);
@@ -109,9 +124,10 @@ int Songs::LoadHistory(const char *userId) {
 	//以下の式を実行することによってデータを保存
 	//song[Search(<曲ID>)]->songHistory->Set(＜前回と前々回の点数（配列ポインタ）＞);
 
-	int history[3][2] = { { 22, -1 },{ 44, 55 },{ 66, 77 } };
-	//for (int i = 0; i < 3; i++)
+	//for (int i = 0; i < NUMSONGS; i++)
 		//song[Search(i + 1)]->songHistory->Set(history[i]);
+
+	return 0;
 }
 
 LPBYTE ReadData(HINTERNET hRequest, LPDWORD lpdwSize)
