@@ -32,3 +32,22 @@ int Songs::GetNowSong() {
 	}
 	return 0;
 }
+
+//履歴ロード
+void Songs::LoadHistory(const char *userId) {
+	//ここでサーバに接続して前回と前々回の点数を受信
+	//以下の式を実行することによってデータを保存
+	//song[Search(<曲ID>)]->songHistory->Set(＜前回と前々回の点数（配列ポインタ）＞);
+
+	int history[3][2] = { { 22, -1 },{ 44, 55 },{ 66, 77 } };
+	for (int i = 0; i < 3; i++)
+		song[Search(i + 1)]->songHistory->Set(history[i]);
+}
+
+int Songs::Search(const int songId) {
+	for (int i = 0; i < n; i++) {
+		if (song[i]->GetSongId() == songId)
+			return i;
+	}
+	return -1;
+}
