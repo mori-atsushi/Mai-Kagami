@@ -12,10 +12,8 @@ public:
 	int GetSongNum(); //‹È”æ“¾
 	Song *GetSong(int x);
 	int GetNowSong();
-	void LoadHistory(const char *userId); //—š—ğƒ[ƒh
 private:
 	Song *song[256];
-	int Search(const int songId);
 	int n; //‹È”
 };
 
