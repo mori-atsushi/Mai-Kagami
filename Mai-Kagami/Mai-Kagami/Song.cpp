@@ -1,5 +1,17 @@
 #include "Song.h"
 
+//履歴セット
+void SongHistory::Set(const int history[2]) {
+	for (int i = 0; i < 2; i++)
+		this->history[i] = history[i];
+}
+
+//履歴取得
+void SongHistory::Get(int *history[2]) {
+	for (int i = 0; i < 2; i++)
+		*history[i] = this->history[i];
+}
+
 //曲名、アーティスト情報
 DrawSongTitle::DrawSongTitle(Font *font, const char *title, const char *artist) {
 	songTitle = new MyDrawTextLine(font, title,0, 0, 1, 30, WIDTH * 0.35, 2); //テキスト初期化
@@ -58,6 +70,12 @@ Song::Song(Font *font, const int id, const char *title, const char *artist, cons
 	drawSongTitle = new DrawSongTitle(font, title, artist);
 	coverGraph = new MyDrawGraph(cover);
 	danceMovie = new MyDrawMovie(movie);
+	songHistory = new SongHistory();
+}
+
+//曲IDを取得
+int Song::GetSongId() {
+	return id;
 }
 
 //現在の位置IDを取得
