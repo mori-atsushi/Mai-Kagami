@@ -28,7 +28,6 @@
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="KinectDistance.cpp" />
-    <ClCompile Include="Login.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
@@ -78,7 +77,6 @@
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="KinectDistance.h" />
-    <ClInclude Include="Login.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />

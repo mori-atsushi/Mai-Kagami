@@ -207,9 +207,6 @@
     <ClCompile Include="User.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
-    <ClCompile Include="Login.cpp">
-      <Filter>ソース ファイル\システム関係</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -348,9 +345,6 @@
       <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
-      <Filter>ヘッダー ファイル\システム関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Login.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>

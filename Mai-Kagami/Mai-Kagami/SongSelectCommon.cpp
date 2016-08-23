@@ -51,11 +51,9 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *user) {
+SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
 	this->touch = touch;
-	this->user = user;
-	login = new Login();
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
 		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
@@ -74,7 +72,6 @@ SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *u
 
 
 void SongInformation::Load() {
-	login->LoadHistory(user->GetUserId());
 	for (int i = 0; i < 2; i++)
 		grad[i]->Load();
 	for (int i = 0; i < n; i++)
@@ -86,7 +83,7 @@ void SongInformation::Load() {
 void SongInformation::ContentUpdate() {
 	int direct = 0;  // increase or decrease of IDs  Jaity
 	static int lastScene = nowScene;
-	int *last[2] = { new int(), new int() };
+
 	switch (nowScene)
 	{
 	case MAIN:
@@ -110,16 +107,12 @@ void SongInformation::ContentUpdate() {
 			songCover[i]->Update(direct, n);  // Updateに引数追加 Jaity
 
 		nowSong = songCover[songs->GetNowSong()];
-		nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
-		login->GetHistory(nowSong->GetSongId(), last);
-		for (int i = 0; i < 2; i++) {
-			char str[256];
-			char text[2][10] = { "前回　", "前々回" };
-			if(*last[i] == -1)
-				sprintf_s(str, sizeof(str), "%s： --点", text[i]);
-			else
-				sprintf_s(str, sizeof(str), "%s：%3d点", text[i], *last[i]);
-			songLast[i]->ChangeText(str);
+		for (int i = 0; i < n; i++) {
+			if (songCover[i]->GetNow() == 0) {
+				now = i;
+				nowSong->drawSongTitle->ChangePos(WIDTH * 0.79, HEIGHT * 0.3);
+				break;
+			}
 		}
 
 		if(lastScene == MODE)

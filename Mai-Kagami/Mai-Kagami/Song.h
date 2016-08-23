@@ -33,7 +33,6 @@ private:
 class Song {
 public:
 	Song(Font *font, const int id, const char *title, const char *artist, const char *folder);
-	int GetSongId(); //曲IDを取得
 	int GetNow(); //現在の位置IDを取得
 	void SetNow(const int n); //位置IDをセット
 	void ChangeSpeed(int num); //動画の再生速度変更
