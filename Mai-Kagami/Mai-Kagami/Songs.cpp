@@ -73,10 +73,10 @@ int Songs::LoadHistory(const char *userId) {
 	URL_COMPONENTS urlComponents;
 	WCHAR          szHostName[256], szUrlPath[2048];
 	//URL
-	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=";
-	WCHAR		   szUserId[18];
+	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=daichi";
+	/*WCHAR		   szUserId[18];
 	mbstowcs(szUserId, userId, 100);
-	wcscat(szUrl, szUserId);
+	wcscat(szUrl, szUserId);*/
 	LPBYTE         lpData;
 	DWORD          dwSize;
 
@@ -135,12 +135,18 @@ int Songs::LoadHistory(const char *userId) {
 	printfDx((char*)lpData);
 	int i = 0;
 	while (i++ < NUMSONGS) {
-		char* temp = strtok((char*)lpData, "\n");
+		char* temp;
+		if (i = 1) {
+			temp = strtok((char*)lpData, "\n");
+		} else {
+			temp = strtok(NULL, "\n");
+		}
 		if (temp == NULL)
 			break;
 		int history[2];
 		int hoge;
 		sscanf_s(temp, "%d||%d||%d", &hoge, &history[0], &history[1]);
+		printfDx("%d %d\n", history[0], history[1]);
 		//以下の式を実行することによってデータを保存
 		//song[Search(<曲ID>)]->songHistory->Set(＜前回と前々回の点数（配列ポインタ）＞);
 		song[Search(hoge)]->songHistory->Set(history);
