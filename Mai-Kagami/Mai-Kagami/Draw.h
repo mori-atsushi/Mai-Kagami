@@ -42,12 +42,15 @@ public:
 	Draw(const float x, const float y);
 	void View();
 	void SetAlpha(const int alpha = 255); //透明度指定
-	void SetAlphaAnimation(int alpha, Easing ease = LINER);
+	int GetAlpha();
+	void SetAlphaAnimation(int alpha = 255, Easing ease = LINER);
 	void Update();	// アニメーション更新
 	void SetViewFlag(const boolean viewFlag);
 private:
 	virtual void ContentView() = 0; //表示メソッド
 	int alpha = 255; //透明度
+	int target_alpha, default_alpha;
+	Easing ease_alpha;
 	boolean viewFlag = TRUE;
 };
 

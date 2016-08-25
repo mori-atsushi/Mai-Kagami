@@ -52,15 +52,16 @@ void SongSelectCover::Update(int num, int max) {
 		coverGraph->SetDuration(duration);
 		coverGraph->SetPosAnimation(WIDTH * 0.5, y, Animation::EaseOut_SINE);
 	}
+	if (n != 0)
+		coverGraph->SetAlphaAnimation(180); //透明度指定
+	else
+		coverGraph->SetAlphaAnimation(); //透明度解除
+
 	coverGraph->Update(); // アニメーション更新
 }
 
 void SongSelectCover::Draw(int scene) {
 	int n = GetNow();
-	if (n != 0)
-		coverGraph->SetAlpha(180); //透明度指定
-	else
-		coverGraph->SetAlpha(); //透明度解除
 	if (n <= 6)	// 移動中を考えて 5 も描画
 		coverGraph->View();
 

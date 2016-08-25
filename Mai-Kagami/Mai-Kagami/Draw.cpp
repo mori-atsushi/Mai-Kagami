@@ -96,12 +96,23 @@ void Draw::SetAlpha(const int alpha) {
 	this->alpha = alpha;
 }
 
-void Draw::SetAlphaAnimation(int alpha, Easing ease) {
+int Draw::GetAlpha() {
+	return alpha;
+}
 
+void Draw::SetAlphaAnimation(int target_alpha, Easing ease) {
+	if (GetTime() != 0)
+		return;
+	default_alpha = GetAlpha();
+	this->target_alpha= target_alpha;
+	ease_alpha = ease;
 }
 
 void Draw::Update() {
 	Pos::Update();
+	double r = UpdateRate(ease_alpha);
+	int na = default_alpha + (target_alpha - default_alpha) * r;
+	SetAlpha(na);
 }
 
 Draw2::Draw2(const int pos) {
