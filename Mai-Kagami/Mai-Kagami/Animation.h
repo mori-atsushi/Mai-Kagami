@@ -25,7 +25,6 @@ public:
 	};
 protected:
 	double UpdateRate(Easing);
-//	void SetRate(MyTime, int);
 	void SetTime(MyTime);
 private:
 	MyTime t = 0;		// アニメーションの現在時刻

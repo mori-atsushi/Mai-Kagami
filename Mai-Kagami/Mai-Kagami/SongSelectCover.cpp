@@ -11,16 +11,8 @@ void SongSelectCover::Load(int max) {
 	danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.57);
 	danceMovie->ChangeEx(0.5);
 	coverGraph->Load();
-	//Update(0, max);
 	Change(0, max);
-	int n = GetNow();
-	//int h = 0;
-	//if (n == 0)
-	//	h = HEIGHT * 0.35;
-	//else if (n == -1)
-	//	h = HEIGHT * 0.35 - 180;
-	//else
-	//	h = HEIGHT * 0.35 + 30 + 150 * n;
+
 	coverGraph->ChangePos(WIDTH * 0.5, CalcY());
 	coverGraph->SetAlpha(CalcAlpha());
 	coverGraph->ChangeEx(CalcEx());

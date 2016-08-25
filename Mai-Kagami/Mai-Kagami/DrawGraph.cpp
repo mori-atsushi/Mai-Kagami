@@ -43,8 +43,6 @@ void MyDrawGraph::SetExAnimation(double target_ex, Easing ease) {
 void MyDrawGraph::Update() {
 	double r = UpdateRate(ease_ex);
 	float nex = default_ex + (target_ex - default_ex) * r;
-	//printfDx("Update: %f %f \n", default_x, default_y);
-	//printfDx("Update: %f %f\n", GetX(), GetY());
 	ChangeEx(nex);
 	Draw::Update();
 }
