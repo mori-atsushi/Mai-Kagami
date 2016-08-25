@@ -13,11 +13,12 @@
 #include "ThroughOption.h"
 #include "PartOption.h"
 #include "Scene.h"
+#include "User.h"
 
 //曲選択画面関係
 class SongSelect : public Scene{
 public:
-	SongSelect(Font *font, Touch *touch, Songs *songs);
+	SongSelect(Font *font, Touch *touch, Songs *songs, User *user);
 	MainScene Switch(const MainScene scene);
 	~SongSelect();
 private:
@@ -28,7 +29,7 @@ private:
 	ModeSelectButton *modeSelectButton; //モード選択ボタン
 	ThroughOptionButton *throughOptionButton; //通し練習オプションボタン
 	PartOptionButton *partOptionButton; //部分練習オプションボタン
-	SongSelectScene scene;
+	int scene;
 	void ContentLoad();
 	void ContentUpdate();
 	void ContentView();

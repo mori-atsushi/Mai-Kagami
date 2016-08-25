@@ -16,7 +16,7 @@
 class SongSelectButton : public SubScene{
 public:
 	SongSelectButton(Font *font, Touch *touch); //èâä˙âª
-	SongSelectScene Switch(const SongSelectScene scene);
+	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView(); //ï\é¶
 	~SongSelectButton();
@@ -28,7 +28,7 @@ private:
 class SongSelectPop : public SubScene {
 public:
 	SongSelectPop(Font *font, Touch *touch);
-	SongSelectScene Switch(const SongSelectScene scene);
+	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView();
 	~SongSelectPop();

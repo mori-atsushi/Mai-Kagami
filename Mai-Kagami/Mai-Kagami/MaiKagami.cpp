@@ -4,11 +4,13 @@ MaiKagami::MaiKagami() {
 	touch = new Touch();
 	font = new Font();
 	songs = new Songs(font); //‹Èˆê——ì¬
-	top = new Top(font);
-	songSelect = new SongSelect(font, touch, songs);
+	user = new User();
+	top = new Top(font, user);
+	songSelect = new SongSelect(font, touch, songs, user);
 	throughMain = new ThroughMain(font, touch, songs);
 	throughResultMain = new ThroughResultMain(font, touch, songs);
 	partMain = new PartMain(font, touch, songs);
+	scene = TOP;
 }
 
 //‘S‘Ì‚ÌZŒv

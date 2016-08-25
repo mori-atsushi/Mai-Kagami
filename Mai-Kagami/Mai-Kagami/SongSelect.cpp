@@ -9,7 +9,7 @@ SongSelectButton::SongSelectButton(Font *font, Touch *touch) {
 }
 
 //‹È‘I‘ğ‰æ–Êƒ{ƒ^ƒ“‰æ–ÊØ‚è‘Ö‚¦
-SongSelectScene SongSelectButton::Switch(const SongSelectScene scene) {
+int SongSelectButton::Switch(const int scene) {
 	if (button[1]->GetTouch() == 1)
 		return MODE;
 	if (button[3]->GetTouch() == 1)
@@ -46,7 +46,7 @@ SongSelectPop::SongSelectPop(Font *font, Touch *touch) {
 	button[1] = new CircleButton(font, touch, "‚¢‚¢‚¦", 2, WIDTH * 0.75, "White");
 }
 
-SongSelectScene SongSelectPop::Switch(const SongSelectScene scene) {
+int SongSelectPop::Switch(const int scene) {
 	if (touch->Get(1) == 1)
 		return BACK_TOP;
 	if (touch->Get(2) == 1)

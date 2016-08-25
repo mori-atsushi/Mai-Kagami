@@ -29,12 +29,19 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="KinectDistance.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Main.cpp">
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
+    <ClCompile Include="PartPause.cpp" />
     <ClCompile Include="PartPlay.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="PlayScreenObject.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -58,6 +65,7 @@
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="TopMain.cpp" />
     <ClCompile Include="Touch.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -76,7 +84,9 @@
     <ClInclude Include="PartDefine.h" />
     <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
+    <ClInclude Include="PartPause.h" />
     <ClInclude Include="PartPlay.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlayScreenObject.h" />
     <ClInclude Include="Scene.h" />
@@ -103,6 +113,7 @@
     <ClInclude Include="Top.h" />
     <ClInclude Include="TopMain.h" />
     <ClInclude Include="Touch.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2ED7E73D-E57A-4A66-AE24-94CE667A078D}</ProjectGuid>
@@ -159,7 +170,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
     </ClCompile>
@@ -171,9 +182,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -185,7 +196,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
@@ -201,9 +212,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -1,7 +1,8 @@
 #include "TopMain.h"
 
 //トップ画面コンストラクタ
-Top::Top(Font *font) {
+Top::Top(Font *font, User *user) {
+	this->user = user;
 	f = font;
 	topLogo = new TopLogo(HEIGHT / 3); //ロゴ初期化
 	topTouchMessage = new TopTouchMessage(f, HEIGHT * 0.42); //NFCタッチメッセージ初期化
@@ -18,7 +19,11 @@ void Top::ContentLoad() {
 
 //場面の切り替え
 MainScene Top::Switch(const MainScene scene) {
-	if (nfc.GetId() != 0) {
+	char* id = nfc.GetId();
+	if (id[0] != '\0') {
+		user->SetUserId(id);
+//		printfDx("id:%s", id);
+		nfc.reset_calledCont();
 		Delete();
 		return SONG_SELECT;
 	}

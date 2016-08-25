@@ -1,9 +1,9 @@
 #include "SongSelectMain.h"
 
-SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs) {
+SongSelect::SongSelect(Font *font, Touch *touch, Songs *songs, User *user) {
 	songSelectTitle = new SongSelectTitle(font); //曲選択画面タイトル初期化
 	songSelectButton = new SongSelectButton(font, touch);
-	songInformation = new SongInformation(font, songs, touch); //選択中の曲初期化
+	songInformation = new SongInformation(font, songs, touch, user); //選択中の曲初期化
 	songSelectPop = new SongSelectPop(font, touch);
 	modeSelectButton = new ModeSelectButton(font, touch); //モード選択ボタン初期化
 	throughOptionButton = new ThroughOptionButton(font, songs, touch); //通し練習オプションボタン初期化
@@ -39,6 +39,8 @@ MainScene SongSelect::Switch(const MainScene scene) {
 		this->scene = throughOptionButton->Switch(this->scene);
 		break;
 	case OPTION2:
+	case OPTION2_PART:
+	case OPTION2_SPEED:
 		this->scene = partOptionButton->Switch(this->scene);
 		break;
 	}

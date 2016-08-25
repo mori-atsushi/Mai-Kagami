@@ -7,6 +7,7 @@
 #include "Songs.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
+#include "PauseScreen.h"
 #include "Touch.h"
 #include "Scene.h"
 
@@ -25,20 +26,9 @@ private:
 };
 
 //ポーズ画面
-class ThroughPauseScreen : public SubScene {
+class ThroughPauseScreen : public PauseScreen {
 public:
 	ThroughPauseScreen(Font *font, Songs *songs, Touch *touch);
-	void Load();
-	int Switch(const int scene);
-	void Delete();
-	~ThroughPauseScreen();
-private:
-	void ContentUpdate();
-	void ContentView();
-	Songs *songs;
-	BlackBox *blackBox; //背景半透明黒の四角形
-	MyDrawText *title;
-	CircleGraphTextButton *button[4];
 };
 
 //速度変更画面

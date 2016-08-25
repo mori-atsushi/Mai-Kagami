@@ -3,12 +3,14 @@
 PartMain::PartMain(Font *font, Touch *touch, Songs *songs) {
 	partStart = new PartStart(font);
 	partPlay = new PartPlay(font, songs, touch);
+	partPause = new PartPause(font, songs, touch);
 }
 
 void PartMain::ContentLoad() {
 	scene = PART_START;
 	partStart->Load();
 	partPlay->Load();
+	partPause->Load();
 }
 
 MainScene PartMain::Switch(const MainScene scene) {
@@ -18,6 +20,10 @@ MainScene PartMain::Switch(const MainScene scene) {
 	case PART_PLAY:
 	case PART_START:
 		this->scene = partPlay->Switch(this->scene);
+	case PART_PAUSE:
+	case PART_SETTING:
+	case PART_REWIND:
+		this->scene = partPause->Switch(this->scene);
 		break;
 	}
 
@@ -38,20 +44,24 @@ void PartMain::ContentUpdate() {
 		Load();
 		partStart->Update(scene);
 		partPlay->Update(scene);
+		partPause->Update(scene);
 	}
 }
 
 void PartMain::ContentView() {
 	partPlay->View();
 	partStart->View();
+	partPause->View();
 }
 
 void PartMain::ContentDelete() {
 	partStart->Delete();
 	partPlay->Delete();
+	partPause->Delete();
 }
 
 PartMain::~PartMain() {
 	delete partStart;
 	delete partPlay;
+	delete partPause;
 }

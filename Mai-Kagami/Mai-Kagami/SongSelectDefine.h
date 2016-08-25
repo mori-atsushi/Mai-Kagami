@@ -8,6 +8,8 @@ typedef enum {
 	MODE,
 	OPTION1,
 	OPTION2,
+	OPTION2_PART,
+	OPTION2_SPEED,
 	NEXT1,
 	NEXT2
 } SongSelectScene;

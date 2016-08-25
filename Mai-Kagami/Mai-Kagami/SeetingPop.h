@@ -30,15 +30,28 @@ private:
 	Songs *songs;
 };
 
+//区間設定オプション表示
+class PartOption {
+public:
+	PartOption(Font *font, Songs *songs, Touch *touch);
+	void Check();
+	void View();
+	~PartOption();
+private:
+	Button *button[4];
+	MyDrawText *part[4];
+	Songs *songs;
+};
+
 //スピードオプションポップアップ
 class SpeedPop : public SubScene {
 public:
 	SpeedPop(Font *font, Songs *songs, Touch *touch);
 	void Load();
-	void ContentUpdate();
-	void ContentView();
 	~SpeedPop();
 protected:
+	void ContentUpdate();
+	void ContentView();
 	Songs *songs;
 	Song *song;
 	SpeedOption *speedOption;
@@ -46,5 +59,23 @@ protected:
 	Button *button;
 	MyDrawText *text;
 };
+
+//区間設定オプションポップアップ
+class PartPop : public SubScene {
+public:
+	PartPop(Font *font, Songs *songs, Touch *touch);
+	void Load();
+	~PartPop();
+protected:
+	void ContentUpdate();
+	void ContentView();
+	Songs *songs;
+	Song *song;
+	PartOption *partOption;
+	BlackBox *blackBox;
+	Button *button;
+	MyDrawText *text;
+};
+
 
 #endif
