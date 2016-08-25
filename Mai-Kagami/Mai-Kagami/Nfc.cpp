@@ -20,21 +20,19 @@ char* Nfc::GetId()
 	if (!NFC_FLAG) //NFC_FLAGがfalseだったら
 		return "\0";
 
-	int recvsize;				//受信データ長
-	char recvMessage[5] = {"\0"};	//受信バッファ
-	char data[256] = { "\0" };		//受信したIDを格納する変数
-	int result = 0;				//IDをint型にキャストしたもの
-	int cont = 0;
-
-	//呼び出された回数をカウント
-	calledCont++;
-
 	//接続に失敗したときのエラー処理
 	//またnfc監視を初めてから1秒間の間は0を返す
+	calledCont++;
 	if (!Connect(IP, PORT) || calledCont < 10) {
 		printfDx("%d ", calledCont);
 		return "\0";
 	}
+
+
+	int recvsize;				//受信データ長
+	char recvMessage[5] = {"\0"};	//受信バッファ
+	char data[256] = { "\0" };		//受信したIDを格納する変数
+	int cont = 0;
 
 	//受信
 	//tcp/ip通信では4バイトごと送信される
@@ -53,16 +51,17 @@ char* Nfc::GetId()
 			continue;
 		//成功
 		case RECV_SUCCESSED:
-			printfDx("1 ");
 			strcat_s(data, sizeof(data), recvMessage);
 			//printfDx("%s\n", data);
+			for (int i = 0; i < 5; i++) {
+				recvMessage[i] = '\0';
+			}
 			continue;
 		//切断orエラー
 		case RECV_FAILED:
-			printfDx("2 ");
-			printfDx("%s:", data);
 			break;
 		}
+		printfDx(data);
 		break;
 	}
 	return data;
