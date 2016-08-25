@@ -48,7 +48,7 @@ void SongSelectCover::Update(int num, int max) {
 		coverGraph->SetPosAnimation(WIDTH * 0.5, y, 0);
 	}
 	else if (coverGraph->GetTime() == 0) { // Å‰‚¾‚¯
-		coverGraph->SetPosAnimation(WIDTH * 0.5, y, duration, Animation::SINE_2);
+		coverGraph->SetPosAnimation(WIDTH * 0.5, y, duration, Animation::EaseOut_SINE);
 	}
 	coverGraph->Update();
 }

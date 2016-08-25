@@ -2,30 +2,34 @@
 
 // アニメーションの進行割合を更新して戻り値へ
 // 終了時刻, タイプ, 遅延
-double Animation::UpdateRate() {
+double Animation::UpdateRate(Easing ease) {
 	double r, rate;
 	if (duration)
 		r = (double)t / duration;
 	else
 		r = 1;
 	switch (ease) {
-	case SINE:
+	case EaseInOut_SINE:
 		rate = (1 - cos(r * M_PI)) / 2;
 		break;
-	case SINE_2:
+	case EaseOut_SINE:
 		rate = sin(r * M_PI / 2);
 		break;
-	case SINE_3:
+	case EaseIn_SINE:
 		rate = 1 - cos(r * M_PI / 2);
 		break;
-	case QUAD:
+	case EaseInOut_QUAD:
 		rate = r < 0.5 ? r * r * 2 : - (r - 1) * (r - 1) * 2 + 1;
 		break;
-	case LINER_QUAD:
+	case LinerInEaseOut_QUAD:
 		rate = r < 0.5 ? r * 4 / 3 : - (r - 1) * (r - 1) * 4 / 3 + 1;
 		break;
-	case QUAD_LINER:
+	case EaseInLinerOut_QUAD:
 		rate = r < 0.5 ? r * r * 4 / 3 : (r * 4 - 1) / 3;
+		break;
+	case EaseOutBack_QUAD:
+		//rate = - (r - 2.0 / 3) * (r - 2.0 / 3) * 3 + 4.0 / 3;
+		rate = - (r - 3.0 / 4) * (r - 3.0 / 4) * 2 + 9.0 / 8;
 		break;
 	case LINER: default:
 		rate = r;
@@ -37,9 +41,10 @@ double Animation::UpdateRate() {
 }
 
 // パラメータ代入
-void Animation::SetRate(MyTime _duration, int _ease = LINER) {
+//void Animation::SetRate(MyTime _duration, int _ease = LINER) {
+void Animation::SetDuration(MyTime _duration) {
 	duration = _duration <= 0 ? 0 : _duration;
-	ease = _ease;
+//	ease = _ease;
 }
 
 // アニメーション時刻を強制変更 (引数に0を入れれば時刻初期化)

@@ -21,7 +21,7 @@ private:
 class Pos : public Animation {
 public:
 	void ChangePos(const float x, const float y); //座標変更
-	void SetPosAnimation(float target_x, float target_y, MyTime duration, int ease = LINER);  // Jaity
+	void SetPosAnimation(float target_x, float target_y, MyTime duration, Easing ease = LINER);  // Jaity
 	void Update();	// Jaity
 	float GetX(); //x座標取得
 	float GetY(); //y座標取得
@@ -32,6 +32,7 @@ protected:
 private:
 	float target_x, target_y;	// アニメーション時の目標座標
 	float default_x, default_y;	// アニメーション開始時の座標
+	Easing ease;
 };
 
 //描画用クラス
