@@ -21,7 +21,9 @@ void SongSelectCover::Load(int max) {
 	//	h = HEIGHT * 0.35 - 180;
 	//else
 	//	h = HEIGHT * 0.35 + 30 + 150 * n;
-	coverGraph->ChangePos(WIDTH * 0.5, GetY());
+	coverGraph->ChangePos(WIDTH * 0.5, CalcY());
+	coverGraph->SetAlpha(CalcAlpha());
+	coverGraph->ChangeEx(CalcEx());
 	playFlag = FALSE;
 }
 
@@ -34,15 +36,8 @@ void SongSelectCover::Update(int num, int max) {
 	//static int t = 0;	// 邪魔 Jaity
 	Change(num, max);
 	int n = GetNow();
-	int duration = 10;
-	float y = GetY();
-
-	if (n == 0) {
-		coverGraph->ChangeEx(1.0);
-	}
-	else {
-		coverGraph->ChangeEx(0.7);
-	}
+	int duration = 20;
+	float y = CalcY();
 
 	if (n == -2 && num > 0 || n == max - 3 && num < 0) {
 		coverGraph->SetDuration(0);
@@ -52,12 +47,11 @@ void SongSelectCover::Update(int num, int max) {
 		coverGraph->SetDuration(duration);
 		coverGraph->SetPosAnimation(WIDTH * 0.5, y, Animation::EaseOut_SINE);
 	}
-	if (n != 0)
-		coverGraph->SetAlphaAnimation(180); //透明度指定
-	else
-		coverGraph->SetAlphaAnimation(); //透明度解除
 
-	coverGraph->Update(); // アニメーション更新
+	coverGraph->SetExAnimation( CalcEx(), Animation::EaseOut_SINE );
+	coverGraph->SetAlphaAnimation( CalcAlpha(), Animation::EaseOut_SINE );
+
+	coverGraph->Update(); // (あらゆる)アニメーション更新
 }
 
 void SongSelectCover::Draw(int scene) {
@@ -97,7 +91,8 @@ void SongSelectCover::Change(int num, int max) {
 	SetNow(n);
 }
 
-float SongSelectCover::GetY() {
+// y座標を算出して取得
+float SongSelectCover::CalcY() {
 	int n = GetNow();
 	float y;
 
@@ -111,4 +106,12 @@ float SongSelectCover::GetY() {
 		y = HEIGHT * 0.35 + 30 + 150 * n;
 
 	return y;
+}
+
+int SongSelectCover::CalcAlpha() {
+	return GetNow() ? 180 : 255;
+}
+
+double SongSelectCover::CalcEx() {
+	return GetNow() ? 0.7 : 1.0;
 }

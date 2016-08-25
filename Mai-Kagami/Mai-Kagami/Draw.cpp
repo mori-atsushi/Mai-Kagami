@@ -109,10 +109,10 @@ void Draw::SetAlphaAnimation(int target_alpha, Easing ease) {
 }
 
 void Draw::Update() {
-	Pos::Update();
 	double r = UpdateRate(ease_alpha);
 	int na = default_alpha + (target_alpha - default_alpha) * r;
 	SetAlpha(na);
+	Pos::Update();
 }
 
 Draw2::Draw2(const int pos) {

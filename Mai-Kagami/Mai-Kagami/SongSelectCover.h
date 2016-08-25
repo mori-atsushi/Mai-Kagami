@@ -20,7 +20,9 @@ public:
 	void Draw(int scene);
 private:
 	void Change(int num, int max); // publicから追放されました Jaity
-	float GetY();            // 位置番号から高さを決定
+	float CalcY();		// 位置番号から高さを決定
+	int CalcAlpha();		// 位置番号から高さを決定
+	double CalcEx();		// 位置番号から高さを決定
 	boolean playFlag = 0;
 	Font *font;
 };

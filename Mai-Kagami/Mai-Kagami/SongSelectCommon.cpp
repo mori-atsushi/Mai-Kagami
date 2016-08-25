@@ -92,14 +92,14 @@ void SongInformation::ContentUpdate() {
 	case MAIN:
 		if (nowScene == lastScene) {
 			//ボタン0が押されたら
-			if (touch->Get(0) == 1) {
+			if(touch->Input2(0)) {
 				direct = 1;  // Jaity
 				for (int i = 0; i < n; i++)
 					songCover[i]->coverGraph->Reset();
 			}
 
 			//ボタン2が押されたら
-			if (touch->Get(2) == 1) {
+			if(touch->Input2(2)) {
 				direct = -1;  // Jaity
 				for (int i = 0; i < n; i++)
 					songCover[i]->coverGraph->Reset();

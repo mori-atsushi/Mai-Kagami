@@ -13,11 +13,16 @@ public:
 	void ContentView(); //表示
 	void Load();
 	void ChangeEx(const double ExRate); //倍率変更
+	double GetEx();
+	void SetExAnimation(double target_ex, Easing ease = LINER);
+	void Update();
 	void Release();
 protected:
 	std::string fileName; //ファイル名
 	int handle; //画像用ハンドル
 	double ex; //表示倍率
+	double target_ex, default_ex;
+	Easing ease_ex;
 };
 
 //動画関係
