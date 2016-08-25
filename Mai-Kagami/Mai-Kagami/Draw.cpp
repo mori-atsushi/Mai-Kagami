@@ -37,7 +37,7 @@ void Pos::ChangePos(const float x, const float y) {
 }
 
 // アニメーション用パラメータセット Jaity
-void Pos::SetPosAnimation(float target_x, float target_y, MyTime duration, Easing ease) {
+void Pos::SetPosAnimation(float target_x, float target_y, Easing ease) {
 	if (GetTime() != 0)
 		return;
 	default_x = GetX();
@@ -46,7 +46,7 @@ void Pos::SetPosAnimation(float target_x, float target_y, MyTime duration, Easin
 	this->target_y = target_y;
 	this->ease = ease;
 //	SetRate(duration, ease);
-	SetDuration(duration);
+	//SetDuration(duration);
 	//printfDx("Set: %f %f\n", default_x, default_y);
 	//printfDx("Set: %f %f\n", target_x, target_y);
 }
@@ -94,6 +94,14 @@ void Draw::SetViewFlag(const boolean flag) {
 //透明度指定
 void Draw::SetAlpha(const int alpha) {
 	this->alpha = alpha;
+}
+
+void Draw::SetAlphaAnimation(int alpha, Easing ease) {
+
+}
+
+void Draw::Update() {
+	Pos::Update();
 }
 
 Draw2::Draw2(const int pos) {

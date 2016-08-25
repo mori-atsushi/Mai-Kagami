@@ -45,12 +45,14 @@ void SongSelectCover::Update(int num, int max) {
 	}
 
 	if (n == -2 && num > 0 || n == max - 3 && num < 0) {
-		coverGraph->SetPosAnimation(WIDTH * 0.5, y, 0);
+		coverGraph->SetDuration(0);
+		coverGraph->SetPosAnimation(WIDTH * 0.5, y);
 	}
 	else if (coverGraph->GetTime() == 0) { // 最初だけ
-		coverGraph->SetPosAnimation(WIDTH * 0.5, y, duration, Animation::EaseOut_SINE);
+		coverGraph->SetDuration(duration);
+		coverGraph->SetPosAnimation(WIDTH * 0.5, y, Animation::EaseOut_SINE);
 	}
-	coverGraph->Update();
+	coverGraph->Update(); // アニメーション更新
 }
 
 void SongSelectCover::Draw(int scene) {

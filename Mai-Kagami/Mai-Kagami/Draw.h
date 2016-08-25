@@ -21,8 +21,8 @@ private:
 class Pos : public Animation {
 public:
 	void ChangePos(const float x, const float y); //座標変更
-	void SetPosAnimation(float target_x, float target_y, MyTime duration, Easing ease = LINER);  // Jaity
-	void Update();	// Jaity
+	void SetPosAnimation(float target_x, float target_y, Easing ease = LINER);  // Jaity
+	void Update();	// アニメーション更新
 	float GetX(); //x座標取得
 	float GetY(); //y座標取得
 protected:
@@ -42,6 +42,8 @@ public:
 	Draw(const float x, const float y);
 	void View();
 	void SetAlpha(const int alpha = 255); //透明度指定
+	void SetAlphaAnimation(int alpha, Easing ease = LINER);
+	void Update();	// アニメーション更新
 	void SetViewFlag(const boolean viewFlag);
 private:
 	virtual void ContentView() = 0; //表示メソッド
