@@ -132,28 +132,22 @@ int Songs::LoadHistory(const char *userId) {
 
 	//ボディ取得
 	lpData = ReadData(hRequest, &dwSize);
-	printfDx((char*)lpData);
-	printfDx("\n");
 	for (int i = 0; i < NUMSONGS; i++) {
 		char* temp = NULL;
 		char* ctx;//内部的に使用するので深く考えない
 
 		if (i == 0) {
-			//temp = strtok((char*)lpData, "\n");
 			temp = strtok_s((char*)lpData, "\n", &ctx);
 
 		} else {
-			//temp = strtok(NULL, "\n");
 			temp = strtok_s(0, "\n", &ctx);
 		}
 		if (temp == NULL)break;
 		int history[2];
 		int hoge;
 		sscanf_s(temp, "%d||%d||%d", &hoge, &history[0], &history[1]);
-		printfDx("%d\n", hoge);
 		//以下の式を実行することによってデータを保存
 		//song[Search(<曲ID>)]->songHistory->Set(＜前回と前々回の点数（配列ポインタ）＞);
-		printfDx("%d\n", Search(hoge));
 		song[Search(hoge)]->songHistory->Set(history);
 	}
 	HeapFree(GetProcessHeap(), 0, lpData);

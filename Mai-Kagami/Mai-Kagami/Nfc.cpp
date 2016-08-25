@@ -21,8 +21,8 @@ char* Nfc::GetId()
 		return "\0";
 
 	int recvsize;				//受信データ長
-	char recvMessage[5] = {};	//受信バッファ
-	char data[256] = "\0";		//受信したIDを格納する変数
+	char recvMessage[5] = {"\0"};	//受信バッファ
+	char data[256] = { "\0" };		//受信したIDを格納する変数
 	int result = 0;				//IDをint型にキャストしたもの
 	int cont = 0;
 
@@ -32,8 +32,8 @@ char* Nfc::GetId()
 	//接続に失敗したときのエラー処理
 	//またnfc監視を初めてから1秒間の間は0を返す
 	if (!Connect(IP, PORT) || calledCont < 10) {
-//		printfDx("%d ", calledCont);
-		return data;
+		printfDx("%d ", calledCont);
+		return "\0";
 	}
 
 	//受信
@@ -49,22 +49,22 @@ char* Nfc::GetId()
 		switch (status) {
 		//データが来ていないとき
 		case RECV_STILL:
-//			printfDx("0 ");
+			//printfDx("0 ");
 			continue;
 		//成功
 		case RECV_SUCCESSED:
-//			printfDx("1 ");
-			strcat(data, recvMessage);
-//			printfDx(data);
+			printfDx("1 ");
+			strcat_s(data, sizeof(data), recvMessage);
+			//printfDx("%s\n", data);
 			continue;
 		//切断orエラー
 		case RECV_FAILED:
-//			printfDx("2 ");
+			printfDx("2 ");
+			printfDx("%s:", data);
 			break;
 		}
 		break;
 	}
-
 	return data;
 }
 
