@@ -75,8 +75,7 @@ void SongSelectCover::Draw(int scene) {
 		break;
 	default:
 		if (n == 0 && !playFlag) {
-			PlayMusic(music, DX_PLAYTYPE_LOOP); // 重いので一時的に消去 Jaity
-			//PlayMusic(music, DX_PLAYTYPE_LOOP);
+//			PlayMusic(music, DX_PLAYTYPE_LOOP); // 重いので一時的に消去 Jaity
 			playFlag = TRUE;
 		}
 		else if (n != 0) {
