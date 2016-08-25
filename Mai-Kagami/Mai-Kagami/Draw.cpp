@@ -44,7 +44,7 @@ void Pos::SetPosAnimation(float target_x, float target_y, Easing ease) {
 	default_y = GetY();
 	this->target_x = target_x;
 	this->target_y = target_y;
-	this->ease = ease;
+	ease_pos = ease;
 //	SetRate(duration, ease);
 	//SetDuration(duration);
 	//printfDx("Set: %f %f\n", default_x, default_y);
@@ -54,7 +54,7 @@ void Pos::SetPosAnimation(float target_x, float target_y, Easing ease) {
 
 // アニメーション更新 Jaity
 void Pos::Update() {
-	double r = UpdateRate(ease);
+	double r = UpdateRate(ease_pos);
 	float nx = default_x + (target_x - default_x) * r;
 	float ny = default_y + (target_y - default_y) * r;
 	//printfDx("Update: %f %f \n", default_x, default_y);

@@ -32,7 +32,7 @@ protected:
 private:
 	float target_x, target_y;	// アニメーション時の目標座標
 	float default_x, default_y;	// アニメーション開始時の座標
-	Easing ease;
+	Easing ease_pos;
 };
 
 //描画用クラス
