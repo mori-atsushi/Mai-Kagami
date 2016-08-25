@@ -38,7 +38,9 @@ int PartOptionPartPop::Switch(const int scene) {
 void PartOptionPartPop::ContentUpdate() {
 	static int lastScene = MAIN;
 	if (nowScene == OPTION2_PART) {
-		if (lastScene == nowScene)
+		if (lastScene == OPTION2)
+			PartPop::Init();
+		else if (lastScene == nowScene)
 			PartPop::ContentUpdate();
 		viewFlag = TRUE;
 	}
@@ -49,6 +51,7 @@ void PartOptionPartPop::ContentUpdate() {
 }
 
 PartOptionPreview::PartOptionPreview(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
 	button[0] = new CircleButton(font, touch, "区間", 0, WIDTH * 0.8);
 	button[1] = new CircleButton(font, touch, "", 2, WIDTH * 0.8);
 	button[2] = new CircleButton(font, touch, "スタート!", 3, WIDTH * 0.8);
@@ -57,9 +60,9 @@ PartOptionPreview::PartOptionPreview(Font *font, Songs *songs, Touch *touch) {
 	caption[0] = new MyDrawText(font, "開始：", WIDTH * 0.8, HEIGHT * 0.53, 2, 30);
 	caption[1] = new MyDrawText(font, "終了：", WIDTH * 0.8, HEIGHT * 0.555, 2, 30);
 	caption[2] = new MyDrawText(font, "速度：", WIDTH * 0.8, HEIGHT * 0.6, 2, 30);
-	para[0] = new MyDrawText(font, "Aパート1", WIDTH * 0.81, HEIGHT * 0.53, 0, 30, "Yellow");
-	para[1] = new MyDrawText(font, "Bパート2", WIDTH * 0.81, HEIGHT * 0.555, 0, 30, "Yellow");
-	para[2] = new MyDrawText(font, "×0.6", WIDTH * 0.81, HEIGHT * 0.6, 0, 30, "Yellow");
+	para[0] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.53, 0, 30, "Yellow");
+	para[1] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.555, 0, 30, "Yellow");
+	para[2] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.6, 0, 30, "Yellow");
 }
 
 int PartOptionPreview::Switch(const int scene) {
@@ -74,9 +77,15 @@ int PartOptionPreview::Switch(const int scene) {
 	return scene;
 }
 void PartOptionPreview::ContentUpdate() {
+	Song *song = songs->GetSong(songs->GetNowSong());
 	switch (nowScene)
 	{
 	case OPTION2:
+		char str[256];
+		sprintf_s(str, sizeof(str), "×%1.1lf", song->danceMovie->GetSpeed());
+		para[0]->ChangeText(song->GetPart(song->StartPart())->GetName());
+		para[1]->ChangeText(song->GetPart(song->EndPart())->GetName());
+		para[2]->ChangeText(str);
 		viewFlag = TRUE;
 		break;
 	default:

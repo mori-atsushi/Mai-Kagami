@@ -36,6 +36,7 @@ public:
 	int Switch(const int scene);
 	~PartOptionPreview();
 private:
+	Songs *songs;
 	void ContentUpdate();
 	void ContentView();
 	Button *button[4];
