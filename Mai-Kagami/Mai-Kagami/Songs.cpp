@@ -75,6 +75,7 @@ int Songs::LoadHistory(const char *userId) {
 	//URL
 	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=";
 	WCHAR		   szUserId[18];
+	printfDx(userId);
 	mbstowcs(szUserId, userId, 100);
 	wcscat(szUrl, szUserId);
 	LPBYTE         lpData;

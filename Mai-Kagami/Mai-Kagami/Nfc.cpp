@@ -7,6 +7,8 @@
 #define PORT 9999		//ポート番号
 #define IP "127.0.0.1"	//IP番号(ローカルホスト) 
 
+void strReplace(std::string& str, const std::string& from, const std::string& to);
+
 void Nfc::Init() 
 {
 	WSADATA data;
@@ -61,6 +63,11 @@ char* Nfc::GetId()
 		case RECV_FAILED:
 			break;
 		}
+		for (int i = 255; i >= 0; i--) {
+			if (data[i] == '\n') {
+				data[i] = '\0';
+			}
+		}
 		printfDx(data);
 		break;
 	}
@@ -109,3 +116,17 @@ RECVSTATUS Nfc::Recv(char* pData, int DataSize, int *pRecvSize)
 }
 
 void Nfc::reset_calledCont() { calledCont = 0; }
+
+/**
+* 文字列中から文字列を検索して別の文字列に置換する
+* @param str  : 置換対象の文字列。上書かれます。
+* @param from : 検索文字列
+* @param to   : 置換後の文字列
+*/
+void strReplace(std::string& str, const std::string& from, const std::string& to) {
+	std::string::size_type pos = 0;
+	while (pos = str.find(from, pos), pos != std::string::npos) {
+		str.replace(pos, from.length(), to);
+		pos += to.length();
+	}
+}
