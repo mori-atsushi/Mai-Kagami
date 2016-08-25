@@ -85,7 +85,7 @@ void MyDrawMovie::Seek(const int flame) {
 void MyDrawMovie::Start() {
 	if (!CheckHandleASyncLoad(handle)) {
 		SetSpeed();
-		if (GetNowFlame() == GetAllFlame())
+		if (GetNowFlame() == GetEndFlame())
 			Seek();
 		if(GetMovieStateToGraph(handle) == 0)
 			PlayMovieToGraph(handle);
@@ -122,16 +122,21 @@ int MyDrawMovie::GetStartFlame() {
 	return startFlame;
 }
 
+//最後のフレーム数取得
+int MyDrawMovie::GetEndFlame() {
+	if (endFlame == -1)
+		return GetAllFlame();
+	return endFlame;
+}
+
 //現在のフレーム数取得
 int MyDrawMovie::GetNowFlame() {
 	return TellMovieToGraphToFrame(handle);
 }
 
-//全体のフレーム数取得
+//動画のフレーム数取得
 int MyDrawMovie::GetAllFlame() {
-	if (endFlame == -1)
-		return GetMovieTotalFrameToGraph(handle) - 1;
-	return endFlame;
+	return GetMovieTotalFrameToGraph(handle) - 1;
 }
 
 //スタートフレーム指定

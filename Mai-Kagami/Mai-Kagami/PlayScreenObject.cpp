@@ -13,7 +13,7 @@ void PlayBar::Load(Song *song) {
 	this->song = song;
 	song->LoadPart();
 	int startFlame = song->danceMovie->GetStartFlame();
-	int endFlame = song->danceMovie->GetAllFlame();
+	int endFlame = song->danceMovie->GetEndFlame();
 	for (int i = 0; i < song->GetPartNum(); i++) {
 		SongPart *songPart = song->GetPart(i);
 		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)(songPart->GetFlame() - startFlame) / (endFlame - startFlame);
@@ -28,7 +28,7 @@ void PlayBar::Load(Song *song) {
 void PlayBar::Update() {
 	int nowFlame = song->danceMovie->GetNowFlame();
 	int startFlame = song->danceMovie->GetStartFlame();
-	int lastFlame = song->danceMovie->GetAllFlame();
+	int lastFlame = song->danceMovie->GetEndFlame();
 	float now = WIDTH * 0.56 * (float)(nowFlame - startFlame) / (lastFlame - startFlame);
 	barNow->ChangeSize(now, 10);
 	for (int i = 0; i < 2; i++)

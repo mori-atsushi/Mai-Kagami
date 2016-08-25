@@ -38,8 +38,9 @@ public:
 	void SetSpeed(); //スピードセット
 	double GetSpeed(); //スピード取得
 	int GetStartFlame(); //最初のフレーム数取得
-	int GetAllFlame(); //全体のフレーム数取得
+	int GetEndFlame(); //最後のフレーム数取得
 	int GetNowFlame(); //現在のフレーム数取得
+	int GetAllFlame(); //動画のフレームズ数取得
 	void SetStartFlame(const int flame = 0); //スタートフレーム指定
 	void SetEndFlame(const int flame = -1); //エンドフレーム指定
 	~MyDrawMovie();
