@@ -11,16 +11,21 @@ void SongSelectCover::Load(int max) {
 	danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.57);
 	danceMovie->ChangeEx(0.5);
 	coverGraph->Load();
+	coverWhite->Load();
 	Change(0, max);
 
 	coverGraph->ChangePos(WIDTH * 0.5, CalcY());
 	coverGraph->SetAlpha(CalcAlpha());
 	coverGraph->ChangeEx(CalcEx());
+	coverWhite->ChangePos(WIDTH * 0.5, CalcY());
+	coverWhite->SetAlpha(CalcAlphaWhite());
+	coverWhite->ChangeEx(CalcEx());
 	playFlag = FALSE;
 }
 
 void SongSelectCover::Release() {
 	coverGraph->Release();
+	coverWhite->Release();
 }
 
 //表示位置の計算
@@ -34,23 +39,31 @@ void SongSelectCover::Update(int num, int max) {
 	if (n == -2 && num > 0 || n == max - 3 && num < 0) {
 		coverGraph->SetDuration(0);
 		coverGraph->SetPosAnimation(WIDTH * 0.5, y);
+		coverWhite->SetDuration(0);
+		coverWhite->SetPosAnimation(WIDTH * 0.5, y);
 	}
 	else if (coverGraph->GetTime() == 0) { // 最初だけ
 		coverGraph->SetDuration(duration);
 		coverGraph->SetPosAnimation(WIDTH * 0.5, y, Animation::EaseOut_SINE);
+		coverWhite->SetDuration(duration);
+		coverWhite->SetPosAnimation(WIDTH * 0.5, y, Animation::EaseOut_SINE);
 	}
 
-	coverGraph->SetExAnimation( CalcEx(), Animation::EaseOut_SINE );
-	coverGraph->SetAlphaAnimation( CalcAlpha(), Animation::EaseOut_SINE );
+	coverGraph->SetExAnimation(CalcEx(), Animation::EaseOut_SINE);
+	coverGraph->SetAlphaAnimation(CalcAlpha(), Animation::EaseOut_SINE);
+	coverWhite->SetExAnimation(CalcEx(), Animation::EaseOut_SINE);
+	coverWhite->SetAlphaAnimation(CalcAlphaWhite(), Animation::EaseOut_SINE);
 
-	coverGraph->Update(); // (あらゆる)アニメーション更新
+	coverGraph->Update(); // アニメーション更新
+	coverWhite->Update();
 }
 
 void SongSelectCover::Draw(int scene) {
 	int n = GetNow();
-	if (n <= 6)	// 移動中を考えて 5 も描画
+	if (n <= 6) {	// 移動中を考えて 5 も描画
+		coverWhite->View();
 		coverGraph->View();
-
+	}
 	switch (scene) {
 	case OPTION1:
 		if(playFlag)
@@ -102,6 +115,10 @@ float SongSelectCover::CalcY() {
 
 int SongSelectCover::CalcAlpha() {
 	return GetNow() ? 180 : 255;
+}
+
+int SongSelectCover::CalcAlphaWhite() {
+	return GetNow() ? 0 : 255;
 }
 
 double SongSelectCover::CalcEx() {

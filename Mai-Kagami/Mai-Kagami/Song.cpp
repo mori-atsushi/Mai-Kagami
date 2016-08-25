@@ -69,6 +69,7 @@ Song::Song(Font *font, const int id, const char *title, const char *artist, cons
 
 	drawSongTitle = new DrawSongTitle(font, title, artist);
 	coverGraph = new MyDrawGraph(cover);
+	coverWhite = new MyDrawGraph("img/box.png");
 	danceMovie = new MyDrawMovie(movie);
 	songHistory = new SongHistory();
 }

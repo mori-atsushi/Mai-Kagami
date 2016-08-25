@@ -55,6 +55,7 @@ public:
 	int GetPartNum(); //パート数取得
 	DrawSongTitle *drawSongTitle; //曲名、アーティスト表示
 	MyDrawGraph *coverGraph; //カバー画像
+	MyDrawGraph *coverWhite; //カバー画像の背景の白
 	MyDrawMovie *danceMovie; //動画
 	SongHistory *songHistory;
 protected:

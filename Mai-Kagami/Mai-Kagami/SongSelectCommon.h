@@ -40,7 +40,7 @@ private:
 	Songs *songs;
 	SongSelectCover *nowSong;
 	MyDrawGraph *grad[2]; //カバー画像
-	MyDrawGraph *box; //カバー画像
+//	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;
 	MyDrawText *songLast[2];
 };

@@ -66,7 +66,7 @@ SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *u
 	myDrawBox->SetAlpha(90); //透明度指定
 	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22-30, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
-	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
+//	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
 	songLast[1] = new MyDrawText(font, "前々回： --点", WIDTH * 0.75, HEIGHT * 0.385, 0, 24); //テキスト初期化
 }
@@ -78,7 +78,7 @@ void SongInformation::Load() {
 		grad[i]->Load();
 	for (int i = 0; i < n; i++)
 		songCover[i]->Load(n);
-	box->Load();
+//	box->Load();
 	viewFlag = TRUE;
 }
 
@@ -94,15 +94,19 @@ void SongInformation::ContentUpdate() {
 			//ボタン0が押されたら
 			if(touch->Input2(0)) {
 				direct = 1;  // Jaity
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < n; i++) {
 					songCover[i]->coverGraph->Reset();
+					songCover[i]->coverWhite->Reset();
+				}
 			}
 
 			//ボタン2が押されたら
 			if(touch->Input2(2)) {
 				direct = -1;  // Jaity
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < n; i++) {
 					songCover[i]->coverGraph->Reset();
+					songCover[i]->coverWhite->Reset();
+				}
 			}
 		}
 
@@ -151,7 +155,7 @@ void SongInformation::ContentView() {
 	case BACK:
 	case MAIN:
 		myDrawBox->View();
-		box->View();
+//		box->View();
 		for (int i = 0; i < n; i++)
 			songCover[i]->Draw(nowScene);
 		for (int i = 0; i < 2; i++)
@@ -176,7 +180,7 @@ void SongInformation::Delete() {
 }
 
 SongInformation::~SongInformation() {
-	delete box;
+//	delete box;
 	delete myDrawBox;
 	for (int i = 0; i < n; i++)
 		delete songCover[i];
