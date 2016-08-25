@@ -9,9 +9,25 @@ double Animation::UpdateRate() {
 	else
 		r = 1;
 	switch (ease) {
-	EASE:
+	case SINE:
 		rate = (1 - cos(r * M_PI)) / 2;
-	LINER: default:
+		break;
+	case SINE_2:
+		rate = sin(r * M_PI / 2);
+		break;
+	case SINE_3:
+		rate = 1 - cos(r * M_PI / 2);
+		break;
+	case QUAD:
+		rate = r < 0.5 ? r * r * 2 : - (r - 1) * (r - 1) * 2 + 1;
+		break;
+	case LINER_QUAD:
+		rate = r < 0.5 ? r * 4 / 3 : - (r - 1) * (r - 1) * 4 / 3 + 1;
+		break;
+	case QUAD_LINER:
+		rate = r < 0.5 ? r * r * 4 / 3 : (r * 4 - 1) / 3;
+		break;
+	case LINER: default:
 		rate = r;
 		break;
 	}

@@ -1,4 +1,5 @@
 #include "SongSelectCover.h"
+#include "Animation.h"
 
 SongSelectCover::SongSelectCover(Font *font, Song *song, const int now) 
 	: Song(*song) {
@@ -6,10 +7,21 @@ SongSelectCover::SongSelectCover(Font *font, Song *song, const int now)
 	SetNow(now);
 }
 
-void SongSelectCover::Load() {
+void SongSelectCover::Load(int max) {
 	danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.57);
 	danceMovie->ChangeEx(0.5);
 	coverGraph->Load();
+	//Update(0, max);
+	Change(0, max);
+	int n = GetNow();
+	//int h = 0;
+	//if (n == 0)
+	//	h = HEIGHT * 0.35;
+	//else if (n == -1)
+	//	h = HEIGHT * 0.35 - 180;
+	//else
+	//	h = HEIGHT * 0.35 + 30 + 150 * n;
+	coverGraph->ChangePos(WIDTH * 0.5, GetY());
 	playFlag = FALSE;
 }
 
@@ -23,32 +35,22 @@ void SongSelectCover::Update(int num, int max) {
 	Change(num, max);
 	int n = GetNow();
 	int duration = 10;
+	float y = GetY();
 
 	if (n == 0) {
 		coverGraph->ChangeEx(1.0);
-		if (coverGraph->GetTime() == 0) { // 最初だけ
-			coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35, duration);
-			//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
-		}
-		//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35);
-		//coverGraph->Update();
 	}
 	else {
 		coverGraph->ChangeEx(0.7);
-		if (coverGraph->GetTime() == 0) { // 最初だけ
-			if (n == -1) {
-				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 - 180);
-				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 - 180, duration);
-			}
-			else if (n <= 5) {
-				//coverGraph->ChangePos(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n);
-				coverGraph->SetPosAnimation(WIDTH * 0.5, HEIGHT * 0.35 + 30 + 150 * n, duration);
-			}
-		}
+	}
+
+	if (n == -2 && num > 0 || n == max - 3 && num < 0) {
+		coverGraph->SetPosAnimation(WIDTH * 0.5, y, 0);
+	}
+	else if (coverGraph->GetTime() == 0) { // 最初だけ
+		coverGraph->SetPosAnimation(WIDTH * 0.5, y, duration, Animation::SINE_2);
 	}
 	coverGraph->Update();
-	//if (t < 1000)	// 邪魔 Jaity
-	//	t++;		// 邪魔 Jaity
 }
 
 void SongSelectCover::Draw(int scene) {
@@ -57,7 +59,7 @@ void SongSelectCover::Draw(int scene) {
 		coverGraph->SetAlpha(180); //透明度指定
 	else
 		coverGraph->SetAlpha(); //透明度解除
-	if (n >= -1 && n <= 5)
+	if (n <= 6)	// 移動中を考えて 5 も描画
 		coverGraph->View();
 
 	switch (scene) {
@@ -88,10 +90,22 @@ void SongSelectCover::Draw(int scene) {
 //曲の位置IDを変更
 void SongSelectCover::Change(int num, int max) {
 	int n = GetNow();
-	n += num;
-	if (n == -2)
-		n = max - 2;
-	if (n == max - 1)
-		n = -1;
+	n = (n + num + max + 2) % max - 2;
 	SetNow(n);
+}
+
+float SongSelectCover::GetY() {
+	int n = GetNow();
+	float y;
+
+	n = n < 6 ? n : 6;
+
+	if (n <= -1)
+		y =  HEIGHT * 0.35 - 30 + 150 * n;
+	else if (n == 0)
+		y = HEIGHT * 0.35;
+	else
+		y = HEIGHT * 0.35 + 30 + 150 * n;
+
+	return y;
 }

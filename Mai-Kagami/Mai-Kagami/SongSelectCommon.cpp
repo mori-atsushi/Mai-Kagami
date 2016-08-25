@@ -64,7 +64,7 @@ SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *u
 	float x = HEIGHT * 0.35;
 	myDrawBox = new MyDrawBox(WIDTH * 0.5, HEIGHT * 0.5, 170, 1000);
 	myDrawBox->SetAlpha(90); //透明度指定
-	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22, "img/grad1.png");
+	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22-30, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
 	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
 	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
@@ -77,7 +77,7 @@ void SongInformation::Load() {
 	for (int i = 0; i < 2; i++)
 		grad[i]->Load();
 	for (int i = 0; i < n; i++)
-		songCover[i]->Load();
+		songCover[i]->Load(n);
 	box->Load();
 	viewFlag = TRUE;
 }

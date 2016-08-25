@@ -12,14 +12,19 @@ class Animation {
 public:
 	MyTime GetTime();
 	void Reset();
+	enum {
+		LINER,		// 線形
+		SINE,		// 正弦波(遅早遅)
+		SINE_2,		// 正弦波(早遅)
+		SINE_3,		// 正弦波(遅早)
+		QUAD,		// 2次式
+		LINER_QUAD,	// 1次=>2次
+		QUAD_LINER,	// 2次=>1次
+	};
 protected:
 	double UpdateRate();
 	void SetRate(MyTime, int);
 	void SetTime(MyTime);
-	enum {
-		LINER,
-		EASE
-	};
 private:
 	MyTime t = 0;		// アニメーションの現在時刻
 	MyTime duration;	// アニメーション動作時間
