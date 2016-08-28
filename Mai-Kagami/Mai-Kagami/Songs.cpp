@@ -75,8 +75,8 @@ int Songs::LoadHistory(const char *userId) {
 	//URL
 	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=";
 	WCHAR		   szUserId[18];
-	printfDx("%d, %d, %d, %d, %d, %d, %d, %d\n", userId[0], userId[1],userId[2],userId[3],userId[4],userId[5], userId[6], userId[7]);
-	printfDx("%d, %d, %d, %d, %d, %d\n", 'd', 'a', 'i', 'c', 'h', 'i');
+//	printfDx("%d, %d, %d, %d, %d, %d, %d, %d\n", userId[0], userId[1],userId[2],userId[3],userId[4],userId[5], userId[6], userId[7]);
+//	printfDx("%d, %d, %d, %d, %d, %d\n", 'd', 'a', 'i', 'c', 'h', 'i');
 	mbstowcs(szUserId, userId, 256);
 	wcscat(szUrl, szUserId);
 	LPBYTE         lpData;
@@ -134,7 +134,7 @@ int Songs::LoadHistory(const char *userId) {
 
 	//ボディ取得
 	lpData = ReadData(hRequest, &dwSize);
-	printfDx((char*)lpData);
+//	printfDx((char*)lpData);
 	for (int i = 0; i < NUMSONGS; i++) {
 		char* temp = NULL;
 		char* ctx;//内部的に使用するので深く考えない
@@ -159,8 +159,6 @@ int Songs::LoadHistory(const char *userId) {
 	WinHttpCloseHandle(hConnect);
 	WinHttpCloseHandle(hSession);
 
-	//以下の式を実行することによってデータを保存
-	//song[Search(<曲ID>)]->songHistory->Set(＜前回と前々回の点数（配列ポインタ）＞);
 	return 0;
 }
 
