@@ -1,17 +1,21 @@
 #include "DrawGraph.h"
 
 
-//画像初期化
+//画像初期化(座標指定なし、あとから指定する場合)
+//MyDrawGraph（ファイル名）
 MyDrawGraph::MyDrawGraph(const char *fileName) {
 	ex = 1.0;
 	MyDrawGraph::fileName = fileName;
 }
+
 //画像初期化
+//MyDrawGraph（x座標、y座標、ファイル名、拡大率） //拡大率は省略可能、省略した場合等倍
 MyDrawGraph::MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate) : Draw(x, y) {
 	ex = ExRate;
 	MyDrawGraph::fileName = fileName;
 }
 
+//画像ロード
 void MyDrawGraph::Load() {
 	handle = LoadGraph(fileName.c_str()); // 画像のロード
 }
@@ -23,11 +27,11 @@ void MyDrawGraph::ContentView() {
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
-//大きさ変更
+//画像大きさ変更
 void MyDrawGraph::ChangeEx(const double ExRate) {
 	ex = ExRate;
 }
-
+//画像大きさ取得
 double MyDrawGraph::GetEx() {
 	return ex;
 }

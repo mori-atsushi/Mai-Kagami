@@ -2,59 +2,60 @@
 
 ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
-	title = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
-	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE");
-	circle->SetAlpha(220);
-	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6);
-	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16);
-	button = new CircleButton2(font, touch, "次へ", 4);
-	text = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "Black");
-	point = new MyDrawText(font, "78", WIDTH * 0.46, HEIGHT * 0.5, 1, 100, "Blue");
-	unit = new MyDrawText(font, "点", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "Black");
-	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "Black");
+	title = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4); //採点結果
+	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE"); //白色の円
+	circle->SetAlpha(220); //円を半透明に
+	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6); //青色の弧
+	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16); //弧の先の円
+	button = new CircleButton2(font, touch, "次へ", 4); //次へボタン
+	text = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "Black"); //「総合得点」
+	point = new MyDrawText(font, "78", WIDTH * 0.46, HEIGHT * 0.5, 1, 100, "Blue"); //点数
+	unit = new MyDrawText(font, "点", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "Black"); //「点」
+	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "Black"); //前回の点数
 }
 
 void ThroughResult::Load() {
-	song = songs->GetSong(songs->GetNowSong());
-	song->coverGraph->Load();
-	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
-	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
+	song = songs->GetSong(songs->GetNowSong()); //現在選択中の曲を取得
+	song->coverGraph->Load(); //曲カバー画像をロード
+	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26); //カバー画像の表示位置変更
+	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24); //曲タイトルの表示位置変更
 }
 
 ThroughResultScene ThroughResult::Switch(const ThroughResultScene scene) {
-	if (button->GetTouch() == 1)
-		return THROUGH_RESULT_DETAIL;
+	if (button->GetTouch() == 1) //ボタンが押されたら
+		return THROUGH_RESULT_DETAIL; //詳細ページに飛ぶ
 	return scene;
 }
 
 void ThroughResult::ContentUpdate() {
-	if (nowScene == THROUGH_RESULT_TOP)
-		viewFlag = TRUE;
-	else
-		viewFlag = FALSE;
+	if (nowScene == THROUGH_RESULT_TOP) //シーンがTHROUGH_RESULT_TOPだったら
+		viewFlag = TRUE; //画面を表示
+	else //それ以外は
+		viewFlag = FALSE; //画面を非表示
 }
 
 void ThroughResult::ContentView() {
-	title->View();
-	song->coverGraph->View();
-	song->drawSongTitle->View();
-	circle->View();
-	pointCircle->View();
-	pointCircle2->View();
-	text->View();
-	point->View();
-	unit->View();
-	last->View();
-	button->View();
+	title->View(); //タイトル表示
+	song->coverGraph->View(); //曲カバー画像表示
+	song->drawSongTitle->View(); //曲タイトル表示
+	circle->View(); //白色の円表示
+	pointCircle->View(); //青色の弧を表示
+	pointCircle2->View(); //弧の先の円を表示
+	text->View(); //「総合得点」表示
+	point->View(); //点数を表示
+	unit->View(); //「点」を表示
+	last->View(); //前回の得点を表示
+	button->View(); //ボタンを表示
 }
 
 ThroughResult::~ThroughResult() {
-	delete title;
-	delete circle;
-	delete pointCircle;
-	delete pointCircle2;
-	delete button;
-	delete text;
-	delete unit;
-	delete last;
+	delete title; //タイトル削除
+	delete circle; //曲カバー画像削除
+	delete pointCircle; //青色の弧削除
+	delete pointCircle2; //弧の先の円削除
+	delete button; //ボタンを削除
+	delete text; //「総合得点」削除
+	delete point; //点数削除
+	delete unit; //「点」を削除
+	delete last; //前回の得点削除
 }
