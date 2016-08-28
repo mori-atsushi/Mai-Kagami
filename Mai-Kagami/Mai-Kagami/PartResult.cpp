@@ -2,6 +2,7 @@
 
 PartResult::PartResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
+	this->font = font;
 	title = new MyDrawTextLine(font, "Ì“_Œ‹‰Ê", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
 	button = new CircleButton2(font, touch, "ŽŸ‚Ö", 4);
 }
@@ -11,9 +12,31 @@ void PartResult::Load() {
 	song->coverGraph->Load();
 	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
 	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
+	partMax = song->GetPartNum();
+	for (int i = 0; i < partMax; i++) {
+		SongPart *songPart = song->GetPart(i);
+		float y = HEIGHT * 0.35 + HEIGHT * 0.35 * i / (partMax - 1);
+		part[i] = new MyDrawText(font, songPart->GetName(), WIDTH * 0.27, y, 1, 30);
+		circle[i] = new MyDrawCircle(WIDTH * 0.42, y, 16, "Blue");
+		char str[256];
+		sprintf_s(str, sizeof(str), "~%1.1lf", song->danceMovie->GetSpeed());
+		speed[i] = new MyDrawText(font, str, WIDTH * 0.62, y, 1, 30);
+		score[i] = new MyDrawText(font, "A", WIDTH * 0.77, y, 1, 30);
+		if (i < song->StartPart() || i > song->EndPart()) {
+			part[i]->SetAlpha(100);
+			circle[i]->ChangeColor("White");
+			circle[i]->SetAlpha(100);
+			speed[i]->ChangeText("-");
+			speed[i]->SetAlpha(100);
+			score[i]->ChangeText("-");
+			score[i]->SetAlpha(100);
+		}
+	}
 }
 
 int PartResult::Switch(const int scene) {
+	if (button->GetTouch() == 1)
+		return PART_RESULT_DETAIL;
 	return scene;
 }
 
@@ -29,9 +52,21 @@ void PartResult::ContentView() {
 	button->View();
 	song->coverGraph->View();
 	song->drawSongTitle->View();
+	for (int i = 0; i < partMax; i++) {
+		part[i]->View();
+		circle[i]->View();
+		speed[i]->View();
+		score[i]->View();
+	}
 }
 
 PartResult::~PartResult() {
 	delete title;
 	delete button;
+	for (int i = 0; i < partMax; i++) {
+		delete part[i];
+		delete circle[i];
+		delete speed[i];
+		delete score[i];
+	}
 }
