@@ -75,8 +75,9 @@ int Songs::LoadHistory(const char *userId) {
 	//URL
 	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=";
 	WCHAR		   szUserId[18];
-	printfDx(userId);
-	mbstowcs(szUserId, userId, 100);
+	printfDx("%d, %d, %d, %d, %d, %d, %d, %d\n", userId[0], userId[1],userId[2],userId[3],userId[4],userId[5], userId[6], userId[7]);
+	printfDx("%d, %d, %d, %d, %d, %d\n", 'd', 'a', 'i', 'c', 'h', 'i');
+	mbstowcs(szUserId, userId, 256);
 	wcscat(szUrl, szUserId);
 	LPBYTE         lpData;
 	DWORD          dwSize;
@@ -133,6 +134,7 @@ int Songs::LoadHistory(const char *userId) {
 
 	//ボディ取得
 	lpData = ReadData(hRequest, &dwSize);
+	printfDx((char*)lpData);
 	for (int i = 0; i < NUMSONGS; i++) {
 		char* temp = NULL;
 		char* ctx;//内部的に使用するので深く考えない

@@ -1,8 +1,9 @@
 #include "Nfc.h"
 #include "Main.h"
 #include <stdio.h>
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 #define PORT 9999		//ポート番号
 #define IP "127.0.0.1"	//IP番号(ローカルホスト) 
@@ -26,15 +27,13 @@ char* Nfc::GetId()
 	//またnfc監視を初めてから1秒間の間は0を返す
 	calledCont++;
 	if (!Connect(IP, PORT) || calledCont < 10) {
-		printfDx("%d ", calledCont);
 		return "\0";
 	}
 
-
-	int recvsize;				//受信データ長
+	int recvsize;					//受信データ長
 	char recvMessage[5] = {"\0"};	//受信バッファ
 	char data[256] = { "\0" };		//受信したIDを格納する変数
-	int cont = 0;
+	char* p1 = data;				//実際にreturnするデータ
 
 	//受信
 	//tcp/ip通信では4バイトごと送信される
@@ -54,7 +53,6 @@ char* Nfc::GetId()
 		//成功
 		case RECV_SUCCESSED:
 			strcat_s(data, sizeof(data), recvMessage);
-			//printfDx("%s\n", data);
 			for (int i = 0; i < 5; i++) {
 				recvMessage[i] = '\0';
 			}
@@ -63,15 +61,26 @@ char* Nfc::GetId()
 		case RECV_FAILED:
 			break;
 		}
-		for (int i = 255; i >= 0; i--) {
-			if (data[i] == '\n') {
-				data[i] = '\0';
-			}
-		}
-		printfDx(data);
+
 		break;
 	}
-	return data;
+
+	//制御文字の削除
+	//処理を減らすためにデータがあるときのみ調べる
+	if (data[0] != '\0') {
+
+		for (int i = 0; *(p1 + i) == '\0' || i < 256; i++) {
+			if (*(p1 + i) == 0x02) {
+				p1++;
+			}
+			if (*(p1 + i) == 0x0a || *(p1 + i) == 0x0d)  {
+				printfDx("yeah");
+				*(p1 + i) = '\0';
+			}
+		}
+	}
+
+	return p1;
 }
 
 //接続
