@@ -41,6 +41,7 @@
     <ClCompile Include="PartOption.cpp" />
     <ClCompile Include="PartPause.cpp" />
     <ClCompile Include="PartPlay.cpp" />
+    <ClCompile Include="PartResultMain.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="PlayScreenObject.cpp" />
@@ -86,6 +87,8 @@
     <ClInclude Include="PartOption.h" />
     <ClInclude Include="PartPause.h" />
     <ClInclude Include="PartPlay.h" />
+    <ClInclude Include="PartResultDefine.h" />
+    <ClInclude Include="PartResultMain.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlayScreenObject.h" />

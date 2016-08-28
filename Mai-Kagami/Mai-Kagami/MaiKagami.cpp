@@ -10,6 +10,7 @@ MaiKagami::MaiKagami() {
 	throughMain = new ThroughMain(font, touch, songs);
 	throughResultMain = new ThroughResultMain(font, touch, songs);
 	partMain = new PartMain(font, touch, songs);
+	partResultMain = new PartResultMain(font, touch, songs);
 	scene = TOP;
 }
 
@@ -32,6 +33,9 @@ void MaiKagami::Update() {
 	case PART:
 		scene = partMain->Switch(scene);
 		break;
+	case PART_RESULT:
+		scene = partResultMain->Switch(scene);
+		break;
 	}
 
 	top->Update(scene); //トップ画面計算
@@ -39,6 +43,7 @@ void MaiKagami::Update() {
 	throughMain->Update(scene); //通し練習プレイ画面計算
 	throughResultMain->Update(scene); //通し練習結果画面計算
 	partMain->Update(scene); //部分練習プレイ画面計算
+	partResultMain->Update(scene); //部分練習結果画面表示
 }
 
 //全体の描画
@@ -48,6 +53,7 @@ void MaiKagami::View() {
 	throughMain->View(); //通し練習プレイ画面表示
 	throughResultMain->View(); //通し練習結果画面表示
 	partMain->View(); //部分練習プレイ画面表示
+	partResultMain->View(); //部分練習結果画面表示
 }
 
 //デストラクタ
@@ -57,4 +63,5 @@ MaiKagami::~MaiKagami() {
 	delete throughMain;
 	delete throughResultMain;
 	delete partMain;
+	delete partResultMain;
 }
