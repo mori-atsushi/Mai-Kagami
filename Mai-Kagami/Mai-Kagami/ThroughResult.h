@@ -16,10 +16,10 @@ public:
 	ThroughResult(Font *font, Songs *songs, Touch *touch);
 	void Load();
 	ThroughResultScene Switch(const ThroughResultScene scene);
-	void ContentUpdate();
-	void ContentView();
 	~ThroughResult();
 private:
+	void ContentUpdate();
+	void ContentView();
 	MyDrawTextLine *title; //採点結果画面タイトル
 	MyDrawCircle *circle; //得点h表示部分の円
 	MyDrawCircleGauge *pointCircle; //得点を示す角度指定の円

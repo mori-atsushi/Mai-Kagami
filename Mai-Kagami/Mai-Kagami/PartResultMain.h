@@ -7,6 +7,7 @@
 #include "Touch.h"
 #include "Songs.h"
 #include "PartResultDefine.h"
+#include "PartResult.h"
 
 class PartResultMain : public Scene {
 public:
@@ -19,6 +20,7 @@ private:
 	void ContentView();
 	void ContentDelete();
 	int scene;
+	PartResult *partResult;
 };
 
 #endif
