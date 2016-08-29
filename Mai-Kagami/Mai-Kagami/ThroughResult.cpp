@@ -3,8 +3,8 @@
 ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
 	title = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4); //採点結果
-	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, "WHITE"); //白色の円
-	circle->SetAlpha(220); //円を半透明に
+	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 10, "WHITE"); //白色の円
+	//circle->SetAlpha(220); //円を半透明に
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6); //青色の弧
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16); //弧の先の円
 	button = new CircleButton2(font, touch, "次へ", 4); //次へボタン

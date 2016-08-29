@@ -21,7 +21,8 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	MyDrawTextLine *title; //採点結果画面タイトル
-	MyDrawCircle *circle; //得点h表示部分の円
+	MyDrawCircle *circle; //得点を表示する円(外側、白色)
+	MyDrawCircle * circle2;	//得点を表示する円(内側、黒色)
 	MyDrawCircleGauge *pointCircle; //得点を示す角度指定の円
 	MyDrawCircle *pointCircle2; //得点を示す円
 	MyDrawText *text; //テキスト（総合得点）
