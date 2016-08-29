@@ -82,6 +82,10 @@ PartFinish::PartFinish(Font *font, Touch *touch) {
 int PartFinish::Switch(const int scene) {
 	if (button[0]->GetTouch() == 1)
 		return PART_RESULT_BACK_PLAY;
+	if (button[1]->GetTouch() == 1)
+		return PART_RESULT_BACK_PART_OPTION;
+	if (button[2]->GetTouch() == 1)
+		return PART_RESULT_BACK_THROUGH_OPTION;
 	if (button[3]->GetTouch() == 1)
 		return PART_RESULT_BACK_SONG_SELECT;
 	return scene;

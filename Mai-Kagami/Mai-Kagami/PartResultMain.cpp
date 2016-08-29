@@ -29,6 +29,14 @@ MainScene PartResultMain::Switch(const MainScene scene) {
 		Delete();
 		return SONG_SELECT;
 	}
+	if (this->scene == PART_RESULT_BACK_THROUGH_OPTION) {
+		Delete();
+		return THROUGH_OPTION;
+	}
+	if (this->scene == PART_RESULT_BACK_PART_OPTION) {
+		Delete();
+		return PART_OPTION;
+	}
 	return PART_RESULT;
 }
 

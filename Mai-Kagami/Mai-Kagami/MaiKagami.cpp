@@ -38,6 +38,15 @@ void MaiKagami::Update() {
 		break;
 	}
 
+	if (scene == THROUGH_OPTION) {
+		songSelect->SetScene(OPTION1);
+		scene = SONG_SELECT;
+	}
+	if (scene == PART_OPTION) {
+		songSelect->SetScene(OPTION2);
+		scene = SONG_SELECT;
+	}
+
 	top->Update(scene); //トップ画面計算
 	songSelect->Update(scene); //曲選択画面計算
 	throughMain->Update(scene); //通し練習プレイ画面計算

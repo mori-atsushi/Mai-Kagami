@@ -14,7 +14,9 @@ typedef enum {
 	THROUGH,
 	THROUGH_RESULT,
 	PART,
-	PART_RESULT
+	PART_RESULT,
+	THROUGH_OPTION,
+	PART_OPTION
 } MainScene;
 
 #endif
