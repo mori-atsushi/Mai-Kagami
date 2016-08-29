@@ -21,6 +21,7 @@ private:
 	void ContentDelete();
 	int scene;
 	PartResult *partResult;
+	PartFinish *partFinish;
 };
 
 #endif

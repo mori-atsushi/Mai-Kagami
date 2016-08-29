@@ -36,12 +36,12 @@ void PartResult::Load() {
 
 int PartResult::Switch(const int scene) {
 	if (button->GetTouch() == 1)
-		return PART_RESULT_DETAIL;
+		return PART_RESULT_FINISH;
 	return scene;
 }
 
 void PartResult::ContentUpdate() {
-	if (nowScene == PART_RESULT_TOP)
+	if (nowScene == PART_RESULT_TOP || nowScene == PART_RESULT_FINISH)
 		viewFlag = TRUE;
 	else
 		viewFlag = FALSE;
@@ -69,4 +69,39 @@ PartResult::~PartResult() {
 		delete speed[i];
 		delete score[i];
 	}
+}
+
+PartFinish::PartFinish(Font *font, Touch *touch) {
+	blackBox = new BlackBox();
+	button[0] = new CircleButton(font, touch, "‚à‚¤ˆê“x", 0, WIDTH * 0.75, "White");
+	button[1] = new CircleButton(font, touch, "•”•ª—ûK", 1, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(font, touch, "’Ê‚µ—ûK", 2, WIDTH * 0.75, "White");
+	button[3] = new CircleButton(font, touch, "‹È‘I‘ð‰æ–Ê", 3, WIDTH * 0.75, "White");
+}
+
+int PartFinish::Switch(const int scene) {
+	if (button[0]->GetTouch() == 1)
+		return PART_RESULT_BACK_PLAY;
+	if (button[3]->GetTouch() == 1)
+		return PART_RESULT_BACK_SONG_SELECT;
+	return scene;
+}
+
+void PartFinish::ContentUpdate() {
+	if (nowScene == PART_RESULT_FINISH)
+		viewFlag = TRUE;
+	else
+		viewFlag = FALSE;
+}
+
+void PartFinish::ContentView() {
+	blackBox->View();
+	for (int i = 0; i < 4; i++)
+		button[i]->View();
+}
+
+PartFinish::~PartFinish() {
+	delete blackBox;
+	for (int i = 0; i < 4; i++)
+		delete button[i];
 }
