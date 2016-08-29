@@ -8,10 +8,10 @@ ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6); //青色の弧
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16); //弧の先の円
 	button = new CircleButton2(font, touch, "次へ", 4); //次へボタン
-	text = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "Black"); //「総合得点」
+	text = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "White"); //「総合得点」
 	point = new MyDrawText(font, "78", WIDTH * 0.46, HEIGHT * 0.5, 1, 100, "Blue"); //点数
-	unit = new MyDrawText(font, "点", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "Black"); //「点」
-	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "Black"); //前回の点数
+	unit = new MyDrawText(font, "点", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "White"); //「点」
+	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "White"); //前回の点数
 }
 
 void ThroughResult::Load() {
