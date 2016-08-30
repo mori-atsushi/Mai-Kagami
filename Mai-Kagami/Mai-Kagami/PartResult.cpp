@@ -12,7 +12,6 @@ void PartResult::Load() {
 	song->coverGraph->Load();
 	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26);
 	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24);
-	song->danceMovie->Seek(0);
 	partMax = song->GetPartNum();
 	for (int i = 0; i < partMax; i++) {
 		SongPart *songPart = song->GetPart(i);

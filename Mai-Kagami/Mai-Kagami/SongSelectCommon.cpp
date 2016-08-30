@@ -131,15 +131,20 @@ void SongInformation::ContentUpdate() {
 			nowSong->danceMovie->Release();
 		break;
 	case MODE:
-		if (lastScene == MAIN) {
-			nowSong->danceMovie->Load();
-			nowSong->LoadPart();
-			nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
+		if (lastScene != MODE) {
+			if (lastScene == OPTION1) {
+				nowSong->danceMovie->Seek(0);
+			}
+			else {
+				nowSong->danceMovie->Load();
+				nowSong->LoadPart();
+				nowSong->danceMovie->ChangeSpeed(nowSong->danceMovie->GetSpeed());
+			}
 		}
-		else if (lastScene == OPTION1) {
-			nowSong->danceMovie->Stop();
-			nowSong->danceMovie->Seek();
-		}
+		break;
+	case OPTION1:
+		if(lastScene != OPTION1)
+			nowSong->danceMovie->Seek(0);
 		break;
 	}
 	lastScene = nowScene;
