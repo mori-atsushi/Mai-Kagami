@@ -3,18 +3,20 @@
 ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
 	title = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4); //採点結果
-	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 10, "WHITE"); //白色の円
-	//circle->SetAlpha(220); //円を半透明に
+	circle = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 10, "WHITE"); //縁が白色の円
 	pointCircle = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6); //青色の弧
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16); //弧の先の円
 	button = new CircleButton2(font, touch, "次へ", 4); //次へボタン
 	text = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.4, 1, 46, "White"); //「総合得点」
-	point = new MyDrawText(font, "78", WIDTH * 0.46, HEIGHT * 0.5, 1, 100, "Blue"); //点数
-	unit = new MyDrawText(font, "点", WIDTH * 0.54, HEIGHT * 0.51, 0, 46, "White"); //「点」
-	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.6, 1, 36, "White"); //前回の点数
+	point1 = new MyDrawGraph(WIDTH * 0.40, HEIGHT * 0.50, "img/7.png", 0.20);
+	point2 = new MyDrawGraph(WIDTH * 0.45, HEIGHT * 0.50, "img/8.png", 0.20);
+	unit = new MyDrawText(font, "点", WIDTH * 0.60, HEIGHT * 0.55, 0, 46, "White"); //「点」
+	last = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.4, 1, 36, "White"); //前回の点数
 }
 
 void ThroughResult::Load() {
+	point1->Load();
+	point2->Load();
 	song = songs->GetSong(songs->GetNowSong()); //現在選択中の曲を取得
 	song->coverGraph->Load(); //曲カバー画像をロード
 	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26); //カバー画像の表示位置変更
@@ -42,7 +44,8 @@ void ThroughResult::ContentView() {
 	pointCircle->View(); //青色の弧を表示
 	pointCircle2->View(); //弧の先の円を表示
 	text->View(); //「総合得点」表示
-	point->View(); //点数を表示
+	point1->View();
+	point2->View();
 	unit->View(); //「点」を表示
 	last->View(); //前回の得点を表示
 	button->View(); //ボタンを表示
@@ -55,7 +58,6 @@ ThroughResult::~ThroughResult() {
 	delete pointCircle2; //弧の先の円削除
 	delete button; //ボタンを削除
 	delete text; //「総合得点」削除
-	delete point; //点数削除
 	delete unit; //「点」を削除
 	delete last; //前回の得点削除
 }
