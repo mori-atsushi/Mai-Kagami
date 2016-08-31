@@ -79,13 +79,10 @@ CountDown::CountDown(Font *font, const int thisScene, const int playScene) {
 	const float x = WIDTH * 0.5; //‰~‚Ì’†SixÀ•Wj
 	const float y = HEIGHT * 0.5; //‰~‚Ì’†SiyÀ•Wj
 	const float r = WIDTH * 0.2; //‰~‚Ì”¼Œa
-	//blackBox = new BlackBox();
 	text = new MyDrawText(font, "€”õ‚ð‚µ‚Ä‚­‚¾‚³‚¢", x, y + r + 80, 1, 40);
-	circle = new MyDrawCircle(x, y, r, 5, "Glay"); //‰‚ª”’F‚Ì‰~
-	//ƒQ[ƒW
-	countCircle1 = new MyDrawCircleGauge(x, y, r, 0, 5, "Blue");
-	//ƒQ[ƒW‚Ìæ‚Ì‰~
-	countCircle2 = new MyDrawCircle(0, 0, 12, "Blue");
+	circle = new MyDrawCircle(x, y, r, 3, "White"); //‰‚ª”’F‚Ì‰~
+	countCircle1 = new MyDrawCircleGauge(x, y, r, 0, 5, "Blue");	//ƒQ[ƒW
+	countCircle2 = new MyDrawCircle(0, 0, 12, "Blue");	//ƒQ[ƒW‚Ìæ‚Ì‰~
 }
 
 int CountDown::Switch(const int scene) {
@@ -107,7 +104,6 @@ void CountDown::ContentUpdate() {
 }
 
 void CountDown::ContentView() {
-	//blackBox->View();
 	text->View();
 	circle->View();
 	countCircle1->View();
@@ -115,7 +111,6 @@ void CountDown::ContentView() {
 }
 
 CountDown::~CountDown() {
-	//delete blackBox;
 	delete text;
 	delete circle;
 	delete countCircle1;
