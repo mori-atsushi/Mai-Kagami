@@ -52,10 +52,10 @@ LPBYTE ReadData(HINTERNET hRequest, LPDWORD lpdwSize)
 			dwTotalSizePrev = dwTotalSize;
 			dwTotalSize += dwSize;
 			lpData = (LPBYTE)HeapAlloc(GetProcessHeap(), 0, dwTotalSize);
-			if (lpPrev != NULL) {
-				CopyMemory(lpData, lpPrev, dwTotalSizePrev);
-				HeapFree(GetProcessHeap(), 0, lpPrev);
-			}
+//			if (lpPrev != NULL) {
+//				CopyMemory(lpData, lpPrev, dwTotalSizePrev);
+//				HeapFree(GetProcessHeap(), 0, lpPrev);
+//			}
 			WinHttpReadData(hRequest, lpData + dwTotalSizePrev, dwSize, NULL);
 			lpPrev = lpData;
 		} else

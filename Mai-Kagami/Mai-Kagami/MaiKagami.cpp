@@ -16,6 +16,7 @@ MaiKagami::MaiKagami() {
 
 //全体の算計
 void MaiKagami::Update() {
+	static int lastScene = TOP;
 	touch->Check();
 	switch (scene) {
 	case TOP:
@@ -37,6 +38,19 @@ void MaiKagami::Update() {
 		scene = partResultMain->Switch(scene);
 		break;
 	}
+
+	if(lastScene != SONG_SELECT && scene == SONG_SELECT)
+		songSelect->SetScene(MAIN);
+	if (scene == THROUGH_OPTION) {
+		songSelect->SetScene(OPTION1);
+		scene = SONG_SELECT;
+	}
+	if (scene == PART_OPTION) {
+		songSelect->SetScene(OPTION2);
+		scene = SONG_SELECT;
+	}
+
+	lastScene = scene;
 
 	top->Update(scene); //トップ画面計算
 	songSelect->Update(scene); //曲選択画面計算

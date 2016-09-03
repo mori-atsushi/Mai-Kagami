@@ -8,6 +8,7 @@
 #include "Songs.h"
 #include "Scene.h"
 #include "PartResultDefine.h"
+#include "SeetingPop.h"
 #include "Touch.h"
 
 class PartResult : public SubScene {
@@ -27,6 +28,18 @@ private:
 	Songs *songs;
 	Font *font;
 	int partMax;
+};
+
+class PartFinish : public SubScene {
+public:
+	PartFinish(Font *font, Touch *touch);
+	int Switch(const int scene);
+	~PartFinish();
+private:
+	void ContentUpdate();
+	void ContentView();
+	BlackBox *blackBox;
+	Button *button[4];
 };
 
 #endif
