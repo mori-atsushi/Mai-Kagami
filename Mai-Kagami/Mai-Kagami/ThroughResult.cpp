@@ -4,7 +4,7 @@ ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch) {
 	this->songs = songs;
 	title        = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4); //採点結果
 	circle       = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 10, "WHITE"); //縁が白色の円
-	pointCircle  = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 78, 6); //青色の弧
+	pointCircle  = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 58, 6); //青色の弧
 	pointCircle2 = new MyDrawCircle(pointCircle->GetEndX() * SIZE_RATE, pointCircle->GetEndY() * SIZE_RATE, 16); //弧の先の円
 	button       = new CircleButton2(font, touch, "次へ", 4); //次へボタン
 	text         = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.42, 1, 46, "White"); //「総合得点」
@@ -62,5 +62,4 @@ ThroughResult::~ThroughResult() {
 	delete point2;					//得点(1の位)削除
 	delete unit;					//「点」を削除
 	delete last;					//前回の得点削除
-	delete button;					//ボタン削除
 }
