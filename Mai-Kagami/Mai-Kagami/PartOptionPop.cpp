@@ -35,7 +35,7 @@ PartOptionPartPop::PartOptionPartPop(Font *font, Songs *songs, Touch *touch, con
 
 int PartOptionPartPop::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
-		song->danceMovie->Seek();
+		song->danceMovie->SetPart();
 		return mainScene;
 	}
 	return scene;

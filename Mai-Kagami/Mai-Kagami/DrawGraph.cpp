@@ -5,14 +5,14 @@
 //MyDrawGraph（ファイル名）
 MyDrawGraph::MyDrawGraph(const char *fileName) {
 	ex = 1.0;
-	MyDrawGraph::fileName = fileName;
+	this->fileName = fileName;
 }
 
 //画像初期化
 //MyDrawGraph（x座標、y座標、ファイル名、拡大率） //拡大率は省略可能、省略した場合等倍
 MyDrawGraph::MyDrawGraph(const float x, const float y, const char *fileName, const double ExRate) : Draw(x, y) {
 	ex = ExRate;
-	MyDrawGraph::fileName = fileName;
+	this->fileName = fileName;
 }
 
 //画像ロード
@@ -103,7 +103,7 @@ void MyDrawMovie::Stop() {
 
 //スピード変更
 void MyDrawMovie::ChangeSpeed(double speed) {
-	MyDrawMovie::sp = speed;
+	this->sp = speed;
 }
 
 //スピードセット
@@ -113,6 +113,15 @@ void MyDrawMovie::SetSpeed() {
 		Seek();
 		speed = sp;
 		SetPlaySpeedRateMovieToGraph(handle, speed);
+	}
+}
+
+void MyDrawMovie::SetPart() {
+	if (sf != startFlame || ef != endFlame) {
+		Stop();
+		Seek();
+		startFlame = sf;
+		endFlame = ef;
 	}
 }
 
@@ -145,12 +154,12 @@ int MyDrawMovie::GetAllFlame() {
 
 //スタートフレーム指定
 void MyDrawMovie::SetStartFlame(const int flame) {
-	startFlame = flame;
+	sf = flame;
 }
 
 //エンドフレーム指定
 void MyDrawMovie::SetEndFlame(const int flame) {
-	endFlame = flame;
+	ef = flame;
 }
 
 MyDrawMovie::~MyDrawMovie() {
