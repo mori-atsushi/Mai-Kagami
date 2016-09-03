@@ -118,10 +118,10 @@ void MyDrawMovie::SetSpeed() {
 
 void MyDrawMovie::SetPart() {
 	if (sf != startFlame || ef != endFlame) {
-		Stop();
-		Seek();
 		startFlame = sf;
 		endFlame = ef;
+		Stop();
+		Seek();
 	}
 }
 

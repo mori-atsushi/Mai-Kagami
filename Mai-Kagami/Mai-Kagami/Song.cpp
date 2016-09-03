@@ -110,7 +110,6 @@ void Song::ChangeStart(int num) {
 	if (num == -1 && *start < *end)
 		(*start) += 1;
 	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
-
 }
 
 //“®‰æ‚ÌI—¹ˆÊ’u‚ğ•ÏX
