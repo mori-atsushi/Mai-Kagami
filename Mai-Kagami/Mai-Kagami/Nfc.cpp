@@ -48,7 +48,6 @@ char* Nfc::GetId()
 		switch (status) {
 		//ƒf[ƒ^‚ª—ˆ‚Ä‚¢‚È‚¢‚Æ‚«
 		case RECV_STILL:
-			//printfDx("0 ");
 			continue;
 		//¬Œ÷
 		case RECV_SUCCESSED:
