@@ -219,6 +219,9 @@
     <ClCompile Include="PartResult.cpp">
       <Filter>ソース ファイル\画面関係\部分練習結果画面</Filter>
     </ClCompile>
+    <ClCompile Include="PartOptionPop.cpp">
+      <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -367,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="PartResult.h">
       <Filter>ヘッダー ファイル\画面関係\部分練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartOptionPop.h">
+      <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

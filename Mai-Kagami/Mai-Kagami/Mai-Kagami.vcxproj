@@ -39,6 +39,7 @@
     <ClCompile Include="Nfc.cpp" />
     <ClCompile Include="PartMain.cpp" />
     <ClCompile Include="PartOption.cpp" />
+    <ClCompile Include="PartOptionPop.cpp" />
     <ClCompile Include="PartPause.cpp" />
     <ClCompile Include="PartPlay.cpp" />
     <ClCompile Include="PartResult.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="PartDefine.h" />
     <ClInclude Include="PartMain.h" />
     <ClInclude Include="PartOption.h" />
+    <ClInclude Include="PartOptionPop.h" />
     <ClInclude Include="PartPause.h" />
     <ClInclude Include="PartPlay.h" />
     <ClInclude Include="PartResult.h" />
