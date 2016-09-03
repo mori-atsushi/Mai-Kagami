@@ -12,23 +12,23 @@ PlayBar::PlayBar(Font *font) {
 void PlayBar::Load(Song *song) {
 	this->song = song;
 	song->LoadPart();
-	int startFlame = song->danceMovie->GetStartFlame();
-	int endFlame = song->danceMovie->GetEndFlame();
-	for (int i = 0; i < song->GetPartNum(); i++) {
-		SongPart *songPart = song->GetPart(i);
-		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)(songPart->GetFlame() - startFlame) / (endFlame - startFlame);
-		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.056, 0, 16);
-		if (songPart->GetFlame() >= startFlame && songPart->GetFlame() <= endFlame)
-			part[i]->SetViewFlag(TRUE);
-		else
-			part[i]->SetViewFlag(FALSE);
-	}
 }
 
 void PlayBar::Update() {
 	int nowFlame = song->danceMovie->GetNowFlame();
 	int startFlame = song->danceMovie->GetStartFlame();
 	int lastFlame = song->danceMovie->GetEndFlame();
+
+	for (int i = 0; i < song->GetPartNum(); i++) {
+		SongPart *songPart = song->GetPart(i);
+		float x = WIDTH * 0.41 + WIDTH * 0.56 * (float)(songPart->GetFlame() - startFlame) / (lastFlame - startFlame);
+		part[i] = new MyDrawTextV(font, songPart->GetName(), x, HEIGHT * 0.056, 0, 16);
+		if (songPart->GetFlame() >= startFlame && songPart->GetFlame() <= lastFlame)
+			part[i]->SetViewFlag(TRUE);
+		else
+			part[i]->SetViewFlag(FALSE);
+	}
+
 	float now = WIDTH * 0.56 * (float)(nowFlame - startFlame) / (lastFlame - startFlame);
 	barNow->ChangeSize(now, 10);
 	for (int i = 0; i < 2; i++)
