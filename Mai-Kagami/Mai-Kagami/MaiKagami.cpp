@@ -11,6 +11,7 @@ MaiKagami::MaiKagami() {
 	throughResultMain = new ThroughResultMain(font, touch, songs);
 	partMain = new PartMain(font, touch, songs);
 	partResultMain = new PartResultMain(font, touch, songs);
+	kinect = new Kinect(); //キネクト
 	scene = TOP;
 }
 

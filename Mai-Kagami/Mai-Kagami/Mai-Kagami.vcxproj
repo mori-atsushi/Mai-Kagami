@@ -27,6 +27,7 @@
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Kinect.cpp" />
     <ClCompile Include="KinectDistance.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp">
@@ -79,6 +80,7 @@
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Kinect.h" />
     <ClInclude Include="KinectDistance.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
@@ -96,6 +98,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlayScreenObject.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
     <ClInclude Include="Song.h" />
@@ -106,6 +109,7 @@
     <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
     <ClInclude Include="StartScreen.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughDetail.h" />
     <ClInclude Include="ThroughMain.h" />
@@ -172,7 +176,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(KINECTSDK20_DIR)\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(KINECTSDK20_DIR)\inc;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(KINECTSDK20_DIR)\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(KINECTSDK20_DIR)\inc;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

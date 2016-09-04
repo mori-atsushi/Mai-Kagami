@@ -10,6 +10,7 @@
 #include "PartResultMain.h"
 #include "Touch.h"
 #include "User.h"
+#include "Kinect.h"
 #include "DxLib.h"
 
 class MaiKagami
@@ -31,6 +32,7 @@ private:
 	Songs *songs; //曲一覧
 	Touch *touch;
 	User *user; //ユーザー情報
+	Kinect *kinect; //キネクト関係
 };
 
 #endif

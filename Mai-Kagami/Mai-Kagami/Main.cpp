@@ -2,7 +2,16 @@
 #include "Draw.h"
 #include "DxLib.h"
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+int APIENTRY wWinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nShowCmd
+)
+{
+	UNREFERENCED_PARAMETER(hPrevInstance);
+	UNREFERENCED_PARAMETER(lpCmdLine);
+
 	SetGraphMode(WIDTH / SIZE_RATE, HEIGHT / SIZE_RATE, 32); //ウィンドウサイズ設定
 	SetBackgroundColor(0, 0, 0); //背景色設定
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
