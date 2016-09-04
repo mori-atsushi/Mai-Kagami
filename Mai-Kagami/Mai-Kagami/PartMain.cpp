@@ -1,8 +1,8 @@
 #include "PartMain.h"
 
-PartMain::PartMain(Font *font, Touch *touch, Songs *songs) {
+PartMain::PartMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect) {
 	partStart = new PartStart(font);
-	partPlay = new PartPlay(font, songs, touch);
+	partPlay = new PartPlay(font, songs, touch, kinect);
 	partPause = new PartPause(font, songs, touch);
 }
 

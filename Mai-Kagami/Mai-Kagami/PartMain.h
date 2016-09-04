@@ -13,7 +13,7 @@
 
 class PartMain : public Scene {
 public:
-	PartMain(Font *font, Touch *touch, Songs *songs);
+	PartMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect);
 	MainScene Switch(const MainScene scene);
 	~PartMain();
 private:

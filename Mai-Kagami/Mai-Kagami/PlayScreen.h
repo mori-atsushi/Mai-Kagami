@@ -9,13 +9,13 @@
 #include "SeetingPop.h"
 #include "Scene.h"
 #include "Touch.h"
-#include "KinectDistance.h"
+#include "Kinect.h"
 #include "PlayScreenObject.h"
 
 //í Çµó˚èKâÊñ 
 class PlayScreen : public SubScene {
 public:
-	PlayScreen(Font *font, Songs *songs, Touch *touch, const int startScene, const int countDownScene, const int playScene, const int finishScene);
+	PlayScreen(Font *font, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene);
 	void Load();
 	int Switch(const int scene);
 	void Delete() {};
@@ -24,6 +24,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	int startScene, countDownScene, playScene, finishScene;
+	Kinect *kinect;
 	Songs *songs;
 	Song *song;
 	PlayBar *playBar; //êiíªÉoÅ[

@@ -11,12 +11,11 @@
 #include "ThroughPlay.h"
 #include "ThroughPause.h"
 #include "Touch.h"
-#include "KinectDistance.h"
 #include "Scene.h"
 
 class ThroughMain : public Scene{
 public:
-	ThroughMain(Font *font, Touch *touch, Songs *songs);
+	ThroughMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect);
 	MainScene Switch(const MainScene scene);
 	~ThroughMain();
 private:

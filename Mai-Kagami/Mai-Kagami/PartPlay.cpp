@@ -4,5 +4,5 @@ PartStart::PartStart(Font *f)
 	: StartSceen(f, PART_START, PART_PLAY) {}
 
 //ïîï™ó˚èKâÊñ 
-PartPlay::PartPlay(Font *font, Songs *songs, Touch *touch)
-	: PlayScreen(font, songs, touch, PART_START, PART_COUNTDOWN, PART_PLAY, PART_NEXT) {}
+PartPlay::PartPlay(Font *font, Songs *songs, Touch *touch, Kinect *kinect)
+	: PlayScreen(font, songs, touch, kinect, PART_START, PART_COUNTDOWN, PART_PLAY, PART_NEXT) {}

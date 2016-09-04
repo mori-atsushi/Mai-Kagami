@@ -9,16 +9,16 @@
 
 class Kinect
 {
-	static const int        cDepthWidth = 512;
-	static const int        cDepthHeight = 424;
-
 public:
 	Kinect(); //コンストラクタ
 	void Update(); //更新
+	boolean CheckDistance(); //距離を測定
 	~Kinect(); //デストラクタ
 private:
+	const float min = 2.0; //最短距離
 	Joint userJoints[JointType_Count]; //関節座標情報
-	boolean userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
+	boolean *userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
+	int x;
 
 	// Current Kinect
 	IKinectSensor*          m_pKinectSensor;

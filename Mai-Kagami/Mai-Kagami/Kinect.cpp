@@ -3,6 +3,7 @@
 //コンストラクタ
 Kinect::Kinect() {
 	if (KINECT_FLAG) {
+		userFlag = new boolean();
 		HRESULT hr;
 
 		hr = GetDefaultKinectSensor(&m_pKinectSensor);
@@ -42,7 +43,7 @@ void Kinect::Update() {
 	if (KINECT_FLAG) {
 		static boolean updateFlag = TRUE; //更新用のフラグ、2回に一回しか処理をしない
 		if (updateFlag) {
-			userFlag = FALSE;
+			*userFlag = FALSE;
 			userJoints[0].Position.Z = 100;
 
 			if (!m_pBodyFrameReader)
@@ -85,8 +86,8 @@ void Kinect::Update() {
 								hr = pBody->GetJoints(_countof(joints), joints);
 								if (SUCCEEDED(hr))
 								{
-									if (joints[0].Position.Z > 2 && joints[0].Position.Z < userJoints[0].Position.Z) {
-										userFlag = TRUE;
+									if (joints[0].Position.Z >= min && joints[0].Position.Z < userJoints[0].Position.Z) {
+										*userFlag = TRUE;
 										for (int i = 0; i < JointType_Count; i++)
 											userJoints[i] = joints[i];
 									}
@@ -108,6 +109,19 @@ void Kinect::Update() {
 			updateFlag = TRUE;
 		}
 	}
+}
+
+//距離を測定
+boolean Kinect::CheckDistance() {
+	if (KINECT_FLAG) {
+		if (*userFlag)
+			return TRUE;
+	}
+	else {
+		if (CheckHitKey(KEY_INPUT_N) == 1)
+			return TRUE;
+	}
+	return FALSE;
 }
 
 //デストラクタ

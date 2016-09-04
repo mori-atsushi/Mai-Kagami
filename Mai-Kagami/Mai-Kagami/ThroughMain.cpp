@@ -1,8 +1,8 @@
 #include "ThroughMain.h"
 
-ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
+ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect) {
 	throughStart = new ThroughStart(font);
-	throughPlay = new ThroughPlay(font, songs, touch);
+	throughPlay = new ThroughPlay(font, songs, touch, kinect);
 	throughPause = new ThroughPause(font, songs, touch);
 }
 

@@ -156,9 +156,6 @@
     <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル\画面関係\共通</Filter>
     </ClCompile>
-    <ClCompile Include="KinectDistance.cpp">
-      <Filter>ソース ファイル\システム関係\kinect</Filter>
-    </ClCompile>
     <ClCompile Include="ThroughPause.cpp">
       <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClCompile>
@@ -301,9 +298,6 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>ヘッダー ファイル\画面関係\共通</Filter>
-    </ClInclude>
-    <ClInclude Include="KinectDistance.h">
-      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
     <ClInclude Include="SeetingPop.h">
       <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
