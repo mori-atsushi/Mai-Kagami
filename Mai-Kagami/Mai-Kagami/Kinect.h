@@ -13,11 +13,18 @@ class Kinect
 	static const int        cDepthHeight = 424;
 
 public:
-	//コンストラクタ
-	Kinect();
+	Kinect(); //コンストラクタ
+	HRESULT Connect(); //接続
+	~Kinect(); //デストラクタ
+private:
+	double                  m_fFreq;
 
-	//デストラクタ
-	~Kinect();
+	// Current Kinect
+	IKinectSensor*          m_pKinectSensor;
+	ICoordinateMapper*      m_pCoordinateMapper;
+
+	// Body reader
+	IBodyFrameReader*       m_pBodyFrameReader;
 };
 
 #endif

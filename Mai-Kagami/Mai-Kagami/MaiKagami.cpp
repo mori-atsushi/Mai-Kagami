@@ -12,6 +12,7 @@ MaiKagami::MaiKagami() {
 	partMain = new PartMain(font, touch, songs);
 	partResultMain = new PartResultMain(font, touch, songs);
 	kinect = new Kinect(); //キネクト
+	kinect->Connect(); //接続
 	scene = TOP;
 }
 
@@ -79,4 +80,5 @@ MaiKagami::~MaiKagami() {
 	delete throughResultMain;
 	delete partMain;
 	delete partResultMain;
+	delete kinect;
 }
