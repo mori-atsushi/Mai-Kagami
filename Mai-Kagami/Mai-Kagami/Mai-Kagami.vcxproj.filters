@@ -380,9 +380,6 @@
     <ClInclude Include="Kinect.h">
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ソース ファイル\システム関係\kinect</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>

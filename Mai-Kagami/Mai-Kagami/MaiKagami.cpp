@@ -60,6 +60,7 @@ void MaiKagami::Update() {
 	throughResultMain->Update(scene); //’Ê‚µ—ûKŒ‹‰Ê‰æ–ÊŒvŽZ
 	partMain->Update(scene); //•”•ª—ûKƒvƒŒƒC‰æ–ÊŒvŽZ
 	partResultMain->Update(scene); //•”•ª—ûKŒ‹‰Ê‰æ–Ê•\Ž¦
+	kinect->Update();
 }
 
 //‘S‘Ì‚Ì•`‰æ

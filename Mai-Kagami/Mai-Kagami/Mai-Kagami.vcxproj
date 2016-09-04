@@ -98,7 +98,6 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlayScreenObject.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
     <ClInclude Include="Song.h" />

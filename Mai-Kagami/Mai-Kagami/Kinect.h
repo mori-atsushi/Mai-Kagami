@@ -4,7 +4,6 @@
 
 #include "stdafx.h"
 #include <strsafe.h>
-#include "resource.h"
 #include "DxLib.h"
 
 class Kinect
@@ -15,6 +14,7 @@ class Kinect
 public:
 	Kinect(); //コンストラクタ
 	HRESULT Connect(); //接続
+	void Update(); //更新
 	~Kinect(); //デストラクタ
 private:
 	double                  m_fFreq;
