@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include <strsafe.h>
 #include "DxLib.h"
+#include "Main.h"
 
 class Kinect
 {
@@ -13,11 +14,11 @@ class Kinect
 
 public:
 	Kinect(); //コンストラクタ
-	HRESULT Connect(); //接続
 	void Update(); //更新
 	~Kinect(); //デストラクタ
 private:
-	double                  m_fFreq;
+	Joint userJoints[JointType_Count]; //関節座標情報
+	boolean userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
 
 	// Current Kinect
 	IKinectSensor*          m_pKinectSensor;
