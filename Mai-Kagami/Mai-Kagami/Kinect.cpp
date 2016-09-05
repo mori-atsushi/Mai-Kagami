@@ -113,15 +113,31 @@ void Kinect::Update() {
 
 //距離を測定
 boolean Kinect::CheckDistance() {
+	const int maxMis = 10;
+	static int miss = maxMis;
 	if (KINECT_FLAG) {
-		if (*userFlag)
-			return TRUE;
+		if (*userFlag) {
+			if (miss == 0 && userJoints[0].Position.Z >= 1.5)
+				miss = 0;
+			else if (miss != 0 && userJoints[0].Position.Z >= 2.0)
+				miss = 0;
+			else
+				miss = maxMis;
+		}
+		else {
+			miss++;
+		}
 	}
 	else {
 		if (CheckHitKey(KEY_INPUT_N) == 1)
-			return TRUE;
+			miss = 0;
+		else
+			miss = maxMis;
 	}
-	return FALSE;
+	if (miss < maxMis)
+		return TRUE;
+	else
+		return FALSE;
 }
 
 //デストラクタ
