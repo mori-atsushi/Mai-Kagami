@@ -222,6 +222,12 @@
     <ClCompile Include="Kinect.cpp">
       <Filter>ソース ファイル\システム関係\kinect</Filter>
     </ClCompile>
+    <ClCompile Include="KinectBody.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
+    </ClCompile>
+    <ClCompile Include="KinectColor.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -375,6 +381,12 @@
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectBody.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectColor.h">
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
     </ClInclude>
   </ItemGroup>

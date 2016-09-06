@@ -6,26 +6,21 @@
 #include <strsafe.h>
 #include "DxLib.h"
 #include "Main.h"
+#include "KinectBody.h"
+#include "KinectColor.h"
 
 class Kinect
 {
 public:
 	Kinect(); //コンストラクタ
 	void Update(); //更新
-	boolean CheckDistance(); //距離を測定
 	~Kinect(); //デストラクタ
+
+	KinectBody *kinectBody; //骨格情報
+	KinectColor *kinectColor; //色情報
 private:
-	const float min = 1.0; //最短距離
-	Joint userJoints[JointType_Count]; //関節座標情報
-	boolean *userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
-	int x;
-
 	// Current Kinect
-	IKinectSensor*          m_pKinectSensor;
-	ICoordinateMapper*      m_pCoordinateMapper;
-
-	// Body reader
-	IBodyFrameReader*       m_pBodyFrameReader;
+	IKinectSensor *m_pKinectSensor;
 };
 
 #endif

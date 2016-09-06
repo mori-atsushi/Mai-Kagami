@@ -22,7 +22,7 @@ void PlayScreen::Load() {
 }
 
 int PlayScreen::Switch(const int scene) {
-	if (kinect->CheckDistance() == FALSE) //ユーザが2mより近かったら
+	if (kinect->kinectBody->CheckDistance() == FALSE) //ユーザが2mより近かったら
 		return startScene;
 	else if (scene == startScene)
 		return countDownScene;
