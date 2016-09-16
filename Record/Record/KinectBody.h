@@ -10,13 +10,16 @@ class KinectBody
 public:
 	KinectBody(IKinectSensor *m_pKinectSensor); //コンストラクタ
 	void Update(); //更新
+	void JointSave(); //保存
 	~KinectBody(); //デストラクタ
 private:
-	int *userNum;
 	boolean *userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
+	Joint userJoints[JointType_Count];
 
-					   // Body reader
+	// Body reader
 	IBodyFrameReader*       m_pBodyFrameReader;
+
+	FILE *fp;
 };
 
 #endif

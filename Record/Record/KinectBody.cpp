@@ -3,7 +3,6 @@
 //コンストラクタ
 KinectBody::KinectBody(IKinectSensor *m_pKinectSensor) {
 	userFlag = new boolean();
-	userNum = new int();
 	HRESULT hr;
 
 	IBodyFrameSource* pBodyFrameSource = NULL;
@@ -16,11 +15,15 @@ KinectBody::KinectBody(IKinectSensor *m_pKinectSensor) {
 	}
 
 	SafeRelease(pBodyFrameSource);
+
+	if ((fp = fopen("FILE/test.txt", "w")) == NULL) {
+		printf("file open error!!\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void KinectBody::Update() {
 	*userFlag = FALSE;
-	*userNum = 0;
 
 	if (!m_pBodyFrameReader)
 	{
@@ -64,7 +67,8 @@ void KinectBody::Update() {
 						if (SUCCEEDED(hr))
 						{
 							*userFlag = TRUE;
-							(*userNum)++;
+							for (int i = 0; i < JointType_Count; i++)
+								userJoints[i] = joints[i];
 						}
 					}
 				}
@@ -77,9 +81,21 @@ void KinectBody::Update() {
 		}
 	}
 	SafeRelease(pBodyFrame);
-	//	printfDx("%d, ", *userNum);
+}
+
+//保存
+void KinectBody::JointSave() {
+	if(*userFlag) {
+		for (int i = 0; i < JointType_Count; i++)
+			fprintf(fp, "%f,%f,%f|", userJoints[0].Position.X, userJoints[0].Position.Y, userJoints[0].Position.Z);
+		putc('\n', fp);
+	}
+	else {
+		fprintf(fp, "-1\n");
+	}
 }
 
 KinectBody::~KinectBody() {
+	fclose(fp);
 	SafeRelease(m_pBodyFrameReader);
 }

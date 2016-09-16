@@ -28,6 +28,7 @@ void Kinect::Update() {
 	if (updateFlag) {
 		kinectBody->Update(); //œŠiî•ñupdate
 		kinectColor->Update(); //Fî•ñupdate
+		kinectBody->JointSave(); //•Û‘¶
 
 		updateFlag = FALSE;
 	}
