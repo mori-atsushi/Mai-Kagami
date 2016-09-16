@@ -10,7 +10,7 @@ class KinectBody
 public:
 	KinectBody(IKinectSensor *m_pKinectSensor); //コンストラクタ
 	void Update(); //更新
-	void JointSave(); //保存
+	void JointSave(const int flame); //保存
 	~KinectBody(); //デストラクタ
 private:
 	boolean *userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)

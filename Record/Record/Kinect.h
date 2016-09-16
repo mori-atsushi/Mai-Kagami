@@ -14,12 +14,11 @@ public:
 	void Update(); //更新
 	void View(); //描画
 	~Kinect(); //デストラクタ
+	KinectBody *kinectBody;
+	KinectColor *kinectColor;
 private:
 	// Current Kinect
 	IKinectSensor *m_pKinectSensor;
-
-	KinectBody *kinectBody;
-	KinectColor *kinectColor;
 };
 
 #endif

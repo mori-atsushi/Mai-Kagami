@@ -84,14 +84,22 @@ void KinectBody::Update() {
 }
 
 //•Û‘¶
-void KinectBody::JointSave() {
-	if(*userFlag) {
-		for (int i = 0; i < JointType_Count; i++)
-			fprintf(fp, "%f,%f,%f|", userJoints[0].Position.X, userJoints[0].Position.Y, userJoints[0].Position.Z);
-		putc('\n', fp);
+void KinectBody::JointSave(const int flame) {
+	static boolean flag = TRUE;
+	if (flag) {
+		fprintf(fp, "%d:", flame);
+		if (*userFlag) {
+			for (int i = 0; i < JointType_Count; i++)
+				fprintf(fp, "%f,%f,%f|", userJoints[0].Position.X, userJoints[0].Position.Y, userJoints[0].Position.Z);
+			putc('\n', fp);
+		}
+		else {
+			fprintf(fp, "-1\n");
+		}
+		flag = FALSE;
 	}
 	else {
-		fprintf(fp, "-1\n");
+		flag = TRUE;
 	}
 }
 
