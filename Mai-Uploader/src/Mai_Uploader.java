@@ -17,14 +17,10 @@ import java.util.Calendar;
  */
 
 public class Mai_Uploader {
-	//処理をループさせるときの周期(秒)
-	private static int waittime = 10;
 	public static void main(String[] args) {
 		MyYouTube myYoutube = new MyYouTube();
 		
 //		while(true){
-//			MyVideo myVideo = new MyVideo();
-//			
 //			//videoフォルダが空フォルダじゃなくなるまでループ
 //			File video = new File("./video");
 //			while(video.length() == 0){	}
@@ -33,7 +29,6 @@ public class Mai_Uploader {
 //			File[] fileList = video.listFiles();
 //		
 //			try {
-//				
 //				//アップロードするファイルを追加				
 //				if(!myYoutube.setVideo(new File(fileList[0]))) continue;
 //				

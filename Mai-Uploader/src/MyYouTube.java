@@ -34,7 +34,7 @@ import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
 
-import net.sf.json.JSONObject;
+import net.arnx.jsonic.JSON;
 
 public class MyYouTube {
 	//URL
@@ -45,6 +45,10 @@ public class MyYouTube {
 	private final String CONSUMER_SECRET = "or07nBfMB3qafJ_T9bdK4Fgu";
 	//refresh_token
 	private final String REFRESH_TOKEN = "1/BoOZShXB3j0jr5-jiI2NQVA0RE6-nICyixzdVZg4nCw";
+	//access_token
+	private String access_token = null;
+	private String token_type = null;
+	private String expires_in = null;
 	
 	MyYouTube(){
 		try{
@@ -59,20 +63,25 @@ public class MyYouTube {
             	"refresh_token="+ REFRESH_TOKEN + 
             	"&client_id=" + CONSUMER_KEY + 
             	"&client_secret=" + CONSUMER_SECRET;
-            
             PrintStream ps = new PrintStream(os);
             ps.print(postStr);
             ps.close();
 
             InputStream is = uc.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String s;
+            String json = null;
+            String s = null;
             while ((s = reader.readLine()) != null) {
-                System.out.println(s);
+            	json += s;
             }
             reader.close();
-            
-            
+            Code code = JSON.decode(json.substring(json.indexOf("{")), Code.class);
+            System.out.println(code.getAccess_token());
+            access_token = code.getAccess_token();
+            System.out.println(code.getToken_type());
+            token_type = code.getToken_type();
+            System.out.println(code.getExpires_in());
+            expires_in = code.getExpires_in();
 		} catch (MalformedURLException e) {
             System.err.println("Invalid URL format: " + TOKEN_URL);
             System.exit(-1);
