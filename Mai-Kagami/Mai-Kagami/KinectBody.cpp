@@ -110,6 +110,37 @@ boolean KinectBody::CheckDistance() {
 		return FALSE;
 }
 
+void KinectBody::StartSave(const char *fileName) {
+	if ((fp = fopen(fileName, "w")) == NULL) {
+		printf("file open error!!\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+//•Û‘¶
+void KinectBody::JointSave(const int flame) {
+	static boolean flag = TRUE;
+	if (flag) {
+		fprintf(fp, "%d:", flame);
+		if (*userFlag) {
+			for (int i = 0; i < JointType_Count; i++)
+				fprintf(fp, "%f,%f,%f|", userJoints[0].Position.X, userJoints[0].Position.Y, userJoints[0].Position.Z);
+			putc('\n', fp);
+		}
+		else {
+			fprintf(fp, "-1\n");
+		}
+		flag = FALSE;
+	}
+	else {
+		flag = TRUE;
+	}
+}
+
+void KinectBody::FinishSave() {
+	fclose(fp);
+}
+
 KinectBody::~KinectBody() {
 	SafeRelease(m_pBodyFrameReader);
 }
