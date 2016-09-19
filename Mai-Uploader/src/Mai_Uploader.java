@@ -20,26 +20,28 @@ public class Mai_Uploader {
 	public static void main(String[] args) {
 		MyYouTube myYoutube = new MyYouTube();
 		
-//		while(true){
-//			//videoフォルダが空フォルダじゃなくなるまでループ
-//			File video = new File("./video");
-//			while(video.length() == 0){	}
-//			
-//			//videoフォルダに入っているファイルのリスト
-//			File[] fileList = video.listFiles();
-//		
-//			try {
-//				//アップロードするファイルを追加				
-//				if(!myYoutube.setVideo(new File(fileList[0]))) continue;
-//				
-//				//ファイルに情報を追加する
-//				myYoutube.setMetadata(
-//						"Mai_Uploader test upload on "  + Calendar.getInstance().getTime(),
-//						"舞鏡の動画のテストアップロード " + "on " + Calendar.getInstance().getTime()
-//						);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		while(true){
+			//videoフォルダが空フォルダじゃなくなるまでループ
+			File video = new File("./video");
+			//videoフォルダに入っているファイルのリスト
+			File[] fileList = video.listFiles();
+			while(fileList.length == 0){
+				fileList = video.listFiles();
+			}
+			myYoutube.sleep(1000);
+			
+			try {
+				//ファイルに情報を追加する
+				myYoutube.setMetadata(
+						fileList[0],
+						"Mai_Uploader test upload on "  + Calendar.getInstance().getTime(),
+						"舞鏡の動画のテストアップロード " + "on " + Calendar.getInstance().getTime()
+						);
+//				fileList[0].delete();
+				System.exit(0);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
  	}
 }

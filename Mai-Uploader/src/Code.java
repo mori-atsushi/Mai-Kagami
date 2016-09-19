@@ -11,5 +11,5 @@ public class Code {
 	public void setToken_type(String token_type){ this.token_type = token_type; }
 	
 	public String getExpires_in(){ return expires_in; }
-	public void setExpires_in(){ this.expires_in = expires_in; }
+	public void setExpires_in(String expires_in){ this.expires_in = expires_in; }
 }
