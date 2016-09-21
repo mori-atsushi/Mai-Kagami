@@ -33,9 +33,7 @@ public class MyYouTube {
 	
 	private int fileSize;
 	private int range=0;
-	MyYouTube(){
-		
-	}
+	
 	public void setMetadata(File video, String title, String description){
 		//渡されたファイルがavi形式でなければ何もせずreturn
 		if(!video.getName().endsWith(".avi")) return;
@@ -128,8 +126,9 @@ public class MyYouTube {
             InputStream is = upload_uc.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String s;
+            String upload_json = null;
             while((s = br.readLine()) != null){
-            	System.out.println(s);
+            	upload_json += s;
             }
             if(upload_uc.getHeaderField("Range") != null){
             	this.range = Integer.parseInt(upload_uc.getHeaderField("Range").substring(upload_uc.getHeaderField("Range").indexOf("-") + 1));
@@ -140,7 +139,6 @@ public class MyYouTube {
             while(true){
             	//レスポンスコードの取得
             	int rescode = upload_uc.getResponseCode();
-            	
             	//Range(どこまでアップロードできたかの情報)を取得
             	//再開可能なレスポンスコードでRangeがナルでないとき
             	if((rescode == 308 || rescode == 503) && this.range != 0){
@@ -150,8 +148,34 @@ public class MyYouTube {
             						Arrays.copyOfRange(fileByte, range + 1, 3971110),
             						(int)fileSize, 
             						range)));
+            	}else if(rescode == 200){
+            		Code info_code = JSON.decode(upload_json.substring(upload_json.indexOf("{")), Code.class);
+            		String infostr =  video.getName().substring(0,video.getName().indexOf("."));
+            		String[] infolist = infostr.split("-", 0);
+            		String params = null;
+            		if(infolist.length > 2){
+            			params = "user="+infolist[0]+"&song="+infolist[1]+"&date="+infolist[2]+"&movie="+info_code.getId();
+            		}
+            		URL info_url = new URL("http://localhost:8888/test/Move.php?"+params);
+            		System.out.println(info_url);
+            		HttpURLConnection info_uc = (HttpURLConnection) info_url.openConnection();
+            		info_uc.setUseCaches(false);			// キャッシュを使用しない
+        			info_uc.setDoOutput(true);			// アウトプットできるようにする
+        			info_uc.setRequestMethod("POST");		// ポスト通信である
+            		OutputStream info_os = info_uc.getOutputStream();
+            		PrintStream info_ps = new PrintStream(info_os);
+            		info_ps.close();
+            		
+            		InputStream info_is = info_uc.getInputStream();
+            		BufferedReader info_br = new BufferedReader(new InputStreamReader(info_is));
+            		String l = null;
+            		while((l = info_br.readLine()) != null){
+            			System.out.println(l);
+            		}
+            		info_br.close();
+            		return;
             	}else{
-            		break;
+            		return;
             	}
             }
 		}catch(MalformedURLException e){

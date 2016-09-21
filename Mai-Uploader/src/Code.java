@@ -4,6 +4,7 @@ public class Code {
 	String token_type;
 	String expires_in;
 	
+	String id;
 	public String getAccess_token(){ return access_token; }
 	public void setAccess_token(String access_token){ this.access_token = access_token; }
 	
@@ -12,4 +13,7 @@ public class Code {
 	
 	public String getExpires_in(){ return expires_in; }
 	public void setExpires_in(String expires_in){ this.expires_in = expires_in; }
+	
+	public String getId(){ return id; }
+	public void setId(String id){ this.id = id; }
 }
