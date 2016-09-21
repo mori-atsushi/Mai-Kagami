@@ -39,8 +39,9 @@ ThroughFinish::~ThroughFinish() {
 		delete button[i];
 }
 
-ThroughDetailScreen::ThroughDetailScreen(Font *font, Songs *songs, Touch *touch) {
+ThroughDetailScreen::ThroughDetailScreen(Font *font, Songs *songs, Touch *touch, Result *result) {
 	this->songs = songs;
+	this->result = result;
 	title = new DrawTitle(font, "採点結果");
 	timingBar = new TimingBar(font);
 	expressionBar = new ExpressionBar(font);
@@ -58,14 +59,14 @@ ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
 
 void ThroughDetailScreen::Load() {
 	Song *song = songs->GetSong(songs->GetNowSong());
-	char *comment = "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。";
-	int point[] = { 1, 1, 2, 3 };
-	int max = 10;
-	int score[] = { 50, 80, 40, 90, 100, 70, 60, 80, 40, 90 };
-	timingBar->Load(4);
-	expressionBar->Load(2);
+	int point[4];
+	int score[100];
+	int max = result->GetScore(score);
+	timingBar->Load(result->GetTiming());
+	expressionBar->Load(result->GetExpression());
+	result->GetPoint(point);
 	resultBody->Load(point);
-	resultComment->Load(comment);
+	resultComment->Load(result->GetComment());
 	resultGraph->Load(score, max, song);
 }
 
@@ -100,8 +101,8 @@ ThroughDetailScreen::~ThroughDetailScreen() {
 	delete resultGraph;
 }
 
-ThroughDetail::ThroughDetail(Font *font, Songs *songs, Touch *touch) {
-	throughDetailScreen = new ThroughDetailScreen(font, songs, touch);
+ThroughDetail::ThroughDetail(Font *font, Songs *songs, Touch *touch, Result *result) {
+	throughDetailScreen = new ThroughDetailScreen(font, songs, touch, result);
 	throughFinish = new ThroughFinish(font, touch);
 }
 

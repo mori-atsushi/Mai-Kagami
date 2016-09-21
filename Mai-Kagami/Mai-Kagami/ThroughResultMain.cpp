@@ -3,7 +3,7 @@
 ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs) {
 	result = new Result();
 	throughResult = new ThroughResult(font, songs, touch, result);
-	throughDetail = new ThroughDetail(font, songs, touch);
+	throughDetail = new ThroughDetail(font, songs, touch, result);
 }
 
 void ThroughResultMain::ContentLoad() {
@@ -60,4 +60,5 @@ void ThroughResultMain::ContentDelete() {
 ThroughResultMain::~ThroughResultMain() {
 	delete throughResult;
 	delete throughDetail;
+	delete result;
 }
