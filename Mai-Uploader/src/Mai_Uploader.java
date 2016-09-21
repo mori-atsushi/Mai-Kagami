@@ -34,13 +34,14 @@ public class Mai_Uploader {
 				//ファイルに情報を追加する
 				myYoutube.setMetadata(
 						fileList[0],
-						"Mai_Uploader test upload on "  + Calendar.getInstance().getTime(),
-						"舞鏡の動画のテストアップロード " + "on " + Calendar.getInstance().getTime()
+						"Mai_Uploader test upload on " + Calendar.getInstance().getTime(),
+						"Mai_Uploader test upload on " + Calendar.getInstance().getTime()
 						);
-//				fileList[0].delete();
+				fileList[0].delete();
 				System.exit(0);
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.exit(0);
 			}
 		}
  	}
