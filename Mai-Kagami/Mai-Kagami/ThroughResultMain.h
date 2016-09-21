@@ -6,10 +6,11 @@
 #include "ThroughResult.h"
 #include "ThroughDetail.h"
 #include "ThroughResultDefine.h"
+#include "Result.h"
 
 class ThroughResultMain : public Scene {
 public:
-	ThroughResultMain(Font *font, Touch *touch, Songs *songs);
+	ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user);
 	MainScene Switch(const MainScene scene);
 	~ThroughResultMain();
 private:
@@ -19,6 +20,7 @@ private:
 	void ContentDelete();
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
+	Result *result;
 	ThroughResultScene scene;
 };
 

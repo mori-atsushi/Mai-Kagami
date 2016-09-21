@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "ThroughResultObject.h"
 #include "ThroughResultDefine.h"
+#include "Result.h"
 
 class ThroughFinish : public SubScene {
 public:
@@ -24,7 +25,7 @@ private:
 
 class ThroughDetailScreen : public SubScene {
 public:
-	ThroughDetailScreen(Font *font, Songs *songs, Touch *touch);
+	ThroughDetailScreen(Font *font, Songs *songs, Touch *touch, Result *result);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();
@@ -40,11 +41,12 @@ private:
 	ResultGraph *resultGraph;
 	Button *button;
 	Songs *songs;
+	Result *result;
 };
 
 class ThroughDetail : public SubScene {
 public:
-	ThroughDetail(Font *font, Songs *songs, Touch *touch);
+	ThroughDetail(Font *font, Songs *songs, Touch *touch, Result *result);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();

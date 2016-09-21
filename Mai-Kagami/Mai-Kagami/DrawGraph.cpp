@@ -15,6 +15,11 @@ MyDrawGraph::MyDrawGraph(const float x, const float y, const char *fileName, con
 	this->fileName = fileName;
 }
 
+//ファイル名変更
+void MyDrawGraph::ChangeFile(const char *fileName) {
+	this->fileName = fileName;
+}
+
 //画像ロード
 void MyDrawGraph::Load() {
 	handle = LoadGraph(fileName.c_str()); // 画像のロード

@@ -225,6 +225,9 @@
     <ClCompile Include="KinectBody.cpp">
       <Filter>ソース ファイル\システム関係\kinect</Filter>
     </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="KinectBody.h">
       <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
