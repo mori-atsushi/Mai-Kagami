@@ -1,5 +1,10 @@
 #include "Result.h"
 
+Result::Result(Songs *songs, User *user) {
+	this->songs = songs;
+	this->user = user;
+}
+
 void Result::Calc() {
 	total = 64;
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
@@ -20,6 +25,13 @@ void Result::Calc() {
 	max = 10;
 	timing = 2;
 	expression = 4;
+}
+
+//送信
+void Result::Send() {
+	Song *song = songs->GetSong(songs->GetNowSong());
+	//printfDx("%d\n", song->GetSongId()); //曲ID
+	//printfDx("%s\n", user->GetUserId()); //ユーザーID
 }
 
 float Result::GetTotal() {

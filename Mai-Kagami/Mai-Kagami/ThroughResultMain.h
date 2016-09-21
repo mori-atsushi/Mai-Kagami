@@ -10,7 +10,7 @@
 
 class ThroughResultMain : public Scene {
 public:
-	ThroughResultMain(Font *font, Touch *touch, Songs *songs);
+	ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user);
 	MainScene Switch(const MainScene scene);
 	~ThroughResultMain();
 private:
