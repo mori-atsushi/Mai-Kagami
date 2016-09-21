@@ -47,6 +47,7 @@
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="PlayScreenObject.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SettingPop.cpp" />
     <ClCompile Include="Song.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlayScreenObject.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
     <ClInclude Include="Song.h" />

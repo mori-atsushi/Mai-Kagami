@@ -14,6 +14,7 @@ public:
 	void Load();
 	void ChangeEx(const double ExRate); //î{ó¶ïœçX
 	double GetEx();
+	void ChangeFile(const char *fileName);
 	void SetExAnimation(double target_ex, Easing ease = LINER);
 	void Update();
 	void Release();

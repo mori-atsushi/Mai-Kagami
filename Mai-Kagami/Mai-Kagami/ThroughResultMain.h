@@ -6,6 +6,7 @@
 #include "ThroughResult.h"
 #include "ThroughDetail.h"
 #include "ThroughResultDefine.h"
+#include "Result.h"
 
 class ThroughResultMain : public Scene {
 public:
@@ -19,6 +20,7 @@ private:
 	void ContentDelete();
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
+	Result *result;
 	ThroughResultScene scene;
 };
 

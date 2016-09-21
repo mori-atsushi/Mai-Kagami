@@ -222,6 +222,9 @@
     <ClCompile Include="PartOptionPop.cpp">
       <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
     </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="PartOptionPop.h">
       <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

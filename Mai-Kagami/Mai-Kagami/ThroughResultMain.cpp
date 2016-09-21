@@ -1,12 +1,14 @@
 #include "ThroughResultMain.h"
 
 ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs) {
-	throughResult = new ThroughResult(font, songs, touch);
+	result = new Result();
+	throughResult = new ThroughResult(font, songs, touch, result);
 	throughDetail = new ThroughDetail(font, songs, touch);
 }
 
 void ThroughResultMain::ContentLoad() {
 	scene = THROUGH_RESULT_TOP;
+	result->Calc();
 	throughResult->Load();
 	throughDetail->Load();
 }
