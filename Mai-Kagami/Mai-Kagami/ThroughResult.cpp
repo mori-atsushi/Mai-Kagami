@@ -49,6 +49,15 @@ void ThroughResult::Load() {
 	song->coverGraph->Load(); //曲カバー画像をロード
 	song->coverGraph->ChangePos(WIDTH * 0.3, HEIGHT * 0.26); //カバー画像の表示位置変更
 	song->drawSongTitle->ChangePos(WIDTH * 0.6, HEIGHT * 0.24); //曲タイトルの表示位置変更
+
+	//前回の点数
+	int *history[2] = { new int(), new int() };
+	song->songHistory->Get(history);
+	if(*history[0] == -1)
+		sprintf(buf, "前回 --点");
+	else
+		sprintf(buf, "前回 %d点", *history[0]);
+	last->ChangeText(buf);
 }
 
 ThroughResultScene ThroughResult::Switch(const ThroughResultScene scene) {
