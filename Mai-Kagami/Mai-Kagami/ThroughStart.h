@@ -1,21 +1,12 @@
 #ifndef __THROUGHSTART_H_INCLUDED__
 #define __THROUGHSTART_H_INCLUDED__
 
-#include "DxLib.h"
-#include "Font.h"
-#include "DrawGraph.h"
-#include "DrawText.h"
+#include "StartScreen.h"
+#include "ThroughDefine.h"
 
-class ThroughStart{
+class ThroughStart : public StartSceen{
 public:
 	ThroughStart(Font *f);
-	void View();
-	~ThroughStart();
-private:
-	MyDrawGraph *myDrawGraph;
-	MyDrawText *wait;
-	MyDrawText *caution;
-	MyDrawTexts *annnotation;
 };
 
 #endif

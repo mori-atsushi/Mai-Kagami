@@ -14,12 +14,16 @@
 class SongSelectCover : public Song{
 public:
 	SongSelectCover(Font *font, Song *song, const int now);
-	void Load();
+	void Load(int);
 	void Release();
-	void Update();
+	void Update(int, int);
 	void Draw(int scene);
-	void Change(int num, int max);
 private:
+	void Change(int num, int max);
+	float CalcY();
+	int CalcAlpha();
+	int CalcAlphaWhite();
+	double CalcEx();
 	boolean playFlag = 0;
 	Font *font;
 };

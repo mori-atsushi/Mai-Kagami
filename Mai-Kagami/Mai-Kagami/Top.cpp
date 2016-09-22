@@ -11,7 +11,6 @@ TopTouchMessage::TopTouchMessage(Font *font, const float y)
 	Init(); //初期化
 }
 
-
 //NFCタッチメッセージ初期化
 void TopTouchMessage::Init() {
 	t = 0;
@@ -20,30 +19,28 @@ void TopTouchMessage::Init() {
 //NFCタッチメッセージ計算
 void TopTouchMessage::Update() {
 	if (t > 180)
-		alpha = 0;
+		SetAlpha(0);
 	else if (t > 120)
-		alpha = (180 - t) * 255 / 60;
+		SetAlpha((180 - t) * 255 / 60);
 	else if (t > 60)
-		alpha = 255;
+		SetAlpha(255);
 	else
-		alpha = t * 255 / 60;
+		SetAlpha(t * 255 / 60);
 	t++;
 	t %= 240;
 }
 
 //NFCタッチメッセージ表示
 void TopTouchMessage::View() {
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha); //透明度設定
 	MyDrawText::View(); //文字表示
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); //透明度解除
 }
 
 //NFCタッチボタンコンストラクタ
 TopTouchButton::TopTouchButton(Font *font)
-	: Draw(WIDTH, NFC_POS) {
+	: Pos(WIDTH, NFC_POS) {
 	float r = WIDTH / 12;
-	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() * SIZE_RATE - r, GetY() * SIZE_RATE, 2, 40, 20);
-	circle = new MyDrawCircle(GetX() * SIZE_RATE, GetY() * SIZE_RATE, r);
+	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() - r, GetY(), 2, 40, 20);
+	circle = new MyDrawCircle(GetX(), GetY(), r);
 }
 
 //NFCタッチボタン表示

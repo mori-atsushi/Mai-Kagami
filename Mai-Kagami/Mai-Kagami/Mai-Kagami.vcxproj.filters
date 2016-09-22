@@ -43,11 +43,47 @@
     <Filter Include="ヘッダー ファイル\画面関係\トップ画面">
       <UniqueIdentifier>{3e2bf08c-b163-469a-8307-7e54e5bd58b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\画面関係\通し練習">
+    <Filter Include="ソース ファイル\システム関係\kinect">
+      <UniqueIdentifier>{18fc3304-91cc-430a-b705-c73c859ff735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム関係\kinect">
+      <UniqueIdentifier>{eae67097-4b0a-410c-a48a-2da132089e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{f44d20bb-4f91-4459-af88-db708e8bc837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\ポップアップ">
+      <UniqueIdentifier>{12be1523-1c04-4a07-99ee-a98da9c5fa32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\通し練習プレイ画面">
+      <UniqueIdentifier>{d5d28765-689d-4936-aa3a-6004395987f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\通し練習プレイ画面">
       <UniqueIdentifier>{bd63c35b-799e-49dd-9c88-573a9e19fbeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\画面関係\通し練習">
-      <UniqueIdentifier>{d5d28765-689d-4936-aa3a-6004395987f5}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\画面関係\通し練習結果画面">
+      <UniqueIdentifier>{e2fb5407-7c7d-41ab-95ed-25888a3f66b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\通し練習結果画面">
+      <UniqueIdentifier>{943f4e47-3de0-4780-8b28-c6c750d69a66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\部分練習プレイ画面">
+      <UniqueIdentifier>{12ba7a3c-37f0-468a-91c3-0ae9cf1e1054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\部分練習プレイ画面">
+      <UniqueIdentifier>{1ec47139-a6bf-49ec-a2d9-9cf55667abf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\プレイ画面">
+      <UniqueIdentifier>{027b5b5d-279e-4c69-a026-a74a84e565c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\プレイ画面">
+      <UniqueIdentifier>{81ee12c2-da3a-41fa-a0cf-8ea386e0c377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\画面関係\部分練習結果画面">
+      <UniqueIdentifier>{22cf8377-e975-4996-8eb9-7fbce90239cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\画面関係\部分練習結果画面">
+      <UniqueIdentifier>{fb8fba5a-f741-4500-91cb-9cbe3a068c27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +92,6 @@
     </ClCompile>
     <ClCompile Include="Touch.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>ソース ファイル\画面関係</Filter>
     </ClCompile>
     <ClCompile Include="MaiKagami.cpp">
       <Filter>ソース ファイル\画面関係</Filter>
@@ -109,13 +142,88 @@
       <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
     </ClCompile>
     <ClCompile Include="ThroughMain.cpp">
-      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+      <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClCompile>
     <ClCompile Include="ThroughStart.cpp">
-      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+      <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClCompile>
     <ClCompile Include="ThroughPlay.cpp">
-      <Filter>ソース ファイル\画面関係\通し練習</Filter>
+      <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="Song.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="KinectDistance.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughPause.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingPop.cpp">
+      <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonText.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\画面関係\共通</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughResultObject.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughResult.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughDetail.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ThroughResultMain.cpp">
+      <Filter>ソース ファイル\画面関係\通し練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartOption.cpp">
+      <Filter>ソース ファイル\画面関係\曲選択画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartMain.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartPlay.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScreenObject.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>ソース ファイル\画面関係\プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartPause.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
+    <ClCompile Include="PartResultMain.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartResult.cpp">
+      <Filter>ソース ファイル\画面関係\部分練習結果画面</Filter>
+    </ClCompile>
+    <ClCompile Include="PartOptionPop.cpp">
+      <Filter>ソース ファイル\画面関係\ポップアップ</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +232,6 @@
     </ClInclude>
     <ClInclude Include="Touch.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>ヘッダー ファイル\画面関係</Filter>
     </ClInclude>
     <ClInclude Include="MaiKagami.h">
       <Filter>ヘッダー ファイル\画面関係</Filter>
@@ -180,16 +285,100 @@
       <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
     </ClInclude>
     <ClInclude Include="ThroughMain.h">
-      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="ThroughStart.h">
-      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="ThroughDefine.h">
-      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
     </ClInclude>
     <ClInclude Include="ThroughPlay.h">
-      <Filter>ヘッダー ファイル\画面関係\通し練習</Filter>
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="Song.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="KinectDistance.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="SeetingPop.h">
+      <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonText.h">
+      <Filter>ヘッダー ファイル\画面関係\共通</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResult.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResultObject.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughDetail.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResultMain.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughResultDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ThroughPause.h">
+      <Filter>ヘッダー ファイル\画面関係\通し練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartOption.h">
+      <Filter>ヘッダー ファイル\画面関係\曲選択画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartMain.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartPlay.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScreenObject.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>ヘッダー ファイル\画面関係\プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartPause.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習プレイ画面</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="PartResultMain.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartResultDefine.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartResult.h">
+      <Filter>ヘッダー ファイル\画面関係\部分練習結果画面</Filter>
+    </ClInclude>
+    <ClInclude Include="PartOptionPop.h">
+      <Filter>ヘッダー ファイル\画面関係\ポップアップ</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

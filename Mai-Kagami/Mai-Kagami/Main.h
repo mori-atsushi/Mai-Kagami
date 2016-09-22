@@ -6,10 +6,17 @@
 #define HEIGHT		1920
 
 #define NFC_POS		HEIGHT * 0.85
+#define NFC_FLAG	FALSE	//NFCÉJÅ[ÉhÇì«Ç›çûÇﬁÇ©Ç«Ç§Ç©(TRUE:ì«Ç›çûÇﬁ/FALSE:ì«Ç›çûÇ‹Ç»Ç¢)
 
-#define TOP			0
-#define SONG_SELECT	1
-#define THROUGH		2
-#define START TOP
+typedef enum {
+	TOP,
+	SONG_SELECT,
+	THROUGH,
+	THROUGH_RESULT,
+	PART,
+	PART_RESULT,
+	THROUGH_OPTION,
+	PART_OPTION
+} MainScene;
 
 #endif

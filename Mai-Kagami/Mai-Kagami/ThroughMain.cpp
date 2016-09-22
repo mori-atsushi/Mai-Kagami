@@ -1,62 +1,66 @@
 #include "ThroughMain.h"
 
 ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs) {
-	f = font;
-	ThroughMain::songs = songs;
-	loadFlag = 0;
-	throughStart = new ThroughStart(f);
-	throughPlay = new ThroughPlay(f);
-	scene = THROUGH_START;
-	ThroughMain::touch = touch;
+	throughStart = new ThroughStart(font);
+	throughPlay = new ThroughPlay(font, songs, touch);
+	throughPause = new ThroughPause(font, songs, touch);
 }
 
-void ThroughMain::Load() {
-	if (loadFlag == 2)
-		return;
+void ThroughMain::ContentLoad() {
+	scene = THROUGH_START;
+	throughStart->Load();
+	throughPlay->Load();
+	throughPause->Load();
+}
 
-	if (loadFlag == 0) {
-		throughPlay->Load(songs->GetSong(songs->GetNowSong()));
-		loadFlag = 1;
+MainScene ThroughMain::Switch(const MainScene scene) {
+	switch (this->scene)
+	{
+	case THROUGH_COUNTDOWN:
+	case THROUGH_PLAY:
+	case THROUGH_START:
+		this->scene = throughPlay->Switch(this->scene);
+	case THROUGH_PAUSE:
+	case THROUGH_SETTING:
+		this->scene = throughPause->Switch(this->scene);
+		break;
 	}
 
-	if (loadFlag == 1 && GetASyncLoadNum() == 0)
-		loadFlag = 2;
-}
-
-int ThroughMain::Update() {
-	Load();
-	if (loadFlag == 2) {
-		switch (scene)
-		{
-		case THROUGH_START:
-			if (touch->Get(0) == 1)
-				scene = THROUGH_PLAY;
-			break;
-		case THROUGH_PLAY:
-			throughPlay->Update();
-		}
+	switch (this->scene)
+	{
+	case THROUGH_NEXT:
+		Delete();
+		return THROUGH_RESULT;
+	case THROUGH_BACK_SONG_SELECT:
+		Delete();
+		return SONG_SELECT;
 	}
 	return THROUGH;
 }
 
-void ThroughMain::View() {
-	if (loadFlag == 2) {
-		switch (scene)
-		{
-		case THROUGH_START:
-			throughStart->View();
-			break;
-		case THROUGH_PLAY:
-			throughPlay->View();
-			break;
-		}
+void ThroughMain::ContentUpdate() {
+	if (nowScene == THROUGH) {
+		Load();
+		throughStart->Update(scene);
+		throughPlay->Update(scene);
+		throughPause->Update(scene);
 	}
 }
 
-void ThroughMain::Delete() {
-	loadFlag = 0;
+void ThroughMain::ContentView() {
+	throughPlay->View();
+	throughStart->View();
+	throughPause->View();
+}
+
+void ThroughMain::ContentDelete() {
+	throughStart->Delete();
+	throughPlay->Delete();
+	throughPause->Delete();
 }
 
 ThroughMain::~ThroughMain() {
-
+	delete throughStart;
+	delete throughPlay;
+	delete throughPause;
 }

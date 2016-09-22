@@ -3,45 +3,45 @@
 
 #include "DxLib.h"
 #include "DrawGraph.h"
-#include "Common.h"
+#include "CommonText.h"
 #include "Touch.h"
-#include "Font.h"
 #include "SongSelectCover.h"
 #include "Songs.h"
 #include "SongSelectDefine.h"
+#include "Scene.h"
+#include "User.h"
 
 //曲選択画面タイトル
-class SongSelectTitle : public Draw {
+class SongSelectTitle : public SubScene {
 public:
-	SongSelectTitle(Font *font, const float x, const float y); //初期化
-	void Update(int scene); //計算
-	void View(); //表示
+	SongSelectTitle(Font *font); //初期化
+	void ContentUpdate(); //計算
+	void ContentView(); //表示
 	~SongSelectTitle();
 private:
-	MyDrawTextLine *title;
-	MyDrawText *subTitle;
-	int scene;
+	DrawTitle *title;
+	DrawSubtitle *subTitle;
 };
 
 //曲選択画面カバー関係
-class SongInformation {
+class SongInformation : public SubScene {
 public:
-	SongInformation(Font *font, Songs *songs); //初期化
+	SongInformation(Font *font, Songs *songs, Touch *touch, User *user); //初期化
 	void Load();
-	void View(int scene); //表示
-	void Update(Touch *touch, int scene);
-	void Release();
+	void ContentView(); //表示
+	void ContentUpdate();
+	void Delete();
 	~SongInformation();
 private:
 	int n, now;
+	User *user;
+	Touch *touch;
 	SongSelectCover *songCover[256];
 	Songs *songs;
 	SongSelectCover *nowSong;
 	MyDrawGraph *grad[2]; //カバー画像
-	MyDrawGraph *box; //カバー画像
+//	MyDrawGraph *box; //カバー画像
 	MyDrawBox *myDrawBox;
-	MyDrawTextLine *songTitle;
-	MyDrawText *songArtist;
 	MyDrawText *songLast[2];
 };
 

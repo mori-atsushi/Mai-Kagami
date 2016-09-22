@@ -9,24 +9,25 @@
 #include "ThroughStart.h"
 #include "ThroughDefine.h"
 #include "ThroughPlay.h"
+#include "ThroughPause.h"
 #include "Touch.h"
+#include "KinectDistance.h"
+#include "Scene.h"
 
-class ThroughMain {
+class ThroughMain : public Scene{
 public:
 	ThroughMain(Font *font, Touch *touch, Songs *songs);
-	int Update();
-	void View();
+	MainScene Switch(const MainScene scene);
 	~ThroughMain();
 private:
-	Font *f;
-	Songs *songs;
+	void ContentLoad();
+	void ContentUpdate();
+	void ContentView();
+	void ContentDelete();
 	ThroughStart *throughStart;
 	ThroughPlay *throughPlay;
-	int loadFlag;
-	void Load();
-	void Delete();
+	ThroughPause *throughPause;
 	int scene;
-	Touch *touch;
 };
 
 #endif

@@ -1,39 +1,48 @@
 #include "ThroughOption.h"
 
-ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs) {
-	button[0] = new Button(font, "UP", 1, 0);
-	button[1] = new Button(font, "DOWN", 2, 1);
-	button[2] = new Button(font, "スタート!", 0, 2);
-	button[3] = new Button(font, "戻る", 4);
-	float height = BUTTON_POS + BUTTON_INTERVAL / 2;
-	speed[0] = new MyDrawText(font, "スピード", WIDTH * 0.72, height, 0, 30);
-	speed[1] = new MyDrawText(font, "×1.0", WIDTH * 0.86, height, 0, 30, "Yellow");
-	ThroughOptionButton::songs = songs;
+ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch) {
+	this->songs = songs;
+	speedOption = new SpeedOption(font, songs, touch);
+	button[0] = new CircleButton(font, touch, "スタート!", 2);
+	button[1] = new CircleButton2(font, touch, "戻る", 4);
 }
 
-
-//モード選択ボタン表示
-void ThroughOptionButton::View() {
-	for (int i = 0; i < 4; i++)
-		button[i]->View();
-	for (int i = 0; i < 2; i++)
-		speed[i]->View();
+int ThroughOptionButton::Switch(const int scene) {
+	if (button[0]->GetTouch() == 1)
+		return NEXT1;
+	if (button[1]->GetTouch() == 1)
+		return MODE;
+	return scene;
 }
 
-void ThroughOptionButton::Update(Touch *touch, int scene) {
-	if (scene == OPTION1) {
+//モード選択ボタン計算
+void ThroughOptionButton::ContentUpdate() {
+	static int lastScene = TOP;
+	if (nowScene == OPTION1) {
+		viewFlag = TRUE;
 		Song *song = songs->GetSong(songs->GetNowSong());
-
-		char str[256];
-		sprintf_s(str, sizeof(str), "×%1.1lf", song->danceMovie->GetSpeed());
-		speed[1]->ChangeText(str);
+		song->danceMovie->SetStartFlame();
+		song->danceMovie->SetEndFlame();
+		if (lastScene == nowScene) {
+			speedOption->Check();
+		}
 	}
+	else {
+		viewFlag = FALSE;
+	}
+	lastScene = nowScene;
 }
 
-//モード選択削除
+//オプション画面ボタン表示
+void ThroughOptionButton::ContentView() {
+	speedOption->View();
+	for(int i = 0; i < 2; i++)
+		button[i]->View();
+}
+
+//オプション画面ボタン削除
 ThroughOptionButton::~ThroughOptionButton() {
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 2; i++)
 		delete button[i];
-	for (int i = 0; i < 2; i++)
-		delete speed[i];
+	delete speedOption;
 }

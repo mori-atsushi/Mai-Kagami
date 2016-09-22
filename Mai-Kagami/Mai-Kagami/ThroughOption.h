@@ -2,22 +2,27 @@
 #define __THROUGHOPTION_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Common.h"
+#include "Button.h"
 #include "Font.h"
 #include "Draw.h"
 #include "Touch.h"
 #include "SongSelectDefine.h"
 #include "Songs.h"
+#include "SeetingPop.h"
+#include "Scene.h"
+#include "SongSelectDefine.h"
 
-class ThroughOptionButton {
+class ThroughOptionButton : public SubScene{
 public:
-	ThroughOptionButton(Font *font, Songs *songs);
-	void View();
-	void Update(Touch *touch, int scene);
+	ThroughOptionButton(Font *font, Songs *songs, Touch *touch);
+	int Switch(const int scene);
 	~ThroughOptionButton();
 private:
 	Songs *songs;
-	Button *button[4];
+	void ContentUpdate();
+	void ContentView();
+	SpeedOption *speedOption;
+	Button *button[2];
 	MyDrawText *speed[2];
 };
 

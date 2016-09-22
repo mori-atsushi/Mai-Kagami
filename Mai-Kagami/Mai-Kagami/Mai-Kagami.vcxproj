@@ -19,12 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CommonText.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawGraph.cpp" />
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="KinectDistance.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
@@ -34,44 +37,92 @@
     </ClCompile>
     <ClCompile Include="ModeSelect.cpp" />
     <ClCompile Include="Nfc.cpp" />
+    <ClCompile Include="PartMain.cpp" />
+    <ClCompile Include="PartOption.cpp" />
+    <ClCompile Include="PartOptionPop.cpp" />
+    <ClCompile Include="PartPause.cpp" />
+    <ClCompile Include="PartPlay.cpp" />
+    <ClCompile Include="PartResult.cpp" />
+    <ClCompile Include="PartResultMain.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="PlayScreenObject.cpp" />
+    <ClCompile Include="Result.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SettingPop.cpp" />
+    <ClCompile Include="Song.cpp" />
     <ClCompile Include="SongSelectCover.cpp" />
     <ClCompile Include="Songs.cpp" />
     <ClCompile Include="SongSelect.cpp" />
     <ClCompile Include="SongSelectCommon.cpp" />
     <ClCompile Include="SongSelectMain.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="ThroughDetail.cpp" />
     <ClCompile Include="ThroughMain.cpp" />
     <ClCompile Include="ThroughOption.cpp" />
+    <ClCompile Include="ThroughPause.cpp" />
     <ClCompile Include="ThroughPlay.cpp" />
+    <ClCompile Include="ThroughResult.cpp" />
+    <ClCompile Include="ThroughResultMain.cpp" />
+    <ClCompile Include="ThroughResultObject.cpp" />
     <ClCompile Include="ThroughStart.cpp" />
     <ClCompile Include="Top.cpp" />
     <ClCompile Include="TopMain.cpp" />
     <ClCompile Include="Touch.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CommonText.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawGraph.h" />
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="KinectDistance.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />
     <ClInclude Include="Nfc.h" />
+    <ClInclude Include="PartDefine.h" />
+    <ClInclude Include="PartMain.h" />
+    <ClInclude Include="PartOption.h" />
+    <ClInclude Include="PartOptionPop.h" />
+    <ClInclude Include="PartPause.h" />
+    <ClInclude Include="PartPlay.h" />
+    <ClInclude Include="PartResult.h" />
+    <ClInclude Include="PartResultDefine.h" />
+    <ClInclude Include="PartResultMain.h" />
+    <ClInclude Include="PauseScreen.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="PlayScreenObject.h" />
+    <ClInclude Include="Result.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SeetingPop.h" />
+    <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelectCover.h" />
     <ClInclude Include="Songs.h" />
     <ClInclude Include="SongSelect.h" />
     <ClInclude Include="SongSelectCommon.h" />
     <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="ThroughDefine.h" />
+    <ClInclude Include="ThroughDetail.h" />
     <ClInclude Include="ThroughMain.h" />
     <ClInclude Include="ThroughOption.h" />
+    <ClInclude Include="ThroughPause.h" />
     <ClInclude Include="ThroughPlay.h" />
+    <ClInclude Include="ThroughResult.h" />
+    <ClInclude Include="ThroughResultDefine.h" />
+    <ClInclude Include="ThroughResultMain.h" />
+    <ClInclude Include="ThroughResultObject.h" />
     <ClInclude Include="ThroughStart.h" />
     <ClInclude Include="Top.h" />
     <ClInclude Include="TopMain.h" />
     <ClInclude Include="Touch.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2ED7E73D-E57A-4A66-AE24-94CE667A078D}</ProjectGuid>
@@ -128,19 +179,19 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -154,14 +205,14 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -170,7 +221,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>

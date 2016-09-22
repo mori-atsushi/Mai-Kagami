@@ -5,28 +5,36 @@
 #include "Main.h"
 #include "DrawObject.h"
 #include "Drawtext.h"
-#include "Common.h"
+#include "Button.h"
 #include "Touch.h"
 #include "Font.h"
+#include "SeetingPop.h"
+#include "Scene.h"
+#include "SongSelectDefine.h"
 
 //曲選択画面ボタン関係
-class SongSelectButton {
+class SongSelectButton : public SubScene{
 public:
-	SongSelectButton(Font *font); //初期化
-	void View(); //表示
+	SongSelectButton(Font *font, Touch *touch); //初期化
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView(); //表示
 	~SongSelectButton();
 private:
 	Button *button[4];
 };
 
-//ポップアップ関係
-class SongSelectPop {
+//終了用ポップアップ
+class SongSelectPop : public SubScene {
 public:
-	SongSelectPop(Font *font);
-	void View();
+	SongSelectPop(Font *font, Touch *touch);
+	int Switch(const int scene);
+	void ContentUpdate();
+	void ContentView();
 	~SongSelectPop();
 private:
-	MyDrawBox *myDrawBox;
+	Touch *touch;
+	BlackBox *blackBox;
 	MyDrawText *title;
 	MyDrawText *message;
 	Button *button[2];
