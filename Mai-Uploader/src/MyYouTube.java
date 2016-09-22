@@ -73,7 +73,7 @@ public class MyYouTube {
 			byte[] b = new byte[1];
 		    FileInputStream fis = new FileInputStream(video);
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		    while (fis.read(b) > 0) { baos.write(b); System.out.println(b);}
+		    while (fis.read(b) > 0) { baos.write(b); }
 		    baos.close();
 		    fis.close();
 		    b = baos.toByteArray();
@@ -81,7 +81,6 @@ public class MyYouTube {
 		    //byteは負の数を含んでしまうのですべて正の数になるよう変換
 		    for(int i = 0; i < b.length; i++){
 		    	fileByte[i] = Byte.toUnsignedInt(b[i]);
-		    	System.out.println(fileByte[i]);
 		    }
 		    this.fileSize = fileByte.length;
 		    //再開可能なアップロードのセッションを開始するためのurl
@@ -178,7 +177,7 @@ public class MyYouTube {
             	}else{
             		resume_ps.close();
             		br.close();
-//            		baos.close();
+            		baos.close();
             		upload_ps.close();
             		return;
             	}
