@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,8 +21,6 @@ import net.arnx.jsonic.JSON;
 public class MyYouTube {
 	//アクセストークン取得のためのURL
 	private static final String TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
-	//アップロードのためのURL
-	private static final String RESUME_URL = " https://www.googleapis.com/youtube/v3/videos";
 	//クライアントid
 	private final String CONSUMER_KEY = "707601956964-gojtq9hq7h6qt751k973lprdh8ts20rv.apps.googleusercontent.com";
 	//クライアントシークレット
@@ -74,7 +73,7 @@ public class MyYouTube {
 			byte[] b = new byte[1];
 		    FileInputStream fis = new FileInputStream(video);
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		    while (fis.read(b) > 0) { baos.write(b); }
+		    while (fis.read(b) > 0) { baos.write(b); System.out.println(b);}
 		    baos.close();
 		    fis.close();
 		    b = baos.toByteArray();
@@ -82,6 +81,7 @@ public class MyYouTube {
 		    //byteは負の数を含んでしまうのですべて正の数になるよう変換
 		    for(int i = 0; i < b.length; i++){
 		    	fileByte[i] = Byte.toUnsignedInt(b[i]);
+		    	System.out.println(fileByte[i]);
 		    }
 		    this.fileSize = fileByte.length;
 		    //再開可能なアップロードのセッションを開始するためのurl
@@ -105,7 +105,7 @@ public class MyYouTube {
 			PrintStream resume_ps = new PrintStream(resume_os);
 			resume_ps.print(sentJson);
 			resume_ps.close();
-			
+			resume_os.close();
 			//実際に動画のアップロード
 			URL upload_url = new URL(resume_uc.getHeaderField("location"));
 			HttpURLConnection upload_uc = (HttpURLConnection)upload_url.openConnection();
@@ -118,10 +118,10 @@ public class MyYouTube {
 			upload_uc.setRequestProperty("Content-Length", String.valueOf(fileSize));
 			upload_uc.setRequestProperty("Content-Type", "video/avi");
 			OutputStream upload_os = upload_uc.getOutputStream();	
-			PrintStream ps2 = new PrintStream(upload_os);
+			PrintStream upload_ps = new PrintStream(upload_os);
 			//送信
-			for(int i :fileByte)ps2.write(i);
-            ps2.close();
+			for(int i :fileByte)upload_ps.write(i);
+			upload_ps.close();	upload_os.close();
             //レスポンスの取得
             InputStream is = upload_uc.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -129,7 +129,9 @@ public class MyYouTube {
             String upload_json = null;
             while((s = br.readLine()) != null){
             	upload_json += s;
+            	System.out.println(s);
             }
+            is.close(); br.close();
             if(upload_uc.getHeaderField("Range") != null){
             	this.range = Integer.parseInt(upload_uc.getHeaderField("Range").substring(upload_uc.getHeaderField("Range").indexOf("-") + 1));
             }else{
@@ -157,14 +159,13 @@ public class MyYouTube {
             			params = "user="+infolist[0]+"&song="+infolist[1]+"&date="+infolist[2]+"&movie="+info_code.getId();
             		}
             		URL info_url = new URL("http://localhost:8888/test/Move.php?"+params);
-            		System.out.println(info_url);
             		HttpURLConnection info_uc = (HttpURLConnection) info_url.openConnection();
             		info_uc.setUseCaches(false);			// キャッシュを使用しない
         			info_uc.setDoOutput(true);			// アウトプットできるようにする
         			info_uc.setRequestMethod("POST");		// ポスト通信である
             		OutputStream info_os = info_uc.getOutputStream();
             		PrintStream info_ps = new PrintStream(info_os);
-            		info_ps.close();
+            		info_ps.close();	info_os.close();
             		
             		InputStream info_is = info_uc.getInputStream();
             		BufferedReader info_br = new BufferedReader(new InputStreamReader(info_is));
@@ -172,9 +173,13 @@ public class MyYouTube {
             		while((l = info_br.readLine()) != null){
             			System.out.println(l);
             		}
-            		info_br.close();
+            		info_br.close();	info_is.close();
             		return;
             	}else{
+            		resume_ps.close();
+            		br.close();
+//            		baos.close();
+            		upload_ps.close();
             		return;
             	}
             }
@@ -211,7 +216,7 @@ public class MyYouTube {
 			for(int i :file){
 				ps.write(i);
 			}
-            ps.close();
+            ps.close();	os.close();
             if(uc.getHeaderField("Range") != null){
             	this.range = Integer.parseInt(uc.getHeaderField("Range").substring(uc.getHeaderField("Range").indexOf("-") + 1));
             }
@@ -221,7 +226,10 @@ public class MyYouTube {
             	String s = null;
             	while((s = br.readLine()) != null){
             	System.out.println(s);
-            }}
+            	br.close();
+            	}
+            }
+            is.close();
             return uc;
 		} catch (IOException e) {
 			e.printStackTrace();

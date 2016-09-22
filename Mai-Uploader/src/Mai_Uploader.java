@@ -27,8 +27,9 @@ public class Mai_Uploader {
 			File[] fileList = video.listFiles();
 			while(fileList.length == 0){
 				fileList = video.listFiles();
+				myYoutube.sleep(5000);
 			}
-			myYoutube.sleep(1000);
+			myYoutube.sleep(5000);
 			
 			try {
 				//ƒtƒ@ƒCƒ‹‚Éî•ñ‚ğ’Ç‰Á‚·‚é
@@ -38,7 +39,7 @@ public class Mai_Uploader {
 						"Mai_Uploader test upload on " + Calendar.getInstance().getTime()
 						);
 				fileList[0].delete();
-				System.exit(0);
+				myYoutube.sleep(5000);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.exit(0);
