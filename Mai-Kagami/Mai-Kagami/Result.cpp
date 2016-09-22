@@ -7,23 +7,14 @@ Result::Result(Songs *songs, User *user) {
 
 void Result::Calc() {
 	Song *song = songs->GetSong(songs->GetNowSong());
-	Mark(song->GetFolder());
+	char buf[256];
+	sprintf(buf, "song/%s/model.txt", song->GetFolder());
+	Mark(buf, "FILE/test.txt");
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
 	point[0] = 2;
 	point[1] = 2;
 	point[2] = 1;
 	point[3] = 1;
-	score[0] = 50;
-	score[1] = 80;
-	score[2] = 40;
-	score[3] = 90;
-	score[4] = 100;
-	score[5] = 70;
-	score[6] = 60;
-	score[7] = 80;
-	score[8] = 40;
-	score[9] = 90;
-	max = 10;
 	timing = 2;
 	expression = 4;
 }

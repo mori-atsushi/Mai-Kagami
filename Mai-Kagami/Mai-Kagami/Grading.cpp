@@ -4,16 +4,16 @@ Grading::Grading() {
 	bezier = new Bezier(1.1, 0, 0.6, 1.2);
 }
 
-void Grading::Mark(const char *songFolder) {
+void Grading::Mark(const char *model, const char *user) {
+	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
+
 	FILE *userfp, *modelfp;
-	if ((userfp = fopen("FILE/test.txt", "r")) == NULL) {
+	if ((userfp = fopen(user, "r")) == NULL) {
 		printf("file open error!!\n");
 		exit(EXIT_FAILURE);
 	}
 
-	char buf[256];
-	sprintf(buf, "song/%s/model.txt", songFolder);
-	if ((modelfp = fopen(buf, "r")) == NULL) {
+	if ((modelfp = fopen(model, "r")) == NULL) {
 		printf("file open error!!\n");
 		exit(EXIT_FAILURE);
 	}
@@ -22,7 +22,8 @@ void Grading::Mark(const char *songFolder) {
 	char userline[MAX], modelline[MAX];
 	int i = 0, j = 0;
 	int modelflame = 0, userflame = 0;
-	int sum = 0, count = 0;
+	int sum = 0, count = 0, scoreCount = 0;
+	max = 0;
 
 	while (fgets(userline, MAX, userfp) != NULL) {
 		float model[24][3], user[24][3];
@@ -64,13 +65,20 @@ void Grading::Mark(const char *songFolder) {
 			}
 		}
 		sum += (int)FlameMark(user, model);
+		score[max] += (int)FlameMark(user, model);
+		if (userflame >= SCORE_FLAME * (max + 1)) {
+			score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
+			score[max] = Adjust(score[max]);
+			scoreCount = count;
+			max++;
+		}
 		count++;
 	}
+	score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
+	score[max] = Adjust(score[max]);
+	max++;
 	total = (int)(bezier->Calc((double)sum / count / 100) * 100);
-	if (total > 100)
-		total = 100;
-	else if (total < 0)
-		total = 0;
+	total = Adjust(total);
 }
 
 //2関節間の点数計算
@@ -128,6 +136,14 @@ float Grading::FlameMark(float joints[24][3], float model[24][3]) {
 	for (int i = 0; i < MAX; i++)
 		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
 	return  sum / MAX;
+}
+
+int Grading::Adjust(int point) {
+	if (point > 100)
+		return 100;
+	else if (point < 0)
+		return 0;
+	return point;
 }
 
 Grading::~Grading() {
