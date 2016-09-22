@@ -1,15 +1,12 @@
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
@@ -73,7 +70,7 @@ public class MyYouTube {
 		for(int i = 0, n = b.length; i < n; i++){
 			fileByte[i] = Byte.toUnsignedInt(b[i]);
 		}
-		this.fileSize = fileByte.length;
+		
 		//再開可能なアップロードのセッションを開始するためのurl
 		URL resume_url = new URL("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status,contentDetails&key=AIzaSyDEgkuehdEK_kh0gEw6-3c-8WwcIS2i0nI");
 		//タイトル、説明などの情報を持つjson
