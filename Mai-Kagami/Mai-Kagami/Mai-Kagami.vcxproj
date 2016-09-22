@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bezier.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CommonText.cpp" />
     <ClCompile Include="Draw.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Grading.cpp" />
     <ClCompile Include="Kinect.cpp" />
     <ClCompile Include="KinectBody.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
@@ -74,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bezier.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CommonText.h" />
     <ClInclude Include="Draw.h" />
@@ -81,6 +84,7 @@
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Grading.h" />
     <ClInclude Include="Kinect.h" />
     <ClInclude Include="KinectBody.h" />
     <ClInclude Include="MaiKagami.h" />

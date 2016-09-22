@@ -159,3 +159,8 @@ SongPart *Song::GetPart(int num) {
 int Song::GetPartNum() {
 	return *songPartNum;
 }
+
+//ƒtƒHƒ‹ƒ_Žæ“¾
+char *Song::GetFolder() {
+	return folder;
+}

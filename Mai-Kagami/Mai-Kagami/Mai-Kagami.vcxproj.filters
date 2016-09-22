@@ -85,6 +85,12 @@
     <Filter Include="ソース ファイル\画面関係\部分練習結果画面">
       <UniqueIdentifier>{fb8fba5a-f741-4500-91cb-9cbe3a068c27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\計算関係">
+      <UniqueIdentifier>{8e23e7e3-a197-466e-9f88-62be147c299a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\計算関係">
+      <UniqueIdentifier>{83c57063-fc5d-4a7f-a4be-2ccc03646868}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Nfc.cpp">
@@ -227,6 +233,12 @@
     </ClCompile>
     <ClCompile Include="Result.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Grading.cpp">
+      <Filter>ソース ファイル\システム関係\kinect</Filter>
+    </ClCompile>
+    <ClCompile Include="Bezier.cpp">
+      <Filter>ソース ファイル\計算関係</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="Result.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Grading.h">
+      <Filter>ヘッダー ファイル\システム関係\kinect</Filter>
+    </ClInclude>
+    <ClInclude Include="Bezier.h">
+      <Filter>ヘッダー ファイル\計算関係</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

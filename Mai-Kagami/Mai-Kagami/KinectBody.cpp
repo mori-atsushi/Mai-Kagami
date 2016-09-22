@@ -124,7 +124,7 @@ void KinectBody::JointSave(const int flame) {
 		fprintf(fp, "%d:", flame);
 		if (*userFlag) {
 			for (int i = 0; i < JointType_Count; i++)
-				fprintf(fp, "%f,%f,%f|", userJoints[0].Position.X, userJoints[0].Position.Y, userJoints[0].Position.Z);
+				fprintf(fp, "%f,%f,%f|", userJoints[i].Position.X, userJoints[i].Position.Y, userJoints[i].Position.Z);
 			putc('\n', fp);
 		}
 		else {

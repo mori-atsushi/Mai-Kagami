@@ -6,7 +6,8 @@ Result::Result(Songs *songs, User *user) {
 }
 
 void Result::Calc() {
-	total = 64;
+	Song *song = songs->GetSong(songs->GetNowSong());
+	Mark(song->GetFolder());
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
 	point[0] = 2;
 	point[1] = 2;

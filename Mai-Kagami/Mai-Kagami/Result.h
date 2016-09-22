@@ -4,8 +4,9 @@
 #include "DxLib.h"
 #include "Songs.h"
 #include "User.h"
+#include "Grading.h"
 
-class Result {
+class Result : public Grading {
 public:
 	Result(Songs *songs, User *user);
 	void Calc(); //得点計算
@@ -17,13 +18,6 @@ public:
 	int GetExpression(); //表情取得
 	int GetScore(int x[100]); //区間別得点取得
 private:
-	float total; //総合得点
-	char comment[1024]; //コメント
-	int point[4]; //部位別得点
-	int score[100]; //区間別得点
-	int max; //区間別得点の点の数
-	int timing; //タイミング
-	int expression; //表情
 	Songs *songs;
 	User *user;
 };

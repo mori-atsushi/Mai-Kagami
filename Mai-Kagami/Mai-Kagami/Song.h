@@ -53,6 +53,7 @@ public:
 	void LoadPart(); //パート情報ロード
 	SongPart *GetPart(int num); //パート情報取得
 	int GetPartNum(); //パート数取得
+	char *GetFolder(); //フォルダ取得
 	DrawSongTitle *drawSongTitle; //曲名、アーティスト表示
 	MyDrawGraph *coverGraph; //カバー画像
 	MyDrawGraph *coverWhite; //カバー画像の背景の白
