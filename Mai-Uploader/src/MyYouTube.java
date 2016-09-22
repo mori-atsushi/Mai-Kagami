@@ -33,9 +33,9 @@ public class MyYouTube {
 	private int fileSize;
 	private int range=0;
 	
-	public void setMetadata(File video, String title, String description) throws IOException{
+	public void setMetadata(String video, String title, String description) throws IOException{
 		//渡されたファイルがavi形式でなければ何もせずreturn
-		if(!video.getName().endsWith(".avi")) return;
+		if(!video.endsWith(".avi")) return;
 		
 		//アクセストークンの取得
 		URL access_url = new URL(TOKEN_URL);
@@ -141,7 +141,7 @@ public class MyYouTube {
             						range)));
 			}else if(rescode == 200){
 				Code info_code = JSON.decode(upload_json.substring(upload_json.indexOf("{")), Code.class);
-				String infostr =  video.getName().substring(0,video.getName().indexOf("."));
+				String infostr =  video.substring(0,video.indexOf("."));
 				String[] infolist = infostr.split("-", 0);
 				String params = null;
 				if(infolist.length > 2){

@@ -24,9 +24,9 @@ public class Mai_Uploader {
 			//videoフォルダが空フォルダじゃなくなるまでループ
 			File video = new File("./video");
 			//videoフォルダに入っているファイルのリスト
-			File[] fileList = video.listFiles();
+			String[] fileList = video.list();
 			while(fileList.length == 0){
-				fileList = video.listFiles();
+				fileList = video.list();
 				myYoutube.sleep(5000);
 			}
 			myYoutube.sleep(5000);
@@ -38,7 +38,7 @@ public class Mai_Uploader {
 						"Mai_Uploader test upload on " + Calendar.getInstance().getTime(),
 						"Mai_Uploader test upload on " + Calendar.getInstance().getTime()
 						);
-				fileList[0].delete();
+				new File(fileList[0]).delete();
 				myYoutube.sleep(5000);
 			} catch (Exception e) {
 				e.printStackTrace();
