@@ -27,6 +27,7 @@
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="DrawText.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Http.cpp" />
     <ClCompile Include="KinectDistance.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp">
@@ -80,6 +81,7 @@
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="DrawText.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Http.h" />
     <ClInclude Include="KinectDistance.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />

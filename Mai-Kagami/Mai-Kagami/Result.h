@@ -4,6 +4,7 @@
 #include "DxLib.h"
 #include "Songs.h"
 #include "User.h"
+#include "Http.h"
 
 class Result {
 public:

@@ -32,6 +32,8 @@ void Result::Send() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	//printfDx("%d\n", song->GetSongId()); //ã»ID
 	//printfDx("%s\n", user->GetUserId()); //ÉÜÅ[ÉUÅ[ID
+	Http http;
+	printfDx(http.Send(L"http://localhost:8888/test/info.php?song=123&user=234&date=345&total=456&part=567")==true?"0":"1");
 }
 
 float Result::GetTotal() {
