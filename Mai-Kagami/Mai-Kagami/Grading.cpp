@@ -93,25 +93,27 @@ Grading::Grading() {
 void Grading::Mark(const char *model, const char *user) {
 	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
 
-	FILE *userfp, *modelfp;
+	const char BAR_NUM = 9; //タイミング、表情のバーの数
+	FILE *userfp, *modelfp[BAR_NUM];
+	FlameGrading *flameGrading[BAR_NUM];
+	const int MAX = 1024;
+	char userline[MAX];
+	int i = 0, userflame = 0, sum = 0, count = 0, scoreCount = 0;
+	int timingSum[BAR_NUM] = {};
+	max = 0;
+
 	if ((userfp = fopen(user, "r")) == NULL) {
 		printf("file open error!!\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if ((modelfp = fopen(model, "r")) == NULL) {
-		printf("file open error!!\n");
-		exit(EXIT_FAILURE);
+	for (int i = 0; i < BAR_NUM; i++) {
+		if ((modelfp[i] = fopen(model, "r")) == NULL) {
+			printf("file open error!!\n");
+			exit(EXIT_FAILURE);
+		}
+		flameGrading[i] = new FlameGrading(modelfp[i]);
 	}
-
-	const int MAX = 1024;
-	char userline[MAX];
-	int i = 0;
-	int userflame = 0;
-	int sum = 0, count = 0, scoreCount = 0;
-	max = 0;
-
-	FlameGrading *flameGrading = new FlameGrading(modelfp);
 
 	while (fgets(userline, MAX, userfp) != NULL) {
 		float user[JointType_Count][3];
@@ -133,14 +135,20 @@ void Grading::Mark(const char *model, const char *user) {
 		if (i != JointType_Count)
 			continue;
 
-		int point = (int)flameGrading->Mark(user, userflame);
-		sum += point;
-		score[max] += point;
-		if (userflame >= SCORE_FLAME * (max + 1)) {
-			score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
-			score[max] = Adjust(score[max]);
-			scoreCount = count;
-			max++;
+		for (int k = 0; k < BAR_NUM; k++) {
+			int x = k - BAR_NUM / 2;
+			int point = (int)flameGrading[k]->Mark(user, userflame + x * 5);
+			timingSum[k] += point;
+			if (x == 0) {
+				sum += point;
+				score[max] += point;
+				if (userflame >= SCORE_FLAME * (max + 1)) {
+					score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
+					score[max] = Adjust(score[max]);
+					scoreCount = count;
+					max++;
+				}
+			}
 		}
 		count++;
 	}
@@ -149,6 +157,12 @@ void Grading::Mark(const char *model, const char *user) {
 	max++;
 	total = (int)(bezier->Calc((double)sum / count / 100) * 100);
 	total = Adjust(total);
+	timing = 0;
+	for (int k = 1; k < BAR_NUM; k++) {
+		if (timingSum[timing] < timingSum[k])
+			timing = k;
+	}
+	printfDx("%d\n", timing);
 }
 
 int Grading::Adjust(int point) {
