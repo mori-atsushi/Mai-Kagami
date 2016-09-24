@@ -1,88 +1,36 @@
 #include "Grading.h"
 
-Grading::Grading() {
-	bezier = new Bezier(1.1, 0, 0.6, 1.2);
+FlameGrading::FlameGrading(FILE *modelfp) {
+	this->modelfp = modelfp;
+	modelflame = 0, j = 0;
 }
 
-void Grading::Mark(const char *model, const char *user) {
-	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
-
-	FILE *userfp, *modelfp;
-	if ((userfp = fopen(user, "r")) == NULL) {
-		printf("file open error!!\n");
-		exit(EXIT_FAILURE);
-	}
-
-	if ((modelfp = fopen(model, "r")) == NULL) {
-		printf("file open error!!\n");
-		exit(EXIT_FAILURE);
-	}
-
+int FlameGrading::Mark(float joints[JointType_Count][3], const int userflame) {
 	const int MAX = 1024;
-	char userline[MAX], modelline[MAX];
-	int i = 0, j = 0;
-	int modelflame = 0, userflame = 0;
-	int sum = 0, count = 0, scoreCount = 0;
-	max = 0;
-
-	while (fgets(userline, MAX, userfp) != NULL) {
-		float model[24][3], user[24][3];
-		sscanf(userline, "%d:", &userflame);
-
+	while (j != JointType_Count || userflame > modelflame) {
+		char modelline[MAX];
+		if (fgets(modelline, MAX, modelfp) == NULL)
+			break;
+		sscanf(modelline, "%d:", &modelflame);
 		int num;
-		if (userflame == 0)
+		if (modelflame == 0)
 			num = 1;
 		else
-			num = (int)log10((double)userflame) + 1;
+			num = (int)log10((double)modelflame) + 1;
 
-		char *line = userline + num + 1;
-		for (i = 0; i < 24; i++) {
-			if (sscanf(line, "%f,%f,%f|", &user[i][0], &user[i][1], &user[i][2]) != 3)
+		char *line = modelline + num + 1;
+		for (j = 0; j < JointType_Count; j++) {
+			if (sscanf(line, "%f,%f,%f|", &model[j][0], &model[j][1], &model[j][2]) != 3)
 				break;
 			char str[256];
-			line = line + sprintf(str, "%f,%f,%f|", user[i][0], user[i][1], user[i][2]);
+			line = line + sprintf(str, "%f,%f,%f|", model[j][0], model[j][1], model[j][2]);
 		}
-		if (i != 24)
-			continue;
-
-		while (j != 24 || userflame > modelflame) {
-			sscanf(modelline, "%d:", &modelflame);
-			if (fgets(modelline, MAX, modelfp) == NULL)
-				break;
-
-			int num;
-			if (modelflame == 0)
-				num = 1;
-			else
-				num = (int)log10((double)modelflame) + 1;
-
-			char *line = modelline + num + 1;
-			for (j = 0; j < 24; j++) {
-				if (sscanf(line, "%f,%f,%f|", &model[j][0], &model[j][1], &model[j][2]) != 3)
-					break;
-				char str[256];
-				line = line + sprintf(str, "%f,%f,%f|", model[j][0], model[j][1], model[j][2]);
-			}
-		}
-		sum += (int)FlameMark(user, model);
-		score[max] += (int)FlameMark(user, model);
-		if (userflame >= SCORE_FLAME * (max + 1)) {
-			score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
-			score[max] = Adjust(score[max]);
-			scoreCount = count;
-			max++;
-		}
-		count++;
 	}
-	score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
-	score[max] = Adjust(score[max]);
-	max++;
-	total = (int)(bezier->Calc((double)sum / count / 100) * 100);
-	total = Adjust(total);
+	return (int)FlameMark(joints, model);
 }
 
 //2関節間の点数計算
-float Grading::JointMark(float joints[24][3], float model[24][3], int x, int y) {
+float FlameGrading::JointMark(float joints[JointType_Count][3], float model[JointType_Count][3], int x, int y) {
 	float userv, modelv;
 	float inner = 0, userlen = 0, modellen = 0;
 	for (int i = 0; i < 3; i++) {
@@ -105,7 +53,7 @@ float Grading::JointMark(float joints[24][3], float model[24][3], int x, int y) 
 }
 
 //1フレームあたりの点数計算
-float Grading::FlameMark(float joints[24][3], float model[24][3]) {
+float FlameGrading::FlameMark(float joints[JointType_Count][3], float model[JointType_Count][3]) {
 	const int MAX = 24;
 	float sum = 0;
 	int jointNum[MAX][2] = {
@@ -136,6 +84,71 @@ float Grading::FlameMark(float joints[24][3], float model[24][3]) {
 	for (int i = 0; i < MAX; i++)
 		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
 	return  sum / MAX;
+}
+
+Grading::Grading() {
+	bezier = new Bezier(1.2, 0, 0.5, 1);
+}
+
+void Grading::Mark(const char *model, const char *user) {
+	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
+
+	FILE *userfp, *modelfp;
+	if ((userfp = fopen(user, "r")) == NULL) {
+		printf("file open error!!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if ((modelfp = fopen(model, "r")) == NULL) {
+		printf("file open error!!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	const int MAX = 1024;
+	char userline[MAX];
+	int i = 0;
+	int userflame = 0;
+	int sum = 0, count = 0, scoreCount = 0;
+	max = 0;
+
+	FlameGrading *flameGrading = new FlameGrading(modelfp);
+
+	while (fgets(userline, MAX, userfp) != NULL) {
+		float user[JointType_Count][3];
+		sscanf(userline, "%d:", &userflame);
+
+		int num;
+		if (userflame == 0)
+			num = 1;
+		else
+			num = (int)log10((double)userflame) + 1;
+
+		char *line = userline + num + 1;
+		for (i = 0; i < JointType_Count; i++) {
+			if (sscanf(line, "%f,%f,%f|", &user[i][0], &user[i][1], &user[i][2]) != 3)
+				break;
+			char str[256];
+			line = line + sprintf(str, "%f,%f,%f|", user[i][0], user[i][1], user[i][2]);
+		}
+		if (i != JointType_Count)
+			continue;
+
+		int point = (int)flameGrading->Mark(user, userflame);
+		sum += point;
+		score[max] += point;
+		if (userflame >= SCORE_FLAME * (max + 1)) {
+			score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
+			score[max] = Adjust(score[max]);
+			scoreCount = count;
+			max++;
+		}
+		count++;
+	}
+	score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
+	score[max] = Adjust(score[max]);
+	max++;
+	total = (int)(bezier->Calc((double)sum / count / 100) * 100);
+	total = Adjust(total);
 }
 
 int Grading::Adjust(int point) {

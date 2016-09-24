@@ -5,6 +5,18 @@
 #include <Kinect.h>
 #include "Bezier.h"
 
+class FlameGrading {
+public:
+	FlameGrading(FILE *modelfp);
+	int Mark(float joints[JointType_Count][3], const int userflmae);
+private:
+	float JointMark(float joints[JointType_Count][3], float model[JointType_Count][3], int x, int y); //2関節間の点数計算
+	float FlameMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの点数計算
+	FILE *modelfp;
+	int modelflame, j;
+	float model[JointType_Count][3];
+};
+
 class Grading {
 public:
 	Grading();
@@ -19,8 +31,6 @@ protected:
 	int timing; //タイミング
 	int expression; //表情
 private:
-	float JointMark(float joints[24][3], float model[24][3], int x, int y); //2関節間の点数計算
-	float FlameMark(float joints[24][3], float model[24][3]); //1フレームあたりの点数計算
 	int Adjust(int point); //点数が0~100の範囲になるように調整
 	Bezier *bezier;
 };
