@@ -1,6 +1,8 @@
 #ifndef __RESULT_H_INCLUDED__
 #define __RESULT_H_INCLUDED__
 
+#include <time.h>
+
 #include "DxLib.h"
 #include "Songs.h"
 #include "User.h"
@@ -18,6 +20,7 @@ public:
 	int GetExpression(); //表情取得
 	int GetScore(int x[100]); //区間別得点取得
 private:
+	void GetNowTime(int nowTime[]);
 	float total; //総合得点
 	char comment[1024]; //コメント
 	int point[4]; //部位別得点

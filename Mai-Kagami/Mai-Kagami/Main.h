@@ -1,7 +1,7 @@
 #ifndef __MAIN_H_INCLUDED__
 #define __MAIN_H_INCLUDED__
 
-#define SIZE_RATE	2
+#define SIZE_RATE	3
 #define WIDTH		1080
 #define HEIGHT		1920
 
