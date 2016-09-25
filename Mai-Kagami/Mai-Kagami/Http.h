@@ -17,6 +17,7 @@ class Http {
 public:
 	Http();
 	bool Send(WCHAR szUrl[]);
+	bool Send(char szUrl[]);
 
 private:
 	HINTERNET hSession;

@@ -33,33 +33,24 @@ void Result::Send() {
 	//曲IDのリクエスト作成
 	char songReq[126] = { 0 };
 	sprintf_s(songReq, 126, "song=%d", song->GetSongId());
-	printfDx("%s\n", songReq); 
 	//ユーザーIDのリクエスト作成
 	char userReq[32] = { 0 };
 	sprintf_s(userReq, 32, "user=%s", user->GetUserId());
-	printfDx("%s\n", userReq); 
 	//現在時刻の取得
 	int temp[5] = { 0 };
 	GetNowTime(temp);
 	//年月日のリクエスト作成
 	char dateReq[32] = { 0 };
-	sprintf_s(dateReq, 32, "date=%2d-%2d-%2d", temp[0], temp[1], temp[2]);
-	printfDx("%s\n", dateReq);
-	//時刻のリクエスト作成
-	char timeReq[16] = { 0 };
-	sprintf_s(timeReq, 16, "time=%2d-%2d", temp[3], temp[4]);
-	printfDx("%s\n", timeReq);
+	sprintf_s(dateReq, 32, "date=%02d-%02d-%02d %02d-%02d", temp[0], temp[1], temp[2], temp[3], temp[4]);
 	//総合得点のリクエスト作成
 	char totalReq[16] = { 0 };
 	sprintf_s(totalReq, 16, "total=%f", this->total);
-	printfDx("%s\n", totalReq);
 	//区間別採点のリクエスト作成
 	char partReq[64] = { 0 };
 	sprintf_s(partReq, 64, "part=%d", score[0]);
 	for (int i = 1, n = this->max; i < n; i++) {
-		sprintf_s(partReq, 64, "%s-%d", partReq, score[i]);
+		sprintf_s(partReq, 64, "%s/%d", partReq, score[i]);
 	}
-	printfDx("%s\n", partReq);
 	//体の部位採点のリクエスト作成
 	char bodyPoint[4] = { 0 };
 	for (int i = 0; i < 4; i++) {
@@ -70,21 +61,23 @@ void Result::Send() {
 		}
 	}
 	char bodyReq[32] = { 0 };
-	sprintf_s(bodyReq, 32, "body=%c-%c-%c-%c", bodyPoint[0], bodyPoint[1], bodyPoint[2], bodyPoint[3]);
-	printfDx("%s\n", bodyReq);
+	sprintf_s(bodyReq, 32, "body=%c/%c/%c/%c", bodyPoint[0], bodyPoint[1], bodyPoint[2], bodyPoint[3]);
 	//タイミングのリクエスト作成
 	char timingReq[16] = { 0 };
 	sprintf_s(timingReq, 16, "timing=%d", timing);
-	printfDx("%s\n", timingReq);
 	//表情のリクエスト作成
 	char expressionReq[16] = { 0 };
 	sprintf_s(expressionReq, 16, "expression=%d", expression);
-	printfDx("%s\n", expressionReq);
 	//コメントのリクエスト作成
 	char commentReq[256] = { 0 };
 	sprintf_s(commentReq, 256, "comment=%s", comment);
-	printfDx("%s\n", commentReq);
+
+	//urlを作成
+	char url[512] = { 0 };
+	sprintf_s(url, 512, "http://globalstudios.jp/mai-archive/api_add.php?%s&%s&%s&%s&%s&%s&%s&%s&%s", 
+		songReq, userReq, dateReq, totalReq, partReq, bodyReq, timingReq, expressionReq, commentReq);
 	Http http;
+	if(!http.Send(url))printfDx("httpエラー");
 }
 
 void Result::GetNowTime(int nowTime[]) {

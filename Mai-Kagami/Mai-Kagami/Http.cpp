@@ -29,7 +29,7 @@ bool Http::Send(WCHAR szUrl[]) {
 		WinHttpCloseHandle(hSession);
 		return false;
 	}
-	printfDx("0");
+
 	hConnect = WinHttpConnect(hSession, szHostName, INTERNET_DEFAULT_PORT, 0);
 	if (hConnect == NULL) {
 		WinHttpCloseHandle(hSession);
@@ -43,19 +43,17 @@ bool Http::Send(WCHAR szUrl[]) {
 		return false;
 	}
 
-	printfDx("1");
+
 	if (!WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, WINHTTP_IGNORE_REQUEST_TOTAL_LENGTH, 0)) {
 		WinHttpCloseHandle(hRequest);
 		WinHttpCloseHandle(hConnect);
 		WinHttpCloseHandle(hSession);
 		return false;
 	}
-	printfDx("2");
 	WinHttpReceiveResponse(hRequest, NULL);
 
 	dwSize = 0;
 	lpData = ReadData(hRequest, &dwSize);
-	printfDx((TCHAR*)(LPCTSTR)lpData);
 	HeapFree(GetProcessHeap(), 0, lpData);
 
 	WinHttpCloseHandle(hRequest);
@@ -63,6 +61,12 @@ bool Http::Send(WCHAR szUrl[]) {
 	WinHttpCloseHandle(hSession);
 
 	return true;
+}
+
+bool Http::Send(char url[]) {
+	WCHAR szUrl[512] = { 0 };
+	mbstowcs(szUrl, url, 512);
+	return Http::Send(szUrl);
 }
 
 LPBYTE Http::ReadData(HINTERNET hRequest, LPDWORD lpdwSize)
