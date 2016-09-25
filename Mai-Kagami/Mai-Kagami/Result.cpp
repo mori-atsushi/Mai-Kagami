@@ -69,8 +69,10 @@ void Result::Send() {
 	char expressionReq[16] = { 0 };
 	sprintf_s(expressionReq, 16, "expression=%d", expression);
 	//コメントのリクエスト作成
+	WCHAR w_comment[256] = { 0 };
+	mbstowcs(w_comment, comment, 256);
 	char commentReq[256] = { 0 };
-	sprintf_s(commentReq, 256, "comment=%s", comment);
+	sprintf_s(commentReq, 256, "comment=%s", w_comment);
 
 	//urlを作成
 	char url[512] = { 0 };
