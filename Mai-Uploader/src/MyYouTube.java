@@ -143,8 +143,9 @@ public class MyYouTube {
 				String params = null;
 				if(infolist.length > 2){
 					params = "user="+infolist[0]+"&song="+infolist[1]+"&date="+infolist[2]+"&movie="+info_code.getId();
-            	}
-				URL info_url = new URL("http://localhost:8888/test/Move.php?"+params);
+				}
+				URL info_url = new URL("http://globalstudios.jp/mai-archive/api_video.php?"+params);
+				System.out.println(info_url);
 				HttpURLConnection info_uc = (HttpURLConnection) info_url.openConnection();
 				info_uc.setUseCaches(false);			// キャッシュを使用しない
 				info_uc.setDoOutput(true);			// アウトプットできるようにする
