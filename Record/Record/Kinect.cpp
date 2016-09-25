@@ -15,7 +15,7 @@ Kinect::Kinect() {
 		if (SUCCEEDED(hr))
 		{
 			kinectBody = new KinectBody(m_pKinectSensor);
-			kinectColor = new KinectColor(m_pKinectSensor);
+//			kinectColor = new KinectColor(m_pKinectSensor);
 		}
 	}
 
@@ -27,7 +27,7 @@ void Kinect::Update() {
 	static boolean updateFlag = TRUE; //更新用のフラグ、2回に一回しか処理をしない
 	if (updateFlag) {
 		kinectBody->Update(); //骨格情報update
-		kinectColor->Update(); //色情報update
+//		kinectColor->Update(); //色情報update
 
 		updateFlag = FALSE;
 	}
@@ -44,7 +44,7 @@ void Kinect::View() {
 Kinect::~Kinect()
 {
 	delete kinectBody;
-	delete kinectColor;
+//	delete kinectColor;
 
 	// close the Kinect Sensor
 	if (m_pKinectSensor)
