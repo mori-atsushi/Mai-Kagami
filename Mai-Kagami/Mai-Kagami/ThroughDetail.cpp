@@ -2,7 +2,7 @@
 
 ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
 	blackBox = new BlackBox();
-	button[0] = new CircleButton(font, touch, "‚¨‚·‚·‚ß—ûK", 0, WIDTH * 0.75, "White");
+	button[0] = new RecommendButton(font, touch, 0);
 	button[1] = new CircleButton(font, touch, "‚à‚¤ˆê“x", 1, WIDTH * 0.75, "White");
 	button[2] = new CircleButton(font, touch, "•”•ª—ûK", 2, WIDTH * 0.75, "White");
 	button[3] = new CircleButton(font, touch, "‹È‘I‘ð‰æ–Ê", 3, WIDTH * 0.75, "White");
@@ -143,4 +143,23 @@ void ThroughDetail::Delete() {
 ThroughDetail::~ThroughDetail() {
 	delete throughDetailScreen;
 	delete throughFinish;
+}
+
+RecommendButton::RecommendButton(Font *font, Touch* touch, const int num)
+	: Button(num, touch){
+	text = new MyDrawTextLine(font, "‚¨‚·‚·‚ß—ûK", WIDTH * 0.75, GetY() - HEIGHT * 0.015, 1, 30, WIDTH * 0.25,  3, "White");
+	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, "White");
+	textSub = new MyDrawText(font, "Bƒƒ`ƒTƒr @‘¬“x:~0.7", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
+}
+
+void RecommendButton::ContentView() {
+	myDrawCircle->View();
+	text->View();
+	textSub->View();
+}
+
+RecommendButton::~RecommendButton() {
+	delete text;
+	delete myDrawCircle;
+	delete textSub;
 }
