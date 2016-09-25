@@ -58,4 +58,16 @@ private:
 	ThroughFinish *throughFinish;
 };
 
+class RecommendButton : public Button {
+public:
+	RecommendButton(Font *font, Touch* touch, const int num);
+	void ContentView();
+	~RecommendButton();
+private:
+	MyDrawTextLine *text;
+	MyDrawText *textSub;
+
+	MyDrawCircle *myDrawCircle;
+};
+
 #endif

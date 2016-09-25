@@ -30,8 +30,66 @@ void Result::Calc() {
 //送信
 void Result::Send() {
 	Song *song = songs->GetSong(songs->GetNowSong());
-	//printfDx("%d\n", song->GetSongId()); //曲ID
-	//printfDx("%s\n", user->GetUserId()); //ユーザーID
+	//曲IDのリクエスト作成
+	char songReq[126] = { 0 };
+	sprintf_s(songReq, 126, "song=%d", song->GetSongId());
+	//ユーザーIDのリクエスト作成
+	char userReq[32] = { 0 };
+	sprintf_s(userReq, 32, "user=%s", user->GetUserId());
+	//現在時刻の取得
+	int temp[5] = { 0 };
+	GetNowTime(temp);
+	//年月日のリクエスト作成
+	char dateReq[32] = { 0 };
+	sprintf_s(dateReq, 32, "date=%02d-%02d-%02d %02d-%02d", temp[0], temp[1], temp[2], temp[3], temp[4]);
+	//総合得点のリクエスト作成
+	char totalReq[16] = { 0 };
+	sprintf_s(totalReq, 16, "total=%d", this->total);
+	//区間別採点のリクエスト作成
+	char partReq[64] = { 0 };
+	sprintf_s(partReq, 64, "part=%d", score[0]);
+	for (int i = 1, n = this->max; i < n; i++) {
+		sprintf_s(partReq, 64, "%s/%d", partReq, score[i]);
+	}
+	//体の部位採点のリクエスト作成
+	char bodyPoint[4] = { 0 };
+	for (int i = 0; i < 4; i++) {
+		switch (point[i]) {
+		case 1:bodyPoint[i] = 'A';	break;
+		case 2:bodyPoint[i] = 'B';	break;
+		case 3:bodyPoint[i] = 'C';	break;
+		}
+	}
+	char bodyReq[32] = { 0 };
+	sprintf_s(bodyReq, 32, "body=%c/%c/%c/%c", bodyPoint[0], bodyPoint[1], bodyPoint[2], bodyPoint[3]);
+	//タイミングのリクエスト作成
+	char timingReq[16] = { 0 };
+	sprintf_s(timingReq, 16, "timing=%d", timing);
+	//表情のリクエスト作成
+	char expressionReq[16] = { 0 };
+	sprintf_s(expressionReq, 16, "expression=%d", expression);
+	//コメントのリクエスト作成
+	WCHAR w_comment[256] = { 0 };
+	mbstowcs(w_comment, comment, 256);
+	char commentReq[256] = { 0 };
+	sprintf_s(commentReq, 256, "comment=%s", w_comment);
+
+	//urlを作成
+	char url[512] = { 0 };
+	sprintf_s(url, 512, "http://globalstudios.jp/mai-archive/api_add.php?%s&%s&%s&%s&%s&%s&%s&%s&%s", 
+		songReq, userReq, dateReq, totalReq, partReq, bodyReq, timingReq, expressionReq, commentReq);
+	Http http;
+	if(!http.Send(url))printfDx("httpエラー");
+}
+
+void Result::GetNowTime(int nowTime[]) {
+	time_t now = time(NULL);
+	struct tm *pnow = localtime(&now);
+	nowTime[0] = pnow->tm_year + 1900;
+	nowTime[1] = pnow->tm_mon + 1;
+	nowTime[2] = pnow->tm_mday;
+	nowTime[3] = pnow->tm_hour;
+	nowTime[4] = pnow->tm_min;
 }
 
 float Result::GetTotal() {
