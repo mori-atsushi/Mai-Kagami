@@ -44,7 +44,7 @@ void Result::Send() {
 	sprintf_s(dateReq, 32, "date=%02d-%02d-%02d %02d-%02d", temp[0], temp[1], temp[2], temp[3], temp[4]);
 	//総合得点のリクエスト作成
 	char totalReq[16] = { 0 };
-	sprintf_s(totalReq, 16, "total=%f", this->total);
+	sprintf_s(totalReq, 16, "total=%d", this->total);
 	//区間別採点のリクエスト作成
 	char partReq[64] = { 0 };
 	sprintf_s(partReq, 64, "part=%d", score[0]);

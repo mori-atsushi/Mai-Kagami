@@ -4,6 +4,7 @@
 PlayBar::PlayBar(Font *font) {
 	barAll = new MyDrawBar(WIDTH * 0.41, HEIGHT * 0.055, WIDTH * 0.56, 10);
 	barNow = new MyDrawBar(WIDTH * 0.41, HEIGHT * 0.055, 0, 10, "Blue");
+	
 	circle[0] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 12);
 	circle[1] = new MyDrawCircle(WIDTH * 0.41, HEIGHT * 0.055, 5, "White");
 	this->font = font;
@@ -80,7 +81,7 @@ CountDown::CountDown(Font *font, const int thisScene, const int playScene) {
 	const float y = HEIGHT * 0.5; //円の中心（y座標）
 	const float r = WIDTH * 0.2; //円の半径
 	text = new MyDrawText(font, "準備をしてください", x, y + r + 80, 1, 40);
-	circle = new MyDrawCircle(x, y, r, 3, "White"); //縁が白色の円
+	circle = new MyDrawCircle(x, y, r, 10, "White"); //縁が白色の円
 	countCircle1 = new MyDrawCircleGauge(x, y, r, 0, 5, "Blue");	//ゲージ
 	countCircle2 = new MyDrawCircle(0, 0, 12, "Blue");	//ゲージの先の円
 }
