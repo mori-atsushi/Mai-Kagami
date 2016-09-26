@@ -14,6 +14,7 @@ public:
 	void ContentView(); //描画
 	void ChangeText(char *str); //テキスト変更
 	void ChangeFont(Font *font, const int point); //フォントサイズ変更
+	void ChangeColor(char *colorName);
 	float GetHeight(); //縦取得
 	float GetWidth(); //幅取得
 protected:

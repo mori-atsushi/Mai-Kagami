@@ -81,9 +81,9 @@ CountDown::CountDown(Font *font, const int thisScene, const int playScene) {
 	const float y = HEIGHT * 0.5; //円の中心（y座標）
 	const float r = WIDTH * 0.2; //円の半径
 	text = new MyDrawText(font, "準備をしてください", x, y + r + 80, 1, 40);
-	circle = new MyDrawCircle(x, y, r, 10, "White"); //縁が白色の円
+	circle = new MyDrawCircle(x, y, r, 20, "White"); //縁が白色の円
 	countCircle1 = new MyDrawCircleGauge(x, y, r, 0, 5, "Blue");	//ゲージ
-	countCircle2 = new MyDrawCircle(0, 0, 12, "Blue");	//ゲージの先の円
+	countCircle2 = new MyDrawCircle(0, 0, 20, "Blue");	//ゲージの先の円
 }
 
 int CountDown::Switch(const int scene) {

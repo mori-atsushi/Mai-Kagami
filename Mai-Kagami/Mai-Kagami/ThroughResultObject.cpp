@@ -79,24 +79,29 @@ ResultBody::ResultBody(Font *font)
 	part[1] = new MyDrawText(font, "‰EŽè", GetX() + 140, GetY() - 55, 1, 20);
 	part[2] = new MyDrawText(font, "¶‘«", GetX() - 100, GetY() + 68, 1, 20);
 	part[3] = new MyDrawText(font, "‰E‘«", GetX() + 122, GetY() + 55, 1, 20);
-	point[0] = new MyDrawText(font, "", GetX() - 147, GetY() - 70, 1, 30, "Yellow");
-	point[1] = new MyDrawText(font, "", GetX() + 99, GetY() - 57, 1, 30, "Yellow");
-	point[2] = new MyDrawText(font, "", GetX() - 141, GetY() + 66, 1, 30, "Yellow");
-	point[3] = new MyDrawText(font, "", GetX() + 81, GetY() + 53, 1, 30, "Yellow");
+	
+	point[0] = new MyDrawText(font, "", GetX() - 147, GetY() - 70, 1, 30, "");
+	point[1] = new MyDrawText(font, "", GetX() + 99, GetY() - 57, 1, 30, "");
+	point[2] = new MyDrawText(font, "", GetX() - 141, GetY() + 66, 1, 30, "");
+	point[3] = new MyDrawText(font, "", GetX() + 81, GetY() + 53, 1, 30, "");
 }
 
 void ResultBody::Load(const int point[4]) {
 	body->Load();
 	for (int i = 0; i < 4; i++) {
+		
 		switch (point[i]) {
 		case 1:
 			this->point[i]->ChangeText("A");
+			this->point[i]->ChangeColor("Red");
 			break;
 		case 2:
 			this->point[i]->ChangeText("B");
+			this->point[i]->ChangeColor("Yellow");
 			break;
 		case 3:
 			this->point[i]->ChangeText("C");
+			this->point[i]->ChangeColor("Green");
 			break;
 		}
 	}

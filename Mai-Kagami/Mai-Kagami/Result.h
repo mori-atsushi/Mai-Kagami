@@ -25,6 +25,7 @@ private:
 	char comment[1024]; //コメント
 	int point[4]; //部位別得点
 	int score[100]; //区間別得点
+	int partScore[100];	//区間別得点
 	int max; //区間別得点の点の数
 	int timing; //タイミング
 	int expression; //表情

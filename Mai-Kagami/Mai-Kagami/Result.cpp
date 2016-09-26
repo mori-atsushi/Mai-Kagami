@@ -46,10 +46,10 @@ void Result::Send() {
 	char totalReq[16] = { 0 };
 	sprintf_s(totalReq, 16, "total=%d", this->total);
 	//区間別採点のリクエスト作成
-	char partReq[64] = { 0 };
-	sprintf_s(partReq, 64, "part=%d", score[0]);
+	char partReq[1024] = { 0 };
+	sprintf_s(partReq, 1024, "part=%s/%d", song->GetPart(0)->GetName(),score[0]);
 	for (int i = 1, n = this->max; i < n; i++) {
-		sprintf_s(partReq, 64, "%s/%d", partReq, score[i]);
+		sprintf_s(partReq, 1024, "%s/%s/%d", partReq, song->GetPart(0)->GetName(),partScore[i]);
 	}
 	//体の部位採点のリクエスト作成
 	char bodyPoint[4] = { 0 };

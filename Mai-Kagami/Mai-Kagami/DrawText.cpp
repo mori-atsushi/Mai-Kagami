@@ -27,6 +27,11 @@ void MyDrawText::ChangeFont(Font *font, const int point) {
 	f = font->Get(point); //フォント情報
 }
 
+//文字色変更
+void MyDrawText::ChangeColor(char *colorName) {
+	Color::ChangeColor(colorName);
+}
+
 //テキストの縦取得
 float MyDrawText::GetHeight() {
 	int line = 1; //行数
