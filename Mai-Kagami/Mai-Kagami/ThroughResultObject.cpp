@@ -5,9 +5,9 @@ ScoreBar::ScoreBar(Font *font, const float y, const char *title, const char *par
 	const float height = 110;
 	this->title = new MyDrawTextLine(font, title, GetX(), GetY(), 0, 24, WIDTH * 0.3, 2);
 	mark = new MyDrawGraph(0, GetY() + height - 50, "img/mark.png");
-	score = new MyDrawText(font, "", 0, GetY() + height - 55, 1, 30);
-	para[0] = new MyDrawText(font, para1, GetX() - 100, GetY() + height, 2, 20);
-	para[1] = new MyDrawText(font, para2, GetX() + 100, GetY() + height, 0, 20);
+	score = new MyDrawText(font, "", 0, GetY() + height - 55, ALIGNMENT_CENTER, 30);
+	para[0] = new MyDrawText(font, para1, GetX() - 100, GetY() + height, ALIGNMENT_RIGHT, 20);
+	para[1] = new MyDrawText(font, para2, GetX() + 100, GetY() + height, ALIGNMENT_LEFT, 20);
 	for (int i = 0; i < 8; i++)
 		box[i] = new MyDrawBox(GetX() - 77 + i * 22, GetY() + height, 20, 40);
 }
@@ -54,12 +54,15 @@ ExpressionBar::ExpressionBar(Font *font) : ScoreBar(font, HEIGHT * 0.54, "表情",
 
 ResultComment::ResultComment(Font *font)
 	: Draw(WIDTH * 0.6, HEIGHT * 0.64) {
-	title = new MyDrawTextLine(font, "コメント", GetX(), GetY(), 0, 24, WIDTH * 0.55, 2);
-	comment = new MyDrawTexts(font, "", GetX(), GetY() + 66, 1, 20, 16);
+	title = new MyDrawTextLine(font, "コメント", GetX(), GetY(), ALIGNMENT_LEFT, 24, WIDTH * 0.55, 2);
+	//comment = new MyDrawTexts(font, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。", WIDTH * 0.35, WIDTH * 0.5, GetY() + 70, ALIGNMENT_LEFT, 20, 16);
+	comment = new MyDrawTexts(font, "", WIDTH * 0.35, GetY() + 70, ALIGNMENT_LEFT, 20, 16);
 }
  
 void ResultComment::Load(const char *str) {
-	comment->ChangeText(str);
+
+	//comment->MakeNewLine(str, WIDTH*0.4);
+	comment->MakeNewLine("Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。", WIDTH*0.5);
 }
 
 void ResultComment::ContentView() {
@@ -75,15 +78,15 @@ ResultComment::~ResultComment() {
 ResultBody::ResultBody(Font *font) 
 	: Draw(WIDTH * 0.8, HEIGHT * 0.53) {
 	body = new MyDrawGraph(GetX(), GetY(), "img/man.png");
-	part[0] = new MyDrawText(font, "左手", GetX() - 106, GetY() - 68, 1, 20);
-	part[1] = new MyDrawText(font, "右手", GetX() + 140, GetY() - 55, 1, 20);
-	part[2] = new MyDrawText(font, "左足", GetX() - 100, GetY() + 68, 1, 20);
-	part[3] = new MyDrawText(font, "右足", GetX() + 122, GetY() + 55, 1, 20);
+	part[0] = new MyDrawText(font, "左手", GetX() - 106, GetY() - 68, ALIGNMENT_CENTER, 20);
+	part[1] = new MyDrawText(font, "右手", GetX() + 140, GetY() - 55, ALIGNMENT_CENTER, 20);
+	part[2] = new MyDrawText(font, "左足", GetX() - 100, GetY() + 68, ALIGNMENT_CENTER, 20);
+	part[3] = new MyDrawText(font, "右足", GetX() + 122, GetY() + 55, ALIGNMENT_CENTER, 20);
 	
-	point[0] = new MyDrawText(font, "", GetX() - 147, GetY() - 70, 1, 30, "");
-	point[1] = new MyDrawText(font, "", GetX() + 99, GetY() - 57, 1, 30, "");
-	point[2] = new MyDrawText(font, "", GetX() - 141, GetY() + 66, 1, 30, "");
-	point[3] = new MyDrawText(font, "", GetX() + 81, GetY() + 53, 1, 30, "");
+	point[0] = new MyDrawText(font, "", GetX() - 147, GetY() - 70, ALIGNMENT_CENTER, 30, "");
+	point[1] = new MyDrawText(font, "", GetX() + 99, GetY() - 57, ALIGNMENT_CENTER, 30, "");
+	point[2] = new MyDrawText(font, "", GetX() - 141, GetY() + 66, ALIGNMENT_CENTER, 30, "");
+	point[3] = new MyDrawText(font, "", GetX() + 81, GetY() + 53, ALIGNMENT_CENTER, 30, "");
 }
 
 void ResultBody::Load(const int point[4]) {
@@ -129,8 +132,9 @@ ResultBody::~ResultBody() {
 }
 
 ResultGraph::ResultGraph(Font *font) 
-	: Draw(WIDTH * 0.65, HEIGHT * 0.31) {
+	: Draw(WIDTH * 0.65, HEIGHT * 0.32) {
 	this->font = font;
+	text = new MyDrawText(font, "区間別採点", WIDTH*0.35, HEIGHT*0.245, 0, 20);
 	frame[0] = new MyDrawLine(GetX() - w / 2, GetY() - h / 2, GetX() - w / 2, GetY() + h / 2, 6, "White");
 	frame[1] = new MyDrawLine(GetX() - w / 2, GetY() + h / 2, GetX() + w / 2, GetY() + h / 2, 6, "White");
 	scale = new MyDrawTexts(font, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
@@ -147,7 +151,8 @@ void ResultGraph::Load(const int *point, const int num, Song *song) {
 			float y2 = GetY() + h / 2 - (float)point[i - 1] / 100 * h;
 			line[i - 1] = new MyDrawLine(x1, y1, x2, y2, 3);
 		}
-		dot[i] = new MyDrawCircle(x1, y1, 10, "Yellow");
+		dot[i] = new MyDrawGraph(x1, y1, "img/star.png", 0.1);
+		dot[i]->Load();
 		if (point[i] > 80)
 			dot[i]->SetViewFlag(TRUE);
 		else
@@ -168,10 +173,10 @@ void ResultGraph::ContentView() {
 		line[i]->View();
 	for(int i = 0; i < pointMax; i++)
 		dot[i]->View();
-
 	for (int i = 0; i < 2; i++)
 		frame[i]->View();
 	scale->View();
+	text->View();
 }
 
 void ResultGraph::Delete() {

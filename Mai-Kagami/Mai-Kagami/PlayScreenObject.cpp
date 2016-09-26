@@ -84,6 +84,7 @@ CountDown::CountDown(Font *font, const int thisScene, const int playScene) {
 	circle = new MyDrawCircle(x, y, r, 20, "White"); //‰‚ª”’F‚Ì‰~
 	countCircle1 = new MyDrawCircleGauge(x, y, r, 0, 5, "Blue");	//ƒQ[ƒW
 	countCircle2 = new MyDrawCircle(0, 0, 20, "Blue");	//ƒQ[ƒW‚Ìæ‚Ì‰~
+	countCircle3 = new MyDrawCircle(0, 0, 25, "White");	//ƒQ[ƒW‚Ìæ‚Ì‰~‚Ì‰
 }
 
 int CountDown::Switch(const int scene) {
@@ -97,6 +98,7 @@ void CountDown::ContentUpdate() {
 		viewFlag = TRUE;
 		countCircle1->ChangeDegree((double)count / max * 100);
 		countCircle2->ChangePos(countCircle1->GetEndX() * SIZE_RATE, countCircle1->GetEndY() * SIZE_RATE);
+		countCircle3->ChangePos(countCircle1->GetEndX() * SIZE_RATE, countCircle1->GetEndY() * SIZE_RATE);
 	}
 	else {
 		count = 0;
@@ -107,8 +109,10 @@ void CountDown::ContentUpdate() {
 void CountDown::ContentView() {
 	text->View();
 	circle->View();
+	countCircle3->View();
 	countCircle1->View();
 	countCircle2->View();
+	
 }
 
 CountDown::~CountDown() {
@@ -116,4 +120,5 @@ CountDown::~CountDown() {
 	delete circle;
 	delete countCircle1;
 	delete countCircle2;
+	delete countCircle3;
 }

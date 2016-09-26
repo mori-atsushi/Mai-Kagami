@@ -7,7 +7,7 @@ Result::Result(Songs *songs, User *user) {
 
 void Result::Calc() {
 	total = 64;
-	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
+	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
 	point[0] = 2;
 	point[1] = 2;
 	point[2] = 1;

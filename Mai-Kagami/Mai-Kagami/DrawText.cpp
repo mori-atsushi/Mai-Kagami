@@ -89,6 +89,20 @@ MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float
 	ChangeText(str);
 }
 
+//MyDrawTexts（フォントポインタ、表示文字、x座標、文章を収めたいx座標の範囲、ポジション情報、フォントサイズ、行間隔、色）　※色は省略可能、省略した場合白色
+//ポジション情報（ALIGNMENT_LEFT：左寄せ、ALIGNMENT_CENTER：中央寄せ、ALIGNMENT_RIGHT：右寄せ）
+MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x1, const float x2, const float y, const int pos, const int point, const float lineInterval, const char *colorName) 
+	:Color(colorName), Draw(x1, y){
+
+	p = pos;
+	inter = lineInterval;
+	strcpy_s(color, sizeof(color), colorName);
+	this->point = point;
+	f = font;
+	std::string s(str);
+	MakeNewLine(s, x2);
+}
+
 //複数行のテキスト表示
 void MyDrawTexts::ContentView() {
 	for (int i = 0; i < l; i++)
@@ -110,7 +124,6 @@ void MyDrawTexts::ChangePos(const float x, const float y) {
 void MyDrawTexts::ChangeText(const char *str) {
 	for (int i = 0; i < l; i++)
 		delete myDrawText[i];
-
 	l = 0;
 	char a[256];
 	int i, j;
@@ -127,6 +140,23 @@ void MyDrawTexts::ChangeText(const char *str) {
 		l = 1;
 	}
 	ChangePos(GetX(), GetY());
+}
+
+//文字が適切な範囲に入るように改行文字を入れる
+//x:文字列を収めたい横幅
+void MyDrawTexts::MakeNewLine(std::string s, const float x) {
+	float length = 0;
+	for (int i = 0, n = s.length(); i < n; i++) {
+		char c = s[i];
+		TCHAR c_t[3] = { NULL };
+		_stprintf_s(c_t, sizeof(c_t)/sizeof(c_t[0]), _T("%c"), &c);
+		length += GetDrawStringWidthToHandle(c_t, (int)strlen(c_t), f->Get(point)) * SIZE_RATE;
+		if (length > x) {
+			s.insert(i, "\n");
+			length = 0;
+		}
+	}
+	ChangeText(s.c_str());
 }
 
 //複数行のテキスト表示幅取得
