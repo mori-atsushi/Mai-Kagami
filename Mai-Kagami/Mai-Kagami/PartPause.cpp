@@ -3,7 +3,7 @@
 PartPauseButton::PartPauseButton(Touch *touch, Songs *songs) {
 	this->songs = songs;
 	button[0] = new CircleGraphButton(touch, 0, "img/pause.png");
-	button[1] = new CircleGraphButton(touch, 2, "img/pause.png");
+	button[1] = new CircleGraphButton(touch, 2, "img/rewind.png");
 }
 
 void PartPauseButton::Load() {
