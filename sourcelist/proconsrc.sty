@@ -1,0 +1,194 @@
+%---------------------------------------------------------------------
+%
+%  プロコン ソース印刷用スタイルファイル
+%  Version 5.0
+%
+%  Notice:
+%    (1) \tableofcontents や \Lastpage を使用するため、
+%        2回か3回 platex で処理する必要がある。
+%    (2) LaTeX の都合でうまく組版されない場合もある。
+%        必ず全ページを目で確認すること。
+%    (3) listings, jlistings のインストールについては以下を参照。
+%        http://www.yamamo10.jp/yamamoto/comp/latex/make_doc/source/source.html
+%
+%  Last updated: September 1, 2014
+%  Compiled by Shoichi Ito
+%
+%---------------------------------------------------------------------
+
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{proconsrc}[2014/09/01 v5.0 by Shoichi Ito]
+
+\newif\if@dvipdf
+\newif\if@dvipdfm
+\newif\if@dvipdfmx
+\newif\if@dvips
+\newif\if@dvipsone
+\newif\if@dviwindo
+\newif\if@defaultdriver
+\@defaultdrivertrue
+\DeclareOption{dvipdf}{\@dvipdftrue \@defaultdriverfalse}
+\DeclareOption{dvipdfm}{\@dvipdfmtrue \@defaultdriverfalse}
+\DeclareOption{dvipdfmx}{\@dvipdfmxtrue \@defaultdriverfalse}
+\DeclareOption{dvips}{\@dvipstrue \@defaultdriverfalse}
+\DeclareOption{dvipsone}{\@dvipsonetrue \@defaultdriverfalse}
+\DeclareOption{dviwindo}{\@dviwindotrue \@defaultdriverfalse}
+
+\ProcessOptions
+
+\RequirePackage[usenames]{color}
+\RequirePackage{fancybox}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings, jlisting}
+\RequirePackage{lastpage}
+
+%  目次からリンクを張る
+%  PDFのブックマークの文字化け対策
+\ifx\kanjiskip\undefined\else
+  \usepackage{atbegshi}
+  \ifx\ucs\undefined
+    \ifnum 42146=\euc"A4A2
+      \AtBeginShipoutFirst{\special{pdf:tounicode EUC-UCS2}}
+    \else
+      \AtBeginShipoutFirst{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
+    \fi
+  \else
+    \AtBeginShipoutFirst{\special{pdf:tounicode UTF8-UCS2}}
+  \fi
+%  \usepackage[dvipdfmx]{hyperref}
+\fi
+
+
+\if@dvipdfm
+\RequirePackage[dvipdfm]{hyperref}
+\fi
+\if@dvipdfmx
+\RequirePackage[dvipdfmx]{hyperref}
+\fi
+\if@dvips
+\RequirePackage[dvips]{hyperref}
+\fi
+\if@dvipsone
+\RequirePackage[dvipsone]{hyperref}
+\fi
+\if@dviwindo
+\RequirePackage[dviwindo]{hyperref}
+\fi
+\if@defaultdriver
+\RequirePackage[dvipdfmx]{hyperref}  %  ドライバが指定されない場合デフォルトとしてdvipdfmxを使う
+\fi
+
+
+%  ハイパーリンク関連の設定
+%  http://www.tug.org/applications/hyperref/manual.html あたりを参照
+\hypersetup{
+bookmarks=true,
+bookmarksnumbered=true,
+bookmarksopen=true,
+colorlinks=false,
+breaklinks=true,
+pdfpagemode=UseOutlines,
+pdfstartpage=1,
+pdfstartview={FitH -32768},
+pdfpagelayout=OneColumn,
+setpagesize=false,
+colorlinks=true,  % ハイパーリンクの表示: true→色つき文字列, false→文字列+枠
+linkcolor=blue,   % ハイパーリンクの色
+hidelinks,  %  有効にするとハイパーリンクが見えなくなる
+pdfcreator={LaTeX with proconsrc.sty 5.0}
+}
+
+%  目次や参考文献の見出し文字を変更する
+\renewcommand{\contentsname}{目次}
+\renewcommand{\refname}{References}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\renewcommand{\appendixname}{Appendixes}
+\renewcommand{\indexname}{Index}
+
+
+%  ページスタイルの設定
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead{}  %  すべてのフィールドをクリア
+\fancyfoot{}  %  すべてのフィールドをクリア
+%\fancyhead[L]{\Bumon 部門\ \Junban 番 (\TourokuBangou)}
+\fancyhead[C]{\textbf{\MainTitle}}
+\fancyhead[R]{}  % ファイル名が入る
+%\fancyfoot[L]{\School}
+\fancyfoot[C]{}
+\fancyfoot[R]{\large {\thepage\ / {}\protect\pageref*{LastPage}}}
+%\fancyfoot[R]{\large \textit{\thepage\ / {}\protect\pageref*{LastPage}}}
+
+
+%  ファイル名をLaTeXで表示できるようにする(\Fnverb{})
+%  \Hurl{}はhyperref.sty内で密かに定義されているコマンドで、~などを含む文字列をうまく処理する
+\def\Fnverb#1{{\textsl{\Hurl{#1}}}}
+
+
+%  ソースコード入力用のマクロ
+\newcommand{\InputSource}[1]{%
+\phantomsection  % これがないとリンクをクリックしたときに1ページ前に飛んでしまう
+\fancyhead[R]{\Fnverb{#1}}  % ファイル名が入る
+%\noindent\centering\underline{\Large\Fnverb{#1}}
+\noindent\shadowbox{\Large\Fnverb{#1}}
+\addcontentsline{toc}{subsection}{\protect\Fnverb{#1}}
+\lstinputlisting{#1}
+\clearpage
+}
+
+
+%  表紙
+\newcommand{\MakeCoverPage}{
+\pdfbookmark[2]{表紙}{hyoshi}
+\thispagestyle{empty}
+\begin{center}
+{\large 第\Kai 回プログラミングコンテスト \hfill プログラムソースリスト}\\
+
+\vspace*{3cm}
+
+{\Large \Bumon 部門 : 発表順 (登録番号)} \hspace{2cm}
+{\Large \Junban\ (\TourokuBangou)}\\
+
+\vspace*{2cm}
+
+\begin{tabular}{rl}
+{\huge タイトル :} & {\huge \MainTitle}\\
+& {\large \SubTitle}
+\end{tabular}
+
+\vspace*{2cm}
+
+{\Large
+\begin{tabular}{rl}
+学校名 : & \School \\
+&\\
+学生名 : & \MemberA \\
+         & \MemberB \\
+         & \MemberC \\
+         & \MemberD \\
+         & \MemberE \\
+&\\
+指導教員 : & \Teacher \\
+\end{tabular}
+}
+\end{center}
+\cleardoublepage}
+
+
+%  目次
+\newcommand{\MakeTOC}{
+\fancyhead[R]{目次}
+\pdfbookmark[2]{目次}{mokuji}
+\tableofcontents
+
+\vfill
+
+\begin{flushright}
+%\textit{Typeset by }\textsf{proconsrc.sty}\ \textit{5.0}
+\end{flushright}
+\cleardoublepage}
+
+
+%  [EOF]

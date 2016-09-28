@@ -1,0 +1,271 @@
+%---------------------------------------------------------------------
+%
+%  プロコン ソースコード印刷のサンプル
+%
+%  Last updated: September 1, 2014
+%  Compiled by Shoichi Ito
+%
+%---------------------------------------------------------------------
+\documentclass[a4j]{jsarticle}
+
+\usepackage[dvipdfmx]{proconsrc}
+\usepackage{myListings}
+
+%  ソースコードを引用するためのリスト環境の設定
+%
+%  各自の好みで設定する。たいていはデフォルトのままでOK。
+%  設定内容については、listings.sty付属のドキュメントlistings.pdfか以下のURLを参照。
+%  http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/listings.html
+\lstset{
+  language=C,  %  プログラミング言語の設定
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,      %  ifやwhileなど言語固有のキーワード
+  commentstyle=\color{ForestGreen},    %  コメント文
+  identifierstyle=\color{Gray},            %  変数名や関数名など
+  stringstyle=\color{BrickRed}\ttfamily,  %  printf()の中身など
+  classoffset=1,
+  xleftmargin=3.5em,
+  frame=none,  % none → tRBL で上下左右の囲み
+  framesep=5pt,
+  showstringspaces=false,  %  半角スペースをいわゆるゲタで表示したいときにtrue
+  numbers=left,
+  stepnumber=1,
+  breaklines=true,
+  numberstyle=\footnotesize,
+  tabsize=4,  %  タブサイズ
+  lineskip=-0.5zw
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%% ここを書き換える %%%%%%%%%%%%%%%%%%%%%%
+%  第何回?
+\newcommand{\Kai}{99}
+
+%  部門
+\newcommand{\Bumon}{課題}
+
+%  登録番号
+\newcommand{\TourokuBangou}{88888}
+
+%  プレゼンテーション順序
+\newcommand{\Junban}{77}
+
+%  作品名
+%  サブタイトルがない場合は \newcommand{\SubTitle}{} のように空にする。
+\newcommand{\MainTitle}{舞鏡}   %  メインタイトル
+\newcommand{\SubTitle}{}    %  サブタイトル
+
+%  メンバー5人分
+%  5人未満の場合は \newcommand{\MemberE}{} のように空にする。
+\newcommand{\MemberA}{森 篤史}
+\newcommand{\MemberB}{名前教えて}
+\newcommand{\MemberC}{名前教えて}
+\newcommand{\MemberD}{名前教えて}
+\newcommand{\MemberE}{名前教えて}
+
+%  指導教員
+\newcommand{\Teacher}{佐村○○}
+
+%  学校名
+\newcommand{\School}{明石工業高等専門学校}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+pdftitle=\MainTitle \SubTitle,
+% pdfsubject=第\Kai 回プログラミングコンテスト \hfill プログラムソースリスト \Bumon 部門 \Junban 番,
+pdfsubject=プログラムソースリスト,
+pdfauthor=\School
+}
+
+\begin{document}
+
+%  表紙
+\pagenumbering{roman}  %  ダミー(PDFにしたときにアラビア数字の「1ページ」「2ページ」が重複しないようにするため
+% \MakeCoverPage          %  表紙
+\pagenumbering{arabic}  %  ページ数カウンタをリセットする
+
+%  目次
+\MakeTOC
+
+%%%%%%%%%%%%%%%%%%%%%% ここを書き換える %%%%%%%%%%%%%%%%%%%%%%
+%  以下、\InputSource{}の引数としてソースファイル名を並べる。
+%  必要に応じて改ページや LaTeX の命令を入れる。
+%  たとえば \section{} を使って「クライアント側プログラム」
+%  「サーバ側プログラム」のように分ければより読みやすいだろう。
+
+\section{本体}
+
+\subsection{鏡面}
+
+\subsubsection{C++}
+
+\lstset{ language=C++ }
+\InputSource{Animation.cpp}
+\InputSource{Bezier.cpp}
+\InputSource{Button.cpp}
+\InputSource{CommonText.cpp}
+\InputSource{Draw.cpp}
+\InputSource{DrawGraph.cpp}
+\InputSource{DrawObject.cpp}
+\InputSource{DrawText.cpp}
+\InputSource{Font.cpp}
+\InputSource{Grading.cpp}
+\InputSource{Kinect.cpp}
+\InputSource{KinectBody.cpp}
+\InputSource{MaiKagami.cpp}
+\InputSource{Main.cpp}
+\InputSource{ModeSelect.cpp}
+\InputSource{Nfc.cpp}
+\InputSource{PartMain.cpp}
+\InputSource{PartOption.cpp}
+\InputSource{PartOptionPop.cpp}
+\InputSource{PartPause.cpp}
+\InputSource{PartPlay.cpp}
+\InputSource{PartResult.cpp}
+\InputSource{PartResultMain.cpp}
+\InputSource{PauseScreen.cpp}
+\InputSource{PlayScreen.cpp}
+\InputSource{PlayScreenObject.cpp}
+\InputSource{Result.cpp}
+\InputSource{Scene.cpp}
+\InputSource{SettingPop.cpp}
+\InputSource{Song.cpp}
+\InputSource{Songs.cpp}
+\InputSource{SongSelect.cpp}
+\InputSource{SongSelectCommon.cpp}
+\InputSource{SongSelectCover.cpp}
+\InputSource{SongSelectMain.cpp}
+\InputSource{StartScreen.cpp}
+\InputSource{ThroughDetail.cpp}
+\InputSource{ThroughMain.cpp}
+\InputSource{ThroughOption.cpp}
+\InputSource{ThroughPause.cpp}
+\InputSource{ThroughPlay.cpp}
+\InputSource{ThroughResult.cpp}
+\InputSource{ThroughResultMain.cpp}
+\InputSource{ThroughResultObject.cpp}
+\InputSource{ThroughStart.cpp}
+\InputSource{Top.cpp}
+\InputSource{TopMain.cpp}
+\InputSource{Touch.cpp}
+\InputSource{User.cpp}
+
+\subsubsection{ヘッダファイル}
+
+\InputSource{Animation.h}
+\InputSource{Bezier.h}
+\InputSource{Button.h}
+\InputSource{CommonText.h}
+\InputSource{Draw.h}
+\InputSource{DrawGraph.h}
+\InputSource{DrawObject.h}
+\InputSource{DrawText.h}
+\InputSource{Font.h}
+\InputSource{Grading.h}
+\InputSource{Kinect.h}
+\InputSource{KinectBody.h}
+\InputSource{MaiKagami.h}
+\InputSource{Main.h}
+\InputSource{ModeSelect.h}
+\InputSource{Nfc.h}
+\InputSource{PartDefine.h}
+\InputSource{PartMain.h}
+\InputSource{PartOption.h}
+\InputSource{PartOptionPop.h}
+\InputSource{PartPause.h}
+\InputSource{PartPlay.h}
+\InputSource{PartResult.h}
+\InputSource{PartResultDefine.h}
+\InputSource{PartResultMain.h}
+\InputSource{PauseScreen.h}
+\InputSource{PlayScreen.h}
+\InputSource{PlayScreenObject.h}
+\InputSource{Result.h}
+\InputSource{Scene.h}
+\InputSource{SeetingPop.h}
+\InputSource{Song.h}
+\InputSource{Songs.h}
+\InputSource{SongSelect.h}
+\InputSource{SongSelectCommon.h}
+\InputSource{SongSelectCover.h}
+\InputSource{SongSelectDefine.h}
+\InputSource{SongSelectMain.h}
+\InputSource{StartScreen.h}
+\InputSource{stdafx.h}
+\InputSource{ThroughDefine.h}
+\InputSource{ThroughDetail.h}
+\InputSource{ThroughMain.h}
+\InputSource{ThroughOption.h}
+\InputSource{ThroughPause.h}
+\InputSource{ThroughPlay.h}
+\InputSource{ThroughResult.h}
+\InputSource{ThroughResultDefine.h}
+\InputSource{ThroughResultMain.h}
+\InputSource{ThroughResultObject.h}
+\InputSource{ThroughStart.h}
+\InputSource{Top.h}
+\InputSource{TopMain.h}
+\InputSource{Touch.h}
+\InputSource{User.h}
+
+\subsection{動画アップロード用}
+
+\subsubsection{Java}
+
+\lstset{ language=Java }
+
+\InputSource{Mai_Uploader.java}
+\InputSource{MyYouTube.java}
+\InputSource{Code.java}
+
+
+\section{Webサーバ}
+
+\subsection{HTML}
+
+\lstset{ language=HTML }
+\InputSource{list.html}
+
+\subsection{PHP}
+
+\lstset{ language=PHP }
+\InputSource{api_video.php}
+\InputSource{api_history.php}
+\InputSource{api_add.php}
+\InputSource{list.php}
+\InputSource{login.php}
+\InputSource{logout.php}
+\InputSource{main.php}
+\InputSource{make_history_table.php}
+\InputSource{music.php}
+\InputSource{video.php}
+
+
+
+\subsection{CSS}
+\lstset{ language=CSS }
+\InputSource{css/style.css}
+
+\subsection{Javascript}
+\lstset{ language=Javascript }
+\InputSource{js/drawerNav.js}
+\InputSource{js/scroll.js}
+% \InputSource{js/lib/jquery.min.js}
+
+
+\section{NFCリーダ用 Android アプリケーション}
+
+\lstset{ language=Java }
+\InputSource{MainActivity.java}
+\InputSource{MyNfc.java}
+\InputSource{UsbMessage.java}
+
+\lstset{ language=XML }
+\InputSource{AndroidManifest.xml}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
