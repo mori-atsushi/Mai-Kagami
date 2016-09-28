@@ -73,7 +73,7 @@ int Songs::LoadHistory(const char *userId) {
 	URL_COMPONENTS urlComponents;
 	WCHAR          szHostName[256], szUrlPath[2048];
 	// URL
-	WCHAR          szUrl[256] = L"http:// globalstudios.jp/mai-archive/api_history.php?user=";
+	WCHAR          szUrl[256] = L"http://globalstudios.jp/mai-archive/api_history.php?user=";
 	WCHAR		   szUserId[18];
 // 	printfDx("%d, %d, %d, %d, %d, %d, %d, %d\n", userId[0], userId[1],userId[2],userId[3],userId[4],userId[5], userId[6], userId[7]);
 // 	printfDx("%d, %d, %d, %d, %d, %d\n", 'd', 'a', 'i', 'c', 'h', 'i');
