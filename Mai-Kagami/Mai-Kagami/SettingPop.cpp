@@ -53,6 +53,23 @@ PartOption::PartOption(Font *font, Songs *songs, Touch *touch) {
 	part[1] = new MyDrawText(font, "", WIDTH * 0.79, height, 0, 30, "Yellow");
 	part[2] = new MyDrawText(font, "終わり：", WIDTH * 0.67, height + BUTTON_INTERVAL * 2, 0, 30);
 	part[3] = new MyDrawText(font, "", WIDTH * 0.79, height + BUTTON_INTERVAL * 2, 0, 30, "Yellow");
+	
+	overallPartBar = new MyDrawBar(WIDTH * 0.5, HEIGHT * 0.6, 5, HEIGHT * 0.22);
+	for (int i = 0; i < 10; i++) {
+		partName[i] = new MyDrawText(font, "", 0, 0, 0, 24);
+	}
+
+	//0の部分はあとで設定
+	startPoint = new MyDrawCircle(0, 0, 15);
+	endPoint = new MyDrawCircle(0, 0, 15, "Yellow");
+	selectedPartBar = new MyDrawBar(0, 0, 4, 0, "Blue");
+
+	caution = new MyDrawText(font, "区間が正しく設定されていません!", WIDTH, HEIGHT * 0.75, ALIGNMENT_RIGHT, 30, "Red");
+
+}
+
+void PartOption::Load() {
+	song->LoadPart();
 }
 
 void PartOption::Init() {
@@ -76,10 +93,46 @@ void PartOption::Check() {
 }
 
 void PartOption::View() {
+	int startFlame = song->danceMovie->GetStartFlame();
+	int lastFlame = song->danceMovie->GetEndFlame();
+	for (int i = 0, n = song->GetPartNum(); i < n; i++) {
+		SongPart *songPart = song->GetPart(i);
+		float y = overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * (float)(songPart->GetFlame() - startFlame) / (lastFlame - startFlame);
+		partName[i]->ChangeText(songPart->GetName());
+		partName[i]->ChangePos(WIDTH * 0.55, y);
+		partName[i]->View();
+		if(song->StartPart() == i)
+			startPoint->ChangePos(overallPartBar->GetX(), y);
+		if (song->EndPart() + 1 == i) {
+			endPoint->ChangePos(overallPartBar->GetX(), y);
+		} else if (song->EndPart() == song->GetPartNum() - 1) {
+			endPoint->ChangePos(overallPartBar->GetX(), overallPartBar->GetY() + overallPartBar->GetHeight() / 2);
+		}
+	}
+
+	float h, y;
+	if (startPoint->GetY() >= endPoint->GetY()) {
+		h = startPoint->GetY() - endPoint->GetY();
+		y = endPoint->GetY() + h / 2;
+		selectedPartBar->ChangeColor("Red");
+		caution->SetViewFlag(TRUE);
+	} else {
+		h = endPoint->GetY() - startPoint->GetY();
+		y = startPoint->GetY() + h / 2;
+		selectedPartBar->ChangeColor("Blue");
+		caution->SetViewFlag(FALSE);
+	}
+	selectedPartBar->ChangeSize(overallPartBar->GetWidth(), h);
+	selectedPartBar->ChangePos(overallPartBar->GetX(), y);
 	for (int i = 0; i < 4; i++) {
 		button[i]->View();
 		part[i]->View();
 	}
+	caution->View();
+	overallPartBar->View();
+	selectedPartBar->View();
+	startPoint->View();
+	endPoint->View();
 }
 
 PartOption::~PartOption() {
@@ -87,6 +140,14 @@ PartOption::~PartOption() {
 		delete button[i];
 		delete part[i];
 	}
+	for (int i = 0, n = song->GetPartNum(); i < n; i++) {
+		delete partName[i];
+	}
+	delete caution;
+	delete overallPartBar;
+	delete startPoint;
+	delete endPoint;
+	delete selectedPartBar;
 }
 
 //スピードオプションポップアップ
@@ -135,6 +196,10 @@ void PartPop::Load() {
 
 void PartPop::ContentUpdate() {
 	partOption->Check();
+}
+
+void PartPop::SetButtonMode(bool mode) {
+	button->SetMode(mode);
 }
 
 void PartPop::ContentView() {

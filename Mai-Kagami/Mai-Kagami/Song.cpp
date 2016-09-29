@@ -108,9 +108,6 @@ void Song::ChangeStart(int num) {
 	if (num == 1 && *start > 0)
 		(*start) -= 1;
 	if (num == -1 && *start < GetPartNum() - 1) {
-		if (*end == *start) {
-			*end += 1;
-		}
 		(*start) += 1;
 	}
 	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
@@ -119,9 +116,6 @@ void Song::ChangeStart(int num) {
 //“®‰æ‚ÌI—¹ˆÊ’u‚ğ•ÏX
 void Song::ChangeEnd(int num) {
 	if (num == 1 && *end > 0) {
-		if (*end == *start) {
-			*start -= 1;
-		}
 		(*end) -= 1;
 	}
 	if (num == -1 && *end < GetPartNum() - 1)

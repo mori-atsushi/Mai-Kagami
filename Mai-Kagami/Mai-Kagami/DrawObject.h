@@ -66,6 +66,8 @@ public:
 	MyDrawBox(const float x, const float y, const float width, const float height, const float line, const char *colorName = "Blue"); //四角形初期化（塗りつぶしなし）
 	void ContentView();
 	void ChangeSize(const float width, const float height);
+	float GetWidth();
+	float GetHeight();
 private:
 	float w, h, l; //幅、高さ、線の太さ
 };

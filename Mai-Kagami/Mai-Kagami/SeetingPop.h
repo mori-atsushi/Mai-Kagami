@@ -34,6 +34,7 @@ private:
 class PartOption {
 public:
 	PartOption(Font *font, Songs *songs, Touch *touch);
+	void Load();
 	void Init();
 	void Check();
 	void View();
@@ -43,6 +44,13 @@ private:
 	MyDrawText *part[4];
 	Songs *songs;
 	Song *song;
+	MyDrawBar *overallPartBar;
+	MyDrawBar *selectedPartBar;
+	MyDrawCircle *startPoint;
+	MyDrawCircle *endPoint;
+	MyDrawText* partName[10];
+	MyDrawText* caution;
+	bool mode;
 };
 
 //スピードオプションポップアップ
@@ -67,6 +75,7 @@ class PartPop : public SubScene {
 public:
 	PartPop(Font *font, Songs *songs, Touch *touch);
 	void Load();
+	void SetButtonMode(bool mode);
 	~PartPop();
 protected:
 	void ContentUpdate();

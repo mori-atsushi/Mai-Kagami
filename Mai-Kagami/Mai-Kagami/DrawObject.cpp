@@ -181,6 +181,13 @@ void MyDrawBox::ChangeSize(const float width, const float height) {
 	h = height / SIZE_RATE;
 }
 
+float MyDrawBox::GetWidth() {
+	return w * SIZE_RATE;
+}
+float MyDrawBox::GetHeight() {
+	return h * SIZE_RATE;
+}
+
 //êiíªÉoÅ[èâä˙âª
 MyDrawBar::MyDrawBar(const float x, const float y, const float width, const float height, const char *colorName)
 	:MyDrawBox(x + width / 2, y, width, height, colorName) {
