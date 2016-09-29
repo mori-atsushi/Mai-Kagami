@@ -109,7 +109,6 @@ void Song::ChangeStart(int num) {
 		(*start) -= 1;
 	if (num == -1 && *start < GetPartNum() - 1) {
 		if (*end == *start) {
-			printfDx("0");
 			*end += 1;
 		}
 		(*start) += 1;
