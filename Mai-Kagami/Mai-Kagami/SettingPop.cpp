@@ -98,7 +98,7 @@ void PartOption::View() {
 	for (int i = 0, n = song->GetPartNum(); i < n; i++) {
 		SongPart *songPart = song->GetPart(i);
 		float y = overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * (float)(songPart->GetFlame() - startFlame) / (lastFlame - startFlame);
-		if (y < 0) { y = overallPartBar->GetY(); }
+		if (lastFlame < 0) return;
 		partName[i]->ChangeText(songPart->GetName());
 		partName[i]->ChangePos(WIDTH * 0.55, y);
 		partName[i]->View();
