@@ -8,8 +8,6 @@ PartOptionPreview2::PartOptionPreview2(Font *font, Songs *songs, Touch *touch)
 
 int PartOptionPreview2::Switch(const int scene) {
 	if (button[0]->GetTouch() == 1) {
-		Song *song = songs->GetSong(songs->GetNowSong());
-		song->danceMovie->SetPart();
 		return NEXT2;
 	}
 	if (button[1]->GetTouch() == 1)

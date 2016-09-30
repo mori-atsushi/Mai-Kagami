@@ -35,6 +35,7 @@ public:
 	void Seek(const int flame = -1); //指定したフレームに移動
 	void Start(); //再生
 	void Stop(); //停止
+	void Loop(); //ループ
 	void ChangeSpeed(double speed); //スピード変更
 	void SetSpeed(); //スピードセット
 	void SetPart(); //区間セット

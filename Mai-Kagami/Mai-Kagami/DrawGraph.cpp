@@ -101,6 +101,13 @@ void MyDrawMovie::Start() {
 	}
 }
 
+void MyDrawMovie::Loop() {
+	if (!CheckHandleASyncLoad(handle)) {
+		if (GetNowFlame() == GetEndFlame())
+			Seek();
+	}
+}
+
 //çƒê∂í‚é~
 void MyDrawMovie::Stop() {
 	PauseMovieToGraph(handle);

@@ -26,8 +26,8 @@ int PartPauseButton::Switch(const int scene) {
 void PartPauseButton::ContentUpdate() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (button[1]->GetTouch() > 0 && nowScene == PART_REWIND) {
-		if(song->danceMovie->GetStartFlame() <= song->danceMovie->GetNowFlame())
-			song->danceMovie->Seek(song->danceMovie->GetNowFlame()-5);
+		if(song->danceMovie->GetStartFlame() < song->danceMovie->GetNowFlame() - 5)
+			song->danceMovie->Seek(song->danceMovie->GetNowFlame() - 5);
 	}
 
 	switch (nowScene)

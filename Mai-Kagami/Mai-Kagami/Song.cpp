@@ -62,8 +62,10 @@ Song::Song(Font *font, const int id, const char *title, const char *artist, cons
 	songPartNum = new int();
 	start = new int();
 	end = new int();
+	mode = new int();
 	*start = 0;
 	*end = 0;
+	*mode = THROUGH_MODE;
 	for(int i = 0; i < 256; i++)
 		songPart[i] = new SongPart();
 
@@ -123,7 +125,6 @@ void Song::ChangeEnd(int num) {
 		danceMovie->SetEndFlame(danceMovie->GetAllFlame());
 	else
 		danceMovie->SetEndFlame(GetPart(*end + 1)->GetFlame());
-
 }
 
 int Song::StartPart() {
@@ -158,4 +159,21 @@ SongPart *Song::GetPart(int num) {
 //パート数取得
 int Song::GetPartNum() {
 	return *songPartNum;
+}
+
+//プレイモードをセット
+void Song::SetPlayMode(const int mode) {
+	*this->mode = mode;
+	if (mode == PART_MODE) {
+		danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
+		if (*end + 1 == GetPartNum())
+			danceMovie->SetEndFlame();
+		else
+			danceMovie->SetEndFlame(GetPart(*end + 1)->GetFlame());
+	}
+	else {
+		danceMovie->SetStartFlame();
+		danceMovie->SetEndFlame();
+	}
+	danceMovie->SetPart();
 }

@@ -155,8 +155,7 @@ void PartOptionPop::ContentUpdate() {
 	if (nowScene == mainScene || nowScene == partScene || nowScene == speedScene) {
 		viewFlag = TRUE;
 		if (nowScene == mainScene) {
-			song->ChangeStart(0);
-			song->ChangeEnd(0);
+			song->SetPlayMode(PART_MODE);
 		}
 	}
 	else {
@@ -170,9 +169,7 @@ void PartOptionPop::ContentView() {
 	partOptionPreview->View();
 }
 
-PartOptionPop::~PartOptionPop
-
-() {
+PartOptionPop::~PartOptionPop() {
 	delete speedPop;
 	delete partPop;
 	delete partOptionPreview;

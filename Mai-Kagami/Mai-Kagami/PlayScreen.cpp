@@ -12,7 +12,7 @@ PlayScreen::PlayScreen(Font *font, Songs *songs, Touch *touch, const int startSc
 
 void PlayScreen::Load() {
 	song = songs->GetSong(songs->GetNowSong());
-	song->danceMovie->ChangeEx(1.25);
+	song->danceMovie->ChangeEx(1.2);
 	song->danceMovie->ChangePos(WIDTH * 0.5, HEIGHT * 0.5);
 	song->danceMovie->Seek();
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);
