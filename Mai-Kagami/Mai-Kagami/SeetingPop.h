@@ -39,6 +39,7 @@ public:
 	void Check();
 	void View();
 	~PartOption();
+	bool mode;
 private:
 	Button *button[4];
 	MyDrawText *part[4];
@@ -50,7 +51,6 @@ private:
 	MyDrawCircle *endPoint;
 	MyDrawText* partName[10];
 	MyDrawText* caution;
-	bool mode;
 };
 
 //スピードオプションポップアップ
@@ -85,7 +85,7 @@ protected:
 	Song *song;
 	PartOption *partOption;
 	BlackBox *blackBox;
-	Button *button;
+	CircleButton2 *button;
 	MyDrawText *text;
 };
 

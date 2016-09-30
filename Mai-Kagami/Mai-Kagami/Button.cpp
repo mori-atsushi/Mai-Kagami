@@ -101,7 +101,7 @@ void CircleButton2::SetMode(bool mode) {
 	if (mode) {
 		myDrawCircle->ChangeColor(colorName);
 	} else {
-		myDrawCircle->ChangeColor("White");
+		myDrawCircle->ChangeColor("Glay");
 	}
 	Button::SetMode(mode);
 	

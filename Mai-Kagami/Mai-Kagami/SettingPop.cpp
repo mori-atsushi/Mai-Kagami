@@ -63,7 +63,6 @@ PartOption::PartOption(Font *font, Songs *songs, Touch *touch) {
 	startPoint = new MyDrawCircle(0, 0, 15);
 	endPoint = new MyDrawCircle(0, 0, 15, "Yellow");
 	selectedPartBar = new MyDrawBar(0, 0, 4, 0, "Blue");
-
 	caution = new MyDrawText(font, "‹æŠÔ‚ª³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ!", WIDTH, HEIGHT * 0.75, ALIGNMENT_RIGHT, 30, "Red");
 
 }
@@ -92,12 +91,14 @@ void PartOption::Check() {
 	part[3]->ChangeText(song->GetPart(song->EndPart())->GetName());
 }
 
+int flag = 0;
 void PartOption::View() {
 	int startFlame = song->danceMovie->GetStartFlame();
 	int lastFlame = song->danceMovie->GetEndFlame();
 	for (int i = 0, n = song->GetPartNum(); i < n; i++) {
 		SongPart *songPart = song->GetPart(i);
 		float y = overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * (float)(songPart->GetFlame() - startFlame) / (lastFlame - startFlame);
+		if (y < 0) { y = overallPartBar->GetY(); }
 		partName[i]->ChangeText(songPart->GetName());
 		partName[i]->ChangePos(WIDTH * 0.55, y);
 		partName[i]->View();
@@ -116,11 +117,13 @@ void PartOption::View() {
 		y = endPoint->GetY() + h / 2;
 		selectedPartBar->ChangeColor("Red");
 		caution->SetViewFlag(TRUE);
+		this->mode = false;
 	} else {
 		h = endPoint->GetY() - startPoint->GetY();
 		y = startPoint->GetY() + h / 2;
 		selectedPartBar->ChangeColor("Blue");
 		caution->SetViewFlag(FALSE);
+		this->mode = true;
 	}
 	selectedPartBar->ChangeSize(overallPartBar->GetWidth(), h);
 	selectedPartBar->ChangePos(overallPartBar->GetX(), y);
@@ -205,6 +208,7 @@ void PartPop::SetButtonMode(bool mode) {
 void PartPop::ContentView() {
 	blackBox->View();
 	partOption->View();
+	button->SetMode(partOption->mode);
 	button->View();
 	text->View();
 }
