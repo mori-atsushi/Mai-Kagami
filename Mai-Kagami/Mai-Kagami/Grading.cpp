@@ -22,6 +22,29 @@ int FlameGrading::Mark(float joints[JointType_Count][3], const int userflame) {
 	return (int)FlameMark(joints, modelData[y]);
 }
 
+int *FlameGrading::MarkPoint(float joints[JointType_Count][3], const int userflame) {
+	int x = 0, y;
+	int point[4];
+
+	while (1) {
+		if (modelData.count(userflame + x) != 0) {
+			y = userflame + x;
+			break;
+		}
+		if (modelData.count(userflame - x) != 0) {
+			y = userflame - x;
+			break;
+		}
+		x++;
+	}
+
+	point[0] = (int)LeftHandMark(joints, modelData[y]);
+	point[1] = (int)RightHandMark(joints, modelData[y]);
+	point[2] = (int)LeftFootMark(joints, modelData[y]);
+	point[3] = (int)RightFootMark(joints, modelData[y]);
+	return point;
+}
+
 //2関節間の点数計算
 float FlameGrading::JointMark(float joints[JointType_Count][3], float model[JointType_Count][3], int x, int y) {
 	float userv, modelv;
@@ -79,6 +102,66 @@ float FlameGrading::FlameMark(float joints[JointType_Count][3], float model[Join
 	return  sum / MAX;
 }
 
+//1フレームあたりの左手点数計算
+float FlameGrading::LeftHandMark(float joints[JointType_Count][3], float model[JointType_Count][3]) {
+	const int MAX = 6;
+	float sum = 0;
+	int jointNum[MAX][2] = {
+		{ JointType_ShoulderLeft	, JointType_ElbowLeft },
+		{ JointType_ShoulderLeft	, JointType_SpineShoulder },
+		{ JointType_ElbowLeft		, JointType_WristLeft },
+		{ JointType_WristLeft		, JointType_HandLeft },
+		{ JointType_HandLeft		, JointType_HandTipLeft },
+		{ JointType_HandLeft		, JointType_ThumbLeft } };
+	for (int i = 0; i < MAX; i++)
+		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
+	return  sum / MAX;
+}
+
+//1フレームあたりの点数計算
+float FlameGrading::RightHandMark(float joints[JointType_Count][3], float model[JointType_Count][3]) {
+	const int MAX = 6;
+	float sum = 0;
+	int jointNum[MAX][2] = {
+		{ JointType_ShoulderRight	, JointType_ElbowRight },
+		{ JointType_ShoulderRight	, JointType_SpineShoulder },
+		{ JointType_ElbowRight		, JointType_WristRight },
+		{ JointType_WristRight		, JointType_HandRight },
+		{ JointType_HandRight		, JointType_HandTipRight },
+		{ JointType_HandRight		, JointType_ThumbRight } };
+	for (int i = 0; i < MAX; i++)
+		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
+	return  sum / MAX;
+}
+
+//1フレームあたりの点数計算
+float FlameGrading::LeftFootMark(float joints[JointType_Count][3], float model[JointType_Count][3]) {
+	const int MAX = 4;
+	float sum = 0;
+	int jointNum[MAX][2] = {
+		{ JointType_SpineBase		, JointType_HipLeft },
+		{ JointType_HipLeft			, JointType_KneeLeft },
+		{ JointType_KneeLeft		, JointType_AnkleLeft },
+		{ JointType_AnkleLeft		, JointType_FootLeft } };
+	for (int i = 0; i < MAX; i++)
+		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
+	return  sum / MAX;
+}
+
+//1フレームあたりの点数計算
+float FlameGrading::RightFootMark(float joints[JointType_Count][3], float model[JointType_Count][3]) {
+	const int MAX = 4;
+	float sum = 0;
+	int jointNum[MAX][2] = {
+		{ JointType_SpineBase		, JointType_HipRight },
+		{ JointType_HipRight		, JointType_KneeRight },
+		{ JointType_KneeRight		, JointType_AnkleRight },
+		{ JointType_AnkleRight		, JointType_FootRight } };
+	for (int i = 0; i < MAX; i++)
+		sum += JointMark(joints, model, jointNum[i][0], jointNum[i][1]);
+	return  sum / MAX;
+}
+
 Grading::Grading() {
 	bezier = new Bezier(1.2, 0, 0.5, 1);
 }
@@ -92,7 +175,7 @@ void Grading::Mark(const char *model, const char *user) {
 	const int MAX = 1024;
 	char userline[MAX], modelline[MAX];
 	int i = 0, userflame = 0, modelflame = 0, sum = 0, count = 0, scoreCount = 0;
-	int timingSum[BAR_NUM] = {};
+	int timingSum[BAR_NUM] = {}, pointSum[4] = {};
 	max = 0;
 
 	if ((userfp = fopen(user, "r")) == NULL) {
@@ -161,14 +244,17 @@ void Grading::Mark(const char *model, const char *user) {
 		if (userData.count(i) == 0)
 			continue;
 
-		int point = (int)flameGrading[0]->Mark(userData[i], i);
 		for (int k = 0; k < BAR_NUM; k++) {
 			int x = k - BAR_NUM / 2;
-			int point = (int)flameGrading[k]->Mark(userData[i], i + x * 5);
-			timingSum[k] += point;
+			int p = flameGrading[k]->Mark(userData[i], i + x * 5);
+			timingSum[k] += p;
 			if (x == 0) {
-				sum += point;
-				score[max] += point;
+				int *temp;
+				temp = flameGrading[k]->MarkPoint(userData[i], i);
+				for (int l = 0; l < 4; l++)
+					pointSum[l] += *(temp + l);
+				sum += p;
+				score[max] += p;
 				if (userflame >= SCORE_FLAME * (max + 1)) {
 					score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
 					score[max] = Adjust(score[max]);
@@ -186,6 +272,15 @@ void Grading::Mark(const char *model, const char *user) {
 	max++;
 	total = (int)(bezier->Calc((double)sum / count / 100) * 100);
 	total = Adjust(total);
+	for (int l = 0; l < 4; l++) {
+		int x = pointSum[l] / count;
+		if (x > 80)
+			point[l] = 1;
+		else if(x > 40)
+			point[l] = 2;
+		else
+			point[l] = 3;
+	}
 	timing = 0;
 	for (int k = 1; k < BAR_NUM; k++) {
 		if (timingSum[timing] < timingSum[k])

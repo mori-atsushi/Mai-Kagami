@@ -11,10 +11,15 @@ typedef float flameData[JointType_Count][3];
 class FlameGrading {
 public:
 	FlameGrading(std::map <int, flameData> modelData);
-	int Mark(float joints[JointType_Count][3], const int userflmae);
+	int Mark(float joints[JointType_Count][3], const int userflame);
+	int *MarkPoint(float joints[JointType_Count][3], const int userflame);
 private:
 	float JointMark(float joints[JointType_Count][3], float model[JointType_Count][3], int x, int y); //2関節間の点数計算
 	float FlameMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの点数計算
+	float LeftHandMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの左手点数計算
+	float RightHandMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの右手点数計算
+	float LeftFootMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの左足点数計算
+	float RightFootMark(float joints[JointType_Count][3], float model[JointType_Count][3]); //1フレームあたりの右足点数計算
 	std::map <int, flameData> modelData;
 	int modelflame, j;
 	float model[JointType_Count][3];
