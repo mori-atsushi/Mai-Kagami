@@ -50,6 +50,7 @@
     <ClCompile Include="PlayScreenObject.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="SettingPop.cpp" />
     <ClCompile Include="Song.cpp" />
     <ClCompile Include="SongSelectCover.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Result.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
+    <ClInclude Include="Serial.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelectCover.h" />
     <ClInclude Include="Songs.h" />

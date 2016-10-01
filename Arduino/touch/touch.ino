@@ -4,7 +4,7 @@ void setup(){
   int i;
   //モニタリングのためシリアル通信開始
   Serial.begin(9600);
-  for(i = 4; i < 5; i++) {
+  for(i = 0; i < 5; i++) {
     //ピンをデジタル出力
     pinMode(i * 2,OUTPUT);
     //ピンをデジタル入力
@@ -19,13 +19,15 @@ void loop(){
   long int num = 100000, digit = 10000;
   
   //指が触れたとき9番ピンがHIGHになるまでをカウント
-  for(i = 4; i < 5; i++) {
+  for(i = 0; i < 5; i++) {
     x = 0;
     //ピンをHIGHで出力
     digitalWrite(i * 2, HIGH);
     while (digitalRead(i * 2 + 1)!=HIGH){
       //カウントする
       x++;
+      if(x > 20)
+        break;
     }
     f[i]+=(x-f[i])/2;
     if(f[i] > limit)

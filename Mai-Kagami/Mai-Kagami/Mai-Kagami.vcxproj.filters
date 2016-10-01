@@ -228,6 +228,9 @@
     <ClCompile Include="Http.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
+    <ClCompile Include="Serial.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -384,6 +387,9 @@
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
     <ClInclude Include="Http.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Serial.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>
