@@ -15,10 +15,12 @@ class Button : public Draw {
 public:
 	Button(const int num, Touch *touch);
 	int GetTouch(); //そのボタンが押されているフレーム数を取得
+	void SetMode(bool mode);	//ボタンの有効、無効を切り替え(true:有効、false:無効)
 private:
 	virtual void ContentView() = 0; //表示用関数
 	Touch *touch; //タッチ
 	int num; //ボタン番号
+	bool mode = true;	//true:有効、false:無効
 };
 
 //三角形のボタン
@@ -62,10 +64,12 @@ class CircleButton2 : public Button {
 public:
 	CircleButton2(Font *font, Touch *touch, const char *str, const int num, char *colorName = "Blue");
 	void ContentView();
+	void SetMode(bool mode);
 	~CircleButton2();
 private:
 	MyDrawText *text; //ボタンの文字
 	MyDrawCircle *myDrawCircle;
+	char *colorName;
 };
 
 //画像付きのボタン

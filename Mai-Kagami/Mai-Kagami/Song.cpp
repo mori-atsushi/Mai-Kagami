@@ -109,15 +109,17 @@ void Song::ChangeSpeed(int num) {
 void Song::ChangeStart(int num) {
 	if (num == 1 && *start > 0)
 		(*start) -= 1;
-	if (num == -1 && *start < *end)
+	if (num == -1 && *start < GetPartNum() - 1) {
 		(*start) += 1;
+	}
 	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
 }
 
 //“®‰æ‚ÌI—¹ˆÊ’u‚ğ•ÏX
 void Song::ChangeEnd(int num) {
-	if (num == 1 && *end > *start)
+	if (num == 1 && *end > 0) {
 		(*end) -= 1;
+	}
 	if (num == -1 && *end < GetPartNum() - 1)
 		(*end) += 1;
 
@@ -176,4 +178,12 @@ void Song::SetPlayMode(const int mode) {
 		danceMovie->SetEndFlame();
 	}
 	danceMovie->SetPart();
+}
+
+int Song::GetStartNum() {
+	return *start;
+}
+
+int Song::GetEndNum() {
+	return *end;
 }

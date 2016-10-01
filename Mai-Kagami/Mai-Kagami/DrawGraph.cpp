@@ -149,7 +149,7 @@ int MyDrawMovie::GetStartFlame() {
 
 //ÅŒã‚ÌƒtƒŒ[ƒ€”æ“¾
 int MyDrawMovie::GetEndFlame() {
-	if (endFlame == -1)
+	if (endFlame < 0) 
 		return GetAllFlame();
 	return endFlame;
 }
