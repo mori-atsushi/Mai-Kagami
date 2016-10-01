@@ -132,7 +132,7 @@ void SongInformation::ContentUpdate() {
 		break;
 	case MODE:
 		if (lastScene != MODE) {
-			if (lastScene == OPTION1) {
+			if (lastScene == OPTION1 || lastScene == OPTION2) {
 				nowSong->danceMovie->Seek(0);
 			}
 			else {

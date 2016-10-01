@@ -8,7 +8,15 @@ Button::Button(const int num, Touch *touch)
 }
 
 int Button::GetTouch() {
-	return touch->Get(num);
+	if (mode) {
+		return touch->Get(num);
+	} else {
+		return -1;
+	}
+}
+
+void Button::SetMode(bool mode) {
+	this->mode = mode;
 }
 
 //三角形のボタン
@@ -82,12 +90,22 @@ CircleButton::~CircleButton() {
 //文字が丸の中にあるボタン
 CircleButton2::CircleButton2(Font *font, Touch *touch, const char *str, const int num, char *colorName)
 	: Button(num, touch) {
+	this->colorName = colorName;
 	float r = WIDTH * 0.045;
 	float x = WIDTH - r - 4;
 	text = new MyDrawText(font, str, x, GetY(), 1, 30, "Black");
 	myDrawCircle = new MyDrawCircle(x, GetY(), r, colorName);
 }
 
+void CircleButton2::SetMode(bool mode) {
+	if (mode) {
+		myDrawCircle->ChangeColor(colorName);
+	} else {
+		myDrawCircle->ChangeColor("Glay");
+	}
+	Button::SetMode(mode);
+	
+}
 void CircleButton2::ContentView() {
 	myDrawCircle->View();
 	text->View();
