@@ -63,8 +63,7 @@ PartOption::PartOption(Font *font, Songs *songs, Touch *touch) {
 	startPoint = new MyDrawCircle(0, 0, 15);
 	endPoint = new MyDrawCircle(0, 0, 15, "Yellow");
 	selectedPartBar = new MyDrawBar(0, 0, 4, 0, "Blue");
-	caution = new MyDrawText(font, "‹æŠÔ‚ª³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ!", WIDTH, HEIGHT * 0.75, ALIGNMENT_RIGHT, 30, "Red");
-
+	caution = new MyDrawText(font, "‹æŠÔ‚ª³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ!", WIDTH, HEIGHT * 0.75, ALIGNMENT_RIGHT, 30, "White");
 }
 
 void PartOption::Load() {
@@ -93,22 +92,29 @@ void PartOption::Check() {
 
 int flag = 0;
 void PartOption::View() {
-	int startFlame = song->danceMovie->GetStartFlame();
-	int lastFlame = song->danceMovie->GetEndFlame();
-	for (int i = 0, n = song->GetPartNum(); i < n; i++) {
+	int startNum = song->GetStartNum();
+	int lastNum = song->GetEndNum();
+	int partNum = song->GetPartNum();
+
+	for (int i = 0, n = partNum; i < n; i++) {
 		SongPart *songPart = song->GetPart(i);
-		float y = overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * (float)(songPart->GetFlame() - startFlame) / (lastFlame - startFlame);
-		if (lastFlame < 0) return;
+		float y = overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * i / partNum;
+		
 		partName[i]->ChangeText(songPart->GetName());
-		partName[i]->ChangePos(WIDTH * 0.55, y);
-		partName[i]->View();
-		if(song->StartPart() == i)
+		partName[i]->ChangePos(WIDTH*0.55, overallPartBar->GetY() - overallPartBar->GetHeight() * 0.5 + overallPartBar->GetHeight() * i / partNum);
+		partName[i]->ChangeColor("White");
+		
+		if (i == startNum) {
 			startPoint->ChangePos(overallPartBar->GetX(), y);
-		if (song->EndPart() + 1 == i) {
+			partName[i]->ChangeColor("Blue");
+		}
+		if (lastNum + 1 == i) {
 			endPoint->ChangePos(overallPartBar->GetX(), y);
-		} else if (song->EndPart() == song->GetPartNum() - 1) {
+			partName[i]->ChangeColor("Yellow");
+		} else if (lastNum == partNum - 1) {
 			endPoint->ChangePos(overallPartBar->GetX(), overallPartBar->GetY() + overallPartBar->GetHeight() / 2);
 		}
+		partName[i]->View();
 	}
 
 	float h, y;
