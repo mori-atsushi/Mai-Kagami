@@ -161,3 +161,11 @@ SongPart *Song::GetPart(int num) {
 int Song::GetPartNum() {
 	return *songPartNum;
 }
+
+int Song::GetStartNum() {
+	return *start;
+}
+
+int Song::GetEndNum() {
+	return *end;
+}
