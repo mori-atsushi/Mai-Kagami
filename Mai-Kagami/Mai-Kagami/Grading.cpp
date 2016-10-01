@@ -1,32 +1,25 @@
 #include "Grading.h"
 
-FlameGrading::FlameGrading(FILE *modelfp) {
-	this->modelfp = modelfp;
+FlameGrading::FlameGrading(std::map <int, flameData> modelData) {
+	this->modelData = modelData;
 	modelflame = 0, j = 0;
 }
 
 int FlameGrading::Mark(float joints[JointType_Count][3], const int userflame) {
-	const int MAX = 1024;
-	while (j != JointType_Count || userflame > modelflame) {
-		char modelline[MAX];
-		if (fgets(modelline, MAX, modelfp) == NULL)
-			break;
-		sscanf(modelline, "%d:", &modelflame);
-		int num;
-		if (modelflame == 0)
-			num = 1;
-		else
-			num = (int)log10((double)modelflame) + 1;
+	int x = 0, y;
 
-		char *line = modelline + num + 1;
-		for (j = 0; j < JointType_Count; j++) {
-			if (sscanf(line, "%f,%f,%f|", &model[j][0], &model[j][1], &model[j][2]) != 3)
-				break;
-			char str[256];
-			line = line + sprintf(str, "%f,%f,%f|", model[j][0], model[j][1], model[j][2]);
+	while (1) {
+		if (modelData.count(userflame + x) != 0) {
+			y = userflame + x;
+			break;
 		}
+		if (modelData.count(userflame - x) != 0) {
+			y = userflame - x;
+			break;
+		}
+		x++;
 	}
-	return (int)FlameMark(joints, model);
+	return (int)FlameMark(joints, modelData[y]);
 }
 
 //2関節間の点数計算
@@ -94,11 +87,11 @@ void Grading::Mark(const char *model, const char *user) {
 	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
 
 	const char BAR_NUM = 9; //タイミング、表情のバーの数
-	FILE *userfp, *modelfp[BAR_NUM];
+	FILE *userfp, *modelfp;
 	FlameGrading *flameGrading[BAR_NUM];
 	const int MAX = 1024;
-	char userline[MAX];
-	int i = 0, userflame = 0, sum = 0, count = 0, scoreCount = 0;
+	char userline[MAX], modelline[MAX];
+	int i = 0, userflame = 0, modelflame = 0, sum = 0, count = 0, scoreCount = 0;
 	int timingSum[BAR_NUM] = {};
 	max = 0;
 
@@ -107,13 +100,13 @@ void Grading::Mark(const char *model, const char *user) {
 		exit(EXIT_FAILURE);
 	}
 
-	for (int i = 0; i < BAR_NUM; i++) {
-		if ((modelfp[i] = fopen(model, "r")) == NULL) {
-			printf("file open error!!\n");
-			exit(EXIT_FAILURE);
-		}
-		flameGrading[i] = new FlameGrading(modelfp[i]);
+	if ((modelfp = fopen(model, "r")) == NULL) {
+		printf("file open error!!\n");
+		exit(EXIT_FAILURE);
 	}
+
+	std::map <int, flameData> userData;
+	std::map <int, flameData> modelData;
 
 	while (fgets(userline, MAX, userfp) != NULL) {
 		float user[JointType_Count][3];
@@ -134,10 +127,44 @@ void Grading::Mark(const char *model, const char *user) {
 		}
 		if (i != JointType_Count)
 			continue;
+		else
+			Copy(userData[userflame], user);
+	}
 
+	while (fgets(modelline, MAX, modelfp) != NULL) {
+		float model[JointType_Count][3];
+		sscanf(modelline, "%d:", &modelflame);
+
+		int num;
+		if (modelflame == 0)
+			num = 1;
+		else
+			num = (int)log10((double)modelflame) + 1;
+
+		char *line = modelline + num + 1;
+		for (i = 0; i < JointType_Count; i++) {
+			if (sscanf(line, "%f,%f,%f|", &model[i][0], &model[i][1], &model[i][2]) != 3)
+				break;
+			char str[256];
+			line = line + sprintf(str, "%f,%f,%f|", model[i][0], model[i][1], model[i][2]);
+		}
+		if (i != JointType_Count)
+			continue;
+		else
+			Copy(modelData[modelflame], model);
+	}
+
+	for (int i = 0; i < BAR_NUM; i++)
+		flameGrading[i] = new FlameGrading(modelData);
+
+	for (int i = 0; i <= userflame; i++) {
+		if (userData.count(i) == 0)
+			continue;
+
+		int point = (int)flameGrading[0]->Mark(userData[i], i);
 		for (int k = 0; k < BAR_NUM; k++) {
 			int x = k - BAR_NUM / 2;
-			int point = (int)flameGrading[k]->Mark(user, userflame + x * 5);
+			int point = (int)flameGrading[k]->Mark(userData[i], i + x * 5);
 			timingSum[k] += point;
 			if (x == 0) {
 				sum += point;
@@ -152,6 +179,8 @@ void Grading::Mark(const char *model, const char *user) {
 		}
 		count++;
 	}
+
+
 	score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
 	score[max] = Adjust(score[max]);
 	max++;
@@ -162,7 +191,6 @@ void Grading::Mark(const char *model, const char *user) {
 		if (timingSum[timing] < timingSum[k])
 			timing = k;
 	}
-	printfDx("%d\n", timing);
 }
 
 int Grading::Adjust(int point) {
@@ -172,6 +200,14 @@ int Grading::Adjust(int point) {
 		return 0;
 	return point;
 }
+
+void Grading::Copy(float dst[JointType_Count][3], float source[JointType_Count][3]) {
+	for (int i = 0; i < JointType_Count; i++) {
+		for (int j = 0; j < 3; j++)
+			dst[i][j] = source[i][j];
+	}
+}
+
 
 Grading::~Grading() {
 	delete bezier;
