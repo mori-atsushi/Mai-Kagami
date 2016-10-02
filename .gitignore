@@ -12,3 +12,11 @@ Mai-Kagami/Mai-Kagami.VC.VC.opendb
 Mai-Kagami/Mai-Kagami.VC.db
 Mai-Kagami/Mai-Kagami/Debug/
 *.db
+Mai-Kagami/.vs/
+Test/x64/
+Test/.vs/
+Mai-Kagami/Debug/
+Mai-Kagami/x64/
+Record/.vs/
+Record/x64/Debug/
+Test/Debug/
