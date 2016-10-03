@@ -94,8 +94,6 @@ void MyDrawMovie::Seek(const int flame) {
 void MyDrawMovie::Start() {
 	if (!CheckHandleASyncLoad(handle)) {
 		SetSpeed();
-		if (GetNowFlame() == GetEndFlame())
-			Seek();
 		if(GetMovieStateToGraph(handle) == 0)
 			PlayMovieToGraph(handle);
 	}
