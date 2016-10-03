@@ -1,10 +1,13 @@
 #ifndef __RESULT_H_INCLUDED__
 #define __RESULT_H_INCLUDED__
 
+#include <time.h>
+
 #include "DxLib.h"
 #include "Songs.h"
 #include "User.h"
 #include "Grading.h"
+#include "Http.h"
 
 class Result : public Grading {
 public:
@@ -18,6 +21,8 @@ public:
 	int GetExpression(); //表情取得
 	int GetScore(int x[100]); //区間別得点取得
 private:
+	void GetNowTime(int nowTime[]);
+	char comment[1024]; //コメント
 	Songs *songs;
 	User *user;
 };

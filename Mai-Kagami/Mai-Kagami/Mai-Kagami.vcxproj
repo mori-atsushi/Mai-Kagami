@@ -31,6 +31,7 @@
     <ClCompile Include="Grading.cpp" />
     <ClCompile Include="Kinect.cpp" />
     <ClCompile Include="KinectBody.cpp" />
+    <ClCompile Include="Http.cpp" />
     <ClCompile Include="MaiKagami.cpp" />
     <ClCompile Include="Main.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebug</RuntimeLibrary>
@@ -52,6 +53,7 @@
     <ClCompile Include="PlayScreenObject.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="SettingPop.cpp" />
     <ClCompile Include="Song.cpp" />
     <ClCompile Include="SongSelectCover.cpp" />
@@ -87,6 +89,7 @@
     <ClInclude Include="Grading.h" />
     <ClInclude Include="Kinect.h" />
     <ClInclude Include="KinectBody.h" />
+    <ClInclude Include="Http.h" />
     <ClInclude Include="MaiKagami.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ModeSelect.h" />
@@ -106,6 +109,7 @@
     <ClInclude Include="Result.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeetingPop.h" />
+    <ClInclude Include="Serial.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SongSelectCover.h" />
     <ClInclude Include="Songs.h" />

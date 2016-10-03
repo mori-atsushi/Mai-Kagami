@@ -7,6 +7,8 @@
 #include "Font.h"
 #include "Draw.h"
 
+enum Alignment{ALIGNMENT_LEFT, ALIGNMENT_CENTER, ALIGNMENT_RIGHT};
+
 //テキスト関係
 class MyDrawText : public Color, public Draw2{
 public:

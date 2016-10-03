@@ -21,8 +21,7 @@ void ThroughOptionButton::ContentUpdate() {
 	if (nowScene == OPTION1) {
 		viewFlag = TRUE;
 		Song *song = songs->GetSong(songs->GetNowSong());
-		song->danceMovie->SetStartFlame();
-		song->danceMovie->SetEndFlame();
+		song->SetPlayMode(THROUGH_MODE);
 		if (lastScene == nowScene) {
 			speedOption->Check();
 		}

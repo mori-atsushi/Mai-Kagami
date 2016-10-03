@@ -3,7 +3,7 @@
 PartPauseButton::PartPauseButton(Touch *touch, Songs *songs) {
 	this->songs = songs;
 	button[0] = new CircleGraphButton(touch, 0, "img/pause.png");
-	button[1] = new CircleGraphButton(touch, 2, "img/pause.png");
+	button[1] = new CircleGraphButton(touch, 2, "img/rewind.png");
 }
 
 void PartPauseButton::Load() {
@@ -26,8 +26,8 @@ int PartPauseButton::Switch(const int scene) {
 void PartPauseButton::ContentUpdate() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (button[1]->GetTouch() > 0 && nowScene == PART_REWIND) {
-		if(song->danceMovie->GetStartFlame() <= song->danceMovie->GetNowFlame())
-			song->danceMovie->Seek(song->danceMovie->GetNowFlame()-5);
+		if(song->danceMovie->GetStartFlame() < song->danceMovie->GetNowFlame() - 5)
+			song->danceMovie->Seek(song->danceMovie->GetNowFlame() - 5);
 	}
 
 	switch (nowScene)

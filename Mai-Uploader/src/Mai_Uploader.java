@@ -39,7 +39,7 @@ public class Mai_Uploader {
 						"Mai_Uploader test upload on " + Calendar.getInstance().getTime()
 						);
 				new File(fileList[0]).delete();
-				myYoutube.sleep(5000);
+				myYoutube.sleep(10000);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.exit(0);

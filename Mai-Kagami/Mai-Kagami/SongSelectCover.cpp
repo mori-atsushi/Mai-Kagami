@@ -66,16 +66,13 @@ void SongSelectCover::Draw(int scene) {
 	}
 	switch (scene) {
 	case OPTION1:
+	case OPTION2:
 		if(playFlag)
 			StopMusic();
 		playFlag = FALSE;
 		danceMovie->Start();
+		danceMovie->Loop();
 		danceMovie->View();
-		break;
-	case OPTION2:
-		if (playFlag)
-			StopMusic();
-		playFlag = FALSE;
 		break;
 	default:
 		if (n == 0 && !playFlag) {
