@@ -1,15 +1,16 @@
 #include "Result.h"
 
-Result::Result(Songs *songs, User *user) {
+Result::Result(Songs *songs, User *user, Kinect *kinect) {
 	this->songs = songs;
 	this->user = user;
+	this->kinect = kinect;
 }
 
 void Result::Calc() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	char buf[256];
 	sprintf(buf, "song/%s/model.txt", song->GetFolder());
-	Mark(buf, "FILE/test.txt");
+	Mark(buf, kinect->kinectBody->GetSave(), kinect->kinectBody->GetNow());
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
 	expression = 4;
 }

@@ -1,7 +1,7 @@
 #include "ThroughResultMain.h"
 
-ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user) {
-	result = new Result(songs, user);
+ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user, Kinect *kinect) {
+	result = new Result(songs, user, kinect);
 	throughResult = new ThroughResult(font, songs, touch, result);
 	throughDetail = new ThroughDetail(font, songs, touch, result);
 }

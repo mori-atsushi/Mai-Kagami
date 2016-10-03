@@ -19,7 +19,6 @@ void PlayScreen::Load() {
 	song->drawSongTitle->ChangePos(WIDTH * 0.2, HEIGHT * 0.03);
 	playBar->Load(song);
 	viewFlag = TRUE;
-	kinect->kinectBody->StartSave("FILE/test.txt");
 }
 
 int PlayScreen::Switch(const int scene) {
@@ -30,8 +29,8 @@ int PlayScreen::Switch(const int scene) {
 	else if (scene == countDownScene)
 		return countDown->Switch(scene);
 	else if (scene == playScene) {
-//		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetEndFlame()) {
-		if (song->danceMovie->GetNowFlame() == 100) {
+		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetEndFlame()) {
+//		if (song->danceMovie->GetNowFlame() == 100) {
 			song->danceMovie->Stop();
 			return finishScene;
 		}
@@ -60,7 +59,7 @@ void PlayScreen::ContentView() {
 }
 
 void PlayScreen::Delete() {
-	kinect->kinectBody->FinishSave();
+
 }
 
 

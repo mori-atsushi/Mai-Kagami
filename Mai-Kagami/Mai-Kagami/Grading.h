@@ -3,8 +3,8 @@
 
 #include "DxLib.h"
 #include <Kinect.h>
-#include "Bezier.h"
 #include <map>
+#include "Bezier.h"
 
 typedef float flameData[JointType_Count][3];
 
@@ -28,7 +28,7 @@ private:
 class Grading {
 public:
 	Grading();
-	void Mark(const char *model, const char *user);
+	void Mark(const char *model, std::map <int, flameData> userData, const int userflame);
 	~Grading();
 protected:
 	int total; //‘‡“¾“_

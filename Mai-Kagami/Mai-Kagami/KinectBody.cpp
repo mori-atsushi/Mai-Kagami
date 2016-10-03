@@ -110,35 +110,24 @@ boolean KinectBody::CheckDistance() {
 		return FALSE;
 }
 
-void KinectBody::StartSave(const char *fileName) {
-	if ((fp = fopen(fileName, "w")) == NULL) {
-		printf("file open error!!\n");
-		exit(EXIT_FAILURE);
-	}
-}
-
 //•Û‘¶
 void KinectBody::JointSave(const int flame) {
-	static boolean flag = TRUE;
-	if (flag) {
-		fprintf(fp, "%d:", flame);
-		if (*userFlag) {
-			for (int i = 0; i < JointType_Count; i++)
-				fprintf(fp, "%f,%f,%f|", userJoints[i].Position.X, userJoints[i].Position.Y, userJoints[i].Position.Z);
-			putc('\n', fp);
+	now = flame;
+	if (KINECT_FLAG) {
+		for (int i = 0; i < JointType_Count; i++) {
+			userData[flame][i][0] = userJoints[i].Position.X;
+			userData[flame][i][1] = userJoints[i].Position.Y;
+			userData[flame][i][2] = userJoints[i].Position.Z;
 		}
-		else {
-			fprintf(fp, "-1\n");
-		}
-		flag = FALSE;
-	}
-	else {
-		flag = TRUE;
 	}
 }
 
-void KinectBody::FinishSave() {
-	fclose(fp);
+std::map <int, flameData> KinectBody::GetSave() {
+	return userData;
+}
+
+int KinectBody::GetNow() {
+	return now;
 }
 
 KinectBody::~KinectBody() {

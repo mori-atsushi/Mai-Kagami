@@ -8,10 +8,11 @@
 #include "User.h"
 #include "Grading.h"
 #include "Http.h"
+#include "Kinect.h"
 
 class Result : public Grading {
 public:
-	Result(Songs *songs, User *user);
+	Result(Songs *songs, User *user, Kinect *kinect);
 	void Calc(); //得点計算
 	void Send(); //送信
 	float GetTotal(); //総合得点取得
@@ -25,6 +26,7 @@ private:
 	char comment[1024]; //コメント
 	Songs *songs;
 	User *user;
+	Kinect *kinect;
 };
 
 #endif

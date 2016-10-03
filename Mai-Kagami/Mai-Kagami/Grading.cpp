@@ -166,53 +166,24 @@ Grading::Grading() {
 	bezier = new Bezier(1.2, 0, 0.5, 1);
 }
 
-void Grading::Mark(const char *model, const char *user) {
+void Grading::Mark(const char *model, std::map <int, flameData> userData, const int userflame) {
 	const int SCORE_FLAME = 500; //一区切りあたりのフレーム
 
 	const char BAR_NUM = 9; //タイミング、表情のバーの数
-	FILE *userfp, *modelfp;
+	FILE *modelfp;
 	FlameGrading *flameGrading[BAR_NUM];
 	const int MAX = 1024;
-	char userline[MAX], modelline[MAX];
-	int i = 0, userflame = 0, modelflame = 0, sum = 0, count = 0, scoreCount = 0;
+	char modelline[MAX];
+	int i = 0, modelflame = 0, sum = 0, count = 0, scoreCount = 0;
 	int timingSum[BAR_NUM] = {}, pointSum[4] = {};
 	max = 0;
-
-	if ((userfp = fopen(user, "r")) == NULL) {
-		printf("file open error!!\n");
-		exit(EXIT_FAILURE);
-	}
 
 	if ((modelfp = fopen(model, "r")) == NULL) {
 		printf("file open error!!\n");
 		exit(EXIT_FAILURE);
 	}
 
-	std::map <int, flameData> userData;
 	std::map <int, flameData> modelData;
-
-	while (fgets(userline, MAX, userfp) != NULL) {
-		float user[JointType_Count][3];
-		sscanf(userline, "%d:", &userflame);
-
-		int num;
-		if (userflame == 0)
-			num = 1;
-		else
-			num = (int)log10((double)userflame) + 1;
-
-		char *line = userline + num + 1;
-		for (i = 0; i < JointType_Count; i++) {
-			if (sscanf(line, "%f,%f,%f|", &user[i][0], &user[i][1], &user[i][2]) != 3)
-				break;
-			char str[256];
-			line = line + sprintf(str, "%f,%f,%f|", user[i][0], user[i][1], user[i][2]);
-		}
-		if (i != JointType_Count)
-			continue;
-		else
-			Copy(userData[userflame], user);
-	}
 
 	while (fgets(modelline, MAX, modelfp) != NULL) {
 		float model[JointType_Count][3];
@@ -255,7 +226,7 @@ void Grading::Mark(const char *model, const char *user) {
 					pointSum[l] += *(temp + l);
 				sum += p;
 				score[max] += p;
-				if (userflame >= SCORE_FLAME * (max + 1)) {
+				if (i >= SCORE_FLAME * (max + 1)) {
 					score[max] = (int)(bezier->Calc((double)score[max] / (count - scoreCount) / 100) * 100);
 					score[max] = Adjust(score[max]);
 					scoreCount = count;

@@ -5,6 +5,8 @@
 #include "DxLib.h"
 #include "stdafx.h"
 #include "Main.h"
+#include "Grading.h"
+#include <map>
 
 class KinectBody
 {
@@ -12,17 +14,18 @@ public:
 	KinectBody(IKinectSensor *m_pKinectSensor); //コンストラクタ
 	void Update(); //更新
 	boolean CheckDistance(); //距離を測定
-	void StartSave(const char *fileName);
 	void JointSave(const int flame); //保存
-	void FinishSave();
+	std::map <int, flameData> GetSave();
+	int GetNow();
 	~KinectBody(); //デストラクタ
 private:
+	std::map <int, flameData> userData;
 	Joint userJoints[JointType_Count]; //関節座標情報
 	boolean *userFlag; //ユーザーの状態(TRUE:認識されている / FALSE:認識されていない)
+	int now = 0;
 
 	// Body reader
 	IBodyFrameReader*       m_pBodyFrameReader;
-	FILE *fp;
 };
 
 #endif
