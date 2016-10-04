@@ -11,11 +11,12 @@
 #include "Touch.h"
 #include "Scene.h"
 #include "PartOptionPop.h"
+#include "Kinect.h"
 
 //ポーズボタン画面
 class PartPauseButton : public SubScene {
 public:
-	PartPauseButton(Touch *touch, Songs *songs);
+	PartPauseButton(Touch *touch, Songs *songs, Kinect *kinect);
 	void Load();
 	int Switch(const int scene);
 	void Delete();
@@ -24,6 +25,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	Songs *songs;
+	Kinect *kinect;
 	CircleGraphButton *button[2]; //ボタン
 };
 
@@ -53,7 +55,7 @@ public:
 //ポーズ関係
 class PartPause : public SubScene {
 public:
-	PartPause(Font *font, Songs *songs, Touch *touch);
+	PartPause(Font *font, Songs *songs, Touch *touch, Kinect *kinect);
 	void Load();
 	int Switch(const int scene);
 	void Delete();

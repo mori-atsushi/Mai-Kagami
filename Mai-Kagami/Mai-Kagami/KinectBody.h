@@ -15,6 +15,7 @@ public:
 	void Update(); //更新
 	boolean CheckDistance(); //距離を測定
 	void JointSave(const int flame); //保存
+	void DeleteSave(const int flame = 0); //指定したflameまでのデータを削除
 	std::map <int, flameData> GetSave();
 	int GetNow();
 	~KinectBody(); //デストラクタ

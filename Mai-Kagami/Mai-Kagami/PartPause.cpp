@@ -1,7 +1,8 @@
 #include "PartPause.h"
 
-PartPauseButton::PartPauseButton(Touch *touch, Songs *songs) {
+PartPauseButton::PartPauseButton(Touch *touch, Songs *songs, Kinect *kinect) {
 	this->songs = songs;
+	this->kinect = kinect;
 	button[0] = new CircleGraphButton(touch, 0, "img/pause.png");
 	button[1] = new CircleGraphButton(touch, 2, "img/rewind.png");
 }
@@ -26,8 +27,10 @@ int PartPauseButton::Switch(const int scene) {
 void PartPauseButton::ContentUpdate() {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	if (button[1]->GetTouch() > 0 && nowScene == PART_REWIND) {
-		if(song->danceMovie->GetStartFlame() < song->danceMovie->GetNowFlame() - 5)
+		if (song->danceMovie->GetStartFlame() < song->danceMovie->GetNowFlame() - 5) {
+			kinect->kinectBody->DeleteSave(song->danceMovie->GetNowFlame() - 5);
 			song->danceMovie->Seek(song->danceMovie->GetNowFlame() - 5);
+		}
 	}
 
 	switch (nowScene)
@@ -88,8 +91,8 @@ PartOptionPreview3::~PartOptionPreview3() {
 PartPauseSetting::PartPauseSetting(Font *font, Songs *songs, Touch *touch)
 	: PartOptionPop(font, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED, new PartOptionPreview3(font, songs, touch)) {}
 
-PartPause::PartPause(Font *font, Songs *songs, Touch *touch) {
-	partPauseButton = new PartPauseButton(touch, songs); //ポーズボタン画面
+PartPause::PartPause(Font *font, Songs *songs, Touch *touch, Kinect *kinect) {
+	partPauseButton = new PartPauseButton(touch, songs, kinect); //ポーズボタン画面
 	partPauseScreen = new PartPauseScreen(font, songs, touch);
 	partPauseSetting = new PartPauseSetting(font, songs, touch);
 	flag = FALSE;

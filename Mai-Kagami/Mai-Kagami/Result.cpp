@@ -11,6 +11,7 @@ void Result::Calc() {
 	char buf[256];
 	sprintf(buf, "song/%s/model.txt", song->GetFolder());
 	Mark(buf, kinect->kinectBody->GetSave(), kinect->kinectBody->GetNow());
+	kinect->kinectBody->DeleteSave();
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
 	expression = 4;
 }

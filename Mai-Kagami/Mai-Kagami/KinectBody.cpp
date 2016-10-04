@@ -122,6 +122,21 @@ void KinectBody::JointSave(const int flame) {
 	}
 }
 
+//指定したflameまでのデータを削除
+void KinectBody::DeleteSave(const int flame) {
+	if (flame == 0) {
+		userData.clear();
+	}
+	else {
+		for (int i = flame; i <= now; i++) {
+			if (userData.count(i) == 0)
+				continue;
+			userData.erase(i);
+		}
+	}
+	now = flame;
+}
+
 std::map <int, flameData> KinectBody::GetSave() {
 	return userData;
 }

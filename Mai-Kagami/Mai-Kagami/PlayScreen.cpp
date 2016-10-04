@@ -42,6 +42,9 @@ void PlayScreen::ContentUpdate() {
 	playBar->Update();
 	countDown->Update(nowScene);
 
+	if (song->danceMovie->GetNowFlame() == song->danceMovie->GetStartFlame())
+		kinect->kinectBody->DeleteSave();
+
 	if (nowScene == playScene) {
 		song->danceMovie->Start();
 		kinect->kinectBody->JointSave(song->danceMovie->GetNowFlame());
@@ -57,11 +60,6 @@ void PlayScreen::ContentView() {
 	playBar->View();
 	countDown->View();
 }
-
-void PlayScreen::Delete() {
-
-}
-
 
 PlayScreen::~PlayScreen() {
 	delete playBar;
