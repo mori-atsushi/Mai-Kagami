@@ -24,10 +24,10 @@ class Scene : public SubScene {
 protected:
 	void Load(); //ロード
 	void Delete(); //削除
+	int loadFlag = 0; //ロード確認用（0：未ロード、1：ロード中、2：ロード完了）
 private:
 	virtual void ContentLoad() = 0; //ロード詳細
 	virtual void ContentDelete() = 0; //削除詳細
-	int loadFlag = 0; //ロード確認用（0：未ロード、1：ロード中、2：ロード完了）
 };
 
 #endif

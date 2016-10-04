@@ -6,9 +6,34 @@ ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, Use
 	throughDetail = new ThroughDetail(font, songs, touch, result);
 }
 
+void ThroughResultMain::Load() {
+	if (loadFlag == 3)
+		return;
+
+	if (loadFlag == 0) {
+		auto thd = std::thread(&ThroughResultMain::MarkThread, this);
+		thd.detach();
+		loadFlag = -1;
+	}
+
+	if (loadFlag == 1) {
+		ContentLoad();
+		loadFlag = 2;
+	}
+
+	if (loadFlag == 2 && GetASyncLoadNum() == 0) {
+		viewFlag = TRUE;
+		loadFlag = 3;
+	}
+};
+
+void ThroughResultMain::MarkThread() {
+	result->Calc();
+	loadFlag = 1;
+}
+
 void ThroughResultMain::ContentLoad() {
 	scene = THROUGH_RESULT_TOP;
-	result->Calc();
 	result->Send(); //‘—M
 	throughResult->Load();
 	throughDetail->Load();
