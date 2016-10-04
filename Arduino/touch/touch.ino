@@ -1,6 +1,6 @@
-#define NUM 50
+#define NUM 100
 int f[NUM][5] ,n;
-int limit[6] = {5, 4, 5, 8, 3, 3}; //しきい値
+int limit[6] = {5, 5, 5, 8, 4, 3}; //しきい値
 
 void setup(){
   int i, j;

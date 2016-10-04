@@ -7,7 +7,7 @@
 
 #define NFC_POS		HEIGHT * 0.85
 #define NFC_FLAG	FALSE	//NFCカードを読み込むかどうか(TRUE:読み込む/FALSE:読み込まない)
-#define TOUCH_FLAG	FALSE	//サイドタッチパネルを使うか
+#define TOUCH_FLAG	TRUE	//サイドタッチパネルを使うか
 
 typedef enum {
 	TOP,
