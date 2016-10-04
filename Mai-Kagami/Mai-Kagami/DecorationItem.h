@@ -9,7 +9,7 @@ class DecorationItem
 	:Font, SoundEffect{
 public :
 	DecorationItem();
-	int GetFont(int point);
+	//int GetFont(int point);
 	int GetSoundEffect(int SoundType);
 	~DecorationItem();
 private :
