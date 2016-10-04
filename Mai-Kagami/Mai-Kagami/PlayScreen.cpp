@@ -1,11 +1,12 @@
 #include "PlayScreen.h"
 
-PlayScreen::PlayScreen(Font *font, Songs *songs, Touch *touch, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
+PlayScreen::PlayScreen(Font *font, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
 	this->startScene = startScene;
 	this->countDownScene = countDownScene;
 	this->playScene = playScene;
 	this->finishScene = finishScene;
 	this->songs = songs;
+	this->kinect = kinect;
 	playBar = new PlayBar(font);
 	countDown = new CountDown(font, countDownScene, playScene);
 }
@@ -21,16 +22,15 @@ void PlayScreen::Load() {
 }
 
 int PlayScreen::Switch(const int scene) {
-	KinectDistance kinectDistance;
-
-	if (kinectDistance.CheckDistance() == FALSE) //ユーザが2mより近かったら
+	if (kinect->kinectBody->CheckDistance() == FALSE) //ユーザが2mより近かったら
 		return startScene;
 	else if (scene == startScene)
 		return countDownScene;
 	else if (scene == countDownScene)
 		return countDown->Switch(scene);
 	else if (scene == playScene) {
-		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetEndFlame()) {
+//		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetEndFlame()) {
+		if (song->danceMovie->GetNowFlame() == 100) {
 			song->danceMovie->Stop();
 			return finishScene;
 		}
@@ -42,10 +42,16 @@ void PlayScreen::ContentUpdate() {
 	playBar->Update();
 	countDown->Update(nowScene);
 
-	if (nowScene == playScene)
+	if (song->danceMovie->GetNowFlame() == song->danceMovie->GetStartFlame())
+		kinect->kinectBody->DeleteSave();
+
+	if (nowScene == playScene) {
 		song->danceMovie->Start();
-	else
+		kinect->kinectBody->JointSave(song->danceMovie->GetNowFlame());
+	}
+	else {
 		song->danceMovie->Stop();
+	}
 }
 
 void PlayScreen::ContentView() {

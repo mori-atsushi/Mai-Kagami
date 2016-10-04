@@ -13,7 +13,7 @@ public:
 //•”•ª—ûK‰æ–Ê
 class PartPlay : public PlayScreen {
 public:
-	PartPlay(Font *font, Songs *songs, Touch *touch);
+	PartPlay(Font *font, Songs *songs, Touch *touch, Kinect *kinect);
 };
 
 #endif

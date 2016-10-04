@@ -5,11 +5,12 @@ MaiKagami::MaiKagami() {
 	font = new Font();
 	songs = new Songs(font); //曲一覧作成
 	user = new User();
+	kinect = new Kinect(); //キネクト
 	top = new Top(font, user);
 	songSelect = new SongSelect(font, touch, songs, user);
-	throughMain = new ThroughMain(font, touch, songs);
-	throughResultMain = new ThroughResultMain(font, touch, songs, user);
-	partMain = new PartMain(font, touch, songs);
+	throughMain = new ThroughMain(font, touch, songs, kinect);
+	throughResultMain = new ThroughResultMain(font, touch, songs, user, kinect);
+	partMain = new PartMain(font, touch, songs, kinect);
 	partResultMain = new PartResultMain(font, touch, songs);
 	scene = TOP;
 }
@@ -52,6 +53,7 @@ void MaiKagami::Update() {
 
 	lastScene = scene;
 
+	kinect->Update();
 	top->Update(scene); //トップ画面計算
 	songSelect->Update(scene); //曲選択画面計算
 	throughMain->Update(scene); //通し練習プレイ画面計算
@@ -78,4 +80,5 @@ MaiKagami::~MaiKagami() {
 	delete throughResultMain;
 	delete partMain;
 	delete partResultMain;
+	delete kinect;
 }

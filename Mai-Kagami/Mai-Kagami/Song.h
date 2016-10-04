@@ -57,6 +57,7 @@ public:
 	void LoadPart(); //パート情報ロード
 	SongPart *GetPart(int num); //パート情報取得
 	int GetPartNum(); //パート数取得
+	char *GetFolder(); //フォルダ取得
 	void SetPlayMode(const int mode); //プレイモードをセット
 	int GetStartNum();
 	int GetEndNum();

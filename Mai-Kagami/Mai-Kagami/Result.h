@@ -6,11 +6,13 @@
 #include "DxLib.h"
 #include "Songs.h"
 #include "User.h"
+#include "Grading.h"
 #include "Http.h"
+#include "Kinect.h"
 
-class Result {
+class Result : public Grading {
 public:
-	Result(Songs *songs, User *user);
+	Result(Songs *songs, User *user, Kinect *kinect);
 	void Calc(); //得点計算
 	void Send(); //送信
 	float GetTotal(); //総合得点取得
@@ -21,15 +23,11 @@ public:
 	int GetScore(int x[100]); //区間別得点取得
 private:
 	void GetNowTime(int nowTime[]);
-	float total; //総合得点
+	int CalcHappy();
 	char comment[1024]; //コメント
-	int point[4]; //部位別得点
-	int score[100]; //区間別得点
-	int max; //区間別得点の点の数
-	int timing; //タイミング
-	int expression; //表情
 	Songs *songs;
 	User *user;
+	Kinect *kinect;
 };
 
 #endif

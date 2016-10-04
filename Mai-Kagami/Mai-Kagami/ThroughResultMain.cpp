@@ -1,15 +1,41 @@
 #include "ThroughResultMain.h"
 
-ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user) {
-	result = new Result(songs, user);
+ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user, Kinect *kinect) {
+	result = new Result(songs, user, kinect);
 	throughResult = new ThroughResult(font, songs, touch, result);
 	throughDetail = new ThroughDetail(font, songs, touch, result);
 }
 
+void ThroughResultMain::Load() {
+	if (loadFlag == 3)
+		return;
+
+	if (loadFlag == 0) {
+		loadFlag = -1;
+		auto thd = std::thread(&ThroughResultMain::MarkThread, this);
+		thd.detach();
+	}
+
+	if (loadFlag == 1) {
+		ContentLoad();
+		loadFlag = 2;
+	}
+
+	if (loadFlag == 2 && GetASyncLoadNum() == 0) {
+		viewFlag = TRUE;
+		loadFlag = 3;
+	}
+};
+
+void ThroughResultMain::MarkThread() {
+	result->Calc();
+	loadFlag = 1;
+}
+
 void ThroughResultMain::ContentLoad() {
 	scene = THROUGH_RESULT_TOP;
-	result->Calc();
-	result->Send(); //‘—M
+	if(KINECT_FLAG)
+		result->Send(); //‘—M
 	throughResult->Load();
 	throughDetail->Load();
 }

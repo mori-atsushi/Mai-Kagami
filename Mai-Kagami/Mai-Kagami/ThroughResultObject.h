@@ -71,8 +71,8 @@ private:
 	void ContentView();
 	MyDrawBox *myDrawBox;
 	MyDrawTexts *scale; //目盛り
-	MyDrawCircle *dot[10]; //点
-	MyDrawLine *line[9]; //点
+	MyDrawCircle *dot[100]; //点
+	MyDrawLine *line[100]; //点
 	MyDrawLine *frame[2]; //枠線
 	MyDrawTextV *part[64];
 	Font *font;

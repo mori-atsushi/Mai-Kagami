@@ -163,6 +163,11 @@ int Song::GetPartNum() {
 	return *songPartNum;
 }
 
+//フォルダ取得
+char *Song::GetFolder() {
+	return folder;
+}
+
 //プレイモードをセット
 void Song::SetPlayMode(const int mode) {
 	*this->mode = mode;
