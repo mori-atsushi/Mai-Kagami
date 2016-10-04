@@ -1,11 +1,11 @@
 #include "ThroughDetail.h"
 
-ThroughFinish::ThroughFinish(Font *font, Touch *touch) {
+ThroughFinish::ThroughFinish(DecorationItem *decorationItem, Touch *touch) {
 	blackBox = new BlackBox();
-	button[0] = new RecommendButton(font, touch, 0);
-	button[1] = new CircleButton(font, touch, "もう一度", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(font, touch, "部分練習", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(font, touch, "曲選択画面", 3, WIDTH * 0.75, "White");
+	button[0] = new RecommendButton(decorationItem, touch, 0);
+	button[1] = new CircleButton(decorationItem, touch, "もう一度", 1, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(decorationItem, touch, "部分練習", 2, WIDTH * 0.75, "White");
+	button[3] = new CircleButton(decorationItem, touch, "曲選択画面", 3, WIDTH * 0.75, "White");
 }
 
 ThroughResultScene ThroughFinish::Switch(const ThroughResultScene scene) {
@@ -39,16 +39,16 @@ ThroughFinish::~ThroughFinish() {
 		delete button[i];
 }
 
-ThroughDetailScreen::ThroughDetailScreen(Font *font, Songs *songs, Touch *touch, Result *result) {
+ThroughDetailScreen::ThroughDetailScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
 	this->songs = songs;
 	this->result = result;
-	title = new DrawTitle(font, "採点結果");
-	timingBar = new TimingBar(font);
-	expressionBar = new ExpressionBar(font);
-	resultComment = new ResultComment(font);
-	resultBody = new ResultBody(font);
-	resultGraph = new ResultGraph(font);
-	button = new CircleButton2(font, touch, "次へ", 4);
+	title = new DrawTitle(decorationItem, "採点結果");
+	timingBar = new TimingBar(decorationItem);
+	expressionBar = new ExpressionBar(decorationItem);
+	resultComment = new ResultComment(decorationItem);
+	resultBody = new ResultBody(decorationItem);
+	resultGraph = new ResultGraph(decorationItem);
+	button = new CircleButton2(decorationItem, touch, "次へ", 4);
 }
 
 ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
@@ -101,9 +101,9 @@ ThroughDetailScreen::~ThroughDetailScreen() {
 	delete resultGraph;
 }
 
-ThroughDetail::ThroughDetail(Font *font, Songs *songs, Touch *touch, Result *result) {
-	throughDetailScreen = new ThroughDetailScreen(font, songs, touch, result);
-	throughFinish = new ThroughFinish(font, touch);
+ThroughDetail::ThroughDetail(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
+	throughDetailScreen = new ThroughDetailScreen(decorationItem, songs, touch, result);
+	throughFinish = new ThroughFinish(decorationItem, touch);
 }
 
 ThroughResultScene ThroughDetail::Switch(const ThroughResultScene scene) {
@@ -145,11 +145,11 @@ ThroughDetail::~ThroughDetail() {
 	delete throughFinish;
 }
 
-RecommendButton::RecommendButton(Font *font, Touch* touch, const int num)
+RecommendButton::RecommendButton(DecorationItem *decorationItem, Touch* touch, const int num)
 	: Button(num, touch){
-	text = new MyDrawTextLine(font, "おすすめ練習", WIDTH * 0.75, GetY() - HEIGHT * 0.015, 1, 30, WIDTH * 0.25,  3, "White");
+	text = new MyDrawTextLine(decorationItem, "おすすめ練習", WIDTH * 0.75, GetY() - HEIGHT * 0.015, 1, 30, WIDTH * 0.25,  3, "White");
 	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, "White");
-	textSub = new MyDrawText(font, "Bメロ～サビ 　速度:×0.7", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
+	textSub = new MyDrawText(decorationItem, "Bメロ～サビ 　速度:×0.7", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
 }
 
 void RecommendButton::ContentView() {

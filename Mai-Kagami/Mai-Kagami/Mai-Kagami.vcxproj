@@ -22,6 +22,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CommonText.cpp" />
+    <ClCompile Include="DecorationItem.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="DrawGraph.cpp" />
     <ClCompile Include="DrawObject.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CommonText.h" />
+    <ClInclude Include="DecorationItem.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="DrawGraph.h" />
     <ClInclude Include="DrawObject.h" />

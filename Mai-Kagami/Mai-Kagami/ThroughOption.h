@@ -3,7 +3,7 @@
 
 #include "DxLib.h"
 #include "Button.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Draw.h"
 #include "Touch.h"
 #include "SongSelectDefine.h"
@@ -14,7 +14,7 @@
 
 class ThroughOptionButton : public SubScene{
 public:
-	ThroughOptionButton(Font *font, Songs *songs, Touch *touch);
+	ThroughOptionButton(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	int Switch(const int scene);
 	~ThroughOptionButton();
 private:

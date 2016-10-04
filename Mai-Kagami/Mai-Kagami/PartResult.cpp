@@ -1,10 +1,10 @@
 #include "PartResult.h"
 
-PartResult::PartResult(Font *font, Songs *songs, Touch *touch) {
+PartResult::PartResult(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
 	this->songs = songs;
-	this->font = font;
-	title = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
-	button = new CircleButton2(font, touch, "次へ", 4);
+	this->decorationItem = decorationItem;
+	title = new MyDrawTextLine(decorationItem, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);
+	button = new CircleButton2(decorationItem, touch, "次へ", 4);
 }
 
 void PartResult::Load() {
@@ -16,12 +16,12 @@ void PartResult::Load() {
 	for (int i = 0; i < partMax; i++) {
 		SongPart *songPart = song->GetPart(i);
 		float y = HEIGHT * 0.35 + HEIGHT * 0.35 * i / (partMax - 1);
-		part[i] = new MyDrawText(font, songPart->GetName(), WIDTH * 0.27, y, 1, 30);
+		part[i] = new MyDrawText(decorationItem, songPart->GetName(), WIDTH * 0.27, y, 1, 30);
 		circle[i] = new MyDrawCircle(WIDTH * 0.42, y, 16, "Blue");
 		char str[256];
 		sprintf_s(str, sizeof(str), "×%1.1lf", song->danceMovie->GetSpeed());
-		speed[i] = new MyDrawText(font, str, WIDTH * 0.62, y, 1, 30);
-		score[i] = new MyDrawText(font, "A", WIDTH * 0.77, y, 1, 30);
+		speed[i] = new MyDrawText(decorationItem, str, WIDTH * 0.62, y, 1, 30);
+		score[i] = new MyDrawText(decorationItem, "A", WIDTH * 0.77, y, 1, 30);
 		if (i < song->StartPart() || i > song->EndPart()) {
 			part[i]->SetAlpha(100);
 			circle[i]->ChangeColor("White");
@@ -71,12 +71,12 @@ PartResult::~PartResult() {
 	}
 }
 
-PartFinish::PartFinish(Font *font, Touch *touch) {
+PartFinish::PartFinish(DecorationItem *decorationItem, Touch *touch) {
 	blackBox = new BlackBox();
-	button[0] = new CircleButton(font, touch, "もう一度", 0, WIDTH * 0.75, "White");
-	button[1] = new CircleButton(font, touch, "部分練習", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(font, touch, "通し練習", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(font, touch, "曲選択画面", 3, WIDTH * 0.75, "White");
+	button[0] = new CircleButton(decorationItem, touch, "もう一度", 0, WIDTH * 0.75, "White");
+	button[1] = new CircleButton(decorationItem, touch, "部分練習", 1, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(decorationItem, touch, "通し練習", 2, WIDTH * 0.75, "White");
+	button[3] = new CircleButton(decorationItem, touch, "曲選択画面", 3, WIDTH * 0.75, "White");
 }
 
 int PartFinish::Switch(const int scene) {

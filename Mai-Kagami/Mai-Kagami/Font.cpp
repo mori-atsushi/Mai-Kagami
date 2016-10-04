@@ -7,7 +7,7 @@ Font::Font() {
 }
 
 //ƒtƒHƒ“ƒgæ“¾
-int Font::Get(int point) {
+int Font::GetFont(int point) {
 	return id[point];
 }
 

@@ -10,7 +10,7 @@
 //得点バー
 class ScoreBar : public Draw {
 public:
-	ScoreBar(Font *font, const float y, const char *title, const char *para1, const char *para2);
+	ScoreBar(DecorationItem *decorationItem, const float y, const char *title, const char *para1, const char *para2);
 	void Load(const int p);
 	~ScoreBar();
 private:
@@ -25,19 +25,19 @@ private:
 //タイミング得点バー
 class TimingBar : public ScoreBar {
 public:
-	TimingBar(Font *font);
+	TimingBar(DecorationItem *decorationItem);
 };
 
 //表情得点バー
 class ExpressionBar : public ScoreBar {
 public:
-	ExpressionBar(Font *font);
+	ExpressionBar(DecorationItem *decorationItem);
 };
 
 //コメント表示
 class ResultComment : public Draw {
 public:
-	ResultComment(Font *font);
+	ResultComment(DecorationItem *decorationItem);
 	void Load(const char *str);
 	~ResultComment();
 private:
@@ -49,7 +49,7 @@ private:
 //体のパーツ別採点結果表示
 class ResultBody : public Draw {
 public:
-	ResultBody(Font *font);
+	ResultBody(DecorationItem *decorationItem);
 	void Load(const int point[4]);
 	void Delete();
 	~ResultBody();
@@ -63,7 +63,7 @@ private:
 //区間別採点グラフ表示
 class ResultGraph : public Draw {
 public:
-	ResultGraph(Font *font);
+	ResultGraph(DecorationItem *decorationItem);
 	void Load(const int *ponit, const int num, Song *song);
 	void Delete();
 	~ResultGraph();
@@ -75,7 +75,7 @@ private:
 	MyDrawLine *line[9]; //点
 	MyDrawLine *frame[2]; //枠線
 	MyDrawTextV *part[64];
-	Font *font;
+	DecorationItem *decorationItem;
 	const float w = WIDTH * 0.6, h = HEIGHT * 0.13;
 	int pointMax = 0, partMax = 0;
 };

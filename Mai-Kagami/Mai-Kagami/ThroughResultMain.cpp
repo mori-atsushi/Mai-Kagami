@@ -1,9 +1,9 @@
 #include "ThroughResultMain.h"
 
-ThroughResultMain::ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user) {
+ThroughResultMain::ThroughResultMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, User *user) {
 	result = new Result(songs, user);
-	throughResult = new ThroughResult(font, songs, touch, result);
-	throughDetail = new ThroughDetail(font, songs, touch, result);
+	throughResult = new ThroughResult(decorationItem, songs, touch, result);
+	throughDetail = new ThroughDetail(decorationItem, songs, touch, result);
 }
 
 void ThroughResultMain::ContentLoad() {

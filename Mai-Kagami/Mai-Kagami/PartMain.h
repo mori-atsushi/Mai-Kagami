@@ -4,7 +4,7 @@
 #include "DxLib.h"
 #include "Scene.h"
 #include "Main.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "Touch.h"
 #include "PartDefine.h"
@@ -13,7 +13,7 @@
 
 class PartMain : public Scene {
 public:
-	PartMain(Font *font, Touch *touch, Songs *songs);
+	PartMain(DecorationItem *decorationItem, Touch *touch, Songs *songs);
 	MainScene Switch(const MainScene scene);
 	~PartMain();
 private:

@@ -21,7 +21,7 @@ public:
 	~MaiKagami(); //デストラクタ
 private:
 	MainScene scene; //シーン
-	Font *font; //フォント
+	DecorationItem *decorationItem; //フォント&効果音
 	Top *top; //トップ画面
 	SongSelect *songSelect; //曲選択画面
 	ThroughMain *throughMain; //通し練習プレイ画面

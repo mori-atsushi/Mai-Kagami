@@ -40,8 +40,8 @@ ThroughPauseButton::~ThroughPauseButton() {
 	delete pauseButton;
 }
 
-ThroughPauseScreen::ThroughPauseScreen(Font *font, Songs *songs, Touch *touch) 
-	: PauseScreen(font, songs, touch, THROUGH_PAUSE, THROUGH_START, THROUGH_BACK_SONG_SELECT, THROUGH_SETTING) {}
+ThroughPauseScreen::ThroughPauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch) 
+	: PauseScreen(decorationItem, songs, touch, THROUGH_PAUSE, THROUGH_START, THROUGH_BACK_SONG_SELECT, THROUGH_SETTING) {}
 
 int ThroughPauseSetting::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
@@ -61,10 +61,10 @@ void ThroughPauseSetting::ContentUpdate() {
 	}
 }
 
-ThroughPause::ThroughPause(Font *font, Songs *songs, Touch *touch) {
+ThroughPause::ThroughPause(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
 	throughPauseButton = new ThroughPauseButton(touch); //ポーズボタン画面
-	throughPauseScreen = new ThroughPauseScreen(font, songs, touch);
-	throughPauseSetting = new ThroughPauseSetting(font, songs, touch);
+	throughPauseScreen = new ThroughPauseScreen(decorationItem, songs, touch);
+	throughPauseSetting = new ThroughPauseSetting(decorationItem, songs, touch);
 	flag = FALSE;
 }
 

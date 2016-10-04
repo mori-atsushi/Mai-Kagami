@@ -8,13 +8,13 @@
 #include "Song.h"
 #include "DxLib.h"
 #include "DrawGraph.h"
-#include "Font.h"
+#include "DecorationItem.h"
 
 #pragma comment (lib, "winhttp.lib")
 
 class Songs {
 public:
-	Songs(Font *font);
+	Songs(DecorationItem *decorationItem);
 	int GetSongNum(); //ã»êîéÊìæ
 	Song *GetSong(int x);
 	int GetNowSong();

@@ -7,7 +7,7 @@
 #include "Drawtext.h"
 #include "Button.h"
 #include "Touch.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "SeetingPop.h"
 #include "Scene.h"
 #include "SongSelectDefine.h"
@@ -15,7 +15,7 @@
 //曲選択画面ボタン関係
 class SongSelectButton : public SubScene{
 public:
-	SongSelectButton(Font *font, Touch *touch); //初期化
+	SongSelectButton(DecorationItem *decorationItem, Touch *touch); //初期化
 	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView(); //表示
@@ -27,7 +27,7 @@ private:
 //終了用ポップアップ
 class SongSelectPop : public SubScene {
 public:
-	SongSelectPop(Font *font, Touch *touch);
+	SongSelectPop(DecorationItem *decorationItem, Touch *touch);
 	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView();

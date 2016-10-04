@@ -3,7 +3,7 @@
 
 #include "DxLib.h"
 #include "Button.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "ThroughDefine.h"
 #include "SeetingPop.h"
@@ -28,13 +28,13 @@ private:
 //ポーズ画面
 class ThroughPauseScreen : public PauseScreen {
 public:
-	ThroughPauseScreen(Font *font, Songs *songs, Touch *touch);
+	ThroughPauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 };
 
 //速度変更画面
 class ThroughPauseSetting : public SpeedPop {
 public:
-	ThroughPauseSetting::ThroughPauseSetting(Font *font, Songs *songs, Touch *touch) : SpeedPop(font, songs, touch) {};
+	ThroughPauseSetting::ThroughPauseSetting(DecorationItem *decorationItem, Songs *songs, Touch *touch) : SpeedPop(decorationItem, songs, touch) {};
 	int Switch(const int scene);
 	void ContentUpdate();
 };
@@ -42,7 +42,7 @@ public:
 //ポーズ関係
 class ThroughPause : public SubScene {
 public:
-	ThroughPause(Font *font, Songs *songs, Touch *touch);
+	ThroughPause(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Load();
 	int Switch(const int scene);
 	void Delete();

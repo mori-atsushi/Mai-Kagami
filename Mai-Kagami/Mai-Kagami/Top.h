@@ -5,7 +5,7 @@
 #include "DrawText.h"
 #include "DrawGraph.h"
 #include "DrawObject.h"
-#include "Font.h"
+#include "DecorationItem.h"
 
 //トップロゴ
 class TopLogo : public MyDrawGraph {
@@ -16,7 +16,7 @@ public:
 //NFCタッチメッセージ関係
 class TopTouchMessage : public MyDrawText {
 public:
-	TopTouchMessage(Font *font, const float y);
+	TopTouchMessage(DecorationItem *decorationItem, const float y);
 	void Init(); //初期化
 	void Update(); //計算
 	void View(); //表示
@@ -27,7 +27,7 @@ private:
 //NFCタッチボタン関係
 class TopTouchButton : public Pos{
 public:
-	TopTouchButton(Font *font);
+	TopTouchButton(DecorationItem *decorationItem);
 	void View(); //表示
 	~TopTouchButton();
 private:

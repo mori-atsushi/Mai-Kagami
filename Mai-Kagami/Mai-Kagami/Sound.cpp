@@ -2,12 +2,12 @@
 
 //Œø‰Ê‰¹ƒ[ƒh
 SoundEffect::SoundEffect() {
-	for (int i = 0; i < SOUND_NUM; i++)
+	for (int i = 0; i < SOUND_NUM; i++) 
 		id[i] = LoadSoundMem(path[i]);
 }
 
 //Œø‰Ê‰¹ID‚ğíœ
-int SoundEffect::Get(int SoundType) {
+int SoundEffect::GetSoundEffect(int SoundType) {
 	return id[SoundType];
 }
 

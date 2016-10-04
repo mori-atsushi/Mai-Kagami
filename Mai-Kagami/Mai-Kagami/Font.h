@@ -11,7 +11,7 @@
 class Font {
 public:
 	Font(); //ポイント数セット
-	int Get(int point); //フォントID取り出し
+	int GetFont(int point); //フォントID取り出し
 	~Font();
 private:
 	std::map <int, int> id;

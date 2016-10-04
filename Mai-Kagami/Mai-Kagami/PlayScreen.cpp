@@ -1,13 +1,13 @@
 #include "PlayScreen.h"
 
-PlayScreen::PlayScreen(Font *font, Songs *songs, Touch *touch, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
+PlayScreen::PlayScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
 	this->startScene = startScene;
 	this->countDownScene = countDownScene;
 	this->playScene = playScene;
 	this->finishScene = finishScene;
 	this->songs = songs;
-	playBar = new PlayBar(font);
-	countDown = new CountDown(font, countDownScene, playScene);
+	playBar = new PlayBar(decorationItem);
+	countDown = new CountDown(decorationItem, countDownScene, playScene);
 }
 
 void PlayScreen::Load() {
@@ -30,7 +30,7 @@ int PlayScreen::Switch(const int scene) {
 	else if (scene == countDownScene)
 		return countDown->Switch(scene);
 	else if (scene == playScene) {
-		if (song->danceMovie->GetNowFlame() == song->danceMovie->GetEndFlame()) {
+		if (song->danceMovie->GetNowFlame() == 0) {
 			song->danceMovie->Stop();
 			return finishScene;
 		}

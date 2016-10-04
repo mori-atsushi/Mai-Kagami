@@ -7,7 +7,7 @@ Result::Result(Songs *songs, User *user) {
 
 void Result::Calc() {
 	total = 64;
-	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
+	strcpy(comment, /*"あメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。"*/"私はペンが好きです");
 	point[0] = 2;
 	point[1] = 2;
 	point[2] = 1;
@@ -46,6 +46,7 @@ void Result::Send() {
 	char totalReq[16] = { 0 };
 	sprintf_s(totalReq, 16, "total=%d", this->total);
 	//区間別採点のリクエスト作成
+
 	char partReq[64] = { 0 };
 	sprintf_s(partReq, 64, "part=%d", score[0]);
 	for (int i = 1, n = this->max; i < n; i++) {
@@ -72,14 +73,16 @@ void Result::Send() {
 	WCHAR w_comment[256] = { 0 };
 	mbstowcs(w_comment, comment, 256);
 	char commentReq[256] = { 0 };
-	sprintf_s(commentReq, 256, "comment=%s", w_comment);
+	printfDx(comment);
+	sprintf_s(commentReq, 256, "comment=%ls", w_comment);
 
 	//urlを作成
 	char url[512] = { 0 };
 	sprintf_s(url, 512, "http://globalstudios.jp/mai-archive/api_add.php?%s&%s&%s&%s&%s&%s&%s&%s&%s", 
 		songReq, userReq, dateReq, totalReq, partReq, bodyReq, timingReq, expressionReq, commentReq);
+	printfDx(url);
 	Http http;
-	if(!http.Send(url))printfDx("httpエラー");
+	if(!http.Send(url))	printfDx("httpエラー");
 }
 
 void Result::GetNowTime(int nowTime[]) {

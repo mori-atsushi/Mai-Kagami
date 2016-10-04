@@ -1,9 +1,9 @@
 #include "PartMain.h"
 
-PartMain::PartMain(Font *font, Touch *touch, Songs *songs) {
-	partStart = new PartStart(font);
-	partPlay = new PartPlay(font, songs, touch);
-	partPause = new PartPause(font, songs, touch);
+PartMain::PartMain(DecorationItem *decorationItem, Touch *touch, Songs *songs) {
+	partStart = new PartStart(decorationItem);
+	partPlay = new PartPlay(decorationItem, songs, touch);
+	partPause = new PartPause(decorationItem, songs, touch);
 }
 
 void PartMain::ContentLoad() {

@@ -1,14 +1,14 @@
 #include "StartScreen.h"
 
-StartSceen::StartSceen(Font *f, const int startScene, const int playScene) {
+StartSceen::StartSceen(DecorationItem *decorationItem, const int startScene, const int playScene) {
 	this->startScene = startScene;
 	this->playScene = playScene;
 	blackBox = new BlackBox();
 	myDrawGraph = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.45, "img/start.png");
 	myDrawGraph->Load();
-	wait = new MyDrawText(f, "", WIDTH * 0.5, HEIGHT * 0.3, 1, 40);
-	caution = new MyDrawText(f, "本体から2メートル以上離れてください", WIDTH * 0.5, HEIGHT * 0.67, 1, 46, "Blue");
-	annotation = new MyDrawTexts(f, "※2メートル以内に入ると\n自動的に曲が一時停止します", WIDTH * 0.5, HEIGHT * 0.75, 1, 36, 20);
+	wait = new MyDrawText(decorationItem, "", WIDTH * 0.5, HEIGHT * 0.3, 1, 40);
+	caution = new MyDrawText(decorationItem, "本体から2メートル以上離れてください", WIDTH * 0.5, HEIGHT * 0.67, 1, 46, "Blue");
+	annotation = new MyDrawTexts(decorationItem, "※2メートル以内に入ると\n自動的に曲が一時停止します", WIDTH * 0.5, HEIGHT * 0.75, 1, 36, 20);
 }
 
 void StartSceen::Load() {

@@ -26,7 +26,7 @@ private:
 //三角形のボタン
 class TriangleButton : public Button {
 public:
-	TriangleButton(Font *font, Touch *touch, const char *str, const int direction, const int num, char *colorName = "Blue");
+	TriangleButton(DecorationItem *decorationItem, Touch *touch, const char *str, const int direction, const int num, char *colorName = "Blue");
 	void ContentView();
 	~TriangleButton();
 private:
@@ -37,7 +37,7 @@ private:
 //説明文付き三角形のボタン
 class TriangleButton2 : public Button {
 public:
-	TriangleButton2(Font *font, Touch *touch, const char *title, const char *str, const int direction, const int num, const float x, const char *colorName);
+	TriangleButton2(DecorationItem *decorationItem, Touch *touch, const char *title, const char *str, const int direction, const int num, const float x, const char *colorName);
 	void ContentView();
 	~TriangleButton2();
 private:
@@ -50,8 +50,8 @@ private:
 //円のボタン
 class CircleButton : public Button {
 public:
-	CircleButton(Font *font, Touch *touch, const char *str, const int num, char *colorName = "Blue"); //文字右寄せボタン
-	CircleButton(Font *font, Touch *touch, const char *str, const int num, const float x, char *colorName = "Blue"); //文字中央寄せボタン
+	CircleButton(DecorationItem *decorationItem, Touch *touch, const char *str, const int num, char *colorName = "Blue"); //文字右寄せボタン
+	CircleButton(DecorationItem *decorationItem, Touch *touch, const char *str, const int num, const float x, char *colorName = "Blue"); //文字中央寄せボタン
 	void ContentView();
 	~CircleButton();
 private:
@@ -62,7 +62,7 @@ private:
 //文字が丸の中にあるボタン
 class CircleButton2 : public Button {
 public:
-	CircleButton2(Font *font, Touch *touch, const char *str, const int num, char *colorName = "Blue");
+	CircleButton2(DecorationItem *decorationItem, Touch *touch, const char *str, const int num, char *colorName = "Blue");
 	void ContentView();
 	void SetMode(bool mode);
 	~CircleButton2();
@@ -88,7 +88,7 @@ private:
 //画像、テキスト付きのボタン
 class CircleGraphTextButton : public Button {
 public:
-	CircleGraphTextButton(Font *font, Touch *touch, const char *str, const int num, const char *fileName);
+	CircleGraphTextButton(DecorationItem *decorationItem, Touch *touch, const char *str, const int num, const char *fileName);
 	void Load();
 	void ContentView();
 	void Release();

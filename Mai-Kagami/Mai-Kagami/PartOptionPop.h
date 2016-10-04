@@ -3,7 +3,7 @@
 
 #include "DxLib.h"
 #include "Scene.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "Song.h"
 #include "Touch.h"
@@ -13,7 +13,7 @@
 //スピード変更用ポップアップ
 class PartOptionSpeedPop : public SpeedPop {
 public:
-	PartOptionSpeedPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int speedScene);
+	PartOptionSpeedPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int speedScene);
 	int Switch(const int scene);
 private:
 	void ContentUpdate();
@@ -23,7 +23,7 @@ private:
 //区間変更用ポップアップ
 class PartOptionPartPop : public PartPop {
 public:
-	PartOptionPartPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene);
+	PartOptionPartPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene);
 	int Switch(const int scene);
 private:
 	void ContentUpdate();
@@ -33,7 +33,7 @@ private:
 //オプション画面の動画とボタン
 class PartOptionPreview : public SubScene {
 public:
-	PartOptionPreview(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene);
+	PartOptionPreview(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene);
 	virtual int Switch(const int scene);
 	~PartOptionPreview();
 protected:
@@ -47,7 +47,7 @@ protected:
 
 class PartOptionPop : public SubScene {
 public:
-	PartOptionPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene, PartOptionPreview *partOptionPreview);
+	PartOptionPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene, PartOptionPreview *partOptionPreview);
 	int Switch(const int scene);
 	void Load();
 	void Delete();

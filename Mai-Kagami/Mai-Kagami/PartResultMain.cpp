@@ -1,8 +1,8 @@
 #include "PartResultMain.h"
 
-PartResultMain::PartResultMain(Font *font, Touch *touch, Songs *songs) {
-	partResult = new PartResult(font, songs, touch);
-	partFinish = new PartFinish(font, touch);
+PartResultMain::PartResultMain(DecorationItem *decorationItem, Touch *touch, Songs *songs) {
+	partResult = new PartResult(decorationItem, songs, touch);
+	partFinish = new PartFinish(decorationItem, touch);
 }
 
 void PartResultMain::ContentLoad() {

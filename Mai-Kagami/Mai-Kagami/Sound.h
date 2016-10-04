@@ -11,7 +11,7 @@ enum sound{SOUND_EFFECT_CHOICE, SOUND_EFFECT_DECIDE, SOUND_EFFECT_ERROR};
 class SoundEffect {
 public:
 	SoundEffect();
-	int Get(int soundType);	//Œø‰Ê‰¹IDæ‚èo‚µ
+	int GetSoundEffect(int soundType);	//Œø‰Ê‰¹IDæ‚èo‚µ
 	~SoundEffect();
 private:
 	int id[SOUND_NUM];

@@ -7,13 +7,13 @@
 #include "DrawText.h"
 #include "DrawGraph.h"
 #include "DrawObject.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "SongSelectDefine.h"
 #include "Songs.h"
 
 class SongSelectCover : public Song{
 public:
-	SongSelectCover(Font *font, Song *song, const int now);
+	SongSelectCover(DecorationItem *decorationItem, Song *song, const int now);
 	void Load(int);
 	void Release();
 	void Update(int, int);
@@ -25,7 +25,7 @@ private:
 	int CalcAlphaWhite();
 	double CalcEx();
 	boolean playFlag = 0;
-	Font *font;
+	DecorationItem *decorationItem;
 };
 
 #endif

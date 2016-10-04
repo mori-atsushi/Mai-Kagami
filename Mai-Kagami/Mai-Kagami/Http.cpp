@@ -54,6 +54,7 @@ bool Http::Send(WCHAR szUrl[]) {
 
 	dwSize = 0;
 	lpData = ReadData(hRequest, &dwSize);
+	printfDx((LPCSTR)lpData);
 	HeapFree(GetProcessHeap(), 0, lpData);
 
 	WinHttpCloseHandle(hRequest);

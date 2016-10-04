@@ -59,12 +59,12 @@ PartPauseButton::~PartPauseButton() {
 		delete button[i];
 }
 
-PartPauseScreen::PartPauseScreen(Font *font, Songs *songs, Touch *touch)
-	: PauseScreen(font, songs, touch, PART_PAUSE, PART_START, PART_BACK_SONG_SELECT, PART_SETTING) {}
+PartPauseScreen::PartPauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch)
+	: PauseScreen(decorationItem, songs, touch, PART_PAUSE, PART_START, PART_BACK_SONG_SELECT, PART_SETTING) {}
 
-PartOptionPreview3::PartOptionPreview3(Font *font, Songs *songs, Touch *touch)
-	: PartOptionPreview(font, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED) {
-	button = new CircleButton2(font, touch, "戻る", 4);
+PartOptionPreview3::PartOptionPreview3(DecorationItem *decorationItem, Songs *songs, Touch *touch)
+	: PartOptionPreview(decorationItem, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED) {
+	button = new CircleButton2(decorationItem, touch, "戻る", 4);
 	blackBox = new BlackBox();
 }
 
@@ -85,13 +85,13 @@ PartOptionPreview3::~PartOptionPreview3() {
 	delete blackBox;
 }
 
-PartPauseSetting::PartPauseSetting(Font *font, Songs *songs, Touch *touch)
-	: PartOptionPop(font, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED, new PartOptionPreview3(font, songs, touch)) {}
+PartPauseSetting::PartPauseSetting(DecorationItem *decorationItem, Songs *songs, Touch *touch)
+	: PartOptionPop(decorationItem, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED, new PartOptionPreview3(decorationItem, songs, touch)) {}
 
-PartPause::PartPause(Font *font, Songs *songs, Touch *touch) {
+PartPause::PartPause(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
 	partPauseButton = new PartPauseButton(touch, songs); //ポーズボタン画面
-	partPauseScreen = new PartPauseScreen(font, songs, touch);
-	partPauseSetting = new PartPauseSetting(font, songs, touch);
+	partPauseScreen = new PartPauseScreen(decorationItem, songs, touch);
+	partPauseSetting = new PartPauseSetting(decorationItem, songs, touch);
 	flag = FALSE;
 }
 

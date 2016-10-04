@@ -5,7 +5,7 @@
 #include "Draw.h"
 #include "DrawGraph.h"
 #include "DrawText.h"
-#include "Font.h"
+#include "DecorationItem.h"
 
 enum PlayMode {
 	THROUGH_MODE, PART_MODE
@@ -23,7 +23,7 @@ private:
 //曲名、アーティスト情報
 class DrawSongTitle : public Pos {
 public:
-	DrawSongTitle(Font *font, const char *title, const char *artist);
+	DrawSongTitle(DecorationItem *decorationItem, const char *title, const char *artist);
 	void ChangePos(const float x, const float y);
 	void View();
 	~DrawSongTitle();
@@ -45,7 +45,7 @@ private:
 
 class Song {
 public:
-	Song(Font *font, const int id, const char *title, const char *artist, const char *folder);
+	Song(DecorationItem *decorationItem, const int id, const char *title, const char *artist, const char *folder);
 	int GetSongId(); //曲IDを取得
 	int GetNow(); //現在の位置IDを取得
 	void SetNow(const int n); //位置IDをセット

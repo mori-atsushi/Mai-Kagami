@@ -7,7 +7,7 @@
 //í Çµó˚èKâÊñ 
 class ThroughPlay : public PlayScreen {
 public:
-	ThroughPlay(Font *font, Songs *songs, Touch *touch);
+	ThroughPlay(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 };
 
 #endif

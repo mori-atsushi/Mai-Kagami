@@ -234,6 +234,9 @@
     <ClCompile Include="Sound.cpp">
       <Filter>ソース ファイル\システム関係</Filter>
     </ClCompile>
+    <ClCompile Include="DecorationItem.cpp">
+      <Filter>ソース ファイル\システム関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nfc.h">
@@ -396,6 +399,9 @@
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
+      <Filter>ヘッダー ファイル\システム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="DecorationItem.h">
       <Filter>ヘッダー ファイル\システム関係</Filter>
     </ClInclude>
   </ItemGroup>

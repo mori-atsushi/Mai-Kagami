@@ -3,7 +3,7 @@
 
 #include "DxLib.h"
 #include "Button.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "SeetingPop.h"
 #include "Touch.h"
@@ -12,7 +12,7 @@
 //É|Å[ÉYâÊñ 
 class PauseScreen : public SubScene {
 public:
-	PauseScreen(Font *font, Songs *songs, Touch *touch, const int pauseScene, const int startScene, const int songSelectScene, const int settingScene);
+	PauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int pauseScene, const int startScene, const int songSelectScene, const int settingScene);
 	void Load();
 	int Switch(const int scene);
 	void Delete();

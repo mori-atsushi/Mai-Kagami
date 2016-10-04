@@ -14,7 +14,7 @@
 
 class ThroughResult : public SubScene {
 public:
-	ThroughResult(Font *font, Songs *songs, Touch *touch, Result *result);
+	ThroughResult(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result);
 	void Load();
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	~ThroughResult();

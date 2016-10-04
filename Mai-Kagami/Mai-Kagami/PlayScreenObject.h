@@ -9,13 +9,13 @@
 //進捗バー
 class PlayBar {
 public:
-	PlayBar(Font *font);
+	PlayBar(DecorationItem *decorationItem);
 	void Load(Song *song);
 	void Update();
 	void View();
 	~PlayBar();
 private:
-	Font *font;
+	DecorationItem *decorationItem;
 	Song *song;
 	MyDrawBar *barAll, *barNow;
 	MyDrawCircle *circle[2];
@@ -32,7 +32,7 @@ public:
 //カウントダウン画面
 class CountDown : public	SubScene {
 public:
-	CountDown(Font *font, const int thisScene, const int playScene);
+	CountDown(DecorationItem *decorationItem, const int thisScene, const int playScene);
 	int Switch(const int scene);
 	~CountDown();
 private:
