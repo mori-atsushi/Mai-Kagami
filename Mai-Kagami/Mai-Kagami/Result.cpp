@@ -11,9 +11,18 @@ void Result::Calc() {
 	char buf[256];
 	sprintf(buf, "song/%s/model.txt", song->GetFolder());
 	Mark(buf, kinect->kinectBody->GetSave(), kinect->kinectBody->GetNow());
+	expression = CalcHappy();
 	kinect->kinectBody->DeleteSave();
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
-	expression = 4;
+}
+
+int Result::CalcHappy() {
+	int p = kinect->kinectBody->GetHappy();
+	for (int i = 0; i < 8; i++) {
+		if(p < 20 + i * 10)
+			return i;
+	}
+	return 8;
 }
 
 //送信

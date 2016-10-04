@@ -23,6 +23,7 @@ public:
 	int GetScore(int x[100]); //‹æŠÔ•Ê“¾“_æ“¾
 private:
 	void GetNowTime(int nowTime[]);
+	int CalcHappy();
 	char comment[1024]; //ƒRƒƒ“ƒg
 	Songs *songs;
 	User *user;

@@ -22,6 +22,7 @@
 
 // Kinect Header files
 #include <Kinect.h>
+#include <Kinect.Face.h>
 
 #pragma comment (lib, "d2d1.lib")
 

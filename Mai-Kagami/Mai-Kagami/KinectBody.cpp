@@ -1,11 +1,19 @@
 #include "KinectBody.h"
 
+static const DWORD c_FaceFrameFeatures = FaceFrameFeatures::FaceFrameFeatures_Happy;
+
 //コンストラクタ
 KinectBody::KinectBody(IKinectSensor *m_pKinectSensor) {
 	userFlag = new boolean();
 	HRESULT hr;
 
 	IBodyFrameSource* pBodyFrameSource = NULL;
+
+	for (int i = 0; i < BODY_COUNT; i++)
+	{
+		m_pFaceFrameSources[i] = nullptr;
+		m_pFaceFrameReaders[i] = nullptr;
+	}
 
 	hr = m_pKinectSensor->get_BodyFrameSource(&pBodyFrameSource);
 
@@ -14,6 +22,24 @@ KinectBody::KinectBody(IKinectSensor *m_pKinectSensor) {
 		hr = pBodyFrameSource->OpenReader(&m_pBodyFrameReader);
 	}
 
+
+	if (SUCCEEDED(hr))
+	{
+		// create a face frame source + reader to track each body in the fov
+		for (int i = 0; i < BODY_COUNT; i++)
+		{
+			if (SUCCEEDED(hr))
+			{
+				// create the face frame source by specifying the required face frame features
+				hr = CreateFaceFrameSource(m_pKinectSensor, 0, c_FaceFrameFeatures, &m_pFaceFrameSources[i]);
+			}
+			if (SUCCEEDED(hr))
+			{
+				// open the corresponding reader
+				hr = m_pFaceFrameSources[i]->OpenReader(&m_pFaceFrameReaders[i]);
+			}
+		}
+	}
 	SafeRelease(pBodyFrameSource);
 }
 
@@ -50,6 +76,8 @@ void KinectBody::Update() {
 
 		if (SUCCEEDED(hr))
 		{
+			int bodyid = -1;
+			//座標の取得
 			for (int i = 0; i < BODY_COUNT; ++i) {
 				IBody* pBody = ppBodies[i];
 				if (pBody)
@@ -63,12 +91,60 @@ void KinectBody::Update() {
 						if (SUCCEEDED(hr))
 						{
 							if (joints[0].Position.Z < userJoints[0].Position.Z) {
+								bodyid = i;
 								*userFlag = TRUE;
 								for (int i = 0; i < JointType_Count; i++)
 									userJoints[i] = joints[i];
 							}
 						}
 					}
+				}
+			}
+			//表情の取得
+			if (bodyid != -1) {
+				IFaceFrame* pFaceFrame = nullptr;
+				hr = m_pFaceFrameReaders[bodyid]->AcquireLatestFrame(&pFaceFrame);
+				BOOLEAN bFaceTracked = false;
+				if (SUCCEEDED(hr) && nullptr != pFaceFrame)
+				{
+					hr = pFaceFrame->get_IsTrackingIdValid(&bFaceTracked);
+				}
+
+				if (SUCCEEDED(hr)) {
+					IBody* pBody = ppBodies[bodyid];
+					if (pBody != nullptr)
+					{
+						BOOLEAN bTracked = false;
+						hr = pBody->get_IsTracked(&bTracked);
+
+						UINT64 bodyTId;
+						if (SUCCEEDED(hr) && bTracked)
+						{
+							// get the tracking ID of this body
+							hr = pBody->get_TrackingId(&bodyTId);
+							
+							if (SUCCEEDED(hr))
+							{
+								// update the face frame source with the tracking ID
+								m_pFaceFrameSources[bodyid]->put_TrackingId(bodyTId);
+							}
+
+							if (SUCCEEDED(hr))
+							{
+								hr = pFaceFrame->get_IsTrackingIdValid(&bFaceTracked);
+								if (SUCCEEDED(hr) && bFaceTracked) {
+									IFaceFrameResult* pFaceFrameResult = nullptr;
+									DetectionResult faceProperties[FaceProperty::FaceProperty_Count];
+									hr = pFaceFrame->get_FaceFrameResult(&pFaceFrameResult);
+									if (SUCCEEDED(hr) && pFaceFrameResult != nullptr) {
+										hr = pFaceFrameResult->GetFaceProperties(FaceProperty::FaceProperty_Count, faceProperties);
+										happyFace = faceProperties[FaceProperty::FaceProperty_Happy];
+									}
+								}
+							}
+						}
+					}
+					SafeRelease(pFaceFrame);
 				}
 			}
 		}
@@ -119,6 +195,10 @@ void KinectBody::JointSave(const int flame) {
 			userData[flame][i][1] = userJoints[i].Position.Y;
 			userData[flame][i][2] = userJoints[i].Position.Z;
 		}
+		if (happyFace > 0)
+			happyNum++;
+		if (happyFace == DetectionResult::DetectionResult_Yes)
+			happySum++;
 	}
 }
 
@@ -126,6 +206,8 @@ void KinectBody::JointSave(const int flame) {
 void KinectBody::DeleteSave(const int flame) {
 	if (flame == 0) {
 		userData.clear();
+		happyNum = 0;
+		happySum = 0;
 	}
 	else {
 		for (int i = flame; i <= now; i++) {
@@ -139,6 +221,10 @@ void KinectBody::DeleteSave(const int flame) {
 
 std::map <int, flameData> KinectBody::GetSave() {
 	return userData;
+}
+
+int KinectBody::GetHappy() {
+	return happySum * 100 / happyNum;
 }
 
 int KinectBody::GetNow() {
