@@ -24,7 +24,8 @@ public:
 private:
 	void GetNowTime(int nowTime[]);
 	int CalcHappy();
-	char comment[1024]; //コメント
+	int partScore[100];	//区間別得点
+	int partMax; //区間別得点の点の数
 	Songs *songs;
 	User *user;
 	Kinect *kinect;

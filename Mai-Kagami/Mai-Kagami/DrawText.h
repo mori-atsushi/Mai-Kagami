@@ -7,7 +7,7 @@
 #include "Font.h"
 #include "Draw.h"
 
-enum Alignment{ALIGNMENT_LEFT, ALIGNMENT_CENTER, ALIGNMENT_RIGHT};
+enum alignment {ALIGNMENT_LEFT, ALIGNMENT_CENTER, ALIGNMENT_RIGHT};
 
 //テキスト関係
 class MyDrawText : public Color, public Draw2{
@@ -16,6 +16,7 @@ public:
 	void ContentView(); //描画
 	void ChangeText(char *str); //テキスト変更
 	void ChangeFont(Font *font, const int point); //フォントサイズ変更
+	void ChangeColor(char *colorName);
 	float GetHeight(); //縦取得
 	float GetWidth(); //幅取得
 protected:
@@ -36,8 +37,10 @@ private:
 class MyDrawTexts : public Color, public Draw {
 public:
 	MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
+	MyDrawTexts(Font *font, const char *str, const float x1, const float x2, const float y, const int pos, const int point, const float lineInterval, const char *colorName = "White");
 	void ContentView();
 	void ChangePos(const float x, const float y);
+	void MakeNewLine(std::string s, const float x);	//xの範囲に文が収まるよう改行文字を入れる	
 	void ChangeText(const char *str); //テキスト変更
 	float GetWidth(); //幅取得
 	float GetHeight(); //高さ取得

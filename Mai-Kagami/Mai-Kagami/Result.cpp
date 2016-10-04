@@ -15,7 +15,10 @@ void Result::Calc() {
 		expression = CalcHappy();
 		kinect->kinectBody->DeleteSave();
 	}
-	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
+	else {
+		total = 80;
+	}
+	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
 }
 
 int Result::CalcHappy() {
@@ -46,10 +49,10 @@ void Result::Send() {
 	char totalReq[16] = { 0 };
 	sprintf_s(totalReq, 16, "total=%d", this->total);
 	//区間別採点のリクエスト作成
-	char partReq[64] = { 0 };
-	sprintf_s(partReq, 64, "part=%d", score[0]);
-	for (int i = 1, n = this->max; i < n; i++) {
-		sprintf_s(partReq, 64, "%s/%d", partReq, score[i]);
+	char partReq[1024] = { 0 };
+	sprintf_s(partReq, 1024, "part=%s/%d", song->GetPart(0)->GetName(),score[0]);
+	for (int i = 1, n = this->partMax; i < n; i++) {
+		sprintf_s(partReq, 1024, "%s/%s/%d", partReq, song->GetPart(0)->GetName(),partScore[i]);
 	}
 	//体の部位採点のリクエスト作成
 	char bodyPoint[4] = { 0 };

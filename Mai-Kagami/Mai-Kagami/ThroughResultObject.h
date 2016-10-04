@@ -69,10 +69,11 @@ public:
 	~ResultGraph();
 private:
 	void ContentView();
+	MyDrawText *text;
 	MyDrawBox *myDrawBox;
 	MyDrawTexts *scale; //ñ⁄ê∑ÇË
-	MyDrawCircle *dot[100]; //ì_
-	MyDrawLine *line[100]; //ì_
+	MyDrawGraph *dot[100];	//ì_
+	MyDrawLine *line[100]; //ê¸
 	MyDrawLine *frame[2]; //ògê¸
 	MyDrawTextV *part[64];
 	Font *font;

@@ -45,6 +45,7 @@ private:
 	MyDrawCircle *circle;
 	MyDrawCircleGauge *countCircle1;
 	MyDrawCircle *countCircle2;
+	MyDrawCircle *countCircle3;
 	PlayTriangle *playTriangle;
 	const int max = 120;
 };
