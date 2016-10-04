@@ -188,8 +188,8 @@ boolean KinectBody::CheckDistance() {
 
 //保存
 void KinectBody::JointSave(const int flame) {
-	now = flame;
 	if (KINECT_FLAG) {
+		now = flame;
 		for (int i = 0; i < JointType_Count; i++) {
 			userData[flame][i][0] = userJoints[i].Position.X;
 			userData[flame][i][1] = userJoints[i].Position.Y;
@@ -204,19 +204,21 @@ void KinectBody::JointSave(const int flame) {
 
 //指定したflameまでのデータを削除
 void KinectBody::DeleteSave(const int flame) {
-	if (flame == 0) {
-		userData.clear();
-		happyNum = 0;
-		happySum = 0;
-	}
-	else {
-		for (int i = flame; i <= now; i++) {
-			if (userData.count(i) == 0)
-				continue;
-			userData.erase(i);
+	if (KINECT_FLAG) {
+		if (flame == 0) {
+			userData.clear();
+			happyNum = 0;
+			happySum = 0;
 		}
+		else {
+			for (int i = flame; i <= now; i++) {
+				if (userData.count(i) == 0)
+					continue;
+				userData.erase(i);
+			}
+		}
+		now = flame;
 	}
-	now = flame;
 }
 
 std::map <int, flameData> KinectBody::GetSave() {
@@ -224,11 +226,17 @@ std::map <int, flameData> KinectBody::GetSave() {
 }
 
 int KinectBody::GetHappy() {
-	return happySum * 100 / happyNum;
+	if (KINECT_FLAG)
+		return happySum * 100 / happyNum;
+	else
+		return 0;
 }
 
 int KinectBody::GetNow() {
-	return now;
+	if (KINECT_FLAG)
+		return now;
+	else
+		return 0;
 }
 
 KinectBody::~KinectBody() {

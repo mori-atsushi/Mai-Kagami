@@ -11,9 +11,9 @@ void ThroughResultMain::Load() {
 		return;
 
 	if (loadFlag == 0) {
+		loadFlag = -1;
 		auto thd = std::thread(&ThroughResultMain::MarkThread, this);
 		thd.detach();
-		loadFlag = -1;
 	}
 
 	if (loadFlag == 1) {
@@ -34,7 +34,8 @@ void ThroughResultMain::MarkThread() {
 
 void ThroughResultMain::ContentLoad() {
 	scene = THROUGH_RESULT_TOP;
-	result->Send(); //‘—M
+	if(KINECT_FLAG)
+		result->Send(); //‘—M
 	throughResult->Load();
 	throughDetail->Load();
 }

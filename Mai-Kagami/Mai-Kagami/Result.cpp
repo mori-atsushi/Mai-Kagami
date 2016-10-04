@@ -8,11 +8,13 @@ Result::Result(Songs *songs, User *user, Kinect *kinect) {
 
 void Result::Calc() {
 	Song *song = songs->GetSong(songs->GetNowSong());
-	char buf[256];
-	sprintf(buf, "song/%s/model.txt", song->GetFolder());
-	Mark(buf, kinect->kinectBody->GetSave(), kinect->kinectBody->GetNow());
-	expression = CalcHappy();
-	kinect->kinectBody->DeleteSave();
+	if (KINECT_FLAG) {
+		char buf[256];
+		sprintf(buf, "song/%s/model.txt", song->GetFolder());
+		Mark(buf, kinect->kinectBody->GetSave(), kinect->kinectBody->GetNow());
+		expression = CalcHappy();
+		kinect->kinectBody->DeleteSave();
+	}
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。");
 }
 

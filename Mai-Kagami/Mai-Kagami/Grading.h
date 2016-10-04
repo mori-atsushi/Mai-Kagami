@@ -5,6 +5,7 @@
 #include <Kinect.h>
 #include <map>
 #include "Bezier.h"
+#include "Main.h"
 
 typedef float flameData[JointType_Count][3];
 
@@ -33,11 +34,11 @@ public:
 protected:
 	int total; //総合得点
 	char comment[1024]; //コメント
-	int point[4]; //部位別得点
+	int point[4] = {}; //部位別得点
 	int score[100] = {}; //区間別得点
-	int max; //区間別得点の点の数
-	int timing; //タイミング
-	int expression; //表情
+	int max = 0; //区間別得点の点の数
+	int timing = 0; //タイミング
+	int expression = 0; //表情
 private:
 	int Adjust(int point); //点数が0~100の範囲になるように調整
 	void Copy(float dst[JointType_Count][3], float source[JointType_Count][3]);
