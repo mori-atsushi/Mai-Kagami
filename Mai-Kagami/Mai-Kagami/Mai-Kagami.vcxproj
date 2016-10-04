@@ -58,6 +58,7 @@
     <ClCompile Include="SongSelect.cpp" />
     <ClCompile Include="SongSelectCommon.cpp" />
     <ClCompile Include="SongSelectMain.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="ThroughDetail.cpp" />
     <ClCompile Include="ThroughMain.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="SongSelectCommon.h" />
     <ClInclude Include="SongSelectDefine.h" />
     <ClInclude Include="SongSelectMain.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="ThroughDefine.h" />
     <ClInclude Include="ThroughDetail.h" />
