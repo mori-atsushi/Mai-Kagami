@@ -151,8 +151,10 @@ void MyDrawTexts::MakeNewLine(std::string s, const float x) {
 		TCHAR c_t[3] = { NULL };
 		_stprintf_s(c_t, sizeof(c_t)/sizeof(c_t[0]), _T("%c"), &c);
 		length += GetDrawStringWidthToHandle(c_t, (int)strlen(c_t), f->Get(point)) * SIZE_RATE;
+		printfDx("%f:", length);
 		if (length > x) {
 			s.insert(i, "\n");
+
 			length = 0;
 		}
 	}
