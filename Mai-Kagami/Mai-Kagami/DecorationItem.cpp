@@ -2,13 +2,14 @@
 
 DecorationItem::DecorationItem() 
 	: Font(), SoundEffect(){
-	font = new Font();
-	soundEffect = new SoundEffect();
+	//font = new Font();
+	//soundEffect = new SoundEffect();
 }
 
 //int DecorationItem::GetFont(int point) {
-//	//return GetFont(point);
-//	return font->GetFont(point);
+//	//return font->GetFont(point);
+//
+//	return 0;
 //}
 
 int DecorationItem::GetSoundEffect(int SoundType) {
@@ -16,6 +17,6 @@ int DecorationItem::GetSoundEffect(int SoundType) {
 }
 
 DecorationItem::~DecorationItem() {
-	delete font;
-	delete soundEffect;
+	//delete font;
+	//delete soundEffect;
 }

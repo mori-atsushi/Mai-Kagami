@@ -1,14 +1,18 @@
 #include "Font.h"
 
-//フォント指定
+//フォントロード
 Font::Font() {
-	for(int i = 0; i < FONT_NUM; i++)
-		id[p[i]] = CreateFontToHandle("M+ 1c", p[i] / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING);
+	for (int i = 0; i < FONT_NUM; i++) {
+		this->id[p[i]] = CreateFontToHandle("M+ 1c", p[i] / SIZE_RATE, 1, DX_FONTTYPE_ANTIALIASING);
+		printfDx("%d:%d ", p[i], this->id[p[i]]);
+	}
 }
 
 //フォント取得
 int Font::GetFont(int point) {
-	return id[point];
+	//printfDx("%d ", this->p[0]);
+	//return id[point];
+	return 0;
 }
 
 //フォントデストラクタ
