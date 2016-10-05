@@ -11,9 +11,9 @@ Top::Top(DecorationItem *decorationItem, User *user) {
 
 //トップ画面初期化
 void Top::ContentLoad() {
-	StopMusic();
 	topLogo->Load();
 	topTouchMessage->Init();
+	bgmHandle = LoadSoundMem("SE/bgm.wav");
 	nfc.Init();
 }
 
@@ -39,12 +39,15 @@ void Top::ContentUpdate() {
 
 //トップ画面表示
 void Top::ContentView() {
+	if (CheckSoundMem(bgmHandle) == 0)
+		PlaySoundMem(bgmHandle, DX_PLAYTYPE_BACK);
 	topLogo->View(); //ロゴ表示
 	topTouchMessage->View(); //NFCタッチメッセージ表示
 	topTouchButton->View(); //NFCタッチボタン表示
 }
 
 void Top::ContentDelete() {
+	DeleteSoundMem(bgmHandle);
 	topLogo->Release();
 }
 

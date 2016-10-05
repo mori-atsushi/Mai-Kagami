@@ -36,6 +36,7 @@ void ThroughResultMain::ContentLoad() {
 	scene = THROUGH_RESULT_TOP;
 	if(KINECT_FLAG)
 		result->Send(); //‘—M
+	bgmHandle = LoadSoundMem("SE/bgm.wav");
 	throughResult->Load();
 	throughDetail->Load();
 }
@@ -75,11 +76,14 @@ void ThroughResultMain::ContentUpdate() {
 }
 
 void ThroughResultMain::ContentView() {
+	if (CheckSoundMem(bgmHandle) == 0)
+		PlaySoundMem(bgmHandle, DX_PLAYTYPE_BACK);
 	throughResult->View();
 	throughDetail->View();
 }
 
 void ThroughResultMain::ContentDelete() {
+	DeleteSoundMem(bgmHandle);
 	throughResult->Delete();
 	throughDetail->Delete();
 }

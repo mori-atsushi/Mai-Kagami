@@ -22,6 +22,7 @@ private:
 	TopTouchButton *topTouchButton; //NFCタッチボタン
 	Nfc nfc; //NFC監視
 	User *user;
+	int bgmHandle; //bgm
 	void ContentUpdate(); //計算
 	void ContentView(); //表示
 	void ContentLoad();

@@ -7,6 +7,7 @@ PartResultMain::PartResultMain(DecorationItem *decorationItem, Touch *touch, Son
 
 void PartResultMain::ContentLoad() {
 	scene = PART_RESULT_TOP;
+	bgmHandle = LoadSoundMem("SE/bgm.wav");
 	partResult->Load();
 	partFinish->Load();
 }
@@ -49,11 +50,14 @@ void PartResultMain::ContentUpdate() {
 }
 
 void PartResultMain::ContentView() {
+	if (CheckSoundMem(bgmHandle) == 0)
+		PlaySoundMem(bgmHandle, DX_PLAYTYPE_BACK);
 	partResult->View();
 	partFinish->View();
 }
 
 void PartResultMain::ContentDelete() {
+	DeleteSoundMem(bgmHandle);
 	partResult->Delete();
 	partFinish->Delete();
 }

@@ -20,6 +20,7 @@ private:
 	void ContentView();
 	void ContentDelete();
 	int scene;
+	int bgmHandle; //bgm
 	PartResult *partResult;
 	PartFinish *partFinish;
 };
