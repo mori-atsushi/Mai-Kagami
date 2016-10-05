@@ -175,7 +175,7 @@ boolean KinectBody::CheckDistance() {
 		}
 	}
 	else {
-		if (CheckHitKey(KEY_INPUT_N) == 1)
+		if (CheckHitKey(KEY_INPUT_N) == 1 || (GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 			miss = 0;
 		else
 			miss = maxMis;
