@@ -1,9 +1,9 @@
 #include "PartOption.h"
 
-PartOptionPreview2::PartOptionPreview2(Font *font, Songs *songs, Touch *touch) 
-	: PartOptionPreview(font, songs, touch, OPTION2, OPTION2_PART, OPTION2_SPEED) {
-	button[0] = new CircleButton(font, touch, "スタート!", 3, WIDTH * 0.8);
-	button[1] = new CircleButton2(font, touch, "戻る", 4);
+PartOptionPreview2::PartOptionPreview2(DecorationItem *decorationItem, Songs *songs, Touch *touch) 
+	: PartOptionPreview(decorationItem, songs, touch, OPTION2, OPTION2_PART, OPTION2_SPEED) {
+	button[0] = new CircleButton(decorationItem, touch, "スタート!", 3, WIDTH * 0.8);
+	button[1] = new CircleButton2(decorationItem, touch, "戻る", 4);
 }
 
 int PartOptionPreview2::Switch(const int scene) {
@@ -26,5 +26,5 @@ PartOptionPreview2::~PartOptionPreview2() {
 		delete button[i];
 }
 
-PartOptionButton::PartOptionButton(Font *font, Songs *songs, Touch *touch) 
-	: PartOptionPop(font, songs, touch, OPTION2, OPTION2_PART, OPTION2_SPEED, new PartOptionPreview2(font, songs, touch)) {}
+PartOptionButton::PartOptionButton(DecorationItem *decorationItem, Songs *songs, Touch *touch) 
+	: PartOptionPop(decorationItem, songs, touch, OPTION2, OPTION2_PART, OPTION2_SPEED, new PartOptionPreview2(decorationItem, songs, touch)) {}

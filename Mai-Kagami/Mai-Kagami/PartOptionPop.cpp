@@ -1,7 +1,7 @@
 #include "PartOptionPop.h"
 
-PartOptionSpeedPop::PartOptionSpeedPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int speedScene)
-	: SpeedPop(font, songs, touch) {
+PartOptionSpeedPop::PartOptionSpeedPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int speedScene)
+	: SpeedPop(decorationItem, songs, touch) {
 	this->mainScene = mainScene;
 	this->speedScene = speedScene;
 }
@@ -27,8 +27,8 @@ void PartOptionSpeedPop::ContentUpdate() {
 	lastScene = nowScene;
 }
 
-PartOptionPartPop::PartOptionPartPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene)
-	: PartPop(font, songs, touch) {
+PartOptionPartPop::PartOptionPartPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene)
+	: PartPop(decorationItem, songs, touch) {
 	this->mainScene = mainScene;
 	this->partScene = partScene;
 }
@@ -56,20 +56,20 @@ void PartOptionPartPop::ContentUpdate() {
 	lastScene = nowScene;
 }
 
-PartOptionPreview::PartOptionPreview(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene) {
+PartOptionPreview::PartOptionPreview(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene) {
 	this->songs = songs;
 	this->mainScene = mainScene;
 	this->partScene = partScene;
 	this->speedScene = speedScene;
-	button[0] = new CircleButton(font, touch, "区間", 0, WIDTH * 0.8);
-	button[1] = new CircleButton(font, touch, "", 2, WIDTH * 0.8);
-	message = new MyDrawText(font, "変更したいものを選んでください", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
-	caption[0] = new MyDrawText(font, "開始：", WIDTH * 0.8, HEIGHT * 0.53, 2, 30);
-	caption[1] = new MyDrawText(font, "終了：", WIDTH * 0.8, HEIGHT * 0.555, 2, 30);
-	caption[2] = new MyDrawText(font, "速度：", WIDTH * 0.8, HEIGHT * 0.6, 2, 30);
-	para[0] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.53, 0, 30, "Yellow");
-	para[1] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.555, 0, 30, "Yellow");
-	para[2] = new MyDrawText(font, "", WIDTH * 0.81, HEIGHT * 0.6, 0, 30, "Yellow");
+	button[0] = new CircleButton(decorationItem, touch, "区間", 0, WIDTH * 0.8);
+	button[1] = new CircleButton(decorationItem, touch, "", 2, WIDTH * 0.8);
+	message = new MyDrawText(decorationItem, "変更したいものを選んでください", WIDTH * 0.75, HEIGHT * 0.45, 1, 30);
+	caption[0] = new MyDrawText(decorationItem, "開始：", WIDTH * 0.8, HEIGHT * 0.53, 2, 30);
+	caption[1] = new MyDrawText(decorationItem, "終了：", WIDTH * 0.8, HEIGHT * 0.555, 2, 30);
+	caption[2] = new MyDrawText(decorationItem, "速度：", WIDTH * 0.8, HEIGHT * 0.6, 2, 30);
+	para[0] = new MyDrawText(decorationItem, "", WIDTH * 0.81, HEIGHT * 0.53, 0, 30, "Yellow");
+	para[1] = new MyDrawText(decorationItem, "", WIDTH * 0.81, HEIGHT * 0.555, 0, 30, "Yellow");
+	para[2] = new MyDrawText(decorationItem, "", WIDTH * 0.81, HEIGHT * 0.6, 0, 30, "Yellow");
 }
 
 int PartOptionPreview::Switch(const int scene) {
@@ -114,14 +114,14 @@ PartOptionPreview::~PartOptionPreview() {
 	}
 }
 
-PartOptionPop::PartOptionPop(Font *font, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene, PartOptionPreview *partOptionPreview) {
+PartOptionPop::PartOptionPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene, PartOptionPreview *partOptionPreview) {
 	this->songs = songs;
 	this->mainScene = mainScene;
 	this->partScene = partScene;
 	this->speedScene = speedScene;
 	this->partOptionPreview = partOptionPreview;
-	speedPop = new PartOptionSpeedPop(font, songs, touch, mainScene, speedScene);
-	partPop = new PartOptionPartPop(font, songs, touch, mainScene, partScene);
+	speedPop = new PartOptionSpeedPop(decorationItem, songs, touch, mainScene, speedScene);
+	partPop = new PartOptionPartPop(decorationItem, songs, touch, mainScene, partScene);
 }
 
 int PartOptionPop::Switch(const int scene) {

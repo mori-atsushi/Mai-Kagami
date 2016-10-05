@@ -1,7 +1,7 @@
 #include "SongSelectCover.h"
 #include "Animation.h"
 
-SongSelectCover::SongSelectCover(Font *font, Song *song, const int now) 
+SongSelectCover::SongSelectCover(DecorationItem *decorationItem, Song *song, const int now) 
 	: Song(*song) {
 	char *folder = "";
 	SetNow(now);

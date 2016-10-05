@@ -13,7 +13,7 @@
 
 class PartResult : public SubScene {
 public:
-	PartResult(Font *font, Songs *songs, Touch *touch);
+	PartResult(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Load();
 	int Switch(const int scene);
 	~PartResult();
@@ -26,13 +26,13 @@ private:
 	Button *button; //ŽŸ‚Öƒ{ƒ^ƒ“
 	Song *song;
 	Songs *songs;
-	Font *font;
+	DecorationItem *decorationItem;
 	int partMax;
 };
 
 class PartFinish : public SubScene {
 public:
-	PartFinish(Font *font, Touch *touch);
+	PartFinish(DecorationItem *decorationItem, Touch *touch);
 	int Switch(const int scene);
 	~PartFinish();
 private:

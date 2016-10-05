@@ -6,8 +6,8 @@ TopLogo::TopLogo(const float y)
 }
 
 //NFCタッチメッセージコンストラクタ
-TopTouchMessage::TopTouchMessage(Font *font, const float y)
-	: MyDrawText(font, "-カードをタッチしてください-", WIDTH * 0.5, y, 1, 46) {
+TopTouchMessage::TopTouchMessage(DecorationItem *decorationItem, const float y)
+	: MyDrawText(decorationItem, "-カードをタッチしてください-", WIDTH * 0.5, y, 1, 46) {
 	Init(); //初期化
 }
 
@@ -36,10 +36,10 @@ void TopTouchMessage::View() {
 }
 
 //NFCタッチボタンコンストラクタ
-TopTouchButton::TopTouchButton(Font *font)
+TopTouchButton::TopTouchButton(DecorationItem *decorationItem)
 	: Pos(WIDTH, NFC_POS) {
 	float r = WIDTH / 12;
-	text = new MyDrawTexts(font, "ここに\nタッチ！", GetX() - r, GetY(), 2, 40, 20);
+	text = new MyDrawTexts(decorationItem, "ここに\nタッチ！", GetX() - r, GetY(), ALIGNMENT_RIGHT, 40, 20);
 	circle = new MyDrawCircle(GetX(), GetY(), r);
 }
 
@@ -50,6 +50,6 @@ void TopTouchButton::View() {
 }
 
 TopTouchButton::~TopTouchButton() {
-	delete text;
+//	delete text;
 	delete circle;
 }

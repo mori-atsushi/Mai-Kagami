@@ -1,4 +1,4 @@
 #include "ThroughStart.h"
 
-ThroughStart::ThroughStart(Font *f) 
-	: StartSceen(f, THROUGH_START, THROUGH_PLAY){}
+ThroughStart::ThroughStart(DecorationItem *decorationItem) 
+	: StartSceen(decorationItem, THROUGH_START, THROUGH_PLAY){}

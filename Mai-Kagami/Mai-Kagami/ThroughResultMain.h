@@ -11,7 +11,7 @@
 
 class ThroughResultMain : public Scene {
 public:
-	ThroughResultMain(Font *font, Touch *touch, Songs *songs, User *user, Kinect *kinect);
+	ThroughResultMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, User *user, Kinect *kinect);
 	MainScene Switch(const MainScene scene);
 	void Load();
 	~ThroughResultMain();

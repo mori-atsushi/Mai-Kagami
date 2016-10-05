@@ -1,17 +1,17 @@
 #include "PauseScreen.h"
 
-PauseScreen::PauseScreen(Font *font, Songs *songs, Touch *touch, const int pauseScene, const int startScene, const int songSelectScene, const int settingScene) {
+PauseScreen::PauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int pauseScene, const int startScene, const int songSelectScene, const int settingScene) {
 	this->songs = songs;
 	this->pauseScene = pauseScene;
 	this->startScene = startScene;
 	this->songSelectScene = songSelectScene;
 	this->settingScene = settingScene;
 	blackBox = new BlackBox();
-	title = new MyDrawText(font, "- ポーズ -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40, "Yellow");
-	button[0] = new CircleGraphTextButton(font, touch, "戻る", 0, "img/play.png");
-	button[1] = new CircleGraphTextButton(font, touch, "はじめから", 1, "img/rewind.png");
-	button[2] = new CircleGraphTextButton(font, touch, "曲選択へ", 2, "img/back.png");
-	button[3] = new CircleGraphTextButton(font, touch, "設定変更", 3, "img/setting.png");
+	title = new MyDrawText(decorationItem, "- ポーズ -", WIDTH * 0.95, HEIGHT * 0.45, 2, 40, "Yellow");
+	button[0] = new CircleGraphTextButton(decorationItem, touch, "戻る", 0, "img/play.png");
+	button[1] = new CircleGraphTextButton(decorationItem, touch, "はじめから", 1, "img/rewind.png");
+	button[2] = new CircleGraphTextButton(decorationItem, touch, "曲選択へ", 2, "img/back.png");
+	button[3] = new CircleGraphTextButton(decorationItem, touch, "設定変更", 3, "img/setting.png");
 }
 
 void PauseScreen::Load() {

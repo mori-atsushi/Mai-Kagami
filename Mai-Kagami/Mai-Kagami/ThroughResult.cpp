@@ -1,19 +1,19 @@
 #include "ThroughResult.h"
 
-ThroughResult::ThroughResult(Font *font, Songs *songs, Touch *touch, Result *result) {
+ThroughResult::ThroughResult(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
 	this->songs = songs;
 	this->result = result;
-	title        = new MyDrawTextLine(font, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);						//採点結果
+	title        = new MyDrawTextLine(decorationItem, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);						//採点結果
 	circle       = new MyDrawCircle(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 10, "WHITE");			//縁が白色の円
 	pointCircle  = new MyDrawCircleGauge(WIDTH * 0.5, HEIGHT * 0.5, WIDTH * 0.3, 0, 6);			//青色の弧
 	pointCircle2 = new MyDrawCircle(0, 0, 16);						//弧の先の円
-	button       = new CircleButton2(font, touch, "次へ", 4);										//次へボタン
-	text         = new MyDrawText(font, "総合得点", WIDTH * 0.5, HEIGHT * 0.42, 1, 46, "White");		//「総合得点」
+	button       = new CircleButton2(decorationItem, touch, "次へ", 4);										//次へボタン
+	text         = new MyDrawText(decorationItem, "総合得点", WIDTH * 0.5, HEIGHT * 0.42, 1, 46, "White");		//「総合得点」
 	point1		 = new MyDrawGraph(WIDTH * 0.33, HEIGHT * 0.51, "", 0.23);						//得点(100の位)	
 	point2       = new MyDrawGraph(WIDTH * 0.42, HEIGHT * 0.51, "", 0.23);					//得点(10の位)	
 	point3       = new MyDrawGraph(WIDTH * 0.51, HEIGHT * 0.51, "", 0.23);					//得点(1の位)
-	unit         = new MyDrawText(font, "点", WIDTH * 0.58, HEIGHT * 0.54, 0, 46, "White");			//「点」
-	last         = new MyDrawText(font, "前回 --点", WIDTH * 0.5, HEIGHT * 0.58, 1, 36, "White");	//前回の点数
+	unit         = new MyDrawText(decorationItem, "点", WIDTH * 0.58, HEIGHT * 0.54, 0, 46, "White");			//「点」
+	last         = new MyDrawText(decorationItem, "前回 --点", WIDTH * 0.5, HEIGHT * 0.58, 1, 36, "White");	//前回の点数
 }
 
 void ThroughResult::Load() {

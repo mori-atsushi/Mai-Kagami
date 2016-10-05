@@ -6,7 +6,7 @@
 #include "Touch.h"
 #include "SongSelectCover.h"
 #include "Songs.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "SongSelectCommon.h"
 #include "SongSelect.h"
 #include "SongSelectDefine.h"
@@ -18,7 +18,7 @@
 //‹È‘I‘ð‰æ–ÊŠÖŒW
 class SongSelect : public Scene{
 public:
-	SongSelect(Font *font, Touch *touch, Songs *songs, User *user);
+	SongSelect(DecorationItem *decorationItem, Touch *touch, Songs *songs, User *user);
 	MainScene Switch(const MainScene scene);
 	void SetScene(const int scene);
 	~SongSelect();

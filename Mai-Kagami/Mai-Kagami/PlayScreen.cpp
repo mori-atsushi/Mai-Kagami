@@ -1,14 +1,14 @@
 #include "PlayScreen.h"
 
-PlayScreen::PlayScreen(Font *font, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
+PlayScreen::PlayScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene) {
 	this->startScene = startScene;
 	this->countDownScene = countDownScene;
 	this->playScene = playScene;
 	this->finishScene = finishScene;
 	this->songs = songs;
 	this->kinect = kinect;
-	playBar = new PlayBar(font);
-	countDown = new CountDown(font, countDownScene, playScene);
+	playBar = new PlayBar(decorationItem);
+	countDown = new CountDown(decorationItem, countDownScene, playScene);
 }
 
 void PlayScreen::Load() {

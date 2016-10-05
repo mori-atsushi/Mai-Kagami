@@ -3,7 +3,7 @@
 
 #include "DxLib.h"
 #include "Button.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "PartDefine.h"
 #include "SeetingPop.h"
@@ -32,12 +32,12 @@ private:
 //ポーズ画面
 class PartPauseScreen : public PauseScreen {
 public:
-	PartPauseScreen(Font *font, Songs *songs, Touch *touch);
+	PartPauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 };
 
 class PartOptionPreview3 : public PartOptionPreview {
 public:
-	PartOptionPreview3(Font *font, Songs *songs, Touch *touch);
+	PartOptionPreview3(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	int Switch(const int scene);
 	~PartOptionPreview3();
 private:
@@ -49,13 +49,13 @@ private:
 //設定変更画面
 class PartPauseSetting : public PartOptionPop {
 public:
-	PartPauseSetting(Font *font, Songs *songs, Touch *touch);
+	PartPauseSetting(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 };
 
 //ポーズ関係
 class PartPause : public SubScene {
 public:
-	PartPause(Font *font, Songs *songs, Touch *touch, Kinect *kinect);
+	PartPause(DecorationItem *decorationItem, Songs *songs, Touch *touch, Kinect *kinect);
 	void Load();
 	int Switch(const int scene);
 	void Delete();

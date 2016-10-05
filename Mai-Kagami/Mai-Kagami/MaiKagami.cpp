@@ -2,16 +2,16 @@
 
 MaiKagami::MaiKagami() {
 	touch = new Touch();
-	font = new Font();
-	songs = new Songs(font); //曲一覧作成
+	decorationItem = new DecorationItem();
+	songs = new Songs(decorationItem); //曲一覧作成
 	user = new User();
 	kinect = new Kinect(); //キネクト
-	top = new Top(font, user);
-	songSelect = new SongSelect(font, touch, songs, user);
-	throughMain = new ThroughMain(font, touch, songs, kinect);
-	throughResultMain = new ThroughResultMain(font, touch, songs, user, kinect);
-	partMain = new PartMain(font, touch, songs, kinect);
-	partResultMain = new PartResultMain(font, touch, songs);
+	top = new Top(decorationItem, user);
+	songSelect = new SongSelect(decorationItem, touch, songs, user);
+	throughMain = new ThroughMain(decorationItem, touch, songs, kinect);
+	throughResultMain = new ThroughResultMain(decorationItem, touch, songs, user, kinect);
+	partMain = new PartMain(decorationItem, touch, songs, kinect);
+	partResultMain = new PartResultMain(decorationItem, touch, songs);
 	scene = TOP;
 }
 

@@ -2,7 +2,7 @@
 #define __THROUGHMAIN_H_INCLUDED__
 
 #include "DxLib.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "Main.h"
 #include "DrawText.h"
@@ -15,7 +15,7 @@
 
 class ThroughMain : public Scene{
 public:
-	ThroughMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect);
+	ThroughMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, Kinect *kinect);
 	MainScene Switch(const MainScene scene);
 	~ThroughMain();
 private:

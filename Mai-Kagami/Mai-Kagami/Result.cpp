@@ -102,14 +102,14 @@ void Result::Send() {
 	WCHAR w_comment[256] = { 0 };
 	mbstowcs(w_comment, comment, 256);
 	char commentReq[256] = { 0 };
-	sprintf_s(commentReq, 256, "comment=%s", w_comment);
+	sprintf_s(commentReq, 256, "comment=%ls", w_comment);
 
 	//urlを作成
 	char url[512] = { 0 };
 	sprintf_s(url, 512, "http://globalstudios.jp/mai-archive/api_add.php?%s&%s&%s&%s&%s&%s&%s&%s&%s", 
 		songReq, userReq, dateReq, totalReq, partReq, bodyReq, timingReq, expressionReq, commentReq);
 	Http http;
-	if(!http.Send(url))printfDx("httpエラー");
+	if(!http.Send(url))	printfDx("httpエラー");
 }
 
 void Result::GetNowTime(int nowTime[]) {

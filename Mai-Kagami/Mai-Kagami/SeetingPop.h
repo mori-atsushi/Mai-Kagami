@@ -5,7 +5,7 @@
 #include "DrawObject.h"
 #include "DrawText.h"
 #include "Button.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Songs.h"
 #include "Touch.h"
 #include "Scene.h"
@@ -20,7 +20,7 @@ private:
 //スピードオプション表示
 class SpeedOption {
 public:
-	SpeedOption(Font *font, Songs *songs, Touch *touch);
+	SpeedOption(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Check();
 	void View();
 	~SpeedOption();
@@ -33,7 +33,7 @@ private:
 //区間設定オプション表示
 class PartOption {
 public:
-	PartOption(Font *font, Songs *songs, Touch *touch);
+	PartOption(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Load();
 	void Init();
 	void Check();
@@ -56,7 +56,7 @@ private:
 //スピードオプションポップアップ
 class SpeedPop : public SubScene {
 public:
-	SpeedPop(Font *font, Songs *songs, Touch *touch);
+	SpeedPop(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Load();
 	~SpeedPop();
 protected:
@@ -73,7 +73,7 @@ protected:
 //区間設定オプションポップアップ
 class PartPop : public SubScene {
 public:
-	PartPop(Font *font, Songs *songs, Touch *touch);
+	PartPop(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	void Load();
 	void SetButtonMode(bool mode);
 	~PartPop();

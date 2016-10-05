@@ -1,9 +1,9 @@
 #include "SongSelectCommon.h"
 
 //曲選択画面タイトルロード
-SongSelectTitle::SongSelectTitle(Font *font) {
-	title = new DrawTitle(font, "");
-	subTitle = new DrawSubtitle(font, "");
+SongSelectTitle::SongSelectTitle(DecorationItem *decorationItem) {
+	title = new DrawTitle(decorationItem, "");
+	subTitle = new DrawSubtitle(decorationItem, "");
 }
 
 //曲選択画面タイトル計算
@@ -51,13 +51,13 @@ SongSelectTitle::~SongSelectTitle() {
 }
 
 //曲選択画面カバー画像初期化
-SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *user) {
+SongInformation::SongInformation(DecorationItem *decorationItem, Songs *songs, Touch *touch, User *user) {
 	this->songs = songs;
 	this->touch = touch;
 	this->user = user;
 	n = songs->GetSongNum();
 	for (int i = 0; i < n; i++) {
-		songCover[i] = new SongSelectCover(font, songs->GetSong(i), i);
+		songCover[i] = new SongSelectCover(decorationItem, songs->GetSong(i), i);
 		//songCover[i]->Change(0, n);  // Updateに統合したから要らなくなった Jaity
 	}
 
@@ -67,8 +67,8 @@ SongInformation::SongInformation(Font *font, Songs *songs, Touch *touch, User *u
 	grad[0] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.22-30, "img/grad1.png");
 	grad[1] = new MyDrawGraph(WIDTH * 0.5, HEIGHT * 0.8, "img/grad2.png");
 //	box = new MyDrawGraph(WIDTH * 0.5, x, "img/box.png");
-	songLast[0] = new MyDrawText(font, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
-	songLast[1] = new MyDrawText(font, "前々回： --点", WIDTH * 0.75, HEIGHT * 0.385, 0, 24); //テキスト初期化
+	songLast[0] = new MyDrawText(decorationItem, "前回　： --点", WIDTH * 0.75, HEIGHT * 0.36, 0, 24); //テキスト初期化
+	songLast[1] = new MyDrawText(decorationItem, "前々回： --点", WIDTH * 0.75, HEIGHT * 0.385, 0, 24); //テキスト初期化
 }
 
 

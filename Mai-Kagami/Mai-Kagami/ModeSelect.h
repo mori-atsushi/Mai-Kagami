@@ -4,13 +4,13 @@
 #include "DxLib.h"
 #include "Button.h"
 #include "SongSelectDefine.h"
-#include "Font.h"
+#include "DecorationItem.h"
 #include "Scene.h"
 #include "Touch.h"
 
 class ModeSelectButton : public SubScene{
 public:
-	ModeSelectButton(Font *font, Touch *touch);
+	ModeSelectButton(DecorationItem *decorationItem, Touch *touch);
 	int Switch(const int scene);
 	void ContentUpdate();
 	void ContentView();

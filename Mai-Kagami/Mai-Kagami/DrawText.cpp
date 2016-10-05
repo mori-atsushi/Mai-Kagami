@@ -3,17 +3,17 @@
 //テキスト初期化
 //MyDrawText（フォントポインタ、表示文字、x座標、y座標、ポジション情報、フォントサイズ、色）　※色は省略可能、省略した場合白色
 //ポジション情報（0：左寄せ、1：中央寄せ、2：右寄せ）
-MyDrawText::MyDrawText(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
+MyDrawText::MyDrawText(DecorationItem *decorationItem, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
 	: Color(colorName) , Draw2(pos) {
 	s = str; //文字列
-	ChangeFont(font, point);
+	ChangeFont(decorationItem, point);
 	MyDrawText::point = point;
 	ChangePos(x, y);
 }
 
 //テキスト表示
 void MyDrawText::ContentView() {
-	DrawStringFToHandle(x, y, s.c_str(), Color::Get(), f); //文字表示
+	DrawStringFToHandle(x, y, s.c_str(), Color::Get(), decorationItem); //文字表示
 }
 
 //テキスト変更
@@ -23,8 +23,8 @@ void MyDrawText::ChangeText(char *str) {
 }
 
 //フォントサイズ変更
-void MyDrawText::ChangeFont(Font *font, const int point) {
-	f = font->Get(point); //フォント情報
+void MyDrawText::ChangeFont(DecorationItem *decorationItem, const int point) {
+	 this->decorationItem = decorationItem->GetFont(point); //フォント情報
 }
 
 //文字色変更
@@ -45,14 +45,14 @@ float MyDrawText::GetHeight() {
 
 //テキストの幅取得
 float MyDrawText::GetWidth() {
-	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), f) * SIZE_RATE;
+	return 	(float)GetDrawStringWidthToHandle(s.c_str(), (int)strlen(s.c_str()), decorationItem) * SIZE_RATE;
 }
 
 //縦書きテキスト初期化
 //MyDrawText（フォントポインタ、表示文字、x座標、y座標、ポジション情報、フォントサイズ、色）　※色は省略可能、省略した場合白色
 //ポジション情報（0：下寄せ、1：中央寄せ、2：上寄せ）
-MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
-	: MyDrawText(font, str, x, y, 0, point, colorName) {
+MyDrawTextV::MyDrawTextV(DecorationItem *decorationItem, const char *str, const float x, const float y, const int pos, const int point, const char *colorName)
+	: MyDrawText(decorationItem, str, x, y, 0, point, colorName) {
 	switch (pos)
 	{
 	case 0:
@@ -70,35 +70,35 @@ MyDrawTextV::MyDrawTextV(Font *font, const char *str, const float x, const float
 //縦書きテキスト表示
 void MyDrawTextV::ContentView() {
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	DrawRotaStringToHandle(x, y, 1, 1, RotCenterX, GetHeight() / SIZE_RATE / 2, - 1.0 / 2.0 * 3.141592, Color::Get(), f, -1, FALSE, s.c_str());
+	DrawRotaStringToHandle(x, y, 1, 1, RotCenterX, GetHeight() / SIZE_RATE / 2, - 1.0 / 2.0 * 3.141592, Color::Get(), decorationItem, -1, FALSE, s.c_str());
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
 //複数行のテキスト
 //MyDrawTexts（フォントポインタ、表示文字、x座標、y座標、ポジション情報、フォントサイズ、行間隔、色）　※色は省略可能、省略した場合白色
 //ポジション情報（0：左寄せ、1：中央寄せ、2：右寄せ）
-MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
+MyDrawTexts::MyDrawTexts(DecorationItem *decorationItem, const char *str, const float x, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
 	: Color(colorName) , Draw(x, y) {
 
 	p = pos; //位置情報
 	inter = lineInterval; //間隔
 	strcpy_s(color, sizeof(color), colorName);
 	this->point = point;
-	f = font;
+	this->decorationItem = decorationItem;
 
 	ChangeText(str);
 }
 
 //MyDrawTexts（フォントポインタ、表示文字、x座標、文章を収めたいx座標の範囲、ポジション情報、フォントサイズ、行間隔、色）　※色は省略可能、省略した場合白色
 //ポジション情報（ALIGNMENT_LEFT：左寄せ、ALIGNMENT_CENTER：中央寄せ、ALIGNMENT_RIGHT：右寄せ）
-MyDrawTexts::MyDrawTexts(Font *font, const char *str, const float x1, const float x2, const float y, const int pos, const int point, const float lineInterval, const char *colorName) 
+MyDrawTexts::MyDrawTexts(DecorationItem *decorationItem, const char *str, const float x1, const float x2, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
 	:Color(colorName), Draw(x1, y){
 
 	p = pos;
 	inter = lineInterval;
 	strcpy_s(color, sizeof(color), colorName);
 	this->point = point;
-	f = font;
+	this->decorationItem = decorationItem;
 	std::string s(str);
 	MakeNewLine(s, x2);
 }
@@ -131,12 +131,12 @@ void MyDrawTexts::ChangeText(const char *str) {
 		a[j++] = str[i];
 		if (str[i + 1] == '\n' || i == strlen(str) - 1) {
 			a[j] = '\0';
-			myDrawText[l] = new MyDrawText(f, a, GetX(), 0, p, point, color);
+			myDrawText[l] = new MyDrawText(decorationItem, a, GetX(), 0, p, point, color);
 			l++; i++; j = 0;
 		}
 	}
 	if (i == 0) {
-		myDrawText[0] = new MyDrawText(f, str, GetX(), 0, p, point, color);
+		myDrawText[0] = new MyDrawText(decorationItem, str, GetX(), 0, p, point, color);
 		l = 1;
 	}
 	ChangePos(GetX(), GetY());
@@ -178,7 +178,7 @@ void MyDrawTexts::MakeNewLine(std::string str, const float x) {
 			c[2] = '\0';
 			break;
 		}
-		length += GetDrawStringWidthToHandle(c, strlen(c), f->Get(point)) * SIZE_RATE;
+		length += GetDrawStringWidthToHandle(c, strlen(c), decorationItem->GetFont(point)) * SIZE_RATE;
 		if (length > x) {
 			str.insert(i, "\n");
 			i++;
@@ -214,9 +214,9 @@ MyDrawTexts::~MyDrawTexts() {
 //アンダーライン付きテキスト
 //MyDrawTextLine（フォントポインタ、表示文字、x座標、y座標、ポジション情報、フォントサイズ、線の長さ、線の太さ、色）　※色は省略可能、省略した場合白色
 //ポジション情報（0：左寄せ、1：中央寄せ、2：右寄せ）
-MyDrawTextLine::MyDrawTextLine(Font *font, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
+MyDrawTextLine::MyDrawTextLine(DecorationItem *decorationItem, const char *str, const float x, const float y, const int pos, const int point, const float lineLength, const float lineWidth, const char *colorName)
 	: Color(colorName), Draw(x, y) {
-	myDrawText = new MyDrawText(font, str, x, y, pos, point, colorName);
+	myDrawText = new MyDrawText(decorationItem, str, x, y, pos, point, colorName);
 	l = lineLength / SIZE_RATE;
 	w = lineWidth / SIZE_RATE;
 	this->pos = pos;

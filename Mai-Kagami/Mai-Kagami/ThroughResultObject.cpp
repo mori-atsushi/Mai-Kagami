@@ -1,13 +1,13 @@
 #include "ThroughResultObject.h"
 
-ScoreBar::ScoreBar(Font *font, const float y, const char *title, const char *para1, const char *para2)
+ScoreBar::ScoreBar(DecorationItem *decorationItem, const float y, const char *title, const char *para1, const char *para2)
  : Draw(WIDTH * 0.475, y) {
 	const float height = 110;
-	this->title = new MyDrawTextLine(font, title, GetX(), GetY(), 0, 24, WIDTH * 0.3, 2);
+	this->title = new MyDrawTextLine(decorationItem, title, GetX(), GetY(), 0, 24, WIDTH * 0.3, 2);
 	mark = new MyDrawGraph(0, GetY() + height - 50, "img/mark.png");
-	score = new MyDrawText(font, "", 0, GetY() + height - 55, ALIGNMENT_CENTER, 30);
-	para[0] = new MyDrawText(font, para1, GetX() - 100, GetY() + height, ALIGNMENT_RIGHT, 20);
-	para[1] = new MyDrawText(font, para2, GetX() + 100, GetY() + height, ALIGNMENT_LEFT, 20);
+	score = new MyDrawText(decorationItem, "", 0, GetY() + height - 55, ALIGNMENT_CENTER, 30);
+	para[0] = new MyDrawText(decorationItem, para1, GetX() - 100, GetY() + height, ALIGNMENT_RIGHT, 20);
+	para[1] = new MyDrawText(decorationItem, para2, GetX() + 100, GetY() + height, ALIGNMENT_LEFT, 20);
 	for (int i = 0; i < 8; i++)
 		box[i] = new MyDrawBox(GetX() - 77 + i * 22, GetY() + height, 20, 40);
 }
@@ -48,14 +48,14 @@ ScoreBar::~ScoreBar() {
 		delete box[i];
 }
 
-TimingBar::TimingBar(Font *font) : ScoreBar(font, HEIGHT * 0.44, "タイミング", "slow", "early") {}
+TimingBar::TimingBar(DecorationItem *decorationItem) : ScoreBar(decorationItem, HEIGHT * 0.44, "タイミング", "slow", "early") {}
 
-ExpressionBar::ExpressionBar(Font *font) : ScoreBar(font, HEIGHT * 0.54, "表情", "bad", "good") {}
+ExpressionBar::ExpressionBar(DecorationItem *decorationItem) : ScoreBar(decorationItem, HEIGHT * 0.54, "表情", "bad", "good") {}
 
-ResultComment::ResultComment(Font *font)
+ResultComment::ResultComment(DecorationItem *decorationItem)
 	: Draw(WIDTH * 0.6, HEIGHT * 0.64) {
-	title = new MyDrawTextLine(font, "コメント", GetX(), GetY(), ALIGNMENT_LEFT, 24, WIDTH * 0.55, 2);
-	comment = new MyDrawTexts(font, "", WIDTH * 0.35, GetY() + 72, ALIGNMENT_LEFT, 20, 16);
+	title = new MyDrawTextLine(decorationItem, "コメント", GetX(), GetY(), ALIGNMENT_LEFT, 24, WIDTH * 0.55, 2);
+	comment = new MyDrawTexts(decorationItem, "", WIDTH * 0.35, GetY() + 72, ALIGNMENT_LEFT, 20, 16);
 }
 
 void ResultComment::Load(const char *str) {
@@ -72,18 +72,18 @@ ResultComment::~ResultComment() {
 	delete comment;
 }
 
-ResultBody::ResultBody(Font *font) 
+ResultBody::ResultBody(DecorationItem *decorationItem) 
 	: Draw(WIDTH * 0.8, HEIGHT * 0.53) {
 	body = new MyDrawGraph(GetX(), GetY(), "img/man.png");
-	part[0] = new MyDrawText(font, "左手", GetX() - 106, GetY() - 68, ALIGNMENT_CENTER, 20);
-	part[1] = new MyDrawText(font, "右手", GetX() + 140, GetY() - 55, ALIGNMENT_CENTER, 20);
-	part[2] = new MyDrawText(font, "左足", GetX() - 100, GetY() + 68, ALIGNMENT_CENTER, 20);
-	part[3] = new MyDrawText(font, "右足", GetX() + 122, GetY() + 55, ALIGNMENT_CENTER, 20);
-	
-	point[0] = new MyDrawText(font, "", GetX() - 147, GetY() - 70, ALIGNMENT_CENTER, 30, "");
-	point[1] = new MyDrawText(font, "", GetX() + 99, GetY() - 57, ALIGNMENT_CENTER, 30, "");
-	point[2] = new MyDrawText(font, "", GetX() - 141, GetY() + 66, ALIGNMENT_CENTER, 30, "");
-	point[3] = new MyDrawText(font, "", GetX() + 81, GetY() + 53, ALIGNMENT_CENTER, 30, "");
+	part[0] = new MyDrawText(decorationItem, "左手", GetX() - 106, GetY() - 68, ALIGNMENT_CENTER, 20);
+	part[1] = new MyDrawText(decorationItem, "右手", GetX() + 140, GetY() - 55, ALIGNMENT_CENTER, 20);
+	part[2] = new MyDrawText(decorationItem, "左足", GetX() - 100, GetY() + 68, ALIGNMENT_CENTER, 20);
+	part[3] = new MyDrawText(decorationItem, "右足", GetX() + 122, GetY() + 55, ALIGNMENT_CENTER, 20);
+
+	point[0] = new MyDrawText(decorationItem, "", GetX() - 147, GetY() - 70, 1, 30, "Yellow");
+	point[1] = new MyDrawText(decorationItem, "", GetX() + 99, GetY() - 57, 1, 30, "Yellow");
+	point[2] = new MyDrawText(decorationItem, "", GetX() - 141, GetY() + 66, 1, 30, "Yellow");
+	point[3] = new MyDrawText(decorationItem, "", GetX() + 81, GetY() + 53, 1, 30, "Yellow");
 }
 
 void ResultBody::Load(const int point[4]) {
@@ -128,13 +128,14 @@ ResultBody::~ResultBody() {
 	}
 }
 
-ResultGraph::ResultGraph(Font *font) 
+ResultGraph::ResultGraph(DecorationItem *decorationItem) 
 	: Draw(WIDTH * 0.65, HEIGHT * 0.32) {
-	this->font = font;
-	text = new MyDrawText(font, "区間別採点", WIDTH*0.35, HEIGHT*0.245, 0, 20);
+	this->decorationItem = decorationItem;
+
+	text = new MyDrawText(decorationItem, "区間別採点", WIDTH*0.35, HEIGHT*0.245, 0, 20);
 	frame[0] = new MyDrawLine(GetX() - w / 2, GetY() - h / 2, GetX() - w / 2, GetY() + h / 2, 6, "White");
 	frame[1] = new MyDrawLine(GetX() - w / 2, GetY() + h / 2, GetX() + w / 2, GetY() + h / 2, 6, "White");
-	scale = new MyDrawTexts(font, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
+	scale = new MyDrawTexts(decorationItem, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), ALIGNMENT_CENTER, 20, 4);
 }
 
 void ResultGraph::Load(const int *point, const int num, Song *song) {
@@ -159,7 +160,7 @@ void ResultGraph::Load(const int *point, const int num, Song *song) {
 	for (int i = 0; i < partMax; i++) {
 		SongPart *songPart = song->GetPart(i);
 		float x = GetX() - w / 2 + w * (float)songPart->GetFlame() / song->danceMovie->GetEndFlame();
-		part[i] = new MyDrawTextV(font, songPart->GetName(),  x, GetY() + HEIGHT * 0.075, 2, 16);
+		part[i] = new MyDrawTextV(decorationItem, songPart->GetName(),  x, GetY() + HEIGHT * 0.075, 2, 16);
 	}
 }
 

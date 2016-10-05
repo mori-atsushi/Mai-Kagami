@@ -1,10 +1,10 @@
 #include "ThroughOption.h"
 
-ThroughOptionButton::ThroughOptionButton(Font *font, Songs *songs, Touch *touch) {
+ThroughOptionButton::ThroughOptionButton(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
 	this->songs = songs;
-	speedOption = new SpeedOption(font, songs, touch);
-	button[0] = new CircleButton(font, touch, "スタート!", 2);
-	button[1] = new CircleButton2(font, touch, "戻る", 4);
+	speedOption = new SpeedOption(decorationItem, songs, touch);
+	button[0] = new CircleButton(decorationItem, touch, "スタート!", 2);
+	button[1] = new CircleButton2(decorationItem, touch, "戻る", 4);
 }
 
 int ThroughOptionButton::Switch(const int scene) {

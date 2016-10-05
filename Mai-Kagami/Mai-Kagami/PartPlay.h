@@ -7,13 +7,13 @@
 
 class PartStart : public StartSceen {
 public:
-	PartStart(Font *f);
+	PartStart(DecorationItem *decorationItem);
 };
 
 //•”•ª—ûK‰æ–Ê
 class PartPlay : public PlayScreen {
 public:
-	PartPlay(Font *font, Songs *songs, Touch *touch, Kinect *kinect);
+	PartPlay(DecorationItem *decorationItem, Songs *songs, Touch *touch, Kinect *kinect);
 };
 
 #endif

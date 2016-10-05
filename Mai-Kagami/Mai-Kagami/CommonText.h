@@ -6,12 +6,12 @@
 
 class DrawTitle : public MyDrawTextLine {
 public:
-	DrawTitle(Font *font, const char *str);
+	DrawTitle(DecorationItem *decorationItem, const char *str);
 };
 
 class DrawSubtitle : public MyDrawText {
 public:
-	DrawSubtitle(Font *font, const char *str);
+	DrawSubtitle(DecorationItem *decorationItem, const char *str);
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 LPBYTE ReadData(HINTERNET hRequest, LPDWORD lpdwSize);
 
-Songs::Songs(Font *font) {
+Songs::Songs(DecorationItem *decorationItem) {
 	n = 0;
 	SetUseASyncLoadFlag(FALSE);
 	int file = FileRead_open("song/song.csv", FALSE);
@@ -14,7 +14,7 @@ Songs::Songs(Font *font) {
 	char buf[3][256];
 	int id = 0;
 	while (FileRead_scanf(file, "%d,%[^,\n\r],%[^,\n\r],%[^\n\r]", &id, buf[0], buf[1], buf[2]) != EOF) {
-		song[n] = new Song(font, id, buf[1], buf[2], buf[0]);
+		song[n] = new Song(decorationItem, id, buf[1], buf[2], buf[0]);
 		n++;
 	}
 	FileRead_close(file);
@@ -140,7 +140,6 @@ int Songs::LoadHistory(const char *userId) {
 
 		if (i == 0) {
 			temp = strtok_s((char*)lpData, "\n", &ctx);
-
 		} else {
 			temp = strtok_s(0, "\n", &ctx);
 		}

@@ -15,7 +15,7 @@
 //í Çµó˚èKâÊñ 
 class PlayScreen : public SubScene {
 public:
-	PlayScreen(Font *font, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene);
+	PlayScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, Kinect *kinect, const int startScene, const int countDownScene, const int playScene, const int finishScene);
 	void Load();
 	int Switch(const int scene);
 	~PlayScreen();

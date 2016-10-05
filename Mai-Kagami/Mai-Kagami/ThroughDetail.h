@@ -13,7 +13,7 @@
 
 class ThroughFinish : public SubScene {
 public:
-	ThroughFinish(Font *font, Touch *touch);
+	ThroughFinish(DecorationItem *decorationItem, Touch *touch);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void ContentUpdate();
 	void ContentView();
@@ -25,7 +25,7 @@ private:
 
 class ThroughDetailScreen : public SubScene {
 public:
-	ThroughDetailScreen(Font *font, Songs *songs, Touch *touch, Result *result);
+	ThroughDetailScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();
@@ -46,7 +46,7 @@ private:
 
 class ThroughDetail : public SubScene {
 public:
-	ThroughDetail(Font *font, Songs *songs, Touch *touch, Result *result);
+	ThroughDetail(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void Load();
 	void Delete();
@@ -60,7 +60,7 @@ private:
 
 class RecommendButton : public Button {
 public:
-	RecommendButton(Font *font, Touch* touch, const int num);
+	RecommendButton(DecorationItem *decorationItem, Touch* touch, const int num);
 	void ContentView();
 	~RecommendButton();
 private:

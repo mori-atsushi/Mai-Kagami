@@ -7,7 +7,7 @@
 
 class PartOptionPreview2 : public PartOptionPreview {
 public:
-	PartOptionPreview2(Font *font, Songs *songs, Touch *touch);
+	PartOptionPreview2(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 	int Switch(const int scene);
 	~PartOptionPreview2();
 private:
@@ -17,7 +17,7 @@ private:
 
 class PartOptionButton : public PartOptionPop {
 public:
-	PartOptionButton(Font *font, Songs *songs, Touch *touch);
+	PartOptionButton(DecorationItem *decorationItem, Songs *songs, Touch *touch);
 };
 
 

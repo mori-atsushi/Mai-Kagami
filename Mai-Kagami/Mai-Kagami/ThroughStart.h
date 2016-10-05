@@ -6,7 +6,7 @@
 
 class ThroughStart : public StartSceen{
 public:
-	ThroughStart(Font *f);
+	ThroughStart(DecorationItem *decorationItem);
 };
 
 #endif

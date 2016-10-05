@@ -1,9 +1,9 @@
 #include "ThroughMain.h"
 
-ThroughMain::ThroughMain(Font *font, Touch *touch, Songs *songs, Kinect *kinect) {
-	throughStart = new ThroughStart(font);
-	throughPlay = new ThroughPlay(font, songs, touch, kinect);
-	throughPause = new ThroughPause(font, songs, touch);
+ThroughMain::ThroughMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, Kinect *kinect) {
+	throughStart = new ThroughStart(decorationItem);
+	throughPlay = new ThroughPlay(decorationItem, songs, touch, kinect);
+	throughPause = new ThroughPause(decorationItem, songs, touch);
 }
 
 void ThroughMain::ContentLoad() {

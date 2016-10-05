@@ -14,7 +14,7 @@
 //曲選択画面タイトル
 class SongSelectTitle : public SubScene {
 public:
-	SongSelectTitle(Font *font); //初期化
+	SongSelectTitle(DecorationItem *decorationItem); //初期化
 	void ContentUpdate(); //計算
 	void ContentView(); //表示
 	~SongSelectTitle();
@@ -26,7 +26,7 @@ private:
 //曲選択画面カバー関係
 class SongInformation : public SubScene {
 public:
-	SongInformation(Font *font, Songs *songs, Touch *touch, User *user); //初期化
+	SongInformation(DecorationItem *decorationItem, Songs *songs, Touch *touch, User *user); //初期化
 	void Load();
 	void ContentView(); //表示
 	void ContentUpdate();
