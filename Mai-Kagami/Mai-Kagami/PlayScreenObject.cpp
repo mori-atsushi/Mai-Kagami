@@ -64,15 +64,6 @@ PlayBar::~PlayBar() {
 		delete circle[i];
 }
 
-//カウントダウン画面再生三角形
-PlayTriangle::PlayTriangle(const float x, const float y)
-	: MyDrawTriangle("Yellow") {
-	const float w = 100, ex = 12;
-	float x1 = x - w + ex, x2 = x - w + ex, x3 = x + w + ex;
-	float y1 = y + w, y2 = y - w, y3 = y;
-	ChangePos(x1, y1, x2, y2, x3, y3);
-}
-
 //カウントダウン画面
 CountDown::CountDown(DecorationItem *decorationItem, const int thisScene, const int playScene) {
 	this->thisScene = thisScene;

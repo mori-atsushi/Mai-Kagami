@@ -22,13 +22,6 @@ private:
 	MyDrawTextV *part[10];
 };
 
-//カウントダウン画面用再生三角形
-class PlayTriangle : public MyDrawTriangle {
-public:
-	PlayTriangle(const float x, const float y);
-};
-
-
 //カウントダウン画面
 class CountDown : public	SubScene {
 public:
@@ -46,7 +39,6 @@ private:
 	MyDrawCircleGauge *countCircle1;
 	MyDrawCircle *countCircle2;
 	MyDrawCircle *countCircle3;
-	PlayTriangle *playTriangle;
 	const int max = 120;
 };
 
