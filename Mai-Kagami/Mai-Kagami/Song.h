@@ -69,6 +69,7 @@ protected:
 	char music[256], folder[256]; //音楽ファイル、フォルダ
 private:
 	int id, *n, *songPartNum, *start, *end, *mode; //ID、現在の番号, 曲数、開始、終了、モード
+	DecorationItem *decorationItem;
 	SongPart *songPart[256];
 };
 
