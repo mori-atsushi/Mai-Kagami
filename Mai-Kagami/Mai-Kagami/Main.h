@@ -11,6 +11,7 @@
 #define KINECT_FLAG	FALSE	//KINECTを使用するかどうか(TRUE:使用する/FALSE:使用しない)
 #define FULLSCREEN_FLAG	FALSE	//フルスクリーンにするか
 
+
 typedef enum {
 	TOP,
 	SONG_SELECT,

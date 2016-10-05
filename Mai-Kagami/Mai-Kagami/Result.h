@@ -24,8 +24,6 @@ public:
 private:
 	void GetNowTime(int nowTime[]);
 	int CalcHappy();
-	int partScore[100];	//‹æŠÔ•Ê“¾“_
-	int partMax; //‹æŠÔ•Ê“¾“_‚Ì“_‚Ì”
 	Songs *songs;
 	User *user;
 	Kinect *kinect;

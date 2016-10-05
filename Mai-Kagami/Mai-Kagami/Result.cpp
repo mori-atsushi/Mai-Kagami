@@ -17,6 +17,33 @@ void Result::Calc() {
 	}
 	else {
 		total = 80;
+		expression = 6;
+		timing = 4;
+		point[0] = 2;
+		point[1] = 3;
+		point[2] = 1;
+		point[3] = 1;
+		max = 10;
+		score[0] = 80;
+		score[1] = 60;
+		score[2] = 75;
+		score[3] = 80;
+		score[4] = 90;
+		score[5] = 50;
+		score[6] = 70;
+		score[7] = 60;
+		score[8] = 70;
+		score[9] = 80;
+		partScore[0] = 80;
+		partScore[1] = 60;
+		partScore[2] = 75;
+		partScore[3] = 80;
+		partScore[4] = 90;
+		partScore[5] = 50;
+		partScore[6] = 70;
+		partScore[7] = 60;
+		partScore[8] = 70;
+		partScore[9] = 80;
 	}
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
 }
@@ -51,7 +78,7 @@ void Result::Send() {
 	//区間別採点のリクエスト作成
 	char partReq[1024] = { 0 };
 	sprintf_s(partReq, 1024, "part=%s/%d", song->GetPart(0)->GetName(),score[0]);
-	for (int i = 1, n = this->partMax; i < n; i++) {
+	for (int i = 1, n = song->GetPartNum(); i < n; i++) {
 		sprintf_s(partReq, 1024, "%s/%s/%d", partReq, song->GetPart(0)->GetName(), partScore[i]);
 	}
 	//体の部位採点のリクエスト作成

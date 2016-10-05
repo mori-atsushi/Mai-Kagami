@@ -39,6 +39,7 @@ protected:
 	int max = 0; //区間別得点の点の数
 	int timing = 0; //タイミング
 	int expression = 0; //表情
+	int partScore[100];	//区間別得点
 private:
 	int Adjust(int point); //点数が0~100の範囲になるように調整
 	void Copy(float dst[JointType_Count][3], float source[JointType_Count][3]);
