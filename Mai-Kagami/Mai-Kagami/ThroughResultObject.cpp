@@ -59,8 +59,7 @@ ResultComment::ResultComment(Font *font)
 }
 
 void ResultComment::Load(const char *str) {
-
-	comment->MakeNewLine(str, WIDTH*0.5);
+	comment->MakeNewLine(str, WIDTH * 0.5);
 }
 
 void ResultComment::ContentView() {
