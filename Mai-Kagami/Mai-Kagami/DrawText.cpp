@@ -144,20 +144,51 @@ void MyDrawTexts::ChangeText(const char *str) {
 
 //文字が適切な範囲に入るように改行文字を入れる
 //x:文字列を収めたい横幅
-void MyDrawTexts::MakeNewLine(std::string s, const float x) {
-	float length = 0;
-	for (int i = 0, n = s.length(); i < n; i++) {
-		char c = s[i];
-		TCHAR c_t[3] = { NULL };
-		_stprintf_s(c_t, sizeof(c_t)/sizeof(c_t[0]), _T("%c"), &c);
-		length += GetDrawStringWidthToHandle(c_t, (int)strlen(c_t), f->Get(point)) * SIZE_RATE;
+void MyDrawTexts::MakeNewLine(std::string str, const float x) {
+	//std::string str = "あiうeお";
+
+	//文字列の全角と半角のデータを格納する配列
+	int data[100] = { 0 };
+	//文字列のコピー
+	std::string copy_s = str;
+	
+	for (int i = 0; !copy_s.empty(); i++) {
+		//IsDBCSLeadByteは先頭文字が全角か半角かを判定
+		if (IsDBCSLeadByte(copy_s[0]) == 0) {
+			data[i] = 1;	//半角のバイト数
+			copy_s.erase(0, 1);
+		} else {
+			data[i] = 2;	//全角のバイト数
+			copy_s.erase(0, 2);
+		}
+	}
+
+	//この変数に文字の幅を入れていきxを超えたところで改行文字を挿入する
+	int length = 0;
+	for (int i = 0, n = 0; data[n] != 0; i += data[n], n++) {
+		char c[3];
+
+		c[0] = str[i];
+		switch (data[n]) {
+		case 1:
+			c[1] = '\0';
+			break;
+		case 2:
+			c[1] = str[i + 1];	
+			c[2] = '\0';
+			break;
+		}
+		length += GetDrawStringWidthToHandle(c, strlen(c), f->Get(point)) * SIZE_RATE;
 		if (length > x) {
-			s.insert(i, "\n");
+			str.insert(i, "\n");
+			i++;
 			length = 0;
 		}
 	}
-	ChangeText(s.c_str());
+
+	this->ChangeText(str.c_str());
 }
+
 
 //複数行のテキスト表示幅取得
 float MyDrawTexts::GetWidth() {
