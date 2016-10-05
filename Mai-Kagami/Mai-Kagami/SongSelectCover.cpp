@@ -20,10 +20,12 @@ void SongSelectCover::Load(int max) {
 	coverWhite->ChangePos(WIDTH * 0.5, CalcY());
 	coverWhite->SetAlpha(CalcAlphaWhite());
 	coverWhite->ChangeEx(CalcEx());
-	playFlag = FALSE;
 }
 
 void SongSelectCover::Release() {
+	StopSoundMem(musicHandle);
+	DeleteSoundMem(musicHandle);
+	loadFlag = FALSE;
 	coverGraph->Release();
 	coverWhite->Release();
 }
@@ -67,20 +69,27 @@ void SongSelectCover::Draw(int scene) {
 	switch (scene) {
 	case OPTION1:
 	case OPTION2:
-		if(playFlag)
-			StopMusic();
-		playFlag = FALSE;
+	case OPTION2_PART:
+	case OPTION2_SPEED:
+		StopSoundMem(musicHandle);
 		danceMovie->Start();
 		danceMovie->Loop();
 		danceMovie->View();
 		break;
 	default:
-		if (n == 0 && !playFlag) {
-//			PlayMusic(music, DX_PLAYTYPE_LOOP); // èdÇ¢ÇÃÇ≈àÍéûìIÇ…è¡ãé Jaity
-			playFlag = TRUE;
+		if (n == 0) {
+			if (!loadFlag) {
+				musicHandle = LoadSoundMem(music);
+				loadFlag = TRUE;
+			}
+			if (CheckSoundMem(musicHandle) == 0)
+				PlaySoundMem(musicHandle, DX_PLAYTYPE_BACK);
 		}
-		else if (n != 0) {
-			playFlag = FALSE;
+		else {
+			if (CheckSoundMem(musicHandle) == 1)
+				StopSoundMem(musicHandle);
+			DeleteSoundMem(musicHandle);
+			loadFlag = FALSE;
 		}
 		break;
 	}

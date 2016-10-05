@@ -24,7 +24,8 @@ private:
 	int CalcAlpha();
 	int CalcAlphaWhite();
 	double CalcEx();
-	boolean playFlag = 0;
+	int musicHandle;
+	boolean loadFlag = FALSE;
 	DecorationItem *decorationItem;
 };
 

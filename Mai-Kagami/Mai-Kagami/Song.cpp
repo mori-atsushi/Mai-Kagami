@@ -55,7 +55,7 @@ Song::Song(DecorationItem *decorationItem, const int id, const char *title, cons
 	char cover[256], movie[256];
 	strcpy_s(Song::folder, sizeof(Song::folder), folder); //フォルダ
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder); //カバー画像
-	sprintf_s(music, sizeof(music), "song/%s/music.mp3", folder); //音楽
+	sprintf_s(music, sizeof(music), "song/%s/music.wav", folder); //音楽
 	sprintf_s(movie, sizeof(movie), "song/%s/movie.ogv", folder); //動画
 	Song::id = id;
 	n = new int();

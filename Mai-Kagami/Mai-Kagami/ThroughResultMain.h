@@ -21,6 +21,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	void ContentDelete();
+	int bgmHandle; //bgm
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
 	Result *result;
