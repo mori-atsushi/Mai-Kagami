@@ -39,7 +39,7 @@ void TopTouchMessage::View() {
 TopTouchButton::TopTouchButton(DecorationItem *decorationItem)
 	: Pos(WIDTH, NFC_POS) {
 	float r = WIDTH / 12;
-	text = new MyDrawTexts(decorationItem, "ここに\nタッチ！", GetX() - r, GetY(), 2, 40, 20);
+	text = new MyDrawTexts(decorationItem, "ここに\nタッチ！", GetX() - r, GetY(), ALIGNMENT_RIGHT, 40, 20);
 	circle = new MyDrawCircle(GetX(), GetY(), r);
 }
 
@@ -50,6 +50,6 @@ void TopTouchButton::View() {
 }
 
 TopTouchButton::~TopTouchButton() {
-	delete text;
+//	delete text;
 	delete circle;
 }

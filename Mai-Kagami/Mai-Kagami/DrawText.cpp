@@ -79,7 +79,7 @@ MyDrawTexts::MyDrawTexts(DecorationItem *decorationItem, const char *str, const 
 	inter = lineInterval; //間隔
 	strcpy_s(color, sizeof(color), colorName);
 	this->point = point;
-	decorationItem = decorationItem;
+	this->decorationItem = decorationItem;
 
 	ChangeText(str);
 }

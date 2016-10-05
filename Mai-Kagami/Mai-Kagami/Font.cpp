@@ -10,8 +10,8 @@ Font::Font() {
 
 //ƒtƒHƒ“ƒgæ“¾
 int Font::GetFont(int point) {
-	//printfDx("%d ", this->p[0]);
-	//return id[point];
+//	printfDx("%d", p[0]);
+	return id[point];
 	return 0;
 }
 

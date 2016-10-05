@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 	SetAlwaysRunFlag(TRUE); //バックグラウンドでも処理を実行
 	MaiKagami *maiKagami = new MaiKagami(); //舞鏡クラス作成
+	Font *font = new Font();
 
 	SetUseASyncLoadFlag(TRUE); //非同期読み込みon
 							   // while(裏画面を表画面に反映, メッセージ処理, 画面クリア)
