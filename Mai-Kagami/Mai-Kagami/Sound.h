@@ -16,10 +16,10 @@ public:
 private:
 	int id[SOUND_NUM];
 	char path[SOUND_NUM][64] = {
-		"./se/decide.mp3",
-		"./se/choice.mp3",
-		"./se/decide.mp3",
-		"./se/error.mp3"
+		"./se/decide.wav",
+		"./se/choice.wav",
+		"./se/decide.wav",
+		"./se/error.wav"
 	};
 
 };

@@ -132,7 +132,6 @@ PartOptionPop::PartOptionPop(DecorationItem *decorationItem, Songs *songs, Touch
 
 int PartOptionPop::Switch(const int scene) {
 	if (scene == mainScene)
-		printfDx("1");
 		return partOptionPreview->Switch(scene);
 	if (scene == partScene)
 		return partPop->Switch(scene);

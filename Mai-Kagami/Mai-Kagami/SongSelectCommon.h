@@ -34,6 +34,7 @@ public:
 	~SongInformation();
 private:
 	int n, now;
+	DecorationItem *decorationItem;
 	User *user;
 	Touch *touch;
 	SongSelectCover *songCover[256];
