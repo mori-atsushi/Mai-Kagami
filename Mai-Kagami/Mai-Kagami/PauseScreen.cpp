@@ -1,6 +1,7 @@
 #include "PauseScreen.h"
 
 PauseScreen::PauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int pauseScene, const int startScene, const int songSelectScene, const int settingScene) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	this->pauseScene = pauseScene;
 	this->startScene = startScene;

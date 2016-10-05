@@ -20,6 +20,7 @@ private:
 	void ContentView();
 	void ContentDelete();
 	int scene;
+	DecorationItem *decorationItem;
 	PartResult *partResult;
 	PartFinish *partFinish;
 };

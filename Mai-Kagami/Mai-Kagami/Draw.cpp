@@ -20,7 +20,7 @@ void Color::ChangeColor(const char *color) {
 	else if (!strcmp(color, "Yellow"))
 		c = GetColor(255, 255, 0); //â©êF
 	else if (!strcmp(color, "Red"))
-		c = GetColor(255, 0, 0);
+		c = GetColor(255, 50, 0);
 	else if (!strcmp(color, "Glay"))
 		c = GetColor(177, 177, 177);	//äDêF
 }

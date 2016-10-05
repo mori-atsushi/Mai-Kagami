@@ -26,6 +26,7 @@ public:
 	PartOptionPartPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene);
 	int Switch(const int scene);
 private:
+	DecorationItem *decorationItem;
 	void ContentUpdate();
 	int mainScene, partScene;
 };
@@ -43,6 +44,8 @@ protected:
 	Button *button[2];
 	MyDrawText *message, *caption[3], *para[3];
 	int mainScene, partScene, speedScene;
+private:
+	DecorationItem *decorationItem;
 };
 
 class PartOptionPop : public SubScene {

@@ -1,6 +1,7 @@
 #include "PartResultMain.h"
 
 PartResultMain::PartResultMain(DecorationItem *decorationItem, Touch *touch, Songs *songs) {
+	this->decorationItem = decorationItem;
 	partResult = new PartResult(decorationItem, songs, touch);
 	partFinish = new PartFinish(decorationItem, touch);
 }
@@ -23,18 +24,23 @@ MainScene PartResultMain::Switch(const MainScene scene) {
 	}
 	if (this->scene == PART_RESULT_BACK_PLAY) {
 		Delete();
+		printfDx("0");
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART;
 	}
 	if (this->scene == PART_RESULT_BACK_SONG_SELECT) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return SONG_SELECT;
 	}
 	if (this->scene == PART_RESULT_BACK_THROUGH_OPTION) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH_OPTION;
 	}
 	if (this->scene == PART_RESULT_BACK_PART_OPTION) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART_OPTION;
 	}
 	return PART_RESULT;

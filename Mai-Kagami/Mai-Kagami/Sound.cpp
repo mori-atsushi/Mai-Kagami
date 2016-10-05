@@ -6,9 +6,9 @@ SoundEffect::SoundEffect() {
 		id[i] = LoadSoundMem(path[i]);
 }
 
-//Œø‰Ê‰¹ID‚ğíœ
-int SoundEffect::GetSoundEffect(int SoundType) {
-	return id[SoundType];
+//Œø‰Ê‰¹Ä¶
+void SoundEffect::PlaySoundEffect(int SoundType) {
+	PlaySoundMem(id[SoundType], DX_PLAYTYPE_BACK);
 }
 
 SoundEffect::~SoundEffect() {

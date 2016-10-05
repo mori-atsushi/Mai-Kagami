@@ -14,7 +14,7 @@
 //ポーズボタン画面
 class ThroughPauseButton : public SubScene {
 public:
-	ThroughPauseButton(Touch *touch);
+	ThroughPauseButton(Touch *touch, DecorationItem* decorationItem);
 	void Load();
 	int Switch(const int scene);
 	void Delete();
@@ -22,6 +22,7 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	DecorationItem *decorationItem;
 	CircleGraphButton *pauseButton; //一時停止用ボタン
 };
 

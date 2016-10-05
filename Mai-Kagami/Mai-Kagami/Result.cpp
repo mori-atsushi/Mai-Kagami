@@ -79,7 +79,6 @@ void Result::Send() {
 	char url[512] = { 0 };
 	sprintf_s(url, 512, "http://globalstudios.jp/mai-archive/api_add.php?%s&%s&%s&%s&%s&%s&%s&%s&%s", 
 		songReq, userReq, dateReq, totalReq, partReq, bodyReq, timingReq, expressionReq, commentReq);
-	printfDx(url);
 	Http http;
 	if(!http.Send(url))	printfDx("httpÉGÉâÅ[");
 }

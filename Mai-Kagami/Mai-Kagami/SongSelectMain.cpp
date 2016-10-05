@@ -1,6 +1,7 @@
 #include "SongSelectMain.h"
 
 SongSelect::SongSelect(DecorationItem *decorationItem, Touch *touch, Songs *songs, User *user) {
+	this->decorationItem = decorationItem;
 	songSelectTitle = new SongSelectTitle(decorationItem); //曲選択画面タイトル初期化
 	songSelectButton = new SongSelectButton(decorationItem, touch);
 	songInformation = new SongInformation(decorationItem, songs, touch, user); //選択中の曲初期化
@@ -52,12 +53,15 @@ MainScene SongSelect::Switch(const MainScene scene) {
 	{
 	case BACK_TOP:
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return TOP;
 	case NEXT1:
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH;
 	case NEXT2:
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART;
 	default:
 		return SONG_SELECT;

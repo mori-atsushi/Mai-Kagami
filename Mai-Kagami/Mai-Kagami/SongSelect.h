@@ -21,6 +21,7 @@ public:
 	void ContentView(); //•\Ž¦
 	~SongSelectButton();
 private:
+	DecorationItem *decorationItem;
 	Button *button[4];
 };
 
@@ -33,6 +34,7 @@ public:
 	void ContentView();
 	~SongSelectPop();
 private:
+	DecorationItem *decorationItem;
 	Touch *touch;
 	BlackBox *blackBox;
 	MyDrawText *title;

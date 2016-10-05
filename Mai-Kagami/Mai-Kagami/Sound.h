@@ -3,19 +3,20 @@
 
 #include "DxLib.h"
 
-#define SOUND_NUM 3
+#define SOUND_NUM 4
 
-enum sound{SOUND_EFFECT_CHOICE, SOUND_EFFECT_DECIDE, SOUND_EFFECT_ERROR};
+enum sound{SOUND_EFFECT_LOGIN, SOUND_EFFECT_CHOICE, SOUND_EFFECT_DECIDE, SOUND_EFFECT_ERROR};
 
 
 class SoundEffect {
 public:
 	SoundEffect();
-	int GetSoundEffect(int soundType);	//å¯â âπIDéÊÇËèoÇµ
+	void PlaySoundEffect(int SoundType);
 	~SoundEffect();
 private:
 	int id[SOUND_NUM];
 	char path[SOUND_NUM][64] = {
+		"./se/decide.mp3",
 		"./se/choice.mp3",
 		"./se/decide.mp3",
 		"./se/error.mp3"

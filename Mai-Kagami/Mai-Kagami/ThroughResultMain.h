@@ -18,6 +18,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	void ContentDelete();
+	DecorationItem *decorationItem;
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
 	Result *result;

@@ -16,7 +16,7 @@ public:
 	MainScene Switch(const MainScene scene);
 	~Top();
 private:
-	DecorationItem *decoItem;	//フォント&効果音
+	DecorationItem *decorationItem;	//フォント&効果音
 	TopLogo *topLogo; //トップロゴ
 	TopTouchMessage *topTouchMessage; //NFCタッチメッセージ
 	TopTouchButton *topTouchButton; //NFCタッチボタン

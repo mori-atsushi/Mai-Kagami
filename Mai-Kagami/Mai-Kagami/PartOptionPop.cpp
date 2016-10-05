@@ -29,6 +29,7 @@ void PartOptionSpeedPop::ContentUpdate() {
 
 PartOptionPartPop::PartOptionPartPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene)
 	: PartPop(decorationItem, songs, touch) {
+	this->decorationItem = decorationItem;
 	this->mainScene = mainScene;
 	this->partScene = partScene;
 }
@@ -57,6 +58,7 @@ void PartOptionPartPop::ContentUpdate() {
 }
 
 PartOptionPreview::PartOptionPreview(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int partScene, const int speedScene) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	this->mainScene = mainScene;
 	this->partScene = partScene;
@@ -73,10 +75,14 @@ PartOptionPreview::PartOptionPreview(DecorationItem *decorationItem, Songs *song
 }
 
 int PartOptionPreview::Switch(const int scene) {
-	if (button[0]->GetTouch() == 1)
+	if (button[0]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return partScene;
-	if (button[1]->GetTouch() == 1)
+	}
+	if (button[1]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return speedScene;
+	}
 	return scene;
 }
 void PartOptionPreview::ContentUpdate() {
@@ -126,6 +132,7 @@ PartOptionPop::PartOptionPop(DecorationItem *decorationItem, Songs *songs, Touch
 
 int PartOptionPop::Switch(const int scene) {
 	if (scene == mainScene)
+		printfDx("1");
 		return partOptionPreview->Switch(scene);
 	if (scene == partScene)
 		return partPop->Switch(scene);

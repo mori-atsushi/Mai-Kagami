@@ -21,6 +21,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	int pauseScene,  startScene, songSelectScene, settingScene;
+	DecorationItem *decorationItem;
 	Songs *songs;
 	BlackBox *blackBox; //îwåiîºìßñæçïÇÃéläpå`
 	MyDrawText *title;

@@ -2,6 +2,7 @@
 
 ThroughResultMain::ThroughResultMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, User *user) {
 	result = new Result(songs, user);
+	this->decorationItem = decorationItem;
 	throughResult = new ThroughResult(decorationItem, songs, touch, result);
 	throughDetail = new ThroughDetail(decorationItem, songs, touch, result);
 }
@@ -25,16 +26,20 @@ MainScene ThroughResultMain::Switch(const MainScene scene) {
 		this->scene = throughDetail->Switch(this->scene);
 		break;
 	}
+
 	if (this->scene == THROUGH_RESULT_BACK_PLAY) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH;
 	}
 	if (this->scene == THROUGH_RESULT_BACK_SONG_SELECT) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return SONG_SELECT;
 	}
 	if (this->scene == THROUGH_RESULT_BACK_PART_OPTION) {
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART_OPTION;
 	}
 	return THROUGH_RESULT;
