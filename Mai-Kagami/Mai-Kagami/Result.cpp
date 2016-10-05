@@ -7,7 +7,7 @@ Result::Result(Songs *songs, User *user) {
 
 void Result::Calc() {
 	total = 64;
-	strcpy(comment, /*"あメロからサビに入ってからサビの終わりにかけてが苦手\nのように思います。そこを重点的に練習しましょう。"*/"私はペンが好きです");
+	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
 	point[0] = 2;
 	point[1] = 2;
 	point[2] = 1;
@@ -46,11 +46,10 @@ void Result::Send() {
 	char totalReq[16] = { 0 };
 	sprintf_s(totalReq, 16, "total=%d", this->total);
 	//区間別採点のリクエスト作成
-
-	char partReq[64] = { 0 };
-	sprintf_s(partReq, 64, "part=%d", score[0]);
+	char partReq[1024] = { 0 };
+	sprintf_s(partReq, 1024, "part=%s/%d", song->GetPart(0)->GetName(),score[0]);
 	for (int i = 1, n = this->max; i < n; i++) {
-		sprintf_s(partReq, 64, "%s/%d", partReq, score[i]);
+		sprintf_s(partReq, 1024, "%s/%s/%d", partReq, song->GetPart(0)->GetName(), partScore[i]);
 	}
 	//体の部位採点のリクエスト作成
 	char bodyPoint[4] = { 0 };

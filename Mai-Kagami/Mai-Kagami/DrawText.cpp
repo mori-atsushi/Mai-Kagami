@@ -27,6 +27,11 @@ void MyDrawText::ChangeFont(DecorationItem *decorationItem, const int point) {
 	 this->decorationItem = decorationItem->GetFont(point); //フォント情報
 }
 
+//文字色変更
+void MyDrawText::ChangeColor(char *colorName) {
+	Color::ChangeColor(colorName);
+}
+
 //テキストの縦取得
 float MyDrawText::GetHeight() {
 	int line = 1; //行数
@@ -84,6 +89,20 @@ MyDrawTexts::MyDrawTexts(DecorationItem *decorationItem, const char *str, const 
 	ChangeText(str);
 }
 
+//MyDrawTexts（フォントポインタ、表示文字、x座標、文章を収めたいx座標の範囲、ポジション情報、フォントサイズ、行間隔、色）　※色は省略可能、省略した場合白色
+//ポジション情報（ALIGNMENT_LEFT：左寄せ、ALIGNMENT_CENTER：中央寄せ、ALIGNMENT_RIGHT：右寄せ）
+MyDrawTexts::MyDrawTexts(DecorationItem *decorationItem, const char *str, const float x1, const float x2, const float y, const int pos, const int point, const float lineInterval, const char *colorName)
+	:Color(colorName), Draw(x1, y){
+
+	p = pos;
+	inter = lineInterval;
+	strcpy_s(color, sizeof(color), colorName);
+	this->point = point;
+	this->decorationItem = decorationItem;
+	std::string s(str);
+	MakeNewLine(s, x2);
+}
+
 //複数行のテキスト表示
 void MyDrawTexts::ContentView() {
 	for (int i = 0; i < l; i++)
@@ -105,7 +124,6 @@ void MyDrawTexts::ChangePos(const float x, const float y) {
 void MyDrawTexts::ChangeText(const char *str) {
 	for (int i = 0; i < l; i++)
 		delete myDrawText[i];
-
 	l = 0;
 	char a[256];
 	int i, j;
@@ -123,6 +141,54 @@ void MyDrawTexts::ChangeText(const char *str) {
 	}
 	ChangePos(GetX(), GetY());
 }
+
+//文字が適切な範囲に入るように改行文字を入れる
+//x:文字列を収めたい横幅
+void MyDrawTexts::MakeNewLine(std::string str, const float x) {
+	//std::string str = "あiうeお";
+
+	//文字列の全角と半角のデータを格納する配列
+	int data[100] = { 0 };
+	//文字列のコピー
+	std::string copy_s = str;
+	
+	for (int i = 0; !copy_s.empty(); i++) {
+		//IsDBCSLeadByteは先頭文字が全角か半角かを判定
+		if (IsDBCSLeadByte(copy_s[0]) == 0) {
+			data[i] = 1;	//半角のバイト数
+			copy_s.erase(0, 1);
+		} else {
+			data[i] = 2;	//全角のバイト数
+			copy_s.erase(0, 2);
+		}
+	}
+
+	//この変数に文字の幅を入れていきxを超えたところで改行文字を挿入する
+	int length = 0;
+	for (int i = 0, n = 0; data[n] != 0; i += data[n], n++) {
+		char c[3];
+
+		c[0] = str[i];
+		switch (data[n]) {
+		case 1:
+			c[1] = '\0';
+			break;
+		case 2:
+			c[1] = str[i + 1];	
+			c[2] = '\0';
+			break;
+		}
+		length += GetDrawStringWidthToHandle(c, strlen(c), decorationItem->GetFont(point)) * SIZE_RATE;
+		if (length > x) {
+			str.insert(i, "\n");
+			i++;
+			length = 0;
+		}
+	}
+
+	this->ChangeText(str.c_str());
+}
+
 
 //複数行のテキスト表示幅取得
 float MyDrawTexts::GetWidth() {

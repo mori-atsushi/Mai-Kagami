@@ -5,9 +5,9 @@ ScoreBar::ScoreBar(DecorationItem *decorationItem, const float y, const char *ti
 	const float height = 110;
 	this->title = new MyDrawTextLine(decorationItem, title, GetX(), GetY(), 0, 24, WIDTH * 0.3, 2);
 	mark = new MyDrawGraph(0, GetY() + height - 50, "img/mark.png");
-	score = new MyDrawText(decorationItem, "", 0, GetY() + height - 55, 1, 30);
-	para[0] = new MyDrawText(decorationItem, para1, GetX() - 100, GetY() + height, 2, 20);
-	para[1] = new MyDrawText(decorationItem, para2, GetX() + 100, GetY() + height, 0, 20);
+	score = new MyDrawText(decorationItem, "", 0, GetY() + height - 55, ALIGNMENT_CENTER, 30);
+	para[0] = new MyDrawText(decorationItem, para1, GetX() - 100, GetY() + height, ALIGNMENT_RIGHT, 20);
+	para[1] = new MyDrawText(decorationItem, para2, GetX() + 100, GetY() + height, ALIGNMENT_LEFT, 20);
 	for (int i = 0; i < 8; i++)
 		box[i] = new MyDrawBox(GetX() - 77 + i * 22, GetY() + height, 20, 40);
 }
@@ -54,12 +54,12 @@ ExpressionBar::ExpressionBar(DecorationItem *decorationItem) : ScoreBar(decorati
 
 ResultComment::ResultComment(DecorationItem *decorationItem)
 	: Draw(WIDTH * 0.6, HEIGHT * 0.64) {
-	title = new MyDrawTextLine(decorationItem, "コメント", GetX(), GetY(), 0, 24, WIDTH * 0.55, 2);
-	comment = new MyDrawTexts(decorationItem, "", GetX(), GetY() + 66, 1, 20, 16);
+	title = new MyDrawTextLine(decorationItem, "コメント", GetX(), GetY(), ALIGNMENT_LEFT, 24, WIDTH * 0.55, 2);
+	comment = new MyDrawTexts(decorationItem, "", WIDTH * 0.35, GetY() + 72, ALIGNMENT_LEFT, 20, 16);
 }
- 
+
 void ResultComment::Load(const char *str) {
-	comment->ChangeText(str);
+	comment->MakeNewLine(str, WIDTH * 0.5);
 }
 
 void ResultComment::ContentView() {
@@ -75,10 +75,11 @@ ResultComment::~ResultComment() {
 ResultBody::ResultBody(DecorationItem *decorationItem) 
 	: Draw(WIDTH * 0.8, HEIGHT * 0.53) {
 	body = new MyDrawGraph(GetX(), GetY(), "img/man.png");
-	part[0] = new MyDrawText(decorationItem, "左手", GetX() - 106, GetY() - 68, 1, 20);
-	part[1] = new MyDrawText(decorationItem, "右手", GetX() + 140, GetY() - 55, 1, 20);
-	part[2] = new MyDrawText(decorationItem, "左足", GetX() - 100, GetY() + 68, 1, 20);
-	part[3] = new MyDrawText(decorationItem, "右足", GetX() + 122, GetY() + 55, 1, 20);
+	part[0] = new MyDrawText(decorationItem, "左手", GetX() - 106, GetY() - 68, ALIGNMENT_CENTER, 20);
+	part[1] = new MyDrawText(decorationItem, "右手", GetX() + 140, GetY() - 55, ALIGNMENT_CENTER, 20);
+	part[2] = new MyDrawText(decorationItem, "左足", GetX() - 100, GetY() + 68, ALIGNMENT_CENTER, 20);
+	part[3] = new MyDrawText(decorationItem, "右足", GetX() + 122, GetY() + 55, ALIGNMENT_CENTER, 20);
+
 	point[0] = new MyDrawText(decorationItem, "", GetX() - 147, GetY() - 70, 1, 30, "Yellow");
 	point[1] = new MyDrawText(decorationItem, "", GetX() + 99, GetY() - 57, 1, 30, "Yellow");
 	point[2] = new MyDrawText(decorationItem, "", GetX() - 141, GetY() + 66, 1, 30, "Yellow");
@@ -88,15 +89,19 @@ ResultBody::ResultBody(DecorationItem *decorationItem)
 void ResultBody::Load(const int point[4]) {
 	body->Load();
 	for (int i = 0; i < 4; i++) {
+		
 		switch (point[i]) {
 		case 1:
 			this->point[i]->ChangeText("A");
+			this->point[i]->ChangeColor("Red");
 			break;
 		case 2:
 			this->point[i]->ChangeText("B");
+			this->point[i]->ChangeColor("Yellow");
 			break;
 		case 3:
 			this->point[i]->ChangeText("C");
+			this->point[i]->ChangeColor("Green");
 			break;
 		}
 	}
@@ -124,11 +129,13 @@ ResultBody::~ResultBody() {
 }
 
 ResultGraph::ResultGraph(DecorationItem *decorationItem) 
-	: Draw(WIDTH * 0.65, HEIGHT * 0.31) {
+	: Draw(WIDTH * 0.65, HEIGHT * 0.32) {
 	this->decorationItem = decorationItem;
+
+	text = new MyDrawText(decorationItem, "区間別採点", WIDTH*0.35, HEIGHT*0.245, 0, 20);
 	frame[0] = new MyDrawLine(GetX() - w / 2, GetY() - h / 2, GetX() - w / 2, GetY() + h / 2, 6, "White");
 	frame[1] = new MyDrawLine(GetX() - w / 2, GetY() + h / 2, GetX() + w / 2, GetY() + h / 2, 6, "White");
-	scale = new MyDrawTexts(decorationItem, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), 1, 20, 4);
+	scale = new MyDrawTexts(decorationItem, "100\n・\n・\n・\n・\n50\n・\n・\n・\n・\n0", GetX() - w / 2 - WIDTH * 0.025, GetY(), ALIGNMENT_CENTER, 20, 4);
 }
 
 void ResultGraph::Load(const int *point, const int num, Song *song) {
@@ -142,7 +149,8 @@ void ResultGraph::Load(const int *point, const int num, Song *song) {
 			float y2 = GetY() + h / 2 - (float)point[i - 1] / 100 * h;
 			line[i - 1] = new MyDrawLine(x1, y1, x2, y2, 3);
 		}
-		dot[i] = new MyDrawCircle(x1, y1, 10, "Yellow");
+		dot[i] = new MyDrawGraph(x1, y1, "img/star.png", 0.1);
+		dot[i]->Load();
 		if (point[i] > 80)
 			dot[i]->SetViewFlag(TRUE);
 		else
@@ -163,10 +171,10 @@ void ResultGraph::ContentView() {
 		line[i]->View();
 	for(int i = 0; i < pointMax; i++)
 		dot[i]->View();
-
 	for (int i = 0; i < 2; i++)
 		frame[i]->View();
 	scale->View();
+	text->View();
 }
 
 void ResultGraph::Delete() {
