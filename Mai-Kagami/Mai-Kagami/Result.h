@@ -21,10 +21,15 @@ public:
 	int GetTiming(); //タイミング取得
 	int GetExpression(); //表情取得
 	int GetScore(int x[100]); //区間別得点取得
+	int GetBadPart();
+	int GetBadSpeed();
 private:
 	void GetNowTime(int nowTime[]);
-	int CalcHappy();
+	int CalcHappy(); //表情採点
+	void CalcRecommend(); //オススメ練習算出
+	int badPart, badSpeed;
 	Songs *songs;
+	Song *song;
 	User *user;
 	Kinect *kinect;
 };

@@ -147,6 +147,20 @@ void Song::ChangeEnd(int num) {
 		danceMovie->SetEndFlame(GetPart(*end + 1)->GetFlame());
 }
 
+void Song::SetSpeed(const int speed) {
+	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+	danceMovie->ChangeSpeed(s[speed]);
+}
+
+void Song::SetStart(const int startPart) {
+	*start = startPart;
+}
+
+void Song::SetEnd(const int endPart) {
+	*end = endPart;
+}
+
+
 int Song::StartPart() {
 	return *start;
 }

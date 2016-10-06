@@ -1,41 +1,53 @@
 #include "ThroughDetail.h"
 
-ThroughFinish::ThroughFinish(DecorationItem *decorationItem, Touch *touch) {
+ThroughFinish::ThroughFinish(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
+	this->songs = songs;
+	this->result = result;
 	blackBox = new BlackBox();
-	button[0] = new RecommendButton(decorationItem, touch, 0);
-	button[1] = new CircleButton(decorationItem, touch, "‚à‚¤ˆê“x", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(decorationItem, touch, "•”•ª—ûK", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(decorationItem, touch, "‹È‘I‘ð‰æ–Ê", 3, WIDTH * 0.75, "White");
+	rButton = new RecommendButton(decorationItem, songs, touch, result, 0);
+	button[0] = new CircleButton(decorationItem, touch, "‚à‚¤ˆê“x", 1, WIDTH * 0.75, "White");
+	button[1] = new CircleButton(decorationItem, touch, "•”•ª—ûK", 2, WIDTH * 0.75, "White");
+	button[2] = new CircleButton(decorationItem, touch, "‹È‘I‘ð‰æ–Ê", 3, WIDTH * 0.75, "White");
 }
 
 ThroughResultScene ThroughFinish::Switch(const ThroughResultScene scene) {
+	Song *song = songs->GetSong(songs->GetNowSong());
+	if (rButton->GetTouch() == 1) {
+		song->SetStart(result->GetBadPart());
+		song->SetEnd(result->GetBadPart());
+		song->SetSpeed(result->GetBadSpeed());
+		return THROUGH_RESULT_BACK_PART_OPTION;
+	}
 	if (button[0]->GetTouch() == 1)
-		return THROUGH_RESULT_BACK_PART_OPTION;
-	if (button[1]->GetTouch() == 1)
 		return THROUGH_RESULT_BACK_PLAY;
-	if (button[2]->GetTouch() == 1)
+	if (button[1]->GetTouch() == 1)
 		return THROUGH_RESULT_BACK_PART_OPTION;
-	if (button[3]->GetTouch() == 1)
+	if (button[2]->GetTouch() == 1)
 		return THROUGH_RESULT_BACK_SONG_SELECT;
 	return scene;
 }
 
 void ThroughFinish::ContentUpdate() {
-	if (nowScene == THROUGH_RESULT_FINISH)
+	if (nowScene == THROUGH_RESULT_FINISH) {
+		rButton->Update();
 		viewFlag = TRUE;
-	else
+	}
+	else {
 		viewFlag = FALSE;
+	}
 }
 
 void ThroughFinish::ContentView() {
 	blackBox->View();
-	for (int i = 0; i < 4; i++)
+	rButton->View();
+	for (int i = 0; i < 3; i++)
 		button[i]->View();
 }
 
 ThroughFinish::~ThroughFinish() {
 	delete blackBox;
-	for (int i = 0; i < 4; i++)
+	delete rButton;
+	for (int i = 0; i < 3; i++)
 		delete button[i];
 }
 
@@ -106,7 +118,7 @@ ThroughDetailScreen::~ThroughDetailScreen() {
 
 ThroughDetail::ThroughDetail(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
 	throughDetailScreen = new ThroughDetailScreen(decorationItem, songs, touch, result);
-	throughFinish = new ThroughFinish(decorationItem, touch);
+	throughFinish = new ThroughFinish(decorationItem, songs, touch, result);
 }
 
 ThroughResultScene ThroughDetail::Switch(const ThroughResultScene scene) {
@@ -148,11 +160,21 @@ ThroughDetail::~ThroughDetail() {
 	delete throughFinish;
 }
 
-RecommendButton::RecommendButton(DecorationItem *decorationItem, Touch* touch, const int num)
+RecommendButton::RecommendButton(DecorationItem *decorationItem, Songs *songs, Touch* touch, Result *result, const int num)
 	: Button(num, touch){
+	this->songs = songs;
+	this->result = result;
 	text = new MyDrawTextLine(decorationItem, "‚¨‚·‚·‚ß—ûK", WIDTH * 0.75, GetY() - HEIGHT * 0.015, 1, 30, WIDTH * 0.25,  3, "White");
 	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, "White");
-	textSub = new MyDrawText(decorationItem, "Bƒƒ`ƒTƒr @‘¬“x:~0.7", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
+	textSub = new MyDrawText(decorationItem, "", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
+}
+
+void RecommendButton::Update() {
+	const double s[6] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5 };
+	Song *song = songs->GetSong(songs->GetNowSong());
+	char buf[256];
+	sprintf_s(buf, sizeof(buf), "%s ` %s @‘¬“x:~%1.1f", song->GetPart(result->GetBadPart())->GetName(), song->GetPart(result->GetBadPart())->GetName(), s[result->GetBadSpeed()]);
+	textSub->ChangeText(buf);
 }
 
 void RecommendButton::ContentView() {

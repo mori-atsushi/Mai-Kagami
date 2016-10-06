@@ -52,6 +52,9 @@ public:
 	void ChangeSpeed(int num); //動画の再生速度変更
 	void ChangeStart(int num); //動画の開始位置変更
 	void ChangeEnd(int num); //動画の終了位置変更
+	void SetSpeed(const int speed);
+	void SetStart(const int startPart);
+	void SetEnd(const int endPart);
 	int StartPart();
 	int EndPart();
 	void LoadPart(); //パート情報ロード

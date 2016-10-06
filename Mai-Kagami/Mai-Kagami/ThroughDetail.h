@@ -11,16 +11,34 @@
 #include "ThroughResultDefine.h"
 #include "Result.h"
 
+class RecommendButton : public Button {
+public:
+	RecommendButton(DecorationItem *decorationItem, Songs *songs, Touch* touch, Result *result, const int num);
+	void Update();
+	void ContentView();
+	~RecommendButton();
+private:
+	MyDrawTextLine *text;
+	MyDrawText *textSub;
+	
+	MyDrawCircle *myDrawCircle;
+	Result *result;
+	Songs *songs;
+};
+
 class ThroughFinish : public SubScene {
 public:
-	ThroughFinish(DecorationItem *decorationItem, Touch *touch);
+	ThroughFinish(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result);
 	ThroughResultScene Switch(const ThroughResultScene scene);
 	void ContentUpdate();
 	void ContentView();
 	~ThroughFinish();
 private:
 	BlackBox *blackBox;
-	Button *button[4];
+	RecommendButton *rButton;
+	Button *button[3];
+	Songs *songs;
+	Result *result;
 };
 
 class ThroughDetailScreen : public SubScene {
@@ -57,18 +75,6 @@ private:
 	void ContentView();
 	ThroughDetailScreen *throughDetailScreen;
 	ThroughFinish *throughFinish;
-};
-
-class RecommendButton : public Button {
-public:
-	RecommendButton(DecorationItem *decorationItem, Touch* touch, const int num);
-	void ContentView();
-	~RecommendButton();
-private:
-	MyDrawTextLine *text;
-	MyDrawText *textSub;
-
-	MyDrawCircle *myDrawCircle;
 };
 
 #endif

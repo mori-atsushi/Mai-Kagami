@@ -7,7 +7,7 @@ Result::Result(Songs *songs, User *user, Kinect *kinect) {
 }
 
 void Result::Calc() {
-	Song *song = songs->GetSong(songs->GetNowSong());
+	song = songs->GetSong(songs->GetNowSong());
 	if (KINECT_FLAG) {
 		char buf[256];
 		sprintf(buf, "song/%s/model.txt", song->GetFolder());
@@ -45,6 +45,7 @@ void Result::Calc() {
 		partScore[8] = 70;
 		partScore[9] = 80;
 	}
+	CalcRecommend();
 	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
 }
 
@@ -55,6 +56,24 @@ int Result::CalcHappy() {
 			return i;
 	}
 	return 8;
+}
+
+void Result::CalcRecommend() {
+	badPart = 0;
+	for (int i = 1; i < song->GetPartNum(); i++) {
+		if (partScore[i] < partScore[badPart])
+			badPart = i;
+	}
+	if (partScore[badPart] < 20)
+		badSpeed = 4;
+	else if (partScore[badPart] < 40)
+		badSpeed = 3;
+	else if (partScore[badPart] < 60)
+		badSpeed = 2;
+	else if (partScore[badPart] < 80)
+		badSpeed = 1;
+	else if (partScore[badPart] < 100)
+		badSpeed = 0;
 }
 
 //送信
@@ -152,4 +171,11 @@ int Result::GetScore(int x[100]) {
 	for (int i = 0; i < max; i++)
 		x[i] = score[i];
 	return max;
+}
+
+int Result::GetBadPart() {
+	return badPart;
+}
+int Result::GetBadSpeed() {
+	return badSpeed;
 }
