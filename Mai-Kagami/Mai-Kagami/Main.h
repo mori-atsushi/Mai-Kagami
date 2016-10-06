@@ -1,15 +1,15 @@
 #ifndef __MAIN_H_INCLUDED__
 #define __MAIN_H_INCLUDED__
 
-#define SIZE_RATE	2
+#define SIZE_RATE	1
 #define WIDTH		1080
 #define HEIGHT		1920
 
 #define NFC_POS		HEIGHT * 0.85
-#define NFC_FLAG	FALSE	//NFCカードを読み込むかどうか(TRUE:読み込む/FALSE:読み込まない)
-#define TOUCH_FLAG	FALSE	//サイドタッチパネルを使うか
+#define NFC_FLAG	TRUE	//NFCカードを読み込むかどうか(TRUE:読み込む/FALSE:読み込まない)
+#define TOUCH_FLAG	TRUE	//サイドタッチパネルを使うか
 #define KINECT_FLAG	FALSE	//KINECTを使用するかどうか(TRUE:使用する/FALSE:使用しない)
-#define FULLSCREEN_FLAG	FALSE	//フルスクリーンにするか
+#define FULLSCREEN_FLAG	TRUE	//フルスクリーンにするか
 
 
 typedef enum {
