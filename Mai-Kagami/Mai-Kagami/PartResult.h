@@ -20,13 +20,13 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	DecorationItem *decorationItem;
 	MyDrawTextLine *title; //採点結果画面タイトル
 	MyDrawText *part[100], *speed[100], *score[100];
 	MyDrawCircle *circle[100];
 	Button *button; //次へボタン
 	Song *song;
 	Songs *songs;
-	DecorationItem *decorationItem;
 	int partMax;
 };
 

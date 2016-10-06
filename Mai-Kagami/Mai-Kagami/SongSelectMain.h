@@ -23,6 +23,7 @@ public:
 	void SetScene(const int scene);
 	~SongSelect();
 private:
+	DecorationItem *decorationItem;
 	SongSelectTitle *songSelectTitle; //曲選択画面タイトル
 	SongInformation *songInformation; //選択中の曲
 	SongSelectButton *songSelectButton; //ボタン関係

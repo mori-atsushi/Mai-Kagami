@@ -52,6 +52,7 @@ char *SongPart::GetName() {
 }
 
 Song::Song(DecorationItem *decorationItem, const int id, const char *title, const char *artist, const char *folder) {
+	this->decorationItem = decorationItem;
 	char cover[256], movie[256];
 	strcpy_s(Song::folder, sizeof(Song::folder), folder); //フォルダ
 	sprintf_s(cover, sizeof(cover), "song/%s/cover.jpg", folder); //カバー画像
@@ -97,31 +98,48 @@ void Song::ChangeSpeed(int num) {
 	static int x = 0;
 	if (num == 1 && x > 0) {
 		x -= 1;
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		danceMovie->ChangeSpeed(s[x]);
+	} else if (num == 1 && x <= 0) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
 	}
 	if (num == -1 && x < 5) {
 		x += 1;
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		danceMovie->ChangeSpeed(s[x]);
+	} else if (num == -1 && x >= 5) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
 	}
 }
 
 //動画の開始位置を変更
 void Song::ChangeStart(int num) {
-	if (num == 1 && *start > 0)
+	if (num == 1 && *start > 0) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*start) -= 1;
+	} else if (num == 1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
+
 	if (num == -1 && *start < GetPartNum() - 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*start) += 1;
-	}
+	} else if (num == -1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
 	danceMovie->SetStartFlame(GetPart(*start)->GetFlame());
 }
 
 //動画の終了位置を変更
 void Song::ChangeEnd(int num) {
 	if (num == 1 && *end > 0) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*end) -= 1;
-	}
-	if (num == -1 && *end < GetPartNum() - 1)
+	} else if (num == 1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
+	if (num == -1 && *end < GetPartNum() - 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*end) += 1;
+	} else if (num == 1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
 
 	if (*end + 1 == GetPartNum())
 		danceMovie->SetEndFlame(danceMovie->GetAllFlame());

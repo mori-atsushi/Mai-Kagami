@@ -1,6 +1,7 @@
 #include "ThroughPause.h"
 
-ThroughPauseButton::ThroughPauseButton(Touch *touch) {
+ThroughPauseButton::ThroughPauseButton(Touch *touch, DecorationItem* decorationItem) {
+	this->decorationItem = decorationItem;
 	pauseButton = new CircleGraphButton(touch, 0, "img/pause.png");
 }
 
@@ -9,8 +10,10 @@ void ThroughPauseButton::Load() {
 }
 
 int ThroughPauseButton::Switch(const int scene) {
-	if (pauseButton->GetTouch() == 1)
+	if (pauseButton->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH_PAUSE;
+	}
 	return scene;
 }
 
@@ -45,6 +48,7 @@ ThroughPauseScreen::ThroughPauseScreen(DecorationItem *decorationItem, Songs *so
 
 int ThroughPauseSetting::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		song->danceMovie->SetSpeed();
 		return THROUGH_PAUSE;
 	}
@@ -62,7 +66,7 @@ void ThroughPauseSetting::ContentUpdate() {
 }
 
 ThroughPause::ThroughPause(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
-	throughPauseButton = new ThroughPauseButton(touch); //ポーズボタン画面
+	throughPauseButton = new ThroughPauseButton(touch, decorationItem); //ポーズボタン画面
 	throughPauseScreen = new ThroughPauseScreen(decorationItem, songs, touch);
 	throughPauseSetting = new ThroughPauseSetting(decorationItem, songs, touch);
 	flag = FALSE;

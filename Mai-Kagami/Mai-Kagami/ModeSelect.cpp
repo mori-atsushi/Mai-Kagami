@@ -2,6 +2,7 @@
 
 //モード選択初期化
 ModeSelectButton::ModeSelectButton(DecorationItem *decorationItem, Touch *touch) {
+	this->decorationItem = decorationItem;
 	char *through = "一曲を通して練習できます。\nあなたにあったスピードで練習でき、\n分析・採点が行われます。";
 	char *part = "練習区間を設定して集中して練習でき\nます。練習途中であっても、スピード\nの変更や巻き戻しが自由にできます。";
 	button[0] = new TriangleButton2(decorationItem, touch, "通し練習モード", through, 2, 0, WIDTH * 0.57, "Blue");
@@ -10,12 +11,18 @@ ModeSelectButton::ModeSelectButton(DecorationItem *decorationItem, Touch *touch)
 }
 
 int ModeSelectButton::Switch(const int scene) {
-	if (button[0]->GetTouch() == 1)
+	if (button[0]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return OPTION1;
-	if (button[1]->GetTouch() == 1)
+	}
+	if (button[1]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return OPTION2;
-	if (button[2]->GetTouch() == 1)
+	}
+	if (button[2]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return MAIN;
+	}
 	return scene;
 }
 

@@ -1,6 +1,7 @@
 #include "ThroughMain.h"
 
 ThroughMain::ThroughMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, Kinect *kinect) {
+	this->decorationItem = decorationItem;
 	throughStart = new ThroughStart(decorationItem);
 	throughPlay = new ThroughPlay(decorationItem, songs, touch, kinect);
 	throughPause = new ThroughPause(decorationItem, songs, touch);
@@ -33,6 +34,7 @@ MainScene ThroughMain::Switch(const MainScene scene) {
 		return THROUGH_RESULT;
 	case THROUGH_BACK_SONG_SELECT:
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return SONG_SELECT;
 	}
 	return THROUGH;

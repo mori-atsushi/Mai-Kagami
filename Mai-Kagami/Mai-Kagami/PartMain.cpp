@@ -1,6 +1,7 @@
 #include "PartMain.h"
 
 PartMain::PartMain(DecorationItem *decorationItem, Touch *touch, Songs *songs, Kinect *kinect) {
+	this->decorationItem = decorationItem;
 	partStart = new PartStart(decorationItem);
 	partPlay = new PartPlay(decorationItem, songs, touch, kinect);
 	partPause = new PartPause(decorationItem, songs, touch, kinect);
@@ -36,6 +37,7 @@ MainScene PartMain::Switch(const MainScene scene) {
 		return PART_RESULT;
 	case PART_BACK_SONG_SELECT:
 		Delete();
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return SONG_SELECT;
 	}
 	return PART;

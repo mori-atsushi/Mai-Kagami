@@ -14,7 +14,7 @@
 //ポーズボタン画面
 class ThroughPauseButton : public SubScene {
 public:
-	ThroughPauseButton(Touch *touch);
+	ThroughPauseButton(Touch *touch, DecorationItem* decorationItem);
 	void Load();
 	int Switch(const int scene);
 	void Delete();
@@ -22,6 +22,7 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	DecorationItem *decorationItem;
 	CircleGraphButton *pauseButton; //一時停止用ボタン
 };
 
@@ -29,14 +30,17 @@ private:
 class ThroughPauseScreen : public PauseScreen {
 public:
 	ThroughPauseScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch);
+private:
 };
 
 //速度変更画面
 class ThroughPauseSetting : public SpeedPop {
 public:
-	ThroughPauseSetting::ThroughPauseSetting(DecorationItem *decorationItem, Songs *songs, Touch *touch) : SpeedPop(decorationItem, songs, touch) {};
+	ThroughPauseSetting::ThroughPauseSetting(DecorationItem *decorationItem, Songs *songs, Touch *touch) : SpeedPop(decorationItem, songs, touch) { this->decorationItem = decorationItem; };
 	int Switch(const int scene);
 	void ContentUpdate();
+private:
+	DecorationItem *decorationItem;
 };
 
 //ポーズ関係

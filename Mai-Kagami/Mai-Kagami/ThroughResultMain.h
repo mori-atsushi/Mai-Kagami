@@ -22,6 +22,7 @@ private:
 	void ContentView();
 	void ContentDelete();
 	int bgmHandle; //bgm
+	DecorationItem *decorationItem;
 	ThroughResult *throughResult;
 	ThroughDetail *throughDetail;
 	Result *result;

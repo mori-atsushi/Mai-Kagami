@@ -25,6 +25,7 @@ public:
 	void View();
 	~SpeedOption();
 private:
+	DecorationItem *decorationItem;
 	Button *button[2];
 	MyDrawText *speed[2];
 	Songs *songs;
@@ -41,6 +42,7 @@ public:
 	~PartOption();
 	bool mode;
 private:
+	DecorationItem *decorationItem;
 	Button *button[4];
 	MyDrawText *part[4];
 	Songs *songs;

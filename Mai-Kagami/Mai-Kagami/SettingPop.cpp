@@ -8,6 +8,7 @@ BlackBox::BlackBox()
 
 //スピードオプション表示
 SpeedOption::SpeedOption(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	button[0] = new TriangleButton(decorationItem, touch, "UP", 0, 0);
 	button[1] = new TriangleButton(decorationItem, touch, "DOWN", 1, 1);
@@ -18,9 +19,9 @@ SpeedOption::SpeedOption(DecorationItem *decorationItem, Songs *songs, Touch *to
 
 void SpeedOption::Check() {
 	Song *song = songs->GetSong(songs->GetNowSong());
-	if (button[0]->GetTouch() == 1)
+	if (button[0]->GetTouch() == 1) 
 		song->ChangeSpeed(1);
-	if (button[1]->GetTouch() == 1)
+	if (button[1]->GetTouch() == 1) 
 		song->ChangeSpeed(-1);
 	char str[256];
 	sprintf_s(str, sizeof(str), "×%1.1lf", song->danceMovie->GetSpeed());
@@ -43,6 +44,7 @@ SpeedOption::~SpeedOption() {
 
 //区間設定オプション表示
 PartOption::PartOption(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	button[0] = new TriangleButton(decorationItem, touch, "", 0, 0);
 	button[1] = new TriangleButton(decorationItem, touch, "", 1, 1);

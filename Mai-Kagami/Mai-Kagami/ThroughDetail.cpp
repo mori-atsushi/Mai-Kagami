@@ -40,6 +40,7 @@ ThroughFinish::~ThroughFinish() {
 }
 
 ThroughDetailScreen::ThroughDetailScreen(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	this->result = result;
 	title = new DrawTitle(decorationItem, "Ì“_Œ‹‰Ê");
@@ -52,8 +53,10 @@ ThroughDetailScreen::ThroughDetailScreen(DecorationItem *decorationItem, Songs *
 }
 
 ThroughResultScene ThroughDetailScreen::Switch(const ThroughResultScene scene) {
-	if (button->GetTouch() == 1)
+	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH_RESULT_FINISH;
+	}
 	return scene;
 }
 

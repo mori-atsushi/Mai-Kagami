@@ -21,6 +21,7 @@ private:
 	void ContentDelete();
 	int scene;
 	int bgmHandle; //bgm
+	DecorationItem *decorationItem;
 	PartResult *partResult;
 	PartFinish *partFinish;
 };

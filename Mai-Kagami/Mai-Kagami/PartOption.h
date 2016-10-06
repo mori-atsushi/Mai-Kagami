@@ -12,6 +12,7 @@ public:
 	~PartOptionPreview2();
 private:
 	void ContentView();
+	DecorationItem *decorationItem;
 	Button *button[2];
 };
 

@@ -16,6 +16,7 @@ public:
 	void ContentView();
 	~ModeSelectButton();
 private:
+	DecorationItem *decorationItem;
 	Button *button[3];
 };
 

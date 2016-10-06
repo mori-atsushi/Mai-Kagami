@@ -21,6 +21,7 @@ private:
 	void ContentUpdate();
 	void ContentView();
 	void ContentDelete();
+	DecorationItem *decorationItem;
 	PartStart *partStart;
 	PartPlay *partPlay;
 	PartPause *partPause;

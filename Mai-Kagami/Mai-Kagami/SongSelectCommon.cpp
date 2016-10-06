@@ -52,6 +52,7 @@ SongSelectTitle::~SongSelectTitle() {
 
 //曲選択画面カバー画像初期化
 SongInformation::SongInformation(DecorationItem *decorationItem, Songs *songs, Touch *touch, User *user) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	this->touch = touch;
 	this->user = user;
@@ -96,6 +97,7 @@ void SongInformation::ContentUpdate() {
 			if(touch->Input2(0)) {
 				direct = 1;  // Jaity
 				for (int i = 0; i < n; i++) {
+					decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 					songCover[i]->coverGraph->Reset();
 					songCover[i]->coverWhite->Reset();
 				}
@@ -105,6 +107,7 @@ void SongInformation::ContentUpdate() {
 			if(touch->Input2(2)) {
 				direct = -1;  // Jaity
 				for (int i = 0; i < n; i++) {
+					decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 					songCover[i]->coverGraph->Reset();
 					songCover[i]->coverWhite->Reset();
 				}

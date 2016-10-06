@@ -80,7 +80,7 @@ CountDown::CountDown(DecorationItem *decorationItem, const int thisScene, const 
 }
 
 int CountDown::Switch(const int scene) {
-	if (++count == max)
+	if (++count == max) 
 		return playScene;
 	return scene;
 }
