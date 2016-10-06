@@ -19,7 +19,6 @@ int PartPauseButton::Switch(const int scene) {
 		return PART_PAUSE;
 	}
 	if (button[1]->GetTouch() > 0) {
-		printfDx("1");
 		return PART_REWIND;
 	}
 	if (scene == PART_REWIND)

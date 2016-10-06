@@ -24,7 +24,6 @@ MainScene PartResultMain::Switch(const MainScene scene) {
 	}
 	if (this->scene == PART_RESULT_BACK_PLAY) {
 		Delete();
-		printfDx("0");
 		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART;
 	}

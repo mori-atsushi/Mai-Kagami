@@ -72,7 +72,6 @@ void Result::Send() {
 	WCHAR w_comment[256] = { 0 };
 	mbstowcs(w_comment, comment, 256);
 	char commentReq[256] = { 0 };
-	printfDx(comment);
 	sprintf_s(commentReq, 256, "comment=%ls", w_comment);
 
 	//url‚ğì¬
