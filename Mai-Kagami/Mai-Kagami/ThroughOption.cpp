@@ -9,8 +9,10 @@ ThroughOptionButton::ThroughOptionButton(DecorationItem *decorationItem, Songs *
 }
 
 int ThroughOptionButton::Switch(const int scene) {
-	if (button[0]->GetTouch() == 1)
+	if (button[0]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return NEXT1;
+	}
 	if (button[1]->GetTouch() == 1) {
 		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return MODE;

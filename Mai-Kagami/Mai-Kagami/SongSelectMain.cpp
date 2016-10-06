@@ -56,9 +56,11 @@ MainScene SongSelect::Switch(const MainScene scene) {
 		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return TOP;
 	case NEXT1:
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		Delete();
 		return THROUGH;
 	case NEXT2:
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		Delete();
 		return PART;
 	default:

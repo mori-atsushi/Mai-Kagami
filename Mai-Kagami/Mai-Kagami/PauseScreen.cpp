@@ -23,19 +23,26 @@ void PauseScreen::Load() {
 int PauseScreen::Switch(const int scene) {
 	Song *song = songs->GetSong(songs->GetNowSong());
 	//戻るボタン
-	if (button[0]->GetTouch() == 1)
+	if (button[0]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return startScene;
+	}
 	//頭出しボタン
 	if (button[1]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		song->danceMovie->Seek();
 		return startScene;
 	}
 	//曲選択へ戻るボタン
-	if (button[2]->GetTouch() == 1)
+	if (button[2]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return songSelectScene;
+	}
 	//設定ボタン
-	if (button[3]->GetTouch() == 1)
+	if (button[3]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return settingScene;
+	}
 	return scene;
 }
 

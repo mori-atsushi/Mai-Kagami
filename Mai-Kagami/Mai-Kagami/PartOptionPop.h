@@ -16,6 +16,7 @@ public:
 	PartOptionSpeedPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int speedScene);
 	int Switch(const int scene);
 private:
+	DecorationItem *decorationItem;
 	void ContentUpdate();
 	int mainScene, speedScene;
 };

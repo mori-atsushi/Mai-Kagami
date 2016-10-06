@@ -2,12 +2,14 @@
 
 PartOptionSpeedPop::PartOptionSpeedPop(DecorationItem *decorationItem, Songs *songs, Touch *touch, const int mainScene, const int speedScene)
 	: SpeedPop(decorationItem, songs, touch) {
+	this->decorationItem = decorationItem;
 	this->mainScene = mainScene;
 	this->speedScene = speedScene;
 }
 
 int PartOptionSpeedPop::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		song->danceMovie->SetSpeed();
 		return mainScene;
 	}
@@ -36,6 +38,7 @@ PartOptionPartPop::PartOptionPartPop(DecorationItem *decorationItem, Songs *song
 
 int PartOptionPartPop::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		song->danceMovie->SetPart();
 		return mainScene;
 	}

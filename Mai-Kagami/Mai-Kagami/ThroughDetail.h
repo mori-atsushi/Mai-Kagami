@@ -33,6 +33,7 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	DecorationItem *decorationItem;
 	DrawTitle *title;
 	TimingBar *timingBar;
 	ExpressionBar *expressionBar;

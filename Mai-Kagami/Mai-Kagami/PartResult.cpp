@@ -36,7 +36,7 @@ void PartResult::Load() {
 
 int PartResult::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
-
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART_RESULT_FINISH;
 	}
 	return scene;

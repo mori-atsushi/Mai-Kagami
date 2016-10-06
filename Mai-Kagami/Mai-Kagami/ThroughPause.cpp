@@ -48,6 +48,7 @@ ThroughPauseScreen::ThroughPauseScreen(DecorationItem *decorationItem, Songs *so
 
 int ThroughPauseSetting::Switch(const int scene) {
 	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		song->danceMovie->SetSpeed();
 		return THROUGH_PAUSE;
 	}
