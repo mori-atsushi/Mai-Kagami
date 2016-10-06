@@ -27,6 +27,7 @@ private:
 	void GetNowTime(int nowTime[]);
 	int CalcHappy(); //表情採点
 	void CalcRecommend(); //オススメ練習算出
+	void CalcComment(); //コメント取得
 	int badPart, badSpeed;
 	Songs *songs;
 	Song *song;

@@ -46,7 +46,7 @@ void Result::Calc() {
 		partScore[9] = 80;
 	}
 	CalcRecommend();
-	strcpy(comment, "Bメロからサビに入ってからサビの終わりにかけてが苦手のように思います。そこを重点的に練習しましょう。");
+	CalcComment();
 }
 
 int Result::CalcHappy() {
@@ -74,6 +74,33 @@ void Result::CalcRecommend() {
 		badSpeed = 1;
 	else if (partScore[badPart] < 100)
 		badSpeed = 0;
+}
+
+void Result::CalcComment() {
+	char buf[1024] = "";
+	if(expression > 5)
+		strcat_s(buf, sizeof(buf), "いい笑顔で踊れています。");
+
+	if(total > 90)
+		strcat_s(buf, sizeof(buf), "素晴らしい！ほぼ完璧でしょう。");
+	else if(total > 70)
+		strcat_s(buf, sizeof(buf), "だいぶ上達してきました。");
+	else if (total > 50)
+		strcat_s(buf, sizeof(buf), "まだ覚えてない箇所がありそうですね。");
+	else
+		strcat_s(buf, sizeof(buf), "まだまだですね。ゆっくりからやり直そう。");
+
+	if (badSpeed > 0) {
+		if (badSpeed > 2)
+			strcat_s(buf, sizeof(buf), "特に");
+		else
+			strcat_s(buf, sizeof(buf), "若干");
+
+		char b[256];
+		sprintf_s(b, sizeof(b), "「%s」が苦手のようです。", song->GetPart(badPart)->GetName());
+		strcat_s(buf, sizeof(buf), b);
+	}
+	strcpy_s(comment, sizeof(comment), buf);
 }
 
 //送信
