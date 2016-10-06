@@ -35,8 +35,10 @@ void PartResult::Load() {
 }
 
 int PartResult::Switch(const int scene) {
-	if (button->GetTouch() == 1)
+	if (button->GetTouch() == 1) {
+
 		return PART_RESULT_FINISH;
+	}
 	return scene;
 }
 

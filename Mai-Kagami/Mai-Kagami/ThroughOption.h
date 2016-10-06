@@ -18,6 +18,7 @@ public:
 	int Switch(const int scene);
 	~ThroughOptionButton();
 private:
+	DecorationItem *decorationItem;
 	Songs *songs;
 	void ContentUpdate();
 	void ContentView();

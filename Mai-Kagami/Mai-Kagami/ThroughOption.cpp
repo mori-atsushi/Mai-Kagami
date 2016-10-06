@@ -1,6 +1,7 @@
 #include "ThroughOption.h"
 
 ThroughOptionButton::ThroughOptionButton(DecorationItem *decorationItem, Songs *songs, Touch *touch) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	speedOption = new SpeedOption(decorationItem, songs, touch);
 	button[0] = new CircleButton(decorationItem, touch, "スタート!", 2);
@@ -10,8 +11,10 @@ ThroughOptionButton::ThroughOptionButton(DecorationItem *decorationItem, Songs *
 int ThroughOptionButton::Switch(const int scene) {
 	if (button[0]->GetTouch() == 1)
 		return NEXT1;
-	if (button[1]->GetTouch() == 1)
+	if (button[1]->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return MODE;
+	}
 	return scene;
 }
 

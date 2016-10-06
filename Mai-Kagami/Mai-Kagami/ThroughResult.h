@@ -21,6 +21,7 @@ public:
 private:
 	void ContentUpdate();
 	void ContentView();
+	DecorationItem 		*decorationItem;
 	MyDrawTextLine		*title;			//採点結果画面タイトル
 	MyDrawCircle		*circle;		//得点を表示する円(縁白色)
 	MyDrawCircleGauge	*pointCircle;	//得点を示す角度指定の円

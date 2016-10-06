@@ -1,6 +1,7 @@
 #include "ThroughResult.h"
 
 ThroughResult::ThroughResult(DecorationItem *decorationItem, Songs *songs, Touch *touch, Result *result) {
+	this->decorationItem = decorationItem;
 	this->songs = songs;
 	this->result = result;
 	title        = new MyDrawTextLine(decorationItem, "採点結果", WIDTH * 0.5, HEIGHT * 0.15, 1, 60, WIDTH * 0.5, 4);						//採点結果
@@ -61,8 +62,10 @@ void ThroughResult::Load() {
 }
 
 ThroughResultScene ThroughResult::Switch(const ThroughResultScene scene) {
-	if (button->GetTouch() == 1) //ボタンが押されたら
+	if (button->GetTouch() == 1) { //ボタンが押されたら
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return THROUGH_RESULT_DETAIL; //詳細ページに飛ぶ
+	}
 	return scene;
 }
 

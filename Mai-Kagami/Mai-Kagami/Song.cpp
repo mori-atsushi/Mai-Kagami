@@ -131,10 +131,15 @@ void Song::ChangeStart(int num) {
 //“®‰æ‚ÌI—¹ˆÊ’u‚ð•ÏX
 void Song::ChangeEnd(int num) {
 	if (num == 1 && *end > 0) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*end) -= 1;
-	}
-	if (num == -1 && *end < GetPartNum() - 1)
+	} else if (num == 1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
+	if (num == -1 && *end < GetPartNum() - 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_CHOICE);
 		(*end) += 1;
+	} else if (num == 1)
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_ERROR);
 
 	if (*end + 1 == GetPartNum())
 		danceMovie->SetEndFlame(danceMovie->GetAllFlame());
