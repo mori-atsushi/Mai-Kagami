@@ -71,13 +71,16 @@ PartPauseScreen::PartPauseScreen(DecorationItem *decorationItem, Songs *songs, T
 
 PartOptionPreview3::PartOptionPreview3(DecorationItem *decorationItem, Songs *songs, Touch *touch)
 	: PartOptionPreview(decorationItem, songs, touch, PART_SETTING, PART_SETTING_PART, PART_SETTING_SPEED) {
+	this->decorationItem = decorationItem;
 	button = new CircleButton2(decorationItem, touch, "–ß‚é", 4);
 	blackBox = new BlackBox();
 }
 
 int PartOptionPreview3::Switch(const int scene) {
-	if (button->GetTouch() == 1)
+	if (button->GetTouch() == 1) {
+		decorationItem->PlaySoundEffect(SOUND_EFFECT_DECIDE);
 		return PART_PAUSE;
+	}
 	return PartOptionPreview::Switch(scene);
 }
 
