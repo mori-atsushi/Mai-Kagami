@@ -42,6 +42,7 @@ public:
 	int Switch(const int scene);
 	~PartOptionPreview3();
 private:
+	DecorationItem *decorationItem;
 	BlackBox *blackBox;
 	void ContentView();
 	Button *button;
