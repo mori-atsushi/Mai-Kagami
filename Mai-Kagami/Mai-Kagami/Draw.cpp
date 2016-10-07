@@ -25,6 +25,8 @@ void Color::ChangeColor(const char *color) {
 		c = GetColor(177, 177, 177);	//灰色
 	else if (!strcmp(color, "Red"))
 		c = GetColor(255, 50, 0);
+	else if (!strcmp(color, "Green"))
+		c = GetColor(0, 255, 0);
 }
 
 //表示位置用クラスコンストラクタ
