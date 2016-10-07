@@ -5,9 +5,9 @@ ThroughFinish::ThroughFinish(DecorationItem *decorationItem, Songs *songs, Touch
 	this->result = result;
 	blackBox = new BlackBox();
 	rButton = new RecommendButton(decorationItem, songs, touch, result, 0);
-	button[0] = new CircleButton(decorationItem, touch, "Ç‡Ç§àÍìx", 1, WIDTH * 0.75, "White");
-	button[1] = new CircleButton(decorationItem, touch, "ïîï™ó˚èK", 2, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(decorationItem, touch, "ã»ëIëâÊñ ", 3, WIDTH * 0.75, "White");
+	button[0] = new CircleButton(decorationItem, touch, "Ç‡Ç§àÍìx", 1, WIDTH * 0.75, "Blue");
+	button[1] = new CircleButton(decorationItem, touch, "ïîï™ó˚èK", 2, WIDTH * 0.75, "Blue");
+	button[2] = new CircleButton(decorationItem, touch, "ã»ëIëâÊñ ", 3, WIDTH * 0.75, "Blue");
 }
 
 ThroughResultScene ThroughFinish::Switch(const ThroughResultScene scene) {
@@ -165,7 +165,7 @@ RecommendButton::RecommendButton(DecorationItem *decorationItem, Songs *songs, T
 	this->songs = songs;
 	this->result = result;
 	text = new MyDrawTextLine(decorationItem, "Ç®Ç∑Ç∑Çﬂó˚èK", WIDTH * 0.75, GetY() - HEIGHT * 0.015, 1, 30, WIDTH * 0.25,  3, "White");
-	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, "White");
+	myDrawCircle = new MyDrawCircle(WIDTH * 0.97, GetY(), WIDTH * 0.015, 7, "Blue");
 	textSub = new MyDrawText(decorationItem, "", WIDTH * 0.75, GetY() + HEIGHT * 0.015, 1, 24, "Blue");
 }
 

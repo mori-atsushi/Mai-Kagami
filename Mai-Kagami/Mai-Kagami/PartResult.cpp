@@ -75,10 +75,10 @@ PartResult::~PartResult() {
 
 PartFinish::PartFinish(DecorationItem *decorationItem, Touch *touch) {
 	blackBox = new BlackBox();
-	button[0] = new CircleButton(decorationItem, touch, "‚à‚¤ˆê“x", 0, WIDTH * 0.75, "White");
-	button[1] = new CircleButton(decorationItem, touch, "•”•ª—ûK", 1, WIDTH * 0.75, "White");
-	button[2] = new CircleButton(decorationItem, touch, "’Ê‚µ—ûK", 2, WIDTH * 0.75, "White");
-	button[3] = new CircleButton(decorationItem, touch, "‹È‘I‘ğ‰æ–Ê", 3, WIDTH * 0.75, "White");
+	button[0] = new CircleButton(decorationItem, touch, "‚à‚¤ˆê“x", 0, WIDTH * 0.75, "Blue");
+	button[1] = new CircleButton(decorationItem, touch, "•”•ª—ûK", 1, WIDTH * 0.75, "Blue");
+	button[2] = new CircleButton(decorationItem, touch, "’Ê‚µ—ûK", 2, WIDTH * 0.75, "Blue");
+	button[3] = new CircleButton(decorationItem, touch, "‹È‘I‘ğ‰æ–Ê", 3, WIDTH * 0.75, "Blue");
 }
 
 int PartFinish::Switch(const int scene) {
